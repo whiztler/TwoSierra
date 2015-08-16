@@ -49,6 +49,26 @@ class CfgVehicleTemplates {
 			"Destruct", 0
 		};
 	};
+	
+	class ADF_aegisOffroad {
+		displayName = "ADF_aegisOffroad"; 
+		author = "Whiztler";
+		textures[] = {
+			"Img\NRF_cusTex_offroad_Aegis.jpg"
+		};
+		animationList[] = {
+			"HideDoor1", 0,
+			"HideDoor2", 0,
+			"HideGlass2", 1,
+			"HideDoor3", 0,
+			"HideBackpacks", 0,
+			"HideBumper2", 0,
+			"HideConstruction", 0,
+			"Proxy", 0,
+			"Destruct", 0
+		};
+	};
+	
 	class ADF_opforTruck {
 		displayName = "ADF_opforTruck"; 
 		author = "Whiztler";
@@ -77,26 +97,28 @@ class CfgDebriefing
 	class End1
 	{
 		title = "Mission Completed";
-		subtitle = "Mission Name";
-		description = "Success message goes here";
-		pictureBackground = ""; // eg. "img\yourpicture.jpg" no picture? use "";
-		picture = "b_HQ"; // Marker icon
+		subtitle = "Day 01 | Bearclaw";
+		description = "Splendid achievement Two Sierra! RTB.";
+		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\2SIERRA_logo.paa"; // Marker icon
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 	class End2
 	{
 		title = "Mission Failed";
-		subtitle = "Mission Name";
-		description = "Failure message goes here";
-		pictureBackground = "Img\intro_day1.paa"; // eg. "img\yourpicture.jpg" no picture? use "";
+		subtitle = "Day 01 | Bearclaw";
+		description = "Losing BEARCLAW means we lost valuable intel. Unacceptable!";
+		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\2SIERRA_logo.paa"; // Marker icon
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 	class Killed
 	{
 		title = "All players K.I.A.";
-		subtitle = "Mission Name";
-		description = "Failure message goes here";
-		pictureBackground = "Img\intro_day1.paa"; // eg. "img\yourpicture.jpg" no picture? use "";
+		subtitle = "Day 01 | Bearclaw";
+		description = "TWO SIERRA R.I.P.";
+		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\2SIERRA_logo.paa"; // Marker icon
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 };

@@ -19,8 +19,9 @@ for "_i" from 1 to 2 do {
 
 	_c = createGroup INDEPENDENT;
 	_v = [getMarkerPos _spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
-	_cX = units _c; {[_x] call ADF_fnc_redress} forEach _cX;
+	_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
 	_vX = _v select 0;
+	_vX setVariable ["BIS_enableRandomization", false];
 	[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
 	[_c, getMarkerPos _spawnPos, 1000, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
@@ -35,7 +36,7 @@ for "_i" from 1 to 3 do {
 	_bravoPaxPatrolhArray deleteAt _idx;
 
 	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redress} forEach _gX;
+	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
 	[_g, getMarkerPos _spawnPos, 600, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
 
@@ -44,7 +45,7 @@ for "_i" from 10 to 13 do {
 	private ["_g","_gX","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
 	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redress} forEach _gX;
+	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
 	[_g, getMarkerPos _spawnPos, 75, 2, true] call CBA_fnc_taskDefend;	
 };
 
@@ -53,5 +54,5 @@ for "_i" from 1 to 2 do {
 	private ["_g","_gX","_spawnPos"];
 	_spawnPos = format ["mGuerPaxTwr_%1",_i];
 	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redress; _x setPosATL [getMarkerPos _spawnPos select 0, getMarkerPos _spawnPos select 1, 5.8];} forEach _gX;
+	_gX = units _g; {[_x] call ADF_fnc_redressPashtun; _x setPosATL [getMarkerPos _spawnPos select 0, getMarkerPos _spawnPos select 1, 5.8];} forEach _gX;
 };

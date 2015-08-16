@@ -20,15 +20,12 @@ objBearclaw setSpeaker "Male10ENG";
 gBearclaw allowFleeing 0;
 gBearclaw setCombatMode "BLUE";
 gBearclaw setBehaviour "CARELESS";
-
+	
 // Relocate to captive position
 objBearclaw allowDamage false;
 objBearclaw setPos (getMarkerPos _bearclawLoc);
 objBearclaw setDir _bearclawDir;
-objBearclaw allowDamage true;
-objBearclaw setDamage .1;
-objBearclaw SetUnitPos "down";
-//objBearclaw disableAI "MOVE";
+objBearclaw enableSimulationGlobal false;
 
 // Move Obj trigger to captive position
 tObjBearclaw setPos (getPos objBearclaw);
@@ -44,11 +41,14 @@ if (ADF_debug) then {
 };
 
 waitUntil {sleep 3; BearclawRescued};
-objBearclaw enableAI "MOVE";
+objBearclaw enableSimulationGlobal true;
+objBearclaw SetUnitPos "up";
+objBearclaw disableAI "FSM";
+objBearclaw allowDamage true;
 
 {deleteMarker _x} forEach ["mSector_Alpha","mSector_AlphaTxt","mSector_Bravo","mSector_bravoTxt"];
 
-// Create Zebra reception party
+// Enable Zebra reception party
 {
 	_x enableSimulationGlobal true;
 	_x hideObjectGlobal false;
@@ -70,7 +70,7 @@ for "_i" from 1 to 2 do {
 
 	_c = createGroup INDEPENDENT;
 	_v = [getMarkerPos _spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
-	_cX = units _c; {[_x] call ADF_fnc_redress} forEach _cX;
+	_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
 	_vX = _v select 0;
 	[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
 	_wp = _c addWaypoint [getPos objBearclaw, 0];
@@ -79,3 +79,5 @@ for "_i" from 1 to 2 do {
 	_wp setWaypointType "SAD"; _wp setWaypointSpeed "LIMITED";
 	sleep 25;
 };
+
+if !(isNil "tCSAT_cp3") then {deleteVehicle tCSAT_cp3};

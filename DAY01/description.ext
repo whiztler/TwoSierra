@@ -14,7 +14,7 @@ File: description.ext
 class Header {
 	gameType = Coop; // A3: Coop, ZCoop (Zeus Coop) - See https://community.bistudio.com/wiki/Multiplayer_Game_Types for other game types
 	minPlayers = 1;
-	maxPlayers = 117; // 114 + 3 HC. Change to the exact amount of available player slots including all HC's.
+	maxPlayers = 37; // 34 + 3 HC. Change to the exact amount of available player slots including all HC's.
 	playerCountMultipleOf = 1; // Coop setting. Set to 0 for other game types.
 };
 
@@ -32,13 +32,13 @@ respawnTemplatesCiv[] = {};
 
 /**********  Loading Screen **********/
 author = "Whiztler";
-overviewText = $STR_ADF_DescExt_overviewText; // See Stringtable.xml for input
-onLoadName = $STR_ADF_DescExt_onLoadName;
-onLoadMission = $STR_ADF_DescExt_onLoadMission;
+overviewText = "Two Sierra Vol. 1 / Day 01 - v1.00";
+onLoadName = "BEARCLAW";
+onLoadMission = "TWO SIERRA | Day 01";
 onLoadIntroTime = false;
 onLoadMissionTime = false;
 loadScreen = "Img\2SIERRA_loadscreen.jpg";
-onLoadIntro = $STR_ADF_DescExt_onLoadIntro;
+onLoadIntro = "Powered by ADF";
 
 /**********  Mission specific settings **********/
 showGPS = 1; // Allow GPS where (0=disallowed), (1=allowed).
