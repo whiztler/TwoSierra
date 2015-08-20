@@ -64,42 +64,13 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 	["FOB JOHNSON, KUSHAB","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
-hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE this is TWO SIERRA at JOHNSON. How copy?</t><br/><br/>";
-
-sleep 12;
-
-hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/>
-<t color='#6C7169' align='left'>FIRESTONE: Copy TWO SIERRA. Head out North, North West and locate and neutralize AKIRA. Out.</t><br/><br/>";
-_logTime = [dayTime] call BIS_fnc_timeToString;
-_logTimeText = "Log: " + _logTime;
-player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: Copy TWO SIERRA. Head out North, North West and locate and neutralize AKIRA. Out.</font><br/><br/>"]];
-
-// AKIRA
-[] spawn {
-	waitUntil {sleep 7; tBOPlive};
-	
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE. this is TWO SIERRA. AKIRA located. How copy?.</t><br/><br/>";
-	
-	uiSleep 8;
-	
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: Roger TWO SIERRA. Neutralize AKIRA. No prisoners. Out.</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: Roger TWO SIERRA. Neutralize AKIRA. No prisoners. Out.</font><br/><br/>"]];
-};
+["2S","","FIRESTONE this is TWO SIERRA at JOHNSON. How copy?"] call ADF_fnc_MessageParser; sleep 12;
+["ACO","ACO","FIRESTONE: Copy TWO SIERRA. Head out North, North West and locate and neutralize AKIRA. Out."] call ADF_fnc_MessageParser; 
 
 [] spawn {
 	waitUntil {sleep 30; ADF_Fairlight};
-
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: TWO SIERRA. Priority message: FAIRLIGHT activated. RTB. How copy?.</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: TWO SIERRA. Priority message: FAIRLIGHT activated. RTB. How copy?.</font><br/><br/>"]];
-	
-	sleep 20;
-	
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Roger FIRESTONE. RTB. Out</t><br/><br/>";
-	
+	["ACO","ACO","FIRESTONE: TWO SIERRA. Priority message: FAIRLIGHT activated. RTB. How copy?"] call ADF_fnc_MessageParser; sleep 20;
+	["2S","","Roger FIRESTONE. RTB. Out."] call ADF_fnc_MessageParser;
 	sleep 20;
 
 	_l = ["tLayer"] call BIS_fnc_rscLayer; 
@@ -112,29 +83,15 @@ player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color
 // End Mission comms
 [] spawn {
 	waitUntil {sleep 7; ADF_endMission};
-	
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE. this is TWO SIERRA. AKIRA neutralized. How copy?.</t><br/><br/>";
-	
-	uiSleep 8;
-	
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: Good job TWO SIERRA. Return to JOHNSON for debrief. Over.</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: Good job TWO SIERRA. Return to JOHNSON for debrief. Over</font><br/><br/>"]];
-	
-	uiSleep 11;
-	
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Copy FIRESTONE. TWO SIERRA oscar mike. Out.</t><br/><br/>";
+
+	["2S","","FIRESTONE. this is TWO SIERRA. AKIRA neutralized. How copy?"] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","FIRESTONE: Good job TWO SIERRA. Return to JOHNSON for debrief. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","Copy FIRESTONE. TWO SIERRA oscar mike. Out."] call ADF_fnc_MessageParser;
 	
 	waitUntil {sleep 5; triggerActivated tEndMission};
 			
-	sleep 10;
-
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRSTONE: Good to see you back in once piece TWO SIERRA.</t><br/><br/><t color='#6C7169' align='left'>MOTHER just issued FAIRLIGHT protocol. We are leaving this hell hole.</t><br/><br/><t color='#6C7169' align='left'>Return to LEO and pack-up you shit. Oh and by the way, Nice work on that base camp.</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRSTONE: Good to see you back in once piece TWO SIERRA.<br/><br/>MOTHER just issued FAIRLIGHT protocol. We are leaving this hell hole.<br/><br/>Return to LEO and pack-up you shit. Oh and by the way, Nice work on that base camp.</font><br/><br/>"]];
-	
+	sleep 10;	
+	["ACO","ACO","FIRSTONE: Good to see you back in once piece TWO SIERRA.<br/><br/>MOTHER just issued FAIRLIGHT protocol. We are leaving this hell hole.<br/><br/>Return to LEO and pack-up you shit. Oh and by the way, Nice work on that base camp."] call ADF_fnc_MessageParser; 
 	sleep 20;
 
 	_l = ["tLayer"] call BIS_fnc_rscLayer; 

@@ -21,10 +21,10 @@ if (_ADF_SOD_spawnCity == "nur") then {
 };
 
 for "_i" from _ADF_SOD_mStart to _ADF_SOD_mEnd do {
-	private ["_spawnPos","_wp","_g","_gX"];
+	private ["_spawnPos","_wp","_g"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
 	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	_wp = _g addWaypoint [_ADF_SOD_sadPos, 0];
 	_wp setWaypointType "SAD";
 	_wp setWaypointBehaviour "COMBAT";

@@ -64,52 +64,26 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 	["LMAB, NRF 5TH BAT","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
-hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Capt. James O'Conner: Good morning TWO SIERRA.</t><br/><t color='#6C7169' align='left'>Get your men ready. Leave NLT 04:45.<br/><br/>No air support till we know what we're dealing with. Good luck TWO SIERRA</t><br/><br/>";
-_logTime = [dayTime] call BIS_fnc_timeToString;
-_logTimeText = "Log: " + _logTime;
-player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>Capt. James O'Conner: Good morning TWO SIERRA.<br/>Get your men ready. Leave NLT 04:45.<br/><br/>No air support till we know what we're dealing with. Good luck TWO SIERRA.</font><br/><br/>"]];
-
-ADF_msg_tDolphin = {
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Copy FIRESTONE. TWO SIERRA at DOLPHIN. Doesn't look good. Over.</t><br/><br/>";
-
-	sleep 8;
-	
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Copy TWO SIERRA. Neutralize DOLPHIN and proceed with the mission objective. out.</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>Copy TWO SIERRA. Neutralize DOLPHIN and proceed with the mission objective. out.</font><br/><br/>"]];
-};
+["ACO","ACO","Capt. James O'Conner: Good morning TWO SIERRA.<br/>Get your men ready. Leave NLT 04:45.<br/><br/>No air support till we know what we're dealing with. Good luck TWO SIERRA."] call ADF_fnc_MessageParser;
 
 [] spawn {
 	waitUntil {sleep 15; time > 1200};
 	if (triggerActivated tStart) exitWith {};
-	
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Capt. James O'Conner: It is 04:45. TWO SIERRA, get moving. Now!</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>Capt. James O'Conner: It is 04:45 TWO SIERRA. Get moving. Now!</font><br/><br/>"]];
+	["ACO","ACO","Capt. James O'Conner: It is 04:45. TWO SIERRA, get moving. Now!"] call ADF_fnc_MessageParser;
 };
 
 // End Mission
 [] spawn {
 	waitUntil {sleep 10; ADF_endMission};
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: TWO SIERRA RTB for debrief. How Copy?</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: TWO SIERRA RTB for debrief. How Copy?</font><br/><br/>"]];
 	
-	sleep 11;
-	
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Copy FIRESTONE. TWO SIERRA coming home. Out.</t><br/><br/>";
+	["ACO","ACO","FIRESTONE: TWO SIERRA RTB for debrief. How Copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","TWO SIERRA: Copy FIRESTONE. TWO SIERRA coming home. Out."] call ADF_fnc_MessageParser;
 	
 	waitUntil {sleep 5; triggerActivated tEndMission};
 			
 	sleep 25;
 
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Capt. James O'Conner:. Welcome back TWO SIERRA</t><br/><br/><t color='#6C7169' align='left'>We are getting reports about Pashtun insurgents all over the Feruz Abad province. They must have a base of operations somewhere. MOTHER has already tasked TWO SIEERA with a mission for tomorrow.</t><br/><br/><t color='#6C7169' align='left'>Nice work today. Doris has some hot coffee waiting for you.</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>Capt. James O'Conner:. Welcome back TWO SIERRA<br/><br/>We are getting reports about Pashtun insurgents all over the Feruz Abad province. They must have a base of operations somewhere. MOTHER has already tasked TWO SIEERA with a mission for tomorrow.<br/><br/>Nice work today. Doris has some hot coffee waiting for you.</font><br/><br/>"]];
+	["ACO","ACO","Capt. James O'Conner:. Welcome back TWO SIERRA<br/><br/>We are getting reports about Pashtun insurgents all over the Feruz Abad province. They must have a base of operations somewhere. MOTHER has already tasked TWO SIEERA with a mission for tomorrow.<br/><br/>Nice work today. Doris has some hot coffee waiting for you."] call ADF_fnc_MessageParser;
 	
 	sleep 20;
 

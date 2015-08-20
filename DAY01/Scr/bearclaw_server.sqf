@@ -40,6 +40,10 @@ if (ADF_debug) then {
 	_m setMarkerText " Bearclaw";
 };
 
+diag_log	"-----------------------------------------------------";
+diag_log "TWO SIERRA: BEARCLAW spawned and set";
+diag_log	"-----------------------------------------------------";
+
 waitUntil {sleep 3; BearclawRescued};
 objBearclaw enableSimulationGlobal true;
 objBearclaw SetUnitPos "up";

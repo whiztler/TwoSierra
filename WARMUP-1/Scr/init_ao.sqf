@@ -32,10 +32,10 @@ _ADF_vehPool = {
 
 // AO Defence Squad
 for "_i" from 1 to 9 do {
-	private ["_g","_gX","_spawnPos"];
+	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
 	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 125, 1, true] call CBA_fnc_taskDefend;	
 };
 
@@ -43,14 +43,14 @@ sleep 20; // let the defence teams settle in ese the vehicles will overrun them
 
 // Vehicle patrols
 for "_i" from 1 to 5 do {
-	private ["_spawnPos","_spawnDir","_v","_cX","_vX"];
+	private ["_spawnPos","_spawnDir","_v","_vX"];
 	_spawnPos 	= format ["mGuerVeh_%1",_i];
 	_spawnDir 	= markerDir _spawnPos;
 	_vp			= call _ADF_vehPool;
 
 	_c = createGroup INDEPENDENT;
 	_v = [getMarkerPos _spawnPos, _spawnDir, _vp, _c] call BIS_fnc_spawnVehicle;
-	_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 	_vX = _v select 0;
 
 	_vX setVariable ["BIS_enableRandomization", false];
@@ -66,11 +66,11 @@ for "_i" from 1 to 5 do {
 
 // foot patrols
 for "_i" from 2 to 9 do {
-	private ["_spawnPos","_g","_gX"];
+	private ["_spawnPos","_g"];
 	_spawnPos = getMarkerPos "mOpforSpawn";
 
 	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, _spawnPos, 225, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
 

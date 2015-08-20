@@ -69,19 +69,8 @@ if !(isNil "INF_AMS_1") then {if (player == INF_AMS_1) then {INF_AMS_1 assignAsD
 if !(isNil "INF_HMG_1") then {if (player == INF_HMG_1) then {INF_HMG_1 assignAsGunner MRAP_1INF_WT2; INF_HMG_1 moveInGunner MRAP_1INF_WT2}};
 if !(isNil "INF_AHMG_1") then {if (player == INF_AHMG_1) then {INF_AHMG_1 assignAsCargo MRAP_1INF_WT2; INF_AHMG_1 moveInCargo MRAP_1INF_WT2}};
 
-ADF_msg_tPrice = {
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\aegis_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Patrick Logan: great to see you TWO SIERRA.</t><br/><br/><t color='#6C7169' align='left'>Love to chat but we expect those Pashtun basteds launch another assault any minute now. They usually come at us around dusk. We're only 20 strong, including the storage facility and our checkpoint. We got a few 50 cals in those bunkers that have been holding them off quite successfully.<br/><br/>You fellas can set up your defences where ever you see fit. Gimme a shout if you fellas need anything.</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: Aegis</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>Patrick Logan: great to see you TWO SIERRA.<br/><br/>DLove to chat but we expect those Pashtun basteds launch another assault any minute now. They usually come at us around dusk. We're only 20 strong, including the storage facility and our checkpoint. We got a few 50 cals in those bunkers that have been holding them off quite successfully.<br/><br/>You fellas can set up your defences where ever you see fit. Gimme a shout if you fellas need anything.</font><br/><br/>"]];
-};
-
-ADF_msg_tBaltimore = {
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\aegis_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Dean Strawoski: Good to see you guys. Logan is waiting for you at the airfield.</t><br/><br/>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: Aegis</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>Dean Strawoski: Good to see you guys. Logan is waiting for you at the airfield.</font><br/><br/>"]];
-};
+ADF_msg_tPrice = {["Aegis","Aegis","Love to chat but we expect those Pashtun basteds launch another assault any minute now. They usually come at us around dusk. We're only 20 strong, including the storage facility and our checkpoint. We got a few 50 cals in those bunkers that have been holding them off quite successfully.<br/><br/>You fellas can set up your defences where ever you see fit. Gimme a shout if you fellas need anything."] call ADF_fnc_MessageParser;};
+ADF_msg_tBaltimore = {["Aegis","Aegis","Dean Strawoski: Good to see you guys. Logan is waiting for you at the airfield."] call ADF_fnc_MessageParser;};
 
 waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 
@@ -91,57 +80,28 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 	["MSR PARIS, EAST OF KENNEDY","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
-hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE this is TWO SIERRA, at MSR PARIS, over.</t><br/><br/>";
-
-sleep 15;
-
-hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: Copy TWO SIERRA.</t><br/>
-<t color='#6C7169' align='left'>Drive to KENNEDY. Contact Aegis CO 'Patrick Logan' at Aegis HQ. Logan will brief re latest intel.<br/><br/>
-MOTHER suggests you stay clear of the red zone till we know what we are dealing with. Good luck TWO SIERRA. Out.</t>";
-_logTime = [dayTime] call BIS_fnc_timeToString;
-_logTimeText = "Log: " + _logTime;
-player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: Copy TWO SIERRA.<br/>Drive to KENNEDY. Contact Aegis CO 'Patrick Logan' at Aegis HQ. Logan will brief re latest intel. Out.</font><br/><br/>"]];
+["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, at MSR PARIS, over."] call ADF_fnc_MessageParser; sleep 15;
+["ACO","ACO","FIRESTONE: Copy TWO SIERRA.<br/>Drive to KENNEDY. Contact Aegis CO 'Patrick Logan' at Aegis HQ. Logan will brief re latest intel.<br/><br/>MOTHER suggests you stay clear of the red zone till we know what we are dealing with. Good luck TWO SIERRA. Out."] call ADF_fnc_MessageParser;
 
 // Assault defeated msg
 [] spawn {
 	waitUntil {sleep 10; ADF_pashtunWaveClear};
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE this is TWO SIERRA, JONAH assault defeated.  How about those reinforcements. How copy?</t><br/><br/>";
-
-	sleep 12;
-
-	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: Copy TWO SIERRA. Clear and secure the Blue Zone.<br/><br/>	When the Blue Zone is secure MOTHER wants you to assault and clear SATAN. Drive JONAH out of SATAN. Out.</t>";
-	_logTime = [dayTime] call BIS_fnc_timeToString;
-	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>	FIRESTONE: Copy TWO SIERRA.	Clear and secure the Blue Zone.<br/><br/>When the Blue Zone is secure MOTHER wants you to assault and clear SATAN. Drive JONAH out of SATAN. Out.</font><br/><br/>"]];
+	["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, JONAH assault defeated.  How about those reinforcements. How copy?"] call ADF_fnc_MessageParser; sleep 15;
+	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. Clear and secure the Blue Zone.<br/><br/>When the Blue Zone is secure MOTHER wants you to assault and clear SATAN. Drive JONAH out of SATAN. Out."] call ADF_fnc_MessageParser;
 };
 
 // End Mission
 [] spawn {
 	waitUntil {sleep 15; ADF_SatanClearUp};
-	if (ADF_SatanControl) then {	
-		hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE this is TWO SIERRA, SATAN has been cleared. JONAH body count of more than 170. How copy?</t><br/><br/>";
-
-		sleep 16;
-
-		hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: Copy TWO SIERRA.<br/><br/>Job well done. RTB. We got a bunch of cold one waiting for you. Out.</t><br/><br/>";
-		_logTime = [dayTime] call BIS_fnc_timeToString;
-		_logTimeText = "Log: " + _logTime;
-		player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>	FIRESTONE: Copy TWO SIERRA.<br/><br/>Job well done. RTB. We got a bunch of cold one waiting for you. Out.</font><br/><br/>"]];
-
-		sleep 20;
-
+	if (ADF_SatanControl) then {
+		["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, SATAN has been cleared. JONAH body count of more than 170. How copy?"] call ADF_fnc_MessageParser; sleep 15;
+		["ACO","ACO","FIRESTONE: Copy TWO SIERRA.<br/><br/>Job well done. RTB. We got a bunch of cold one waiting for you. Out."] call ADF_fnc_MessageParser; sleep 20;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
 		["<img size= '10' shadow='false' image='Img\2SIERRA_intro.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 02 | Satan's Fire</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 		['END1',true,22] call BIS_fnc_endMission;	
 	} else {	
-		hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: TWO SIERRA, time to wrap it up.<br/><br/>4TH Platoon will finish and clean up SATAN. RTB TWO SIERRA. Out.</t><br/><br/>";
-		_logTime = [dayTime] call BIS_fnc_timeToString;
-		_logTimeText = "Log: " + _logTime;
-		player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: TWO SIERRA, time to wrap it up.<br/><br/>4TH Platoon will finish and clean up SATAN. RTB TWO SIERRA. Out.</font><br/><br/>"]];
-
-		sleep 20;
-
+		["ACO","ACO","FIRESTONE: TWO SIERRA, time to wrap it up.<br/><br/>4TH Platoon will finish and clean up SATAN. RTB TWO SIERRA. Out."] call ADF_fnc_MessageParser; sleep 20;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
 		["<img size= '10' shadow='false' image='Img\2SIERRA_intro.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 02 | Satan's Fire</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		

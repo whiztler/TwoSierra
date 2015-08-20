@@ -1,6 +1,8 @@
 // Mission Objective Test Script
 // DAY 2
 
+diag_log "ADF RPT: Debug - Mission Objective Test Script (MOTS) started";
+
 if !(isNil "MotsActive") exitWith {hint "MOTS has already been executed"};
 MotsActive = true;
 [{systemChat "Mission Objective Test Script started."},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; sleep 2;
@@ -12,28 +14,26 @@ waitUntil {ADF_missionInit};
 
 if (isNil "ADF_mots_assaultTimer") then {
 	waitUntil {
-		[{systemChat "Waiting for server scripts to start..."},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 3;
+		[{systemChat "Waiting for server scripts to finish..."},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 3;
 		!isNil "ADF_mots_assaultTimer"
 	};
 };
 
 ADF_AO_initTime	= ADF_mots_assaultTimer;
 ADF_setCurTime	= ADF_AO_initTime - time;
-ADF_timeMin		= round (ADF_setCurTime / 60);
-ADF_timeSec		= round (ADF_setCurTime - 4); uiSleep 2;
+ADF_timeMin		= round (ADF_setCurTime / 60); publicVariable "ADF_timeMin";
+ADF_timeSec		= round (ADF_setCurTime - 4); uiSleep 2;  publicVariable "ADF_timeSec";
 ADF_timerSleep	= 20;
 
 [{systemChat format ["Waiting for AO to init (approx %1 minutes!).",ADF_timeMin]},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 2;
-[{systemChat "Init will take a long time (random timed assault). Feel free to roam about."},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 2;
+[{systemChat "Init will take a long time (random timed assault). Feel free to roam about. Teleporting to KENNEDY in 5 seconds"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
+{_x setPos (getMarkerPos "mAegisText_1");} forEach ADF_mots_uArray; 
 while {time < ADF_AO_initTime} do {	
 	[{systemChat format ["AO init time remaining %1 seconds",ADF_timeSec]},"BIS_fnc_call",true,false] spawn BIS_fnc_MP;	
-	if (ADF_timeSec <= ADF_timerSleep) then {uiSleep ADF_timeSec + 1;} else {uiSleep ADF_timerSleep; ADF_timeSec = ADF_timeSec - 20;};	
+	if (ADF_timeSec <= ADF_timerSleep) then {uiSleep ADF_timeSec + 1;} else {uiSleep ADF_timerSleep; ADF_timeSec = ADF_timeSec - 20; publicVariable "ADF_timeSec"};	
 };
 
 [{systemChat "Starting MOTS process. Make sure you are NOT in a vehicle!"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
-
-[{systemChat "Teleporting to KENNEDY"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP;
-{_x setPos (getMarkerPos "mAegisText_1");} forEach ADF_mots_uArray; 
 
 [{systemChat "Clearing the AO of enemies"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 3;
 _cntQ = nearestObjects [getMarkerPos "mAegisText_1", ["MAN"], 2000];
@@ -57,4 +57,6 @@ _cntQ = nil;
 
 [{systemChat "Init second AO mission process"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 40;
 
-[{systemChat "Mission Objective Test Script completed"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP;  
+[{systemChat "Mission Objective Test Script completed"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP;
+
+diag_log "ADF RPT: Debug - Mission Objective Test Script (MOTS) finished";

@@ -4,6 +4,4 @@ if (isServer) then {
 	publicVariable "foggyBottom";
 	0 setFog foggyBottom;
 	forceWeatherChange;
-	ADF_msg_tPrice = {};
-	ADF_msg_tBaltimore = {};
 };

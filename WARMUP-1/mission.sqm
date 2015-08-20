@@ -35,7 +35,6 @@ class Mission
 		"cba_main",
 		"A3_Characters_F",
 		"A3_Modules_F_Curator_Curator",
-		"A3_Modules_F_Curator_Effects",
 		"A3_Characters_F_INDEP",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_Mark",
@@ -87,7 +86,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=23;
+		items=22;
 		class Item0
 		{
 			side="LOGIC";
@@ -233,40 +232,6 @@ class Mission
 		};
 		class Item6
 		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={3755.8726,-0.00096133258,2437.6914};
-					class args
-					{
-						items=2;
-						class Item0
-						{
-							value="Default";
-							parentCls="ModulePostprocess_F";
-							typeName="Template";
-						};
-						class Item1
-						{
-							value="0";
-							parentCls="ModulePostprocess_F";
-							typeName="CommitTime";
-						};
-					};
-					id=6;
-					side="LOGIC";
-					vehicle="ModulePostprocess_F";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-				};
-			};
-		};
-		class Item7
-		{
 			side="GUER";
 			class Vehicles
 			{
@@ -275,7 +240,7 @@ class Mission
 				{
 					presence=0;
 					position[]={3750.7241,-0.0011266758,2332.0459};
-					id=7;
+					id=6;
 					side="GUER";
 					vehicle="I_soldier_F";
 					leader=1;
@@ -285,7 +250,7 @@ class Mission
 				};
 			};
 		};
-		class Item8
+		class Item7
 		{
 			side="WEST";
 			class Vehicles
@@ -296,7 +261,7 @@ class Mission
 					position[]={1802.0713,2.5867472,2381.2334};
 					azimut=-421.14709;
 					special="NONE";
-					id=8;
+					id=7;
 					side="WEST";
 					vehicle="B_officer_F";
 					player="PLAYER COMMANDER";
@@ -311,7 +276,7 @@ class Mission
 				{
 					position[]={1801.3304,2.486088,2382.4209};
 					azimut=-564.72498;
-					id=9;
+					id=8;
 					side="WEST";
 					vehicle="B_Soldier_lite_F";
 					player="PLAY CDG";
@@ -323,7 +288,7 @@ class Mission
 				};
 			};
 		};
-		class Item9
+		class Item8
 		{
 			side="WEST";
 			class Vehicles
@@ -333,7 +298,7 @@ class Mission
 				{
 					position[]={1790.6212,2.2314591,2380.0488};
 					azimut=-382.789;
-					id=10;
+					id=9;
 					side="WEST";
 					vehicle="B_Soldier_SL_F";
 					player="PLAY CDG";
@@ -348,7 +313,7 @@ class Mission
 				{
 					position[]={1790.8396,2.2583263,2379.4731};
 					azimut=-382.789;
-					id=11;
+					id=10;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
@@ -360,7 +325,7 @@ class Mission
 				};
 			};
 		};
-		class Item10
+		class Item9
 		{
 			side="WEST";
 			class Vehicles
@@ -370,7 +335,7 @@ class Mission
 				{
 					position[]={1794.0474,2.3748662,2379.3591};
 					azimut=-382.789;
-					id=12;
+					id=11;
 					side="WEST";
 					vehicle="B_Soldier_TL_F";
 					player="PLAY CDG";
@@ -385,7 +350,7 @@ class Mission
 				{
 					position[]={1793.3915,2.3611619,2379.063};
 					azimut=-382.789;
-					id=13;
+					id=12;
 					side="WEST";
 					vehicle="B_soldier_AR_F";
 					player="PLAY CDG";
@@ -399,7 +364,7 @@ class Mission
 				{
 					position[]={1794.7203,2.4129348,2378.9053};
 					azimut=-382.789;
-					id=14;
+					id=13;
 					side="WEST";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
@@ -412,7 +377,7 @@ class Mission
 				{
 					position[]={1793.9056,2.3946152,2378.5784};
 					azimut=-382.789;
-					id=15;
+					id=14;
 					side="WEST";
 					vehicle="B_soldier_AAR_F";
 					player="PLAY CDG";
@@ -425,7 +390,7 @@ class Mission
 				{
 					position[]={1794.7346,2.3908086,2379.6196};
 					azimut=-382.789;
-					id=16;
+					id=15;
 					side="WEST";
 					vehicle="B_soldier_LAT_F";
 					player="PLAY CDG";
@@ -436,7 +401,7 @@ class Mission
 				};
 			};
 		};
-		class Item11
+		class Item10
 		{
 			side="WEST";
 			class Vehicles
@@ -446,7 +411,7 @@ class Mission
 				{
 					position[]={1789.4574,2.2875562,2376.9351};
 					azimut=-382.789;
-					id=17;
+					id=16;
 					side="WEST";
 					vehicle="B_Soldier_TL_F";
 					player="PLAY CDG";
@@ -461,7 +426,7 @@ class Mission
 				{
 					position[]={1788.8195,2.2792845,2376.6577};
 					azimut=-382.789;
-					id=18;
+					id=17;
 					side="WEST";
 					vehicle="B_soldier_AR_F";
 					player="PLAY CDG";
@@ -475,7 +440,7 @@ class Mission
 				{
 					position[]={1790.1376,2.321064,2376.4414};
 					azimut=-382.789;
-					id=19;
+					id=18;
 					side="WEST";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
@@ -488,7 +453,7 @@ class Mission
 				{
 					position[]={1789.3606,2.3090167,2376.1143};
 					azimut=-382.789;
-					id=20;
+					id=19;
 					side="WEST";
 					vehicle="B_soldier_AAR_F";
 					player="PLAY CDG";
@@ -501,7 +466,7 @@ class Mission
 				{
 					position[]={1790.1185,2.2987483,2377.1819};
 					azimut=-382.789;
-					id=21;
+					id=20;
 					side="WEST";
 					vehicle="B_soldier_LAT_F";
 					player="PLAY CDG";
@@ -512,7 +477,7 @@ class Mission
 				};
 			};
 		};
-		class Item12
+		class Item11
 		{
 			side="WEST";
 			class Vehicles
@@ -522,7 +487,7 @@ class Mission
 				{
 					position[]={1806.4427,2.6019752,2385.8218};
 					azimut=-382.789;
-					id=22;
+					id=21;
 					side="WEST";
 					vehicle="B_Soldier_SL_F";
 					player="PLAY CDG";
@@ -537,7 +502,7 @@ class Mission
 				{
 					position[]={1806.6799,2.6335793,2385.2334};
 					azimut=-382.789;
-					id=23;
+					id=22;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
@@ -549,7 +514,7 @@ class Mission
 				};
 			};
 		};
-		class Item13
+		class Item12
 		{
 			side="WEST";
 			class Vehicles
@@ -559,7 +524,7 @@ class Mission
 				{
 					position[]={1809.6879,2.8572459,2386.061};
 					azimut=-382.789;
-					id=24;
+					id=23;
 					side="WEST";
 					vehicle="B_Soldier_TL_F";
 					player="PLAY CDG";
@@ -574,7 +539,7 @@ class Mission
 				{
 					position[]={1808.9692,2.8061848,2385.752};
 					azimut=-382.789;
-					id=25;
+					id=24;
 					side="WEST";
 					vehicle="B_soldier_AR_F";
 					player="PLAY CDG";
@@ -588,7 +553,7 @@ class Mission
 				{
 					position[]={1810.3831,2.9091203,2385.6526};
 					azimut=-382.789;
-					id=26;
+					id=25;
 					side="WEST";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
@@ -601,7 +566,7 @@ class Mission
 				{
 					position[]={1809.5439,2.8621302,2385.2913};
 					azimut=-382.789;
-					id=27;
+					id=26;
 					side="WEST";
 					vehicle="B_soldier_AAR_F";
 					player="PLAY CDG";
@@ -614,7 +579,7 @@ class Mission
 				{
 					position[]={1810.451,2.8966777,2386.3855};
 					azimut=-382.789;
-					id=28;
+					id=27;
 					side="WEST";
 					vehicle="B_soldier_LAT_F";
 					player="PLAY CDG";
@@ -625,7 +590,7 @@ class Mission
 				};
 			};
 		};
-		class Item14
+		class Item13
 		{
 			side="WEST";
 			class Vehicles
@@ -635,7 +600,7 @@ class Mission
 				{
 					position[]={1805.0879,2.5851278,2383.6377};
 					azimut=-382.789;
-					id=29;
+					id=28;
 					side="WEST";
 					vehicle="B_Soldier_TL_F";
 					player="PLAY CDG";
@@ -650,7 +615,7 @@ class Mission
 				{
 					position[]={1804.373,2.5713313,2383.3174};
 					azimut=-382.789;
-					id=30;
+					id=29;
 					side="WEST";
 					vehicle="B_soldier_AR_F";
 					player="PLAY CDG";
@@ -664,7 +629,7 @@ class Mission
 				{
 					position[]={1805.7764,2.6367569,2383.2715};
 					azimut=-382.789;
-					id=31;
+					id=30;
 					side="WEST";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
@@ -677,7 +642,7 @@ class Mission
 				{
 					position[]={1804.9156,2.6189981,2382.906};
 					azimut=-382.789;
-					id=32;
+					id=31;
 					side="WEST";
 					vehicle="B_soldier_AAR_F";
 					player="PLAY CDG";
@@ -690,7 +655,7 @@ class Mission
 				{
 					position[]={1805.8314,2.602385,2383.9197};
 					azimut=-382.789;
-					id=33;
+					id=32;
 					side="WEST";
 					vehicle="B_soldier_LAT_F";
 					player="PLAY CDG";
@@ -701,7 +666,7 @@ class Mission
 				};
 			};
 		};
-		class Item15
+		class Item14
 		{
 			side="WEST";
 			class Vehicles
@@ -711,7 +676,7 @@ class Mission
 				{
 					position[]={1818.9923,2.95155,2392.9456};
 					azimut=-378.961;
-					id=34;
+					id=33;
 					side="WEST";
 					vehicle="B_soldier_AA_F";
 					player="PLAY CDG";
@@ -726,7 +691,7 @@ class Mission
 				{
 					position[]={1819.2499,3.0155208,2392.3477};
 					azimut=-378.961;
-					id=35;
+					id=34;
 					side="WEST";
 					vehicle="B_medic_F";
 					player="PLAY CDG";
@@ -738,7 +703,7 @@ class Mission
 				};
 			};
 		};
-		class Item16
+		class Item15
 		{
 			side="WEST";
 			class Vehicles
@@ -748,7 +713,7 @@ class Mission
 				{
 					position[]={1819.8947,3.2487893,2390.0261};
 					azimut=-382.789;
-					id=36;
+					id=35;
 					side="WEST";
 					vehicle="B_HeavyGunner_F";
 					player="PLAY CDG";
@@ -762,7 +727,7 @@ class Mission
 				{
 					position[]={1820.3507,3.2407427,2390.2395};
 					azimut=-382.789;
-					id=37;
+					id=36;
 					side="WEST";
 					vehicle="B_soldier_AAR_F";
 					player="PLAY CDG";
@@ -773,7 +738,7 @@ class Mission
 				};
 			};
 		};
-		class Item17
+		class Item16
 		{
 			side="WEST";
 			class Vehicles
@@ -783,7 +748,7 @@ class Mission
 				{
 					position[]={1822.4221,3.1860936,2391.2676};
 					azimut=-382.789;
-					id=38;
+					id=37;
 					side="WEST";
 					vehicle="B_soldier_AT_F";
 					player="PLAY CDG";
@@ -797,7 +762,7 @@ class Mission
 				{
 					position[]={1822.8687,3.1788661,2391.438};
 					azimut=-382.789;
-					id=39;
+					id=38;
 					side="WEST";
 					vehicle="B_soldier_AAT_F";
 					player="PLAY CDG";
@@ -808,7 +773,7 @@ class Mission
 				};
 			};
 		};
-		class Item18
+		class Item17
 		{
 			side="WEST";
 			class Vehicles
@@ -818,7 +783,7 @@ class Mission
 				{
 					position[]={1817.7469,3.176563,2388.957};
 					azimut=-382.789;
-					id=40;
+					id=39;
 					side="WEST";
 					vehicle="B_support_MG_F";
 					player="PLAY CDG";
@@ -832,7 +797,7 @@ class Mission
 				{
 					position[]={1818.157,3.1910396,2389.1445};
 					azimut=-382.789;
-					id=41;
+					id=40;
 					side="WEST";
 					vehicle="B_support_AMG_F";
 					player="PLAY CDG";
@@ -843,7 +808,7 @@ class Mission
 				};
 			};
 		};
-		class Item19
+		class Item18
 		{
 			side="LOGIC";
 			class Vehicles
@@ -916,7 +881,7 @@ class Mission
 							typeName="RespawnWhenDisabled";
 						};
 					};
-					id=42;
+					id=41;
 					side="LOGIC";
 					vehicle="ModuleRespawnVehicle_F";
 					leader=1;
@@ -924,6 +889,34 @@ class Mission
 					skill=0.60000002;
 					syncId=0;
 					synchronizations[]={5,6,7,3,4,1,2};
+				};
+			};
+		};
+		class Item19
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={1797.6161,1.6146455,2393.8826};
+					class args
+					{
+						items=1;
+						class Item0
+						{
+							value="Chemlight_Green";
+							parentCls="ModuleChemlight_F";
+							typeName="Type";
+						};
+					};
+					id=42;
+					side="LOGIC";
+					vehicle="ModuleChemlight_F";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
 				};
 			};
 		};
@@ -935,7 +928,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={1797.6161,1.6146455,2393.8826};
+					position[]={1785.6616,1.6625066,2388.929};
 					class args
 					{
 						items=1;
@@ -963,34 +956,6 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={1785.6616,1.6625066,2388.929};
-					class args
-					{
-						items=1;
-						class Item0
-						{
-							value="Chemlight_Green";
-							parentCls="ModuleChemlight_F";
-							typeName="Type";
-						};
-					};
-					id=44;
-					side="LOGIC";
-					vehicle="ModuleChemlight_F";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-				};
-			};
-		};
-		class Item22
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
 					position[]={1833.1597,4.6658401,2371.6882};
 					class args
 					{
@@ -1002,7 +967,7 @@ class Mission
 							typeName="Type";
 						};
 					};
-					id=45;
+					id=44;
 					side="LOGIC";
 					vehicle="ModuleChemlight_F";
 					leader=1;
@@ -1020,7 +985,7 @@ class Mission
 			position[]={2496.002,5.0293379,2193.7935};
 			azimut=270;
 			offsetY=6.1100001;
-			id=46;
+			id=45;
 			side="EMPTY";
 			vehicle="I_GMG_01_F";
 			leader=1;
@@ -1032,7 +997,7 @@ class Mission
 			position[]={2498.3127,5.0269809,2179.1965};
 			azimut=270;
 			offsetY=10.3;
-			id=47;
+			id=46;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1044,7 +1009,7 @@ class Mission
 			position[]={2510.9602,5.0293379,2288.2061};
 			azimut=270;
 			offsetY=10.3;
-			id=48;
+			id=47;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1056,7 +1021,7 @@ class Mission
 			position[]={2517.6799,5.0293379,2394.6323};
 			azimut=270;
 			offsetY=6.1100001;
-			id=49;
+			id=48;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1068,7 +1033,7 @@ class Mission
 			position[]={2509.9795,5.0293379,2550.179};
 			azimut=270;
 			offsetY=6.4099998;
-			id=50;
+			id=49;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1079,7 +1044,7 @@ class Mission
 		{
 			position[]={2584.9409,5.0293379,2565.395};
 			offsetY=7.0500002;
-			id=51;
+			id=50;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1091,7 +1056,7 @@ class Mission
 			position[]={2656.2178,5.0293379,2488.6824};
 			azimut=22.0665;
 			offsetY=7.0500002;
-			id=52;
+			id=51;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1103,7 +1068,7 @@ class Mission
 			position[]={2663.2034,5.0293379,2481.6396};
 			azimut=-89.360901;
 			offsetY=3.3699999;
-			id=53;
+			id=52;
 			side="EMPTY";
 			vehicle="O_static_AT_F";
 			leader=1;
@@ -1115,7 +1080,7 @@ class Mission
 			position[]={2705.5552,5.0293379,2441.7559};
 			azimut=89.219398;
 			offsetY=7.0500002;
-			id=54;
+			id=53;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1127,7 +1092,7 @@ class Mission
 			position[]={2706.3823,5.0293379,2354.3032};
 			azimut=89.219398;
 			offsetY=3.8800001;
-			id=55;
+			id=54;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1139,7 +1104,7 @@ class Mission
 			position[]={2692.2949,5.0293379,2229.0427};
 			azimut=90;
 			offsetY=5.8400002;
-			id=56;
+			id=55;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1151,7 +1116,7 @@ class Mission
 			position[]={2619.4832,5.0232043,2177.9094};
 			azimut=-0.51631999;
 			offsetY=10.31;
-			id=57;
+			id=56;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
@@ -1163,7 +1128,7 @@ class Mission
 			position[]={2645.8936,5.0293379,2194.8452};
 			azimut=90;
 			offsetY=7.0500002;
-			id=58;
+			id=57;
 			side="EMPTY";
 			vehicle="I_static_AT_F";
 			leader=1;
@@ -1174,7 +1139,7 @@ class Mission
 		{
 			position[]={2798.4614,8.500968,2140.1133};
 			azimut=325;
-			id=59;
+			id=58;
 			side="EMPTY";
 			vehicle="I_GMG_01_high_F";
 			leader=1;
@@ -1185,7 +1150,7 @@ class Mission
 		{
 			position[]={2878.6157,21.498089,2522.2087};
 			azimut=-113.915;
-			id=60;
+			id=59;
 			side="EMPTY";
 			vehicle="I_GMG_01_high_F";
 			leader=1;
@@ -1197,7 +1162,7 @@ class Mission
 		{
 			position[]={1796.3451,2.2693179,2383.2705};
 			azimut=-10.1905;
-			id=61;
+			id=60;
 			side="EMPTY";
 			vehicle="Flag_NATO_F";
 			skill=0.60000002;
@@ -1207,7 +1172,7 @@ class Mission
 		{
 			position[]={1779.4507,1.934374,2380.217};
 			azimut=-117.51168;
-			id=62;
+			id=61;
 			side="EMPTY";
 			vehicle="Land_Radar";
 			leader=1;
@@ -1218,7 +1183,7 @@ class Mission
 		{
 			position[]={1831.579,4.5431342,2368.6475};
 			azimut=-488.3761;
-			id=63;
+			id=62;
 			side="EMPTY";
 			vehicle="Barrels";
 			leader=1;
@@ -1229,7 +1194,7 @@ class Mission
 		{
 			position[]={1828.8756,4.310955,2371.5396};
 			azimut=-375.11139;
-			id=64;
+			id=63;
 			side="EMPTY";
 			vehicle="Barrels";
 			leader=1;
@@ -1240,7 +1205,7 @@ class Mission
 		{
 			position[]={1831.5725,4.3905597,2375.9519};
 			azimut=-436.34109;
-			id=65;
+			id=64;
 			side="EMPTY";
 			vehicle="Barrels";
 			leader=1;
@@ -1251,7 +1216,7 @@ class Mission
 		{
 			position[]={1829.0675,3.656117,2386.5344};
 			azimut=20;
-			id=66;
+			id=65;
 			side="EMPTY";
 			vehicle="B_MRAP_01_F";
 			skill=0.2;
@@ -1265,7 +1230,7 @@ class Mission
 			position[]={1839.2821,3.9975746,2391.0398};
 			azimut=20;
 			age="5 MIN";
-			id=67;
+			id=66;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.2;
@@ -1278,7 +1243,7 @@ class Mission
 		{
 			position[]={1813.0271,3.1720879,2379.3145};
 			azimut=20;
-			id=68;
+			id=67;
 			side="EMPTY";
 			vehicle="B_MRAP_01_F";
 			skill=0.2;
@@ -1291,7 +1256,7 @@ class Mission
 		{
 			position[]={1821.1447,3.4854174,2383.157};
 			azimut=20;
-			id=69;
+			id=68;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.2;
@@ -1304,7 +1269,7 @@ class Mission
 		{
 			position[]={1789.9772,2.5235107,2368.9072};
 			azimut=20;
-			id=70;
+			id=69;
 			side="EMPTY";
 			vehicle="B_MRAP_01_gmg_F";
 			skill=0.2;
@@ -1317,7 +1282,7 @@ class Mission
 		{
 			position[]={1797.4624,2.7337182,2371.7668};
 			azimut=20;
-			id=71;
+			id=70;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.2;
@@ -1330,7 +1295,7 @@ class Mission
 		{
 			position[]={1805.0485,2.9530313,2375.2358};
 			azimut=20;
-			id=72;
+			id=71;
 			side="EMPTY";
 			vehicle="B_MRAP_01_F";
 			skill=0.2;
@@ -1343,7 +1308,7 @@ class Mission
 		{
 			position[]={1790.0195,1.5481148,2392.0012};
 			azimut=245.84752;
-			id=73;
+			id=72;
 			side="EMPTY";
 			vehicle="US_WarfareBFieldhHospital_Base_EP1";
 			skill=0.60000002;
@@ -1353,7 +1318,7 @@ class Mission
 		{
 			position[]={1804.809,2.4132304,2388.5215};
 			azimut=154.88544;
-			id=74;
+			id=73;
 			side="EMPTY";
 			vehicle="Land_HBarrier_5_F";
 			skill=0.60000002;
@@ -1363,7 +1328,7 @@ class Mission
 		{
 			position[]={1787.8776,2.1214492,2380.7654};
 			azimut=154.60388;
-			id=75;
+			id=74;
 			side="EMPTY";
 			vehicle="Land_HBarrier_5_F";
 			skill=0.60000002;
@@ -1373,7 +1338,7 @@ class Mission
 		{
 			position[]={1794.6891,2.1768947,2383.9424};
 			azimut=154.60388;
-			id=76;
+			id=75;
 			side="EMPTY";
 			vehicle="Land_HBarrier_5_F";
 			skill=0.60000002;
@@ -1383,7 +1348,7 @@ class Mission
 		{
 			position[]={1815.4211,3.4597464,2372.959};
 			azimut=153.47301;
-			id=77;
+			id=76;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1393,7 +1358,7 @@ class Mission
 		{
 			position[]={1808.1279,3.2641952,2369.3174};
 			azimut=153.47301;
-			id=78;
+			id=77;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1403,7 +1368,7 @@ class Mission
 		{
 			position[]={1800.77,2.9577339,2365.6409};
 			azimut=153.47301;
-			id=79;
+			id=78;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1413,7 +1378,7 @@ class Mission
 		{
 			position[]={1793.5088,2.7608936,2361.9673};
 			azimut=153.47301;
-			id=80;
+			id=79;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1423,7 +1388,7 @@ class Mission
 		{
 			position[]={1782.5947,2.4406116,2363.6897};
 			azimut=243.21001;
-			id=81;
+			id=80;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1433,7 +1398,7 @@ class Mission
 		{
 			position[]={1778.9205,2.1942089,2370.9661};
 			azimut=243.21001;
-			id=82;
+			id=81;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1443,7 +1408,7 @@ class Mission
 		{
 			position[]={1775.21,1.9125664,2378.3069};
 			azimut=243.21001;
-			id=83;
+			id=82;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1453,7 +1418,7 @@ class Mission
 		{
 			position[]={1771.5038,1.519551,2385.552};
 			azimut=243.21001;
-			id=84;
+			id=83;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1463,7 +1428,7 @@ class Mission
 		{
 			position[]={1786.7699,2.626977,2359.6667};
 			azimut=154.42397;
-			id=85;
+			id=84;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall_corner_F";
 			skill=0.60000002;
@@ -1473,7 +1438,7 @@ class Mission
 		{
 			position[]={1848.499,4.893085,2389.3828};
 			azimut=153.47301;
-			id=86;
+			id=85;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1483,7 +1448,7 @@ class Mission
 		{
 			position[]={1841.2058,4.5573354,2385.7412};
 			azimut=153.47301;
-			id=87;
+			id=86;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1493,7 +1458,7 @@ class Mission
 		{
 			position[]={1829.9757,4.1041665,2380.27};
 			azimut=153.47301;
-			id=88;
+			id=87;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1503,7 +1468,7 @@ class Mission
 		{
 			position[]={1822.7145,3.758481,2376.5964};
 			azimut=153.47301;
-			id=89;
+			id=88;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1513,7 +1478,7 @@ class Mission
 		{
 			position[]={1835.3025,4.3399668,2383.1226};
 			azimut=243.21001;
-			id=90;
+			id=89;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall_corridor_F";
 			skill=0.60000002;
@@ -1522,7 +1487,7 @@ class Mission
 		{
 			position[]={1853.9047,6.3917942,2371.25};
 			azimut=153.47301;
-			id=91;
+			id=90;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1532,7 +1497,7 @@ class Mission
 		{
 			position[]={1846.5468,5.7679415,2367.5735};
 			azimut=153.47301;
-			id=92;
+			id=91;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1542,7 +1507,7 @@ class Mission
 		{
 			position[]={1839.1631,5.1253119,2363.8662};
 			azimut=153.47301;
-			id=93;
+			id=92;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1552,7 +1517,7 @@ class Mission
 		{
 			position[]={1828.249,4.2663307,2365.5886};
 			azimut=243.20998;
-			id=94;
+			id=93;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1562,7 +1527,7 @@ class Mission
 		{
 			position[]={1824.5748,3.9814343,2372.865};
 			azimut=243.20998;
-			id=95;
+			id=94;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1572,7 +1537,7 @@ class Mission
 		{
 			position[]={1832.4242,4.5383878,2361.5657};
 			azimut=154.424;
-			id=96;
+			id=95;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall_corner_F";
 			skill=0.60000002;
@@ -1582,7 +1547,7 @@ class Mission
 		{
 			position[]={1798.2183,2.1958456,2385.5657};
 			azimut=154.60388;
-			id=97;
+			id=96;
 			side="EMPTY";
 			vehicle="Land_HBarrier_5_F";
 			skill=0.60000002;
@@ -1592,7 +1557,7 @@ class Mission
 		{
 			position[]={1857.9496,4.1728616,2403.8374};
 			azimut=65.153297;
-			id=98;
+			id=97;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1602,7 +1567,7 @@ class Mission
 		{
 			position[]={1855.9075,5.185822,2392.9785};
 			azimut=154.89027;
-			id=99;
+			id=98;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1612,7 +1577,7 @@ class Mission
 		{
 			position[]={1860.0514,5.0840354,2397.0342};
 			azimut=66.104202;
-			id=100;
+			id=99;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall_corner_F";
 			skill=0.60000002;
@@ -1622,7 +1587,7 @@ class Mission
 		{
 			position[]={1850.8038,1.5607297,2419.2344};
 			azimut=64.102097;
-			id=101;
+			id=100;
 			side="EMPTY";
 			vehicle="Land_HBarrierWall6_F";
 			skill=0.60000002;
@@ -1632,7 +1597,7 @@ class Mission
 		{
 			position[]={1851.3789,4.4820204,2395.5608};
 			azimut=155.79601;
-			id=102;
+			id=101;
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
@@ -1642,7 +1607,7 @@ class Mission
 		{
 			position[]={1849.7299,4.0105095,2398.5688};
 			azimut=156.38866;
-			id=103;
+			id=102;
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
@@ -1652,7 +1617,7 @@ class Mission
 		{
 			position[]={1808.7878,2.1134143,2396.9333};
 			azimut=244.86099;
-			id=104;
+			id=103;
 			side="EMPTY";
 			vehicle="Land_Cargo40_sand_F";
 			skill=0.60000002;
@@ -1662,7 +1627,7 @@ class Mission
 		{
 			position[]={1783.5994,2.304137,2371.1248};
 			azimut=245.54221;
-			id=105;
+			id=104;
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
@@ -1673,7 +1638,7 @@ class Mission
 			position[]={2636.9116,2.9127197,2139.8909};
 			azimut=89.843597;
 			offsetY=0.34999999;
-			id=106;
+			id=105;
 			side="EMPTY";
 			vehicle="Land_Kiosk_blueking_F";
 			skill=0.60000002;
@@ -1684,7 +1649,7 @@ class Mission
 			position[]={2600.4634,2.9124756,2139.8906};
 			azimut=89.843597;
 			offsetY=0.60000002;
-			id=107;
+			id=106;
 			side="EMPTY";
 			vehicle="Land_Kiosk_redburger_F";
 			skill=0.60000002;
@@ -1695,7 +1660,7 @@ class Mission
 			position[]={2585.3367,2.9715576,2139.9644};
 			azimut=90;
 			offsetY=0.35299999;
-			id=108;
+			id=107;
 			side="EMPTY";
 			vehicle="Land_Kiosk_gyros_F";
 			skill=0.60000002;
@@ -1706,7 +1671,7 @@ class Mission
 			position[]={2664.5166,2.8947754,2139.8684};
 			azimut=90;
 			offsetY=0.40000001;
-			id=109;
+			id=108;
 			side="EMPTY";
 			vehicle="Land_Kiosk_papers_F";
 			skill=0.60000002;
@@ -1718,7 +1683,7 @@ class Mission
 			azimut=-161.478;
 			offsetY=5;
 			special="NONE";
-			id=110;
+			id=109;
 			side="EMPTY";
 			vehicle="Flag_CSAT_F";
 			leader=1;
@@ -1730,7 +1695,7 @@ class Mission
 			position[]={2597.3682,5.0293379,2418.7417};
 			azimut=-161.478;
 			special="NONE";
-			id=111;
+			id=110;
 			side="EMPTY";
 			vehicle="Flag_CSAT_F";
 			leader=1;
@@ -1742,7 +1707,7 @@ class Mission
 			position[]={2595.4883,5.0293379,2423.3328};
 			azimut=-161.478;
 			special="NONE";
-			id=112;
+			id=111;
 			side="EMPTY";
 			vehicle="FlagCarrierTakistanKingdom_EP1";
 			leader=1;
@@ -1753,7 +1718,7 @@ class Mission
 			position[]={2598.5754,5.0293379,2414.2556};
 			azimut=-161.478;
 			special="NONE";
-			id=113;
+			id=112;
 			side="EMPTY";
 			vehicle="FlagCarrierTKMilitia_EP1";
 			leader=1;
@@ -1764,7 +1729,7 @@ class Mission
 			position[]={2636.7729,3,2144.2249};
 			azimut=-161.478;
 			special="NONE";
-			id=114;
+			id=113;
 			side="EMPTY";
 			vehicle="Flag_Blueking_F";
 			leader=1;
@@ -1775,7 +1740,7 @@ class Mission
 			position[]={2600.4316,3,2144.3206};
 			azimut=-161.478;
 			special="NONE";
-			id=115;
+			id=114;
 			side="EMPTY";
 			vehicle="Flag_Redburger_F";
 			leader=1;
@@ -1786,7 +1751,7 @@ class Mission
 			position[]={2585.1294,3,2144.2441};
 			azimut=-161.478;
 			special="NONE";
-			id=116;
+			id=115;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			leader=1;

@@ -56,14 +56,14 @@ ADF_TargetRandom = {
 	diag_log	"-----------------------------------------------------";
 	
 	ADF_mots_assaultTimer = (_assaultTimer + 510); publicVariable "ADF_mots_assaultTimer"; // MOTS
-
+/*
 	// Wait till the timer runs out
 	while {(_assaultTimer != 1) && !(triggerActivated tShapur1 || triggerActivated tShapur2)} do {
 		_assaultTimer = _assaultTimer - 1;
-		uiSleep 1;
+		sleep 1;
 		//hintSilent str _assaultTimer;
 	};
-	
+*/	
 	_assaultStartTime = time;
 	diag_log	"-----------------------------------------------------";
 	diag_log "TWO SIERRA: Pashtun assault started";
@@ -85,10 +85,10 @@ ADF_TargetRandom = {
 	// Infantry assault groups
 	[] spawn {
 		for "_i" from 0 to 2 do {
-			private ["_spawnPos","_g","_gX","_wp","_spawnPause"];
+			private ["_spawnPos","_g","_wp","_spawnPause"];
 			_spawnPos = "mGueAssaultLine1_1";
 			_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
-			_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+			{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 			_wp = _g addWaypoint [getMarkerPos "mGueAssaultLine1_2", 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 			_wp = _g addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
 			_spawnPause = [15,30,45,60,90,120] call BIS_fnc_selectRandom;
@@ -99,10 +99,10 @@ ADF_TargetRandom = {
 	};
 	[] spawn {
 		for "_i" from 0 to 2 do {
-			private ["_spawnPos","_g","_gX","_wp","_spawnPause"];
+			private ["_spawnPos","_g","_wp","_spawnPause"];
 			_spawnPos = "mGueAssaultLine3_1";
 			_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
-			_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+			{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 			_wp = _g addWaypoint [getMarkerPos "mGueAssaultLine3_2", 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 			_wp = _g addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
 			_spawnPause = [15,30,45,60,90,120] call BIS_fnc_selectRandom;
@@ -114,10 +114,10 @@ ADF_TargetRandom = {
 	[] spawn {
 		sleep 70;
 		for "_i" from 0 to 2 do {
-			private ["_spawnPos","_g","_gX","_wp","_spawnPause"];
+			private ["_spawnPos","_g","_wp","_spawnPause"];
 			_spawnPos = "mGueAssaultLine2_1";
 			_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad_Weapons")] call BIS_fnc_spawnGroup;
-			_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+			{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 			_wp = _g addWaypoint [getMarkerPos "mGueAssaultLine2_2", 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 			_wp = _g addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
 			_spawnPause = [15,30,45,60,90,120] call BIS_fnc_selectRandom;
@@ -137,13 +137,13 @@ ADF_TargetRandom = {
 	
 	ADF_fnc_PashtunVehAssault = {
 		params ["_line","_vType"];
-		private ["_spawnPos","_spawnDir","_c","_cX","_wp"];
+		private ["_spawnPos","_spawnDir","_c","_wp"];
 		_spawnPos = format ["mGueAssaultLine%1_1",_line];
 		_wpPos = format ["mGueAssaultLine%1_2",_line];
 		_spawnDir = markerDir _spawnPos;
 		_c = createGroup INDEPENDENT;
 		_v = [getMarkerPos _spawnPos, _spawnDir, _vType, _c] call BIS_fnc_spawnVehicle;
-		_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
+		{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 		_vX = _v select 0;
 		_vX setVariable ["BIS_enableRandomization", false];
 		[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
@@ -154,13 +154,13 @@ ADF_TargetRandom = {
 	
 	ADF_fnc_PashtunArmVehAssault = {
 		params ["_line","_v"];
-		private ["_c","_cX","_wp"];
+		private ["_c","_wp"];
 		_wpPos = format ["mGueAssaultLine%1_2",_line];
 		_c = CreateGroup INDEPENDENT; 
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "mPashtunSpawn", [], 0, "LIEUTENANT"]; _p moveInCommander _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "mPashtunSpawn", [], 0, "SERGEANT"]; _p moveInGunner _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "mPashtunSpawn", [], 0, "CORPORAL"]; _p moveInDriver _v;
-		_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
+		{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 		_wp = _c addWaypoint [getMarkerPos _wpPos, 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 		_wp = _c addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
 		true
@@ -182,7 +182,7 @@ ADF_TargetRandom = {
 	// Count spawned Opfor
 	_opforCnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
 	if (ADF_pashtunAOtriggered) then {_opforCnt = _opforCnt - ADF_redZoneOpforCnt;}; // Redzone was triggered, Deduct units from assault force
-	_opforCntWin = (_opforCnt / 10) + (random 10);
+	_opforCntWin = (_opforCnt / 9) + (random 15);
 	
 	diag_log	"-----------------------------------------------------";
 	diag_log format ["TWO SIERRA: Pashtun spawned: %1",_opforCnt];

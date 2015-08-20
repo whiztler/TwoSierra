@@ -7,7 +7,7 @@ Author: Whiztler
 Script version: 1.01
 
 Game type: n/a
-File: ADF_SOD_CAS.sqf
+File: ADF_CAS.sqf
 ****************************************************************
 This script will create a CAS request radio trigger with 9-liner simulated communication messages.
 

@@ -20,17 +20,41 @@ diag_log "ADF RPT: Init - executing briefing.sqf"; // Reporting. Do NOT edit/rem
 if (!hasInterface) exitWith {};
 
 ///// CREDITS
-player createDiaryRecord ["Diary",["Credits","
+player createDiaryRecord ["Diary",["Credits","<br/>
+<img width='380' height='380' image='Img\NRF_credit.paa'/>
 <br/><br/><font size='18'>CREDITS</font><br/><br/>
-<font color='#9DA698'>Concept and development: whiztler
+<font color='#9DA698'>
+Concept and development: whiztler
+</font><br/><br/>
 
-</font><br/><br/><font size='14' color='#d7dbd5'>SPECIAL THANKS TO:</font>
+<font size='14' color='#d7dbd5'>2SEIRRA.COM</font><font color='#9DA698'><br/>
+<font color='#9DA698'>
+More information and latest version of the Two Sierra campaign can be found at the official website: www.2sierra.com
+</font><br/><br/>
 
-<font color='#9DA698'><br/>
-- XXXX
-- XXXX
-- XXXX
+<font size='14' color='#d7dbd5'>SPECIAL THANKS TO</font><font color='#9DA698'><br/>
+- Bohemia Interactive for creating the ultimate MilSim<br/>
+  platform.<br/>
+- Nopryl Community (nopryl.no) for testing.<br/>
+- CBA Team for creating and maintaining their CBA framework.<br/>
+- Kju/CUP team for keeping the ARMA2 maps alive.<br/>
+- ACE team for spicing up the ARMA3 MilSim experience.
+</font><br/><br/>
 
+<font size='14' color='#d7dbd5'>TOOLING AND SCRIPTS</font><font color='#9DA698'><br/>
+The Two Sierra campaign uses the following tooling/scripts (with thanks to the authors):<br/>
+- F3 Spectator from the F3 Framework.<br/>
+- TAW View Distance by Tonic.<br/>
+- ZBE_caching by Zorrobyte.<br/>
+- MAD Ambient Life by MAD T.<br/>
+- Delete All by Anjan.<br/><br/>
+The Two Sierra campaign is powered by ADF.
+</font><br/><br/>
+
+<font size='14' color='#d7dbd5'>OTHER MISSIONS/CAMPAIGNS</font><font color='#9DA698'><br/>
+
+- Wolfpack Volume 1 (http://whiztler.github.io/Wolfpack).<br/>
+- Wolfpack Volume 2 (http://whiztler.github.io/Wolfpack).
 </font><br/><br/>"]];
 
 ///// OPORD

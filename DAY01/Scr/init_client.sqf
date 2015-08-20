@@ -64,16 +64,14 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 	["RV ZEBRA, NORTH OF MSR LIMA","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
-hintSilent parseText "<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE this is TWO SIERRA at RV ZEBRA</t><br/><br/>";
-
-sleep 15;
+["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA at RV ZEBRA"] call ADF_fnc_MessageParser; sleep 15;
 
 hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: Copy TWO SIERRA. FRAGO:</t><br/><br/><t color='#6C7169' align='left'>1. Locate </t><t color='#9DA698' align='left'>BEARCLAW</t><t color='#6C7169' align='left'>. Intel indicates BEARCLAW is held captive somewhere in grid </t><t color='#9DA698' align='left'>ALPHA</t><t color='#6C7169' align='left'> or in grid </t><t color='#9DA698' align='left'>BRAVO</t><t color='#6C7169' align='left'>.</t><br/><br/><t color='#6C7169' align='left'>2. Neutralize </t><t color='#9DA698' align='left'>XRAY</t><t color='#6C7169' align='left'>. Break.</t><br/><br/>";
 _logTime = [dayTime] call BIS_fnc_timeToString;
 _logTimeText = "Log: " + _logTime;
 player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: Copy TWO SIERRA. FRAGO:<br/><br/>1. Locate BEARCLAW. Intel indicates BEARCLAW is held captive somewhere in grid ALPHA or in grid BRAVO.<br/><br/>2. Neutralize XRAY. Break</font><br/><br/>"]];
 
-sleep 30;
+sleep 12;
 
 _logTime = [dayTime] call BIS_fnc_timeToString;
 _logTimeText = "Log: " + _logTime;
@@ -81,13 +79,12 @@ player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color
 
 for "_i" from 0 to 40 do {
 	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>1. CEASAR is allowing us to search for XRAY. CEASAR has no knowledge of BEARCLAW.</t><br/><t color='#6C7169' align='left'>2. CEASAR is to be considered neutral. Do not engage unless fired upon.</t><br/><t color='#6C7169' align='left'>3. When stopped by CEASAR, follow instructions. Notify FIRESTONE immediately.</t><br/><t color='#6C7169' align='left'>4. Avoid CEASAR red zones. Avoid ZARGABAD marked grid. Avoid any and all religious sites.</t><br/><t color='#6C7169' align='left'>5. Avoid civilian casualties at all cost. Minimize civilian contact.</t><br/><t color='#6C7169' align='left'>6. Stay on roads as much as possible. Off-road only permitted in ALHPA, BRAVO and XRAY objective. Avoid collateral damage.</t><br/><t color='#6C7169' align='left'>7. Check your fire. Weapons cold until ordered otherwise. Out.</t><br/><br/><br/>";
-	uiSleep 1;
+	sleep 1;
 };	
 
 // CEASAR switch sides
 [] spawn {
-	waitUntil {sleep 10; CSAThostile};
-	
+	waitUntil {sleep 10; CSAThostile};	
 	hintSilent parseText "<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>FIRESTONE: TWO SIERRA, </t><t color='#e15c13' align='left'>Urgent Message</t><t color='#6C7169' align='left'>.</t><br/><br/><t color='#6C7169' align='left'>CEASAR and ELVIS have joined forces. CEASAR is now to be considered hostile.</t><br/><t color='#6C7169' align='left'>ROE remains unchanged. Let's wrap this up asap! Out.</t><br/><br/>";
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;

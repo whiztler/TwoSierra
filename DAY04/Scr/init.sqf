@@ -2,6 +2,9 @@ private ["_diagTestStart","_diagTestEnd"];
 _diagTestStart = diag_tickTime;
 diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/remove
 
+// PreComp
+call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
+
 // Vars init
 ADF_Fairlight	= false;
 ADF_endMission	= false;

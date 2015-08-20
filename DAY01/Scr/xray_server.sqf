@@ -51,6 +51,11 @@ _m setMarkerText " XRAY";
 // Move the trigger to Xray's location
 tXray setPosATL (getPosATL vXray);
 
+diag_log	"-----------------------------------------------------";
+diag_log "TWO SIERRA: XRAY spawned and set";
+diag_log	"-----------------------------------------------------";
+
 waitUntil {sleep 3; !alive vXray};
 xRayDestroyed = true; publicVariable "xRayDestroyed";
+{if (alive _x) then {_x addRating 6000}} forEach allPlayers;
 deleteMarker "mXray";

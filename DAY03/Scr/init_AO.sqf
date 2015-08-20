@@ -1,26 +1,7 @@
 // init
-call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_fnc_createIED.sqf";
-
-ADF_msg_greenZoneCross = {};
-ADF_msg_tDolphin = [];
-
-// NRF LMAB
-{{[_x] call ADF_fnc_redressNRF} forEach units _x} forEach [gNRF_static,gNRF_patrol_1,gNRF_patrol_2,gNRF_patrol_3,gNRF_cp_1,gNRF_cp_2];
-
-gNRF_static_u1 moveInGunner oStat_01;
-gNRF_static_u2 moveInGunner oStat_02;
-gNRF_static_u3 moveInGunner oStat_03;
-gNRF_static_u4 moveInGunner oStat_04;
-gNRF_static_u5 moveInGunner oStat_05;
-gNRF_static_u6 moveInGunner oStat_06;
-gNRF_static_u7 moveInGunner oStat_07;
-
-{_x enableSimulationGlobal false;} forEach units gNRF_static;
-{[_x, position leader _x, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [1,2,3]] call CBA_fnc_taskPatrol;} forEach [gNRF_patrol_1,gNRF_patrol_2,gNRF_patrol_3];
-
 
 ADF_wpPosRdm = {
 	private "_wpPos";
@@ -39,6 +20,7 @@ ADF_wpPosRdm = {
 		_landPos = [oLand_1,oLand_2] call BIS_fnc_selectRandom;		
 		_c = createGroup WEST;
 		_v = [getMarkerPos _startPos, 0, _heli, _c] call BIS_fnc_spawnVehicle;
+		_c setGroupIdGlobal ["6-1 AIRBUS"];
 		vAirbus = _v select 0;
 		vAirbus setObjectTextureGlobal [0, "Img\NRF_cusTex_NRFcamo.jpg"]; vAirbus setObjectTextureGlobal [1, "Img\NRF_cusTex_NRFcamo.jpg"];		
 		{_x unassignItem "NVGoggles"; _x removeItem "NVGoggles"; _x enableGunlights "forceOn";} forEach units _c;
@@ -66,12 +48,13 @@ ADF_wpPosRdm = {
 };
 
 [] spawn {
-	sleep 60;
+	sleep 300;
 	while {alive vGunship} do {
 		private ["_c","_wp","_wpPos","_pausePad"];	
 		_c = createGroup WEST;
 		_p = _c createUnit ["B_helipilot_F", getMarkerPos "mLMAB",[],0,"LIEUTENANT"]; _p moveInDriver vGunship;
 		_p = _c createUnit ["B_helipilot_F", getMarkerPos "mLMAB",[],0,"LIEUTENANT"]; _p moveInGunner vGunship;
+		_c setGroupIdGlobal ["6-6 CONDOR"];
 		vGunship flyInHeight 50;
 		_wpPos = call ADF_wpPosRdm;
 		_wp = _c addWaypoint [getMarkerPos _wpPos, 0];
@@ -119,13 +102,13 @@ diag_log	"-----------------------------------------------------";
 
 // Random vehicle patrols
 for "_i" from 1 to 5 do {
-	private ["_spawnPos","_spawnDir","_v","_cX","_vX"];
+	private ["_spawnPos","_spawnDir","_v","_vX"];
 	_spawnPos = format ["mGuerVeh_%1",_i];
 	_spawnDir = markerDir _spawnPos;
 
 	_c = createGroup INDEPENDENT;
 	_v = [getMarkerPos _spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
-	_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 	_vX = _v select 0;
 	_vX setVariable ["BIS_enableRandomization", false];
 	[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
@@ -134,19 +117,19 @@ for "_i" from 1 to 5 do {
 
 // AO Defence Fire Team
 for "_i" from 1 to 12 do {
-	private ["_g","_gX","_spawnPos"];
+	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
 	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 75, 2, true] call CBA_fnc_taskDefend;	
 };
 
 // AO Defence Squad
 for "_i" from 20 to 25 do {
-	private ["_g","_gX","_spawnPos"];
+	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
 	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 125, 1, true] call CBA_fnc_taskDefend;	
 };
 

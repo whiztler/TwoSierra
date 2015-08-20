@@ -1,7 +1,11 @@
 // Init Server/HC
-call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
+call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 ADF_airActive = false;
+
+diag_log	"-----------------------------------------------------";
+diag_log "TWO SIERRA: Spawning CSAT + PAshtun CP's, Patrols";
+diag_log	"-----------------------------------------------------";
 
 // CSAT CP 1
 // CP pax

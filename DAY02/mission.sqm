@@ -125,12 +125,12 @@ class Mission
 		startFog=0.29999998;
 		startWind=0.58999997;
 		startWindDir=30;
-		startGust=0.37;
+		startGust=0.90999997;
 		forecastWeather=0.099999994;
 		forecastFog=0.29999998;
 		forecastWind=0.55000001;
 		forecastWaves=0;
-		forecastGust=0.45999998;
+		forecastGust=0.91999996;
 		forecastWindDir=250;
 		rainForced=1;
 		lightningsForced=1;

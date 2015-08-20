@@ -31,19 +31,19 @@ if (_ADF_debug_testALL) exitWith {
 ADF_fnc_BOPactive = {
 	// Spawn defence squads
 	for "_i" from 1 to 3 do {
-		private ["_g","_gX","_spawnPos"];
+		private ["_g","_spawnPos"];
 		_spawnPos = getPos tBOPspawn;
 		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
-		_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
-		[_g, _spawnPos, 200, 1, true] call CBA_fnc_taskDefend;	
+		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
+		[_g, _spawnPos, 150, 1, true] call CBA_fnc_taskDefend;	
 	};
 	
 	// Spawn patrol teams
 	for "_i" from 1 to 5 do {
-		private ["_g","_gX","_spawnPos"];
+		private ["_g","_spawnPos"];
 		_spawnPos = getPos tBOPspawn;
 		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-		_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 		[_g, _spawnPos, 300, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 	};
 	
@@ -67,7 +67,7 @@ ADF_fnc_BOPactive = {
 
 ADF_fnc_BOPreenforce = {
 	// Init
-	private ["_c","_cX","_wp","_v","_t"];
+	private ["_c","_wp","_v","_t"];
 	
 	// enable the vehicles
 	{_x hideObject false; _x enableSimulationGlobal false;} forEach [vOpforAPC_1,vOpforAPC_2,vOpforAPC_3];
@@ -81,7 +81,7 @@ ADF_fnc_BOPreenforce = {
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "LIEUTENANT"]; _p moveInCommander _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "SERGEANT"]; _p moveInGunner _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "CORPORAL"]; _p moveInDriver _v;
-		_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
+		{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 		_wp = _c addWaypoint [_wpPos, 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED";
 	};
 	true
@@ -114,7 +114,7 @@ _ADF_bopCreate = {
 	tBOPdetect setTriggerTimeout [0,0,0,false];
 	tBOPdetect setTriggerStatements [
 		"this",
-		"0 = [tBOPdetect,independent,500] execVM 'Core\ADF_DetectSensor.sqf'; if (ADF_HC_execute) then {[] call ADF_fnc_BOPreenforce}; tBOPlive = true; publicVariable 'tBOPlive';",
+		"tBOPlive = true; publicVariableServer 'tBOPlive'; 0 = [tBOPdetect,independent,500] execVM 'Core\ADF_DetectSensor.sqf'; if (ADF_HC_execute) then {[] call ADF_fnc_BOPreenforce}; 0 = execVM 'Scr\MSG_BOPlive.sqf';",
 		""
 	];
 	
@@ -169,6 +169,7 @@ _opforCntWin = 5;
 waitUntil {
 	sleep 10;
 	if (time > 10800) exitWith {ADF_Fairlight = true; publicVariable "ADF_Fairlight"}; // set fairlight to TRUE
+	if (ADF_endMission) exitWith {};
 	tBOPlive
 };
 

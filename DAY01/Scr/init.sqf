@@ -2,6 +2,9 @@ private ["_diagTestStart","_diagTestEnd"];
 _diagTestStart = diag_tickTime;
 diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/remove
 
+// PreComp
+call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
+
 // Vars init
 CSAThostile 		= false;
 xRayDestroyed 	= false;
@@ -21,6 +24,7 @@ if (hasInterface) then {
 // All Clients
 #include "bearclaw_all.sqf"
 execVM "Scr\ADF_CAS.sqf";
+
 
 // Server/HC
 if (!ADF_HC_execute) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
