@@ -1,7 +1,7 @@
 diag_log "ADF RPT: Init - executing init_server.sqf"; // Reporting. Do NOT edit/remove
 if (isServer) then {
 	call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
-	call compile preprocessFileLineNumbers "Scr\ADF_fnc_createIED.sqf";
+	call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 	
 	///// NRF JOHNSON
 	
@@ -75,6 +75,6 @@ if (isServer) then {
 		_iedMarkerPos = _iedMarkerArr call BIS_fnc_selectRandom;
 		_idx =  _iedMarkerArr find _iedMarkerPos;
 		_iedMarkerArr deleteAt _idx;
-		[_iedMarkerPos,100,250] call ADF_fnc_createRandomIEDs;
+		[_iedMarkerPos,100,250,6] call ADF_fnc_createRandomIEDs;
 	};
 };

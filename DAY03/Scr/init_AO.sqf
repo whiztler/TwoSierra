@@ -1,7 +1,8 @@
+diag_log "ADF RPT: Init - executing init_AO.sqf"; // Reporting. Do NOT edit/remove
 // init
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
-call compile preprocessFileLineNumbers "Scr\ADF_fnc_createIED.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 
 ADF_wpPosRdm = {
 	private "_wpPos";
@@ -32,10 +33,12 @@ ADF_wpPosRdm = {
 		_wp setWaypointStatements ["true", "vAirbus land 'LAND';"];	
 		waitUntil {(currentWaypoint (_wp select 0)) > (_wp select 1)};
 		waitUntil {isTouchingGround vAirbus};
+		{vAirbus animateDoor [_x, 1];} forEach ["door_L_source","door_R_source","Door_rear_source"];
 		_pausePad = [60,120,180,240,300,600] call BIS_fnc_selectRandom;
 		vAirbus setFuel 0;
 		sleep _pausePad;
-		vAirbus setFuel 1;	
+		vAirbus setFuel 1;
+		{vAirbus animateDoor [_x, 0];} forEach ["door_L_source","door_R_source","Door_rear_source"];
 		_wp = _c addWaypoint [getMarkerPos _exitPos, 0];
 		_wp setWaypointType "MOVE";
 		_wp setWaypointBehaviour "SAFE";
@@ -84,7 +87,7 @@ for "_i" from 1 to 10 do {
 	_iedMarkerPos = _iedMarkerArr call BIS_fnc_selectRandom;
 	_idx =  _iedMarkerArr find _iedMarkerPos;
 	_iedMarkerArr deleteAt _idx;
-	[_iedMarkerPos,100,250] call ADF_fnc_createRandomIEDs;
+	[_iedMarkerPos,100,250,6] call ADF_fnc_createRandomIEDs;
 };
 
 // Dolphin vehicle

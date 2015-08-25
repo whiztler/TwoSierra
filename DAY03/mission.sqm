@@ -49,7 +49,6 @@ class Mission
 		"A3_Modules_F",
 		"cba_main",
 		"A3_Modules_F_Curator_Curator",
-		"A3_Modules_F_Curator_Effects",
 		"A3_Characters_F_INDEP",
 		"A3_Characters_F_Mark",
 		"A3_Characters_F_Civil"
@@ -3228,7 +3227,6 @@ class Mission
 		{
 			position[]={8146.2085,295.69943,2121.3267};
 			azimut=779.25201;
-			offsetY=0.000106812;
 			id=264;
 			side="EMPTY";
 			vehicle="B_Slingload_01_Ammo_F";

@@ -228,32 +228,32 @@ _p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE
 _p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_06; // GMG 2
 _p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_07; // AT 3
 _p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_08; // MG 1
-_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 
 // Defence groups (squads)
 for "_i" from 1 to 4 do {
-	private ["_g","_gX","_spawnPos"];
+	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
 	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 100, 1, true] call CBA_fnc_taskDefend;	
 };
 
 // Defence groups (Teams)
 for "_i" from 10 to 20 do {
-	private ["_g","_gX","_spawnPos"];
+	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
 	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 50, 2, true] call CBA_fnc_taskDefend;	
 };
 
 // Foot patrols
 for "_i" from 1 to 6 do {
-	private ["_g","_gX","_spawnPos"];
+	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerFootPatrol_%1",_i];
 	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 400, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
 

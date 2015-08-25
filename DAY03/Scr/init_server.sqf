@@ -1,5 +1,6 @@
 diag_log "ADF RPT: Init - executing init_server.sqf"; // Reporting. Do NOT edit/remove
 if (isServer) then {
+	call compile preprocessFileLineNumbers "Scr\ADF_redress_NRF.sqf";
 	
 	///// NRF LMAB
 	
@@ -12,7 +13,7 @@ if (isServer) then {
 	_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_05;
 	_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_06;
 	_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_07;
-	{[_x] call ADF_fnc_redressNRF;} forEach units NRF_grp_4;
+	{[_x] call ADF_fnc_redressNRF; _x enableSimulationGlobal false;} forEach units NRF_grp_4;
 	NRF_grp_4 setGroupIdGlobal ["5-3 CHARLIE"];
 	
 	// Foot patrols	

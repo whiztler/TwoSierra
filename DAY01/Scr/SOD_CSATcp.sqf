@@ -9,9 +9,9 @@ if (hasInterface) then {
 	["2S","TWO SIERRA","TWO SIERRA: FIRESTONE this is TWO SIERRA at Checkpoint 3. We've been ordered to halt, over."] call ADF_fnc_MessageParser; sleep 9;
 	["ACO","ACO","FIRESTONE: Copy that TWO SIERRA. Sit tight. Order your men to hold it together. Let's see what they want."] call ADF_fnc_MessageParser; sleep 9;
 	["CSAT","Corporal Derafsh","Corporal Derafsh: Infidel, where ar yu papers?"] call ADF_fnc_MessageParser; sleep 8;
-	["2S","TWO SIERRA","TWO SIERRA: FIRESTONE this is TWO SIERRA. They are asking if we have papers."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","TWO SIERRA","TWO SIERRA: They are asking if we have papers."] call ADF_fnc_MessageParser; sleep 7;
 	["ACO","ACO","FIRESTONE: Tell them to contact Colonel Mahshid. He will clear your passage."] call ADF_fnc_MessageParser; sleep 7;
 	["CSAT","Corporal Derafsh","Corporal Derafsh: Yu do not give order too me infidel. Dis is not Amerika.<br/><br/>Wate heer!"] call ADF_fnc_MessageParser; sleep 70;
 	["CSAT","Corporal Derafsh","Corporal Derafsh: Yu can go.<br/><br/>Go now!"] call ADF_fnc_MessageParser; sleep 7;
-	["2S","TWO SIERRA","TWO SIERRA: FIRESTONE this is TWO SIERRA. We are OSCAR MIKE, out."] call ADF_fnc_MessageParser;
+	["2S","TWO SIERRA","TWO SIERRA: FIRESTONE, TWO SIERRA OSCAR MIKE, out."] call ADF_fnc_MessageParser;
 }; 

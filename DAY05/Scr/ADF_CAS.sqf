@@ -22,23 +22,23 @@ The CAS request can only be called by 1 player. WIP
 ****************************************************************/
 
 // Init
-if (isNil "INF_PC") then {INF_PC = objNull}; if (INF_PC == objNull) exitWith {};
+if (isNil "INF_PC") exitWith {};
 
 ADF_CAS_requester		= INF_PC; // the name of the unit that can request the CAS. Use a commander or JTAC.
-ADF_CAS_spawn			= getMarkerPos "mAirSupport"; // This is where the CAS aircraft will spawn. Place on edge of map.
+ADF_CAS_spawn			= getMarkerPos "mFargo"; // This is where the CAS aircraft will spawn. Place on edge of map.
 ADF_CAS_vector		= getMarkerPos "mAirSupportVector"; // Approach vector marker.
-ADF_CAS_delay			= round (320 + (random 60)); // Delay for the CAS to be created. Simulate that CAS aircraft needs to depart from a distant airbase.
-ADF_CAS_onSite		= round (25 + (random 30)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
+ADF_CAS_delay			= round (40 + (random 60)); // Delay for the CAS to be created. Simulate that CAS aircraft needs to depart from a distant airbase.
+ADF_CAS_onSite		= round (50 + (random 30)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
 ADF_CAS_vehClass		= "B_Heli_Attack_01_F"; // classname of CAS aircraft
-ADF_CAS_callSign		= "AARDVARK"; // ingame Callsign of CAS aircraft
-ADF_CAS_pilotName		= "Lt. Mike (Weasel) Tillman"; // ingame name of the CAS pilot
-ADF_CAS_station		= "ROMEO"; // ingame name of the CAS station call
-ADF_CAS_targetName	= "JONAH"; // ingame name of OpFor. E.g. TANGO, CSAT, etc.
+ADF_CAS_callSign		= "RAVEN"; // ingame Callsign of CAS aircraft
+ADF_CAS_pilotName		= "Lt. Frank (Casanova) Giberti"; // ingame name of the CAS pilot
+ADF_CAS_station		= "ECHO"; // ingame name of the CAS station call
+ADF_CAS_targetName	= "JOSEPH"; // ingame name of OpFor. E.g. TANGO, CSAT, etc.
 ADF_CAS_targetDesc	= "victors, small arms"; // Ingame decription of target (keep it short)
 ADF_CAS_result		= "interdict"; // CAS requirements (interdict, destroy, area security, laser target, etc
-ADF_CAS_apprVector	= "SOUTH WEST"; // directrion of the apprach vector (from AO). Depends on ADF_CAS_vector marker placement
-ADF_ACO_callSign		= "FIRESTONE"; // Callsign of HQ / Command / Base
-ADF_CAS_aoTriggerRad	= 600; // Size of the CAS radius. Marker that shows the CAS ao.
+ADF_CAS_apprVector	= "EAST"; // directrion of the apprach vector (from AO). Depends on ADF_CAS_vector marker placement
+ADF_ACO_callSign		= "FAIRCHILD"; // Callsign of HQ / Command / Base
+ADF_CAS_aoTriggerRad	= 800; // Size of the CAS radius. Marker that shows the CAS ao.
 
 /////// DO NOT EDIT BELOW
 

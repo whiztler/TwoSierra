@@ -66,29 +66,30 @@ player createDiaryRecord ["2SOPORD",["Call Signs","<br/><br/>
 
 <font color='#9DA698'>
 ACO	- FIRESTONE<br/>
-CAS	- RAPTOR<br/>
+CAS	- FREEBIRD<br/>
 SatNav AJR - ACE<br/>
 VJTF 5 BAT TOC - MOTHER<br/>
 NRF 2 SPT GRP - UNCLE<br/><br/>
 
-UH-80 objective - XRAY<br/>
-NATO asset objective - BEARCLAW<br/><br/>
-CSAT Forces - CAESAR<br/>
-OpFor Forces - ELVIS</font><br/><br/>
+FOB JOHNSON - JOHNSON<br/>
+FOB KELSEY - KELSEY<br/>
+CP ELMO - ELMO<br/>
+CP DESI - DESI<br/><br/>
 
-<font size='14' color='#d7dbd5'>NOTAF</font><br/>
+Pashtun forces - DOMINO<br/>
+Pashtun BOP - AKIRA<br/>
+Pashtun MSR - SYDNEY
+
+</font><br/><br/><font size='14' color='#d7dbd5'>NOTAF</font><br/>
 
 <font color='#9DA698'>
-ZEBRA - RV at MSR LIMA<br/>
-ALPHA - Grid: 030,029 - 050,010<br/>
-BRAVO - Grid: 023,054 - 033,044<br/>
-LIMA - Main MSR<br/>
-OSLO - Secondary MSR</font><br/><br/></font>
+MIAMI - Main MSR
 
-<font size='14' color='#d7dbd5'>CHALLENGES</font><br/>
+<br/><br/></font><font size='14' color='#d7dbd5'>CHALLENGES</font><br/>
+
 <font color='#9DA698'>
-Challenge: STINGER<br/>
-Password: WATERSKI
+Challenge: CRYFORD<br/>
+Password: KING KONG
 </font><br/><br/>
 "]];
 
@@ -96,9 +97,10 @@ Password: WATERSKI
 player createDiaryRecord ["2SOPORD",["Notes","<br/><br/>
 <font size='18'>NOTES</font><br/><br/>
 <font color='#9DA698'>
-NATO PR had to do did a spin on the downed UH-80 (XRAY) story for the media when OpFor released photos of the crash site to Al Jazeera. The story is that OpFor shot down a NATO transport helicopter that was picking a NATO medical relief team. The gruesome photos show the KIA crew and a sergeant from 4 PLT.<br/><br/>
-BEARCLAW is a NATO intelligence asset who has been in deep cover with the Pashtun Yaqubzai tribe, approx. 40 Km’s south of ALPHA. BEARCLAW possesses crucial intel. It is top priority that BEARCLAW makes it back to HQ alive.<br/><br/>
-Last night the story broke that CSAT and Pashtun leaders have engaged into ‘diplomatic discussions’. At the time of writing little is known about the nature of these discussions. MOTHER is in constant contact with CSAT. FIRESTONE will keep you posted of any developments pertinent to your mission.
+MOTHER thinks the Pashtun base of operations is somewhere in the North, North West. The Pashtun are using SYDNEY as their MSR.<br/><br/>
+2SPT has set up two FOB's, JOHNSON and KELSEY, and two checkpoints (ELMO and DESI). TWO SIERRA is to head out to JOHNSON. From JOHNSON TWO SIERRA will depart north and search and destroy the Pashtun base of operations.<br/><br/>
+Once the Pashtun base of operations has been neutralized elements of 5TH BAT will head north and secure the oil production sites.<br/><br/>
+MOTHER has initiated Berlin Protocol. If the Pashtun manage to get past the green zone, MOTHER will activate Fairlight Protocol and order all BluFor to evac.
 </font><br/><br/>
 "]];
 
@@ -110,8 +112,8 @@ player createDiaryRecord ["2SOPORD",["Command & Signal","<br/><br/>
 
 <font color='#9DA698'>
 Commander leader location: SOP, Commanders intent<br/>
-Chain of Command: 2 PC, 2 SQL, 2 WTL, 2 FTL<br/><br/>
-</font>
+Chain of Command: 2 PC, 2 SQL, 2 WTL, 2 FTL
+<br/><br/></font>
 
 <font size='14' color='#d7dbd5'>SIGNAL</font><br/>
 
@@ -130,23 +132,24 @@ player createDiaryRecord ["2SOPORD",["Service & Support","<br/><br/>
 <font size='14' color='#d7dbd5'>SUPPLY</font><br/>
 
 <font color='#9DA698'>
-SOPs in effect for sustainment operations. CCPs and Medivac PZ to be established on-site<br/><br/>
+SOPs in effect for sustainment operations. CCPs to be established on-site. MediVac available at JOHNSON.<br/><br/>
 Rations: ammo and material supply in vehicles, NRF SOP<br/>
 Uniforms: NRF VJTF 2 PLT SOP<br/>
-Arms and ammunitions: NRF VJTF 2 PLT SOP<br/><br/>
+Arms and ammunitions: NRF VJTF 2 PLT SOP
 
-<font size='14' color='#d7dbd5'>VEHICLES</font><br/>
+</font><br/><br/><font size='14' color='#d7dbd5'>VEHICLES</font><br/>
 
+<font color='#9DA698'>
 PC – 1 x MRAP<br/>
 2-1 Squad/2-2 Squad – 2 x MRAP, 2 x MRAP HMG, 1 x HEMTT<br/>
 2-3 Squad – 2 x MRAP GMG<br/>
-Captured material: SOP<br/><br/>
-</font>
+Captured material: SOP
+<br/><br/></font>
 
 <font size='14' color='#d7dbd5'>SUPPORT</font><br/>
 
 <font color='#9DA698'>
-CAS: RAPTOR, AH-99 ex LMAB. Station: OSCAR
+CAS: FREEBIRD, AH-99 ex LMAB. Station: NOVEMBER
 </font><br/><br/>
 "]];
 
@@ -157,19 +160,20 @@ player createDiaryRecord ["2SOPORD",["Execution","<br/><br/>
 <font size='14' color='#d7dbd5'>CONCEPT OF OPERATIONS</font><br/>
 
 <font color='#9DA698'>
-1. 2PLT to move out ex LMAB towards MSR LIMA. ETA at RV ZEBRA 11 hours.<br/>
-2. 2PLT to regroup at RV ZEBRA.<br/>
-3. 2PLT to travel in column convoy to AO. Ex AO maintain travelling formation.<br/>
-4. ORP’s to be established on-site.<br/>
-5. Non-linear and linear danger area’s to be crossed according to SOP.<br/>
-6. Execution of mission objectives to be briefed on site by PC.<br/><br/>
-</font>
+1. 2PLT to move out ex LEO and drive via Chak Chak, Sar-e Sang Pass to JOHNSON.<br/>
+2. 2PLT to RV at JOHNSON NLT 10:30Z.<br/>
+3. 2PLT to convoy past the green zone and search for AKIRA.<br/>
+4. 2PLT to assault and neutralize AKIRA.<br/>
+5. ORP’s to be established prior to departure.<br/>
+6. Execution of mission objectives to be briefed on site by PC.
+
+<br/><br/></font>
 
 <font size='14' color='#d7dbd5'>COMMANDERS INTENT</font><br/>
 
 <font color='#9DA698'>
-2PLT will travel in SOP convoy formation to ZEBRA from where ORP’s are established. 2PLT 3 will set-up BOF. 2PLT 1 and 2 will search grids ALPHA and BRAVO and secure BEARCLAW. 2PLT will locate and neutralize XRAV whilst maintaining security for BEARCLAW. 2PLT will exfil at ZEBRA NLT 07:30z.<br/><br/>
-</font>
+2PLT will travel in SOP convoy formation to JOHNSON. 2PLT will travel in SOP convoy and search in the NORTH and NORTH WESTERN grids of the green zone. 2PLT will locate AKIRA. 2PLT will assault and neutralize the objective according to SOP. 2PLT will travel in SOP convoy to JOHNSON. 
+<br/><br/></font>
 
 <font size='14' color='#d7dbd5'>SUB UNIT MISSIONS</font><br/>
 
@@ -182,8 +186,8 @@ None.<br/><br/>
 <font color='#9DA698'>
 1. Order of movement, formations: On-site commanders intent, SOP<br/>
 2. Actions at halts (short/long): SOP<br/>
-3. Routes (primary/alternate): MSR LIMA, MSR OSLO<br/>
-4. IRP: RV ZEBRA<br/>
+3. Routes (primary/alternate): MSR TOKYO, MSR MIAMI / MSR SYDNEY.<br/>
+4. IRP: MSR TOKYO, JOHNSON, MIAMI.<br/>
 5. Actions at danger areas: SOP<br/>
 6. Actions on enemy contact: SOP<br/>
 7. Reorganization and consolidation: SOP<br/>
@@ -199,7 +203,7 @@ None.<br/><br/>
 player createDiaryRecord ["2SOPORD",["Mission","<br/><br/>
 <font size='18'>MISSION</font><br/><br/>
 <font color='#9DA698'>
-2PLT to infil at RV ZEBRA NLT 04:00. 2PLT is search and locate BEARCLAW. 2PLT to locate and neutralize XRAY. 2PLT to exfil at RV ZEBRA NLT 07:30.
+Search and destroy AKIRA. 
 </font><br/><br/>
 "]];
 
@@ -208,34 +212,36 @@ player createDiaryRecord ["2SOPORD",["Situation","<br/><br/>
 <font size='18'>SITUATION</font><br/><br/>
 
 <font color='#9DA698'>
-OPFOR: Pashtun forces.<br/>
-OpFor has captured NATO asset BEARCLAW after they shot down XRAY.<br/><br/>
+OpFor: Pashtun forces (DOMINO).<br/>
+DOMINO has been building up a large presence in the North of Feruz Abad province.<br/>DOMINO uses MSR SYDNEY to supply their Base of Operations (AKIRA).
+<br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>ENEMY FORCES</font><br/>
 
 <font color='#9DA698'>
-1. OpFor strongholds are concentrated in grids ALPHA and BRAVO.<br/>
-2. Small arms and IFV’s patrol grids ALPHA and BRAVO. IFV’s patrol Zargabad and surrounding area.<br/>
-3. Strength: 2-4 Squads in grid BRAVO, 5+ Squads in grid ALPHA + IFV’s.<br/>
-4. MPCOA: Enemy holds BEARCLAW in grid ALPHA or BRAVO.<br/>
-5. OpFor arms: various small arms, Russian, Iranian and US origin. <br/>
-6. AT capability: RPG, MPRL.<br/>
-7. OpFor CR: mostly casual clothing + light body armor + improvised vests. Most OpFor carry backpacks with explosives, IED’s and supplies.<br/><br/>
+1. DOMINO has a moderate presence in most urban areas in the green zone.<br/>
+2. Small arms and IFV’s patrol MSR’s SYDNEY, ROME and MIAMI.<br/>
+3. Strength: unknown.<br/>
+4. MPCOA: AKIRA is located in the North or North West of the green zone. Expect a heavy DOMINO presence at AKIRA.<br/>
+5. DOMINO arms: various small arms, Russian, Iranian and US origin. Confirmed APC reports by 4TH PLT.<br/>
+   AT capability: RPG, MPRL.<br/>
+6. DOMINO CR: mostly casual clothing + light body armor + improvised vests. Most DOMINO carry backpacks with explosives, IED’s and supplies.
+<br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>FRIENDLY FORCES</font><br/>
 
 <font color='#9DA698'>
 1. VJTF 5 BAT, 2nd Platoon. OUS: ANNEX A.<br/>
-2. NRF 2 SPT GRP to arrive around 06:00 hrs.<br/><br/>
+2. NRF 2 SPT GRP at FOB JOHNSON.
+<br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>NEUTRAL</font><br/>
 
 <font color='#9DA698'>
-1. CSAT forces are to be considered neutral.<br/>
-2. CSAT controlled zones are to be avoided.<br/><br/>
+1. None<br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>CIVILIANS</font><br/>
@@ -260,25 +266,26 @@ player createDiaryRecord ["2SOPORD",["Terrain & weather","<br/><br/>
 <font size='14' color='#d7dbd5'>TERRAIN</font><br/>
 
 <font color='#9DA698'>
-1. MSR LIMA provides a handrail for movement and avenues for approach.<br/>
-2. MSR OSLO provides flanking avenues.<br/>
-3. Zargabad crowded after 08:00 ZULU.<br/>
-4. Hill sides west and east of ALPHA provide BOF and OW positions.<br/>
-5. River banks provide BOF and vehicle cover.<br/>
-6. Effects on enemy: none.<br/>
-7. Effects on friendly: none.<br/>
-8. Key terrain: Arid, mountain valley, sparse vegetation, limited cover outside of urban areas.<br/><br/>
+1. Mountainous, arid with sparse vegetation in the South.<br/>
+2. Desert and arid in the North and North East.<br/>
+3. MSL ranging from 5.1 m to 732.45 m.<br/>
+4. Four MSR’s running from North to South and North to West.<br/>
+5. Road located in saddle and ridges. MSR Roads are off good quality. Dirt roads off-side MSR’s.<br/>
+6. Various mountain prominences provide good OW positions.<br/>
+7. Various petro-chemical installations in the North and East.<br/>
+8. Immediate area surrounding the airfield provides good FOV.<br/>
+9. Effects on enemy: usage of mountains and urban areas for cover and ambush.<br/>
+10. Effects on friendly: none. MSR road allow for fast attack and retreat strategy.<br/>
+11. Key terrain: Arid, Mountain, sparse vegetation, very limited cover outside of urban and commercial areas.
+<br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>WEATHER</font><br/>
 
 <font color='#9DA698'>
-1. Temperature High: 34C.<br/>
-2. Temperature Low: 17C, Dew point: 15C.<br/>
-3. 2 inches of rain over the next 24 to 48 hours.<br/>
-4. Fog disperses around 06:30.<br/>
-5. Wind: Moderate 8-15 Knots.<br/>
-
+1.	Temperature High: 33C.<br/>
+2.	Temperature Low: 9C, Dew point: 18C.<br/>
+3.	Wind: Moderate to strong, 11-29 Knots.
 </font><br/><br/>
 "]];
 
@@ -293,10 +300,8 @@ Each mission has its own 'Mission Objectives Test Script' to test mission critic
 1.	Make sure you are logged in as server admin<br/>
 2.	Hit the escape key to bring up the 'debug console';<br/>
 3.	in the execute window enter: null = execVM 'mots.sqf';<br/>
-4.	Click on SERVER EXEC (or LOCAL EXEC if testing in mission editor).<br/>
-5.	Follow instructions as presented on screen in-game.<br/><br/>
-
-Please note that when testing from within the ARMA III editor, the mission load time is longer as the client (player) and the server are considered the same.
+4.	Click on GLOBAL EXEC (or LOCAL EXEC if testing in mission editor).<br/>
+5.	Follow instructions as presented on screen in-game.
 
 </font><br/><br/>"]];
 
@@ -385,7 +390,7 @@ Two Sierra is a CO-37 multiplayer (34 player slots) NRF infantry campaign for Mi
 <font size='14' color='#d7dbd5'>FEATURES</font><br/>
 
 <font color='#9DA698'>
-- 4 missions offering challenging and immersive game play in a lively<br/>
+- 4 missions offering challenging and immersive gameplay in a lively<br/>
   area of operations;<br/>
 - 1 Warm-up Mission for warming up, mod-line testing and general<br/>
   training;<br/>
