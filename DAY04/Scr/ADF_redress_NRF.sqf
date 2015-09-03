@@ -2,7 +2,7 @@
 0 = execVM "Scr\NRF.sqf"; [player] call ADF_fnc_redressNRF;
 *********************************/
 
-diag_log "ADF RPT: Init - executing NRF.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing ADF_redress_NRF.sqf"; // Reporting. Do NOT edit/remove
 
 ADF_fnc_redressNRF_skill = {
 	params ["_unit"];

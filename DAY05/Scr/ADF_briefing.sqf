@@ -65,31 +65,33 @@ player createDiaryRecord ["2SOPORD",["Call Signs","<br/><br/>
 <font size='18'>CALL SINGS</font><br/><br/>
 
 <font color='#9DA698'>
-ACO	- FIRESTONE<br/>
-CAS	- FREEBIRD<br/>
+ACO	- FAIRCHILD<br/>
+CAS	- RAVEN<br/>
 SatNav AJR - ACE<br/>
 VJTF 5 BAT TOC - MOTHER<br/>
-NRF 2 SPT GRP - UNCLE<br/><br/>
+NRF 2 SPT GRP - UNCLE<br/>
+Chernarussian Armed Forces - DONALD<br/><br/>
 
-FOB JOHNSON - JOHNSON<br/>
-FOB KELSEY - KELSEY<br/>
-CP ELMO - ELMO<br/>
-CP DESI - DESI<br/><br/>
+BALOTA AB - FARGO<br/>
+Red Cross Hospital - MARY<br/>
+Medical Truck 1 - EVEREST1<br/>
+Medical Truck 2 - EVEREST2<br/><br/>
 
-Pashtun forces - DOMINO<br/>
-Pashtun BOP - AKIRA<br/>
-Pashtun MSR - SYDNEY
+Soborian Separatists - JOSEPH<br/>
+CSAT Russian Forces - BORIS
 
 </font><br/><br/><font size='14' color='#d7dbd5'>NOTAF</font><br/>
 
 <font color='#9DA698'>
-MIAMI - Main MSR
+VEGAS - Primary MSR<br/>
+YORK - Secondary MSR<br/>
+OLAV - Tertiary MSR
 
 <br/><br/></font><font size='14' color='#d7dbd5'>CHALLENGES</font><br/>
 
 <font color='#9DA698'>
-Challenge: CRYFORD<br/>
-Password: KING KONG
+Challenge: KENNY<br/>
+Password: CARTMAN
 </font><br/><br/>
 "]];
 
@@ -97,10 +99,8 @@ Password: KING KONG
 player createDiaryRecord ["2SOPORD",["Notes","<br/><br/>
 <font size='18'>NOTES</font><br/><br/>
 <font color='#9DA698'>
-MOTHER thinks the Pashtun base of operations is somewhere in the North, North West. The Pashtun are using SYDNEY as their MSR.<br/><br/>
-2SPT has set up two FOB's, JOHNSON and KELSEY, and two checkpoints (ELMO and DESI). TWO SIERRA is to head out to JOHNSON. From JOHNSON TWO SIERRA will depart north and search and destroy the Pashtun base of operations.<br/><br/>
-Once the Pashtun base of operations has been neutralized elements of 5TH BAT will head north and secure the oil production sites.<br/><br/>
-MOTHER has initiated Berlin Protocol. If the Pashtun manage to get past the green zone, MOTHER will activate Fairlight Protocol and order all BluFor to evac.
+Soborian Separatists have increased their efforts to gain more territory in East Chernarus. Recent efforts have caused numerous civilian casualties. After months of negotiations, The Red Cross finally got permission to create a mobile field hospital (MARY) in the conflict zone. The hospital treats more than 100 civilian casualties per day and therefore requires sufficient medical supplies.<br />
+The last two medical supply transports carried out by the Red Cross were captured by Soborian Separatists. The supplies were sold on the black market. The Red Cross has asked NATO to carry out the supply runs until things have calmed down.
 </font><br/><br/>
 "]];
 
@@ -132,7 +132,7 @@ player createDiaryRecord ["2SOPORD",["Service & Support","<br/><br/>
 <font size='14' color='#d7dbd5'>SUPPLY</font><br/>
 
 <font color='#9DA698'>
-SOPs in effect for sustainment operations. CCPs to be established on-site. MediVac available at JOHNSON.<br/><br/>
+SOPs in effect for sustainment operations. CCPs to be established on-site. MediVac available at FARGO.<br/><br/>
 Rations: ammo and material supply in vehicles, NRF SOP<br/>
 Uniforms: NRF VJTF 2 PLT SOP<br/>
 Arms and ammunitions: NRF VJTF 2 PLT SOP
@@ -149,7 +149,7 @@ Captured material: SOP
 <font size='14' color='#d7dbd5'>SUPPORT</font><br/>
 
 <font color='#9DA698'>
-CAS: FREEBIRD, AH-99 ex LMAB. Station: NOVEMBER
+CAS: RAVEN, AH-99 ex FARGO. Station: ECHO
 </font><br/><br/>
 "]];
 
@@ -160,10 +160,10 @@ player createDiaryRecord ["2SOPORD",["Execution","<br/><br/>
 <font size='14' color='#d7dbd5'>CONCEPT OF OPERATIONS</font><br/>
 
 <font color='#9DA698'>
-1. 2PLT to move out ex LEO and drive via Chak Chak, Sar-e Sang Pass to JOHNSON.<br/>
-2. 2PLT to RV at JOHNSON NLT 10:30Z.<br/>
-3. 2PLT to convoy past the green zone and search for AKIRA.<br/>
-4. 2PLT to assault and neutralize AKIRA.<br/>
+1. 2PLT to move out ex FARGO and drive north towards DONALD CP (either via YORK or OLAV).<br/>
+2. 2PLT to provide security for EVEREST1 and EVEREST2.<br/>
+3. 2PLT to convoy past the green zone and deliver EVEREST1 and EVEREST2 at MARY.<br/>
+4. 2PLT to return to FARGO for debrief.<br/>
 5. ORP’s to be established prior to departure.<br/>
 6. Execution of mission objectives to be briefed on site by PC.
 
@@ -172,7 +172,7 @@ player createDiaryRecord ["2SOPORD",["Execution","<br/><br/>
 <font size='14' color='#d7dbd5'>COMMANDERS INTENT</font><br/>
 
 <font color='#9DA698'>
-2PLT will travel in SOP convoy formation to JOHNSON. 2PLT will travel in SOP convoy and search in the NORTH and NORTH WESTERN grids of the green zone. 2PLT will locate AKIRA. 2PLT will assault and neutralize the objective according to SOP. 2PLT will travel in SOP convoy to JOHNSON. 
+2PLT will travel in SOP convoy to MARY. 2PLT will locate MARY. 2PLT will deliver EVEREST1 and EVEREST2 at MARY. 2PLT will travel in SOP convoy to FARGO.
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>SUB UNIT MISSIONS</font><br/>
@@ -186,8 +186,8 @@ None.<br/><br/>
 <font color='#9DA698'>
 1. Order of movement, formations: On-site commanders intent, SOP<br/>
 2. Actions at halts (short/long): SOP<br/>
-3. Routes (primary/alternate): MSR TOKYO, MSR MIAMI / MSR SYDNEY.<br/>
-4. IRP: MSR TOKYO, JOHNSON, MIAMI.<br/>
+3. Routes (primary/alternate): MSR VEGAS, MSR OLAV / MSR YORK.<br/>
+4. IRP: MSR YORK.<br/>
 5. Actions at danger areas: SOP<br/>
 6. Actions on enemy contact: SOP<br/>
 7. Reorganization and consolidation: SOP<br/>
@@ -203,7 +203,7 @@ None.<br/><br/>
 player createDiaryRecord ["2SOPORD",["Mission","<br/><br/>
 <font size='18'>MISSION</font><br/><br/>
 <font color='#9DA698'>
-Search and destroy AKIRA. 
+Transport and deliver EVEREST1 and EVEREST2 to MARY.
 </font><br/><br/>
 "]];
 
@@ -212,21 +212,24 @@ player createDiaryRecord ["2SOPORD",["Situation","<br/><br/>
 <font size='18'>SITUATION</font><br/><br/>
 
 <font color='#9DA698'>
-OpFor: Pashtun forces (DOMINO).<br/>
-DOMINO has been building up a large presence in the North of Feruz Abad province.<br/>DOMINO uses MSR SYDNEY to supply their Base of Operations (AKIRA).
+OpFor: Soborian Separatists (JOSEPH) and Armed Forces of the Russian Federation (BORIS)<br/>
+The escalation between CAF (DONALD) and JOSEPH has taken its toll on the civilian population. The Red Cross has set-up a field hospital (MARY) north of the green zone. MARY is in urgent need of medical supplies. 
 <br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>ENEMY FORCES</font><br/>
 
 <font color='#9DA698'>
-1. DOMINO has a moderate presence in most urban areas in the green zone.<br/>
-2. Small arms and IFV’s patrol MSR’s SYDNEY, ROME and MIAMI.<br/>
-3. Strength: unknown.<br/>
-4. MPCOA: AKIRA is located in the North or North West of the green zone. Expect a heavy DOMINO presence at AKIRA.<br/>
-5. DOMINO arms: various small arms, Russian, Iranian and US origin. Confirmed APC reports by 4TH PLT.<br/>
-   AT capability: RPG, MPRL.<br/>
-6. DOMINO CR: mostly casual clothing + light body armor + improvised vests. Most DOMINO carry backpacks with explosives, IED’s and supplies.
+1. JOSEPH has a moderate presence in most urban areas north of the green zone.<br />
+2. BORIS has increased its presence at Lapotino AB with 11th ArmInf Bat. <br />
+3. JOSEPH: Small arms and IFV’s patrol north of the green zone and occasionally cross over into DONALD territory. <br />
+4. Strength JOSEPH: Est. 3000-4000 separatists in the Sobor Province. <br />
+5. Strength BORIS: 3 Infantry Battalions, 1 Cavalry Battalion and 2 Air Wings + support coy’s. Est. 2700 pax. <br />
+6. MPCOA: Once BluFor has been detected by JOSEPH, reinforcements will be called in. MARY is a neutral zone. <br />
+7. JOSEPH arms: various small arms, mostly Russian, some Iranian and unknown origin. <br />
+   AT capability: RPG, MPRL. <br />
+8. JOSEPH CR: mostly casual clothing + light body armor + improvised vests. Most JOSEPH carry backpacks with IED’s and limited supplies.
+
 <br/><br/>
 </font>
 
@@ -234,7 +237,10 @@ DOMINO has been building up a large presence in the North of Feruz Abad province
 
 <font color='#9DA698'>
 1. VJTF 5 BAT, 2nd Platoon. OUS: ANNEX A.<br/>
-2. NRF 2 SPT GRP at FOB JOHNSON.
+2. NRF 2 SPT GRP at FARGO.<br/>
+3. CAF 3rd and 4th BATT at Disha AB.<br/>
+4. CAF 2nd AIRBORN INF BRIG at Elektrozavodsko
+
 <br/><br/>
 </font>
 
@@ -247,14 +253,13 @@ DOMINO has been building up a large presence in the North of Feruz Abad province
 <font size='14' color='#d7dbd5'>CIVILIANS</font><br/>
 
 <font color='#9DA698'>
-1. Civilians in the AO are generally neutral towards coalition forces.<br/>
-2. Religious sites are to be avoided.<br/><br/>
-</font>
+1. Civilians in the AO are generally neutral towards coalition forces.
+</font><br/><br/>
 
 <font size='14' color='#d7dbd5'>ATTACHMENTS AND DETACHMENTS</font><br/>
 
 <font color='#9DA698'>
-Attachments: 1 x AH-99, 6 CAVBAT, 6TH SQDR, ex LMAB.<br/>
+Attachments: 1 x AH-99, 6 CAVBAT, 6TH SQDR, ex FARGO.<br/>
 Detachments: none.
 </font><br/><br/>
 "]];
@@ -266,26 +271,25 @@ player createDiaryRecord ["2SOPORD",["Terrain & weather","<br/><br/>
 <font size='14' color='#d7dbd5'>TERRAIN</font><br/>
 
 <font color='#9DA698'>
-1. Mountainous, arid with sparse vegetation in the South.<br/>
-2. Desert and arid in the North and North East.<br/>
-3. MSL ranging from 5.1 m to 732.45 m.<br/>
-4. Four MSR’s running from North to South and North to West.<br/>
-5. Road located in saddle and ridges. MSR Roads are off good quality. Dirt roads off-side MSR’s.<br/>
-6. Various mountain prominences provide good OW positions.<br/>
-7. Various petro-chemical installations in the North and East.<br/>
-8. Immediate area surrounding the airfield provides good FOV.<br/>
-9. Effects on enemy: usage of mountains and urban areas for cover and ambush.<br/>
-10. Effects on friendly: none. MSR road allow for fast attack and retreat strategy.<br/>
-11. Key terrain: Arid, Mountain, sparse vegetation, very limited cover outside of urban and commercial areas.
+1.	225 Km2 of which 100+ Km2 forest areas and rocky coastlines.<br/>
+2.	Semi-mountainous. MSL ranging from 0.1 m to 714.15 m.<br/>
+3.	Four MSR’s running from North to South and West to North.<br/>
+4.	MSR tarmac roads are off good quality. Dirt roads off-side MSR’s.<br/>
+5.	Forest areas provide good cover. <br/>
+6.	Largest cities are concentrated in the South and South East. Various industrial installations in proximity of large cities.<br/>
+7.	Smaller village’s inland, situated in deep valleys, hidden in forested ridges or on elevated plateaus with lush meadows.<br/>
+8.	Effects on enemy: usage of forests for cover and operating bases.<br/>
+9.	Effects on friendly: hill and forest provide cover even when travelling on the MSR’s.<br/>
+10.	Key terrain: Lush, Forest, dense vegetation, 
 <br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>WEATHER</font><br/>
 
 <font color='#9DA698'>
-1.	Temperature High: 33C.<br/>
-2.	Temperature Low: 9C, Dew point: 18C.<br/>
-3.	Wind: Moderate to strong, 11-29 Knots.
+1.	Temperature High: 37C.<br/>
+2.	Temperature Low: 11C, Dew point: 17C.<br/>
+3.	Wind: Moderate, 7-12 Knots.
 </font><br/><br/>
 "]];
 
@@ -314,7 +318,7 @@ The server requires the following add-ons:<br/><br/>
 - Community Based Addons ARMA 3 (CBA_A3)<br/>
 - All in ARMA Terrain Pack (AIATP)<br/><br/>
 
-Two Sierra missions have been tested (to work with) with the optional AI behavior add-on ASR AI.
+Two Sierra missions have been tested (to work with) with the optional AI behaviour add-on ASR AI.
 </font><br/><br/>
 
 <font size='14' color='#d7dbd5'>SERVER SETTINGS</font><br/>
@@ -362,19 +366,17 @@ player createDiaryRecord ["2SCPGN",["Background","<br/><br/>
 <font size='18'>BACKGROUND</font><br/><br/>
 
 <font color='#9DA698'>
-On 11 February 2019 the Taliban ceased to exist after a coalition forces UAV successfully targeted and killed the entire Taliban leadership council. The majority of Taliban fighters joined The Pashtun within the following weeks.
+Two Sierra Vol. 2 | Chernarus, June 2019. Since CSAT Russia annexed the Lopatino district in 2014 a local insurgency faction emerged and declared the Sobor region as independent. Aptly naming it Soborisk. The Soborian Separatists quickly gained ground with the unofficial support of CSAT Russia. Over the years several attempts have been made to solve the crisis, but neither Chernarussian Government nor the Soborian separatists were willing to give in. Now, nearly 4 years later, CSAT Russia has issued an ultimatum to the Chernarussian Government: recognize Soborisk as an independent state. All diplomatic solutions seem to have been exhausted.<br /><br /> 
+Two Sierra is relieving Third Platoon who has been training Chernarussian Armed Forces (CAF) and assisting with humanitarian operations. NRF forces are considered neutral. NATO does not have a mandate to get involved in the escalation between Soborian Separatists and CAF. That said, last week a patrol from Third Platoon got engaged by presumably Soborian Separatists. And two weeks ago a HEMTT from 2ND SPT GRP was taken out by an IED. On both occasions, vehicles were clearly marked as NRF vehicles.<br />
+Things are heating up and the world is watching.
 <br/><br/></font>
 
-<font size='14' color='#d7dbd5'>THE PASHTUN</font><br/>
+<font size='14' color='#d7dbd5'>SOBORIAN SEPARATISTS</font><br/>
 
 <font color='#9DA698'>
-The Pashtun are a race of warriors who originate from Afghanistan, Takistan and Pakistan. The Pashtun consists of about sixty tribes, each with its own territory.<br/><br/>
-
-The Pashtun has rapidly been expanding its foothold in Asia and the Middle East after the fall of the Taliban, and previously the fall of IS and other factions. The Pashtun are well funded, moderately well organized and very ambitious. Little is known about their goals as they keep a low public relations profile. Intelligence agencies are busy mapping the Pashtun organization. So far reliable intelligence is scares at best.<br/><br/>
-
-CSAT has on several occasions tried to open diplomatic channels. Up till now the Pashtun and CSAT are maintaining neutral relations. Allied Command Operations (ACO) is monitoring the CSAT/Pashtun situation closely.<br/><br/>
-Currently The Pashtun are moderately armed with mostly small arms and 2nd generation RPG’s. The BBC reported last week that The Pashtun are in progress of purchasing Iranian-made APC’s and M-ATV’s.  
-
+In April 2014, pro-Russian activists seized control of government buildings in towns and cities across the Sobor region. The events were a repeat of what had happened in the Lopatino region. .<br /><br />
+Gunmen there seized government buildings in February 2014 and raised the Russian flag a week after elected President Boris Yanukotav, friendly to Moscow, fled during massive pro-EU street protests in Novigrad. An early attempt by nationalists to remove the status of Russian as a second language alarmed many Russian speakers, and officials in Moscow portrayed the new leaders in Novigrad as NATO-backed Chernarussian nationalists bent on violating minority rights. A flawed referendum on joining Russia was quickly held in Lopatino and within a month the region's annexation was complete. .<br /><br />
+There was little bloodshed in Lopatino, but Chernarus' fledgling revolutionary government was in no position to fight back, with only 6,000 troops reportedly ready for combat. However, when pro-Russian separatists made a move on Chernarus' industrial east and Russian forces appeared to be building up on the borders, the authorities in Novigrad ordered an 'anti-terrorist operation'. The start of a conflict that has dragged on for nearly 5 years.
 </font><br/><br/>
 "]];
 
@@ -384,15 +386,15 @@ player createDiaryRecord ["2SCPGN",["About TWO SIERRA Campaign","<br/><br/>
 <font size='14' color='#d7dbd5'>DESCRIPTION</font><br/>
 
 <font color='#9DA698'>
-Two Sierra is a CO-37 multiplayer (34 player slots) NRF infantry campaign for MilSim communities. Volume 1 consists of 4 challenging missions and a warm-up mission. 
+Two Sierra is a CO-37 multiplayer (34 player slots) NRF infantry campaign for MilSim communities. Volume 1 and Volume 2 consist of 4 challenging missions each and a warm-up mission each. 
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>FEATURES</font><br/>
 
 <font color='#9DA698'>
-- 4 missions offering challenging and immersive gameplay in a lively<br/>
+- 8 missions offering challenging and immersive gameplay in a lively<br/>
   area of operations;<br/>
-- 1 Warm-up Mission for warming up, mod-line testing and general<br/>
+- 2 Warm-up Missions for warming up, mod-line testing and general<br/>
   training;<br/>
 - Detailed OPORD’s (in-game and PDF/TXT for forum briefings);<br/>
 - Optimized for dedicated server play;<br/>

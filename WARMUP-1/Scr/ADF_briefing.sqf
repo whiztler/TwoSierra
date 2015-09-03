@@ -161,7 +161,7 @@ player createDiaryRecord ["2SCPGN",["Background","<br/><br/>
 <font size='18'>BACKGROUND</font><br/><br/>
 
 <font color='#9DA698'>
-On 11 February 2019 the Taliban ceased to exist after a coalition forces UAV successfully targeted and killed the entire Taliban leadership council. The majority of Taliban fighters joined The Pashtun within the following weeks.
+Two Sierra Vol. 1 | Takistan, May 2019. On 11 February 2019 the Taliban ceased to exist after a coalition forces UAV successfully targeted and killed the entire Taliban leadership council. The majority of Taliban fighters joined The Pashtun within the following weeks.
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>THE PASHTUN</font><br/>

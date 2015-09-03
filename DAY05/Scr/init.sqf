@@ -20,11 +20,12 @@ if (hasInterface) then {
 
 // All clients
 execVM "Scr\ADF_CAS.sqf";
+#include "everest.sqf"
 
 // Server/HC
 if (!ADF_HC_execute) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
 
-//#include "init_AO.sqf" // Server/HC
+#include "init_AO.sqf" // Server/HC
 
 _diagTestEnd = diag_tickTime;
 diag_log format ["ADF RPT: Init - FINISHED Scr\init.sqf  [%1]",_diagTestStart - _diagTestEnd];

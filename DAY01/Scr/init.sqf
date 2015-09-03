@@ -6,9 +6,9 @@ diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/rem
 call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 
 // Vars init
-CSAThostile 		= false;
-xRayDestroyed 	= false;
-bearclawRescued 	= false;
+CSAThostile 			= false;
+xRayDestroyed 		= false;
+bearclawRescued 		= false;
 
 // Server Init
 if (isServer) then {

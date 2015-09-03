@@ -2,7 +2,7 @@
 0 = execVM "Scr\pashtun.sqf"; [player] call ADF_fnc_redressPashtun;
 *********************************/
 
-diag_log "ADF RPT: Init - executing pashtun.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing ADF_redress_Pashtun.sqf"; // Reporting. Do NOT edit/remove
 
 ADF_fnc_redressPashtun_uniforms = {
 	private ["_uniform"];

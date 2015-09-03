@@ -95,7 +95,7 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 	waitUntil {sleep 15; ADF_SatanClearUp};
 	if (ADF_SatanControl) then {
 		["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, SATAN has been cleared. JONAH body count of more than 170. How copy?"] call ADF_fnc_MessageParser; sleep 15;
-		["ACO","ACO","FIRESTONE: Copy TWO SIERRA.<br/><br/>Job well done. RTB. We got a bunch of cold one waiting for you. Out."] call ADF_fnc_MessageParser; sleep 20;
+		["ACO","ACO","FIRESTONE: Copy TWO SIERRA.<br/><br/>Job well done. RTB. We got a bunch of cold ones waiting for you. Out."] call ADF_fnc_MessageParser; sleep 20;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
 		["<img size= '10' shadow='false' image='Img\2SIERRA_intro.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 02 | Satan's Fire</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		

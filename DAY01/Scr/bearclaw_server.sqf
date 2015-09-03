@@ -72,7 +72,7 @@ for "_i" from 1 to 2 do {
 	_spawnPos = "mGuerVeh_2";
 	_spawnDir = markerDir _spawnPos;
 
-	_c = createGroup INDEPENDENT;
+	_c = createGroup EAST;
 	_v = [getMarkerPos _spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
 	_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
 	_vX = _v select 0;

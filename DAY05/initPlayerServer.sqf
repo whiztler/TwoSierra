@@ -15,6 +15,5 @@ diag_log "ADF RPT: Init - executing initPlayerServer.sqf"; // Reporting. Do NOT 
 // Init
 
 
-// Cuyrator inits
-{_x addCuratorEditableObjects [[_this select 0],true]} forEach allCurators;  
+
 

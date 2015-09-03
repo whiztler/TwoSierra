@@ -12,7 +12,7 @@ diag_log	"-----------------------------------------------------";
 
 // Create random mortar positions
 _mortarPosArray = ["mGuerMortar_1","mGuerMortar_2","mGuerMortar_3","mGuerMortar_4","mGuerMortar_5","mGuerMortar_6","mGuerMortar_7","mGuerMortar_8","mGuerMortar_9","mGuerMortar_10"];
-_g = [getPos tAlpha, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
+_g = [getPos tAlpha, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 _gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
 
 for "_i" from 0 to 2 do {
@@ -36,7 +36,7 @@ for "_i" from 1 to 2 do {
 	_alphaVehArray deleteAt _idx;
 	_spawnDir = markerDir _spawnPos;
 
-	_c = createGroup INDEPENDENT;
+	_c = createGroup EAST;
 	_v = [getMarkerPos _spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 	_vX = _v select 0;
@@ -54,7 +54,7 @@ for "_i" from 0 to 3 do {
 	_idx =  _alphaPaxPatrolhArray find _spawnPos;
 	_alphaPaxPatrolhArray deleteAt _idx;
 
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
+	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 600, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
@@ -62,7 +62,7 @@ for "_i" from 0 to 3 do {
 // Bearclaw foot patrols
 for "_i" from 1 to 3 do {
 	private ["_g"];
-	_g = [getPos objBearclaw, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
+	_g = [getPos objBearclaw, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getPos objBearclaw, 80, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
@@ -71,13 +71,13 @@ for "_i" from 1 to 3 do {
 for "_i" from 1 to 8 do {
 	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
+	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 50, 2, true] call CBA_fnc_taskDefend;	
 };
 
 // Bearclaw Defence Team
-_g = [getPos objBearclaw, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
+_g = [getPos objBearclaw, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 {[_x] call ADF_fnc_redressPashtun} forEach units _g;
 [_g, getPos objBearclaw, 10, 2, true] call CBA_fnc_taskDefend;	
 

@@ -2,7 +2,7 @@
 0 = execVM "Scr\pashtun.sqf"; [player] call ADF_fnc_redressPashtun;
 *********************************/
 
-diag_log "ADF RPT: Init - executing pashtun.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing ADF_redress_Pashtun.sqf"; // Reporting. Do NOT edit/remove
 
 ADF_fnc_redressPashtun_uniforms = {
 	private ["_uniform"];
@@ -57,9 +57,9 @@ ADF_fnc_redressPashtun = {
 	params ["_unit"];
 	private ["_uniform","_priWeaponArr","_priWeapon","_backpack","_face","_voice","_priWeaponMag","_priWeaponMagAm","_enable_AT"];
 	_uniform 		= call ADF_fnc_redressPashtun_uniforms;
-	_priWeaponArr	= call ADF_fnc_redressPashtun_priWpn;
+	_priWeaponArr		= call ADF_fnc_redressPashtun_priWpn;
 	_priWeapon		= _priWeaponArr select 0;	
-	_priWeaponMag	= _priWeaponArr select 1;
+	_priWeaponMag		= _priWeaponArr select 1;
 	_priWeaponMagAm	= _priWeaponArr select 2;
 	_face			= call ADF_fnc_redressPashtun_face;
 	_voice			= call ADF_fnc_redressPashtun_voice;

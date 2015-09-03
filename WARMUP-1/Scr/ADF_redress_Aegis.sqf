@@ -2,7 +2,7 @@
 0 = execVM "aegis.sqf"; [player] call ADF_fnc_redressAegis;
 *********************************/
 
-diag_log "ADF RPT: Init - executing aegis.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing ADF_redress_Aegis.sqf"; // Reporting. Do NOT edit/remove
 
 ADF_fnc_redressAegis_priWpn = {
 	private ["_weapon"];

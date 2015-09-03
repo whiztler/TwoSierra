@@ -24,6 +24,7 @@ if (isServer) then {
 	_p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "PRIVATE"]; _p moveInGunner oStat_08;
 	NRF_grp_3 setGroupIdGlobal ["5-1 CHARLIE"];
 	
+	{_x enableSimulationGlobal false} forEach units NRF_grp_3;
 	{{[_x] call ADF_fnc_redressNRF;} forEach units _x} forEach [NRF_grp_1,NRF_grp_2,NRF_grp_3];
 	
 	{[_x, position leader _x, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [1,2,3]] call CBA_fnc_taskPatrol;} forEach [NRF_grp_1,NRF_grp_2];
@@ -39,8 +40,13 @@ if (isServer) then {
 		_idx =  _iedMarkerArr find _iedMarkerPos;
 		_iedMarkerArr deleteAt _idx;
 		[_iedMarkerPos,100,250,4.5] call ADF_fnc_createRandomIEDs;
-	};
+	};	
+		
+	// Add EH's to medical vehicles
+	vObj1 addMPEventHandler ["mpKilled", {[] spawn ADF_Everest1;}];
+	vObj2 addMPEventHandler ["mpKilled", {[] spawn ADF_Everest2;}]; 
 	
 	// Create Mary
-	execVM "Scr\SOD_mary.sqf";
+	#include "SOD_mary_comp.sqf" // St. Mary composition
+	#include "SOD_mary.sqf"
 };

@@ -19,6 +19,12 @@ class CfgUnitInsignia {
 		texture = "Img\clan_patch_NRF.paa";
 		textureVehicle = ""; // Does nothing currently, reserved for future use
 	};
+	class CAFpatch {
+		displayName = "CAF"; // Name displayed in Arsenal
+		author = "ADF / Whiztler";
+		texture = "Img\CAF_patch.paa";
+		textureVehicle = ""; // Does nothing currently, reserved for future use
+	};
 };
 
 class CfgRespawnTemplates { // F3 Spectator Script
@@ -31,11 +37,11 @@ class CfgRespawnTemplates { // F3 Spectator Script
 };
 
 class CfgVehicleTemplates {
-	class ADF_opforOffroad {
+	class ADF_rebelOffroad {
 		displayName = "ADF_opforOffroad"; 
 		author = "Whiztler";
 		textures[] = {
-			"Img\NRF_cusTex_offroad.jpg"
+			"Img\NRF_cusTex_offroad_Rebels.jpg"
 		};
 		animationList[] = {
 			"HideDoor1", 1,
@@ -69,6 +75,38 @@ class cfgNotifications { // Preconfigured messages
 		color[] = {1,1,0,1};		
 		duration = 4;
 		priority = 7;
+	};
+};
+
+// End Screen / Debriefing
+class CfgDebriefing
+{  
+	class End1
+	{
+		title = "Mission Completed";
+		subtitle = "Day 05 | Saint Mary";
+		description = "The medical supplies will save a lot of lives. Well done TWO SIERRA!";
+		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+	};
+	class End2
+	{
+		title = "Mission Failed";
+		subtitle = "Day 05 | Saint Mary";
+		description = "Losing the medical supplies is unacceptable!";
+		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+	};
+	class Killed
+	{
+		title = "All players K.I.A.";
+		subtitle = "Day 05 | Saint Mary";
+		description = "TWO SIERRA R.I.P.";
+		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 };
 

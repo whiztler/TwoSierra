@@ -72,6 +72,38 @@ class cfgNotifications { // Preconfigured messages
 	};
 };
 
+// End Screen / Debriefing
+class CfgDebriefing
+{  
+	class End1
+	{
+		title = "Mission Completed";
+		subtitle = "Day 04 | Hannibal";
+		description = "Medals and vodka all around!";
+		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+	};
+	class End2
+	{
+		title = "Mission Failed";
+		subtitle = "Day 05 | Hannibal";
+		description = "Hard to believe you got defeated by the Pashtun.";
+		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+	};
+	class Killed
+	{
+		title = "All players K.I.A.";
+		subtitle = "Day 05 | Hannibal";
+		description = "TWO SIERRA R.I.P.";
+		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
+	};
+};
+
 // ACE3 settings v. 3.2.0
 
 class ACE_Settings {

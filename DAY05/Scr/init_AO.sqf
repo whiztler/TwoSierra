@@ -1,9 +1,14 @@
 // init
 call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
-//call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
+call compile preprocessFileLineNumbers "Scr\ADF_redress_Rebels.sqf";
+call compile preprocessFileLineNumbers "Scr\ADF_redress_Russians.sqf";
+call compile preprocessFileLineNumbers "Scr\ADF_redress_Cherno.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 
-// Reinforcement vehicles
+indep_cp1 = [CP_1a,CP_1b,CP_1c,CP_1d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp1;
+indep_cp2 = [CP_2a,CP_2b,CP_2c,CP_2d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp2;
+indep_cp3 = [CP_3a,CP_3b,CP_3c,CP_3d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp3;
+indep_cp4 = [CP_4a,CP_4b,CP_4c,CP_4d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp4;
 
 ADF_wpPosRdm = {
 	private ["_wpPos"];
@@ -97,10 +102,10 @@ for "_i" from 1 to 5 do {
 
 	_c = createGroup EAST;
 	_v = [getMarkerPos _spawnPos, _spawnDir, "O_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
-	//{[_x] call ADF_fnc_redressPashtun} forEach units _c;
+	{[_x] call ADF_fnc_redressRebel} forEach units _c;
 	_vX = _v select 0;
 	_vX setVariable ["BIS_enableRandomization", false];
-	//[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
+	[_vX, "ADF_rebelOffroad", nil] call bis_fnc_initVehicle;
 	[_c, _spawnPos, 2500, 4, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
 };
 
@@ -111,12 +116,12 @@ for "_i" from 1 to 3 do {
 	_spawnDir = markerDir _spawnPos;
 
 	_c = createGroup INDEPENDENT;
-	_v = [getMarkerPos _spawnPos, _spawnDir, "I_APC_Wheeled_03_cannon_F", _c] call BIS_fnc_spawnVehicle;
-	//{[_x] call ADF_fnc_redressPashtun} forEach units _c;
+	_v = [getMarkerPos _spawnPos, _spawnDir, "I_APC_tracked_03_cannon_F", _c] call BIS_fnc_spawnVehicle;
+	{[_x] call ADF_fnc_redressCherno} forEach units _c;
 	_vX = _v select 0;
-	_vX setVariable ["BIS_enableRandomization", false];
-	//[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
-	[_c, _spawnPos, 2000, 4, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
+	_vX setObjectTextureGlobal [0, "Img\NRF_cusTex_ChernCamo.jpg"];
+	_vX setObjectTextureGlobal [1, "Img\NRF_cusTex_ChernCamo.jpg"];
+	[_c, _spawnPos, 2000, 4, "MOVE", "SAFE", "GREEN", "LIMITED",25] call ADF_fnc_vehiclePatrol;
 };
 
 // AO Defence Fire Team
@@ -124,7 +129,7 @@ for "_i" from 1 to 11 do {
 	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
 	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
-	//{[_x] call ADF_fnc_redressPashtun} forEach units _g;
+	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 100, 2, true] call CBA_fnc_taskDefend;	
 };
 
@@ -133,17 +138,36 @@ for "_i" from 20 to 23 do {
 	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
 	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad")] call BIS_fnc_spawnGroup;
-	//{[_x] call ADF_fnc_redressPashtun} forEach units _g;
+	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 150, 2, true] call CBA_fnc_taskDefend;	
 };
 
 // Foot patrols
 for "_i" from 1 to 5 do {
-	private ["_g","_gX","_spawnPos"];
+	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxPatrol_%1",_i];
 	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
-	//{[_x] call ADF_fnc_redressPashtun} forEach units _gX;
+	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 1500, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+};
+
+// Russian Lopatino patrols
+for "_i" from 1 to 3 do {
+	private ["_g","_spawnPos"];
+	_spawnPos = format ["mRusPatrol_%1",_i];
+	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
+	{[_x] call ADF_fnc_redressRussian} forEach units _g;
+	[_g, getMarkerPos _spawnPos, 350, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+};
+
+ADF_t_Lapotino = {
+	private ["_g","_spawnPos"];
+	_spawnPos = getMarkerPos "mLapotino";
+	_c = createGroup EAST;
+	_p = _c createUnit ["O_Pilot_F", _spawnPos, [], 0, "MAJOR"]; _p moveInDriver oRusAttackHeli;
+	_p = _c createUnit ["O_Pilot_F", _spawnPos, [], 0, "CORPORAL"]; _p moveInGunner oRusAttackHeli;
+	{[_x] call ADF_fnc_redressRussian} forEach units _c;
+	[_c, getMarkerPos "mRusPatrol_2", 2500, 4, "MOVE", "COMBAT", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
 
 // Count spawned units
@@ -157,4 +181,3 @@ diag_log format ["TWO SIERRA: AO Independent spawned, number of Independent: %1"
 diag_log format ["TWO SIERRA: AO BluFor spawned, number of BluFor: %1",_ADF_WestCnt];
 diag_log	"----------------------------------------------------------------------";
 
-//getMarkerPos ADF_maryLoc

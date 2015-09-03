@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Loadout Gear 2 SIERRA campaign
 Author: Whiztler
-Script version: 1.02
+Script version: 1.04
 
 Game type: n/a
 File: ADF_fnc_loadout2S.sqf
@@ -25,7 +25,7 @@ tf_no_auto_long_range_radio 	= true;
 // Init unit vars
 _ADF_unit 					= _this;
 _ADF_unitString				= str _ADF_unit;
-_u							= [_ADF_unitString, "_"] call CBA_fnc_split;
+_u 							= _ADF_unitString splitString "_";
 _r							= toLower (_u select 1);
 
 // Init gear
@@ -75,27 +75,18 @@ if (ADF_mod_ACE3) then {
 _ADF_INF_ACE3_default 		= ["ACE_EarPlugs","ace_mapTools","ACE_CableTie","ACE_IR_Strobe_Item","ACE_morphine","ACE_HandFlare_White","ACE_HandFlare_White","ACE_M84","ACE_M84"];
 _ADF_INF_ACE3_defaultMed		= ["ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing",
 								"ACE_elasticBandage","ACE_quikclot"];
-
-// Add Uniform EH
-_ADF_unit addEventHandler ["Take", {
-	(getObjectTextures player + [uniformContainer player getVariable "texture"])
-	params ["_texUniform", "_texInsignia", "_texCustom"];
-	if (isNil "_texCustom") exitWith {};
-	if (_texUniform == _texCustom) exitWith {};
-	player setObjectTextureGlobal [0, _texCustom];
-	if (ADF_Clan_uniformInsignia) then {[player,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
-	false
-}];
-
-// Apply Global Texture
-_ADF_texture =  "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa";
-uniformContainer _ADF_unit setVariable ["texture", _ADF_texture, true];
 								
+// Strip the unit
+removeAllWeapons _ADF_unit; removeAllItems _ADF_unit; removeAllAssignedItems _ADF_unit; removeVest _ADF_unit; removeBackpack _ADF_unit; removeHeadgear _ADF_unit; removeGoggles _ADF_unit; 
+
+
 /********* DEFAULT TWO SIERRA LOADOUT ********/
 
 // Add Items/gear
-{_ADF_unit linkItem _x} forEach ["ItemWatch","ItemCompass"];
-if (_r != "pc") then {_ADF_unit addHeadgear _ADF_INF_headGear; _ADF_unit addVest "V_TacVest_khk";} else {_ADF_unit addVest "V_Rangemaster_belt";};
+_ADF_unit forceAddUniform "U_B_CombatUniform_mcam";
+{_ADF_unit linkItem _x} forEach ["ItemWatch","ItemCompass","ItemMap"];
+_ADF_unit addHeadgear _ADF_INF_headGear;
+_ADF_unit addVest "V_TacVest_khk";
 _ADF_unit addWeapon "NVGoggles";
 _ADF_unit addItem "acc_flashlight";
 _ADF_unit addItemToUniform "acc_pointer_IR";
@@ -120,8 +111,7 @@ ADF_loadout_platoon = {
 	for "_i" from 1 to 2 do {
 		_ADF_unit addItem "SmokeShell"; _ADF_unit addItem "Chemlight_green"; _ADF_unit addItem _ADF_INF_handgrenade;
 		if (!ADF_mod_ACE3) then {_ADF_unit addItem "FirstAidKit";};
-	};
-	
+	};	
 	
 	// Add ACE3 default loadout items
 	if (ADF_mod_ACE3) then {
@@ -136,13 +126,29 @@ ADF_loadout_platoon = {
 
 	// Personal Radios all units
 	if (ADF_mod_ACRE) then {_ADF_unit linkItem "ACRE_PRC343"}; // ACRE
-	if (ADF_mod_TFAR) then {_ADF_unit linkItem _ADF_TFAR_PersonalRadio}; // TFAR
+	if (ADF_mod_TFAR) then {_ADF_unit linkItem _ADF_TFAR_PersonalRadio; _ADF_unit addItem "tf_microdagr";}; // TFAR
 	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_ADF_unit linkItem "ItemRadio"}; // Vanilla
 	
 	// mircoDAGR
 	if (_r == "pc" || _r == "tto" || _r == "sql" || _r == "wtl" || _r == "frl") then {_ADF_unit addItem _ADF_microDAGR;};
 	
-	ADF_gearLoaded = true; publicVariableServer "ADF_gearLoaded";
+	// Add Uniform EH
+	_ADF_unit addEventHandler ["Take", {
+		(getObjectTextures player + [uniformContainer player getVariable "texture"])
+		params ["_texUniform", "_texInsignia", "_texCustom"];
+		if (isNil "_texCustom") exitWith {};
+		if (_texUniform == _texCustom) exitWith {};
+		player setObjectTextureGlobal [0, _texCustom];
+		if (ADF_Clan_uniformInsignia) then {[player,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
+		false
+	}];
+
+	// Set local Texture
+	_ADF_texture =  "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa";
+	uniformContainer _ADF_unit setVariable ["texture", _ADF_texture, true];
+	
+	ADF_gearLoaded = true;
+};
 
 /********* TWO SIERRA UNIT LOADOUT ********/
 
@@ -150,7 +156,6 @@ ADF_loadout_platoon = {
 if (_r == "pc") exitWith {
 	_ADF_unit linkItem "ItemGPS";
 	_ADF_unit addGoggles "G_Tactical_Clear";
-	_ADF_unit addHeadgear "H_Cap_tan";	
 	_ADF_unit addWeapon "Laserdesignator";
 	_ADF_unit addItem "Laserbatteries";	
 	

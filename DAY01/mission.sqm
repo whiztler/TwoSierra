@@ -50,14 +50,16 @@ class Mission
 		"A3_Supplies_F_Heli_Slingload",
 		"A3_Signs_F_AD",
 		"CAMisc_E_WF",
-		"A3_Characters_F_Mark"
+		"A3_Characters_F_Mark",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
 		"A3_Modules_F",
 		"cba_main",
 		"A3_Characters_F",
-		"A3_Modules_F_Curator_Curator",
+		"3DEN",
+		"a3_modules_f_curator_curator",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_EPC",
 		"A3_Characters_F_INDEP",
@@ -108,7 +110,6 @@ class Mission
 	{
 		briefingName="CO37 - Two Sierra Vol 1 / Day 01";
 		overviewText="Day 01 - Bearclaw";
-		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=7200;
 		startWeather=0;
@@ -143,7 +144,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={5987.3677,62.634804,7803.7471};
+					position[]={5949.9458,62.995739,7800.9121};
 					id=0;
 					side="LOGIC";
 					vehicle="Logic";
@@ -161,7 +162,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6087.7563,29.270811,7803.6182};
+					position[]={6050.3345,38.665012,7800.7832};
 					id=1;
 					side="LOGIC";
 					vehicle="CBA_main_require";
@@ -179,7 +180,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={5987.9575,40.746609,7604.4834};
+					position[]={5950.5356,54.26955,7601.6484};
 					id=2;
 					side="LOGIC";
 					vehicle="HeadlessClient_F";
@@ -199,7 +200,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6038.7017,40.828964,7703.9678};
+					position[]={6001.2798,43.474865,7701.1328};
 					class args
 					{
 						items=4;
@@ -246,7 +247,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6037.1001,32.056618,7603.9619};
+					position[]={5999.6782,37.180466,7601.127};
 					id=4;
 					side="LOGIC";
 					vehicle="HeadlessClient_F";
@@ -266,7 +267,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6088.1841,31.117678,7604.2568};
+					position[]={6050.7622,31.706387,7601.4219};
 					id=5;
 					side="LOGIC";
 					vehicle="HeadlessClient_F";
@@ -296,6 +297,7 @@ class Mission
 					skill=0.60000002;
 					health=0.53825992;
 					text="xRayCrew_1";
+					init="gXrayCrew = group this;";
 				};
 				class Item1
 				{
@@ -373,7 +375,7 @@ class Mission
 				class Item0
 				{
 					presence=0;
-					position[]={6029.4673,42.423203,7401.1401};
+					position[]={5999.7593,46.315342,7498.2202};
 					id=12;
 					side="GUER";
 					vehicle="I_soldier_F";
@@ -1594,6 +1596,7 @@ class Mission
 			vehicle="O_GMG_01_high_F";
 			leader=1;
 			skill=0.33333331;
+			ammo=0;
 			text="vCSAT_stat_1";
 		};
 		class Item60
@@ -1836,6 +1839,7 @@ class Mission
 			vehicle="O_MRAP_02_hmg_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			ammo=0;
 			text="vCSAT_CP_veh_3";
 		};
 		class Item83
@@ -2060,12 +2064,14 @@ class Mission
 		class Item103
 		{
 			position[]={3717.2039,28.398264,6464.3833};
-			azimut=-9.7810755;
+			azimut=-9.7810802;
 			id=150;
 			side="EMPTY";
 			vehicle="O_HMG_01_high_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			ammo=0;
+			text="vCSAT_CP_veh_4b";
 		};
 		class Item104
 		{
@@ -2379,12 +2385,13 @@ class Mission
 		class Item133
 		{
 			position[]={5053.8643,33.092625,1867.1556};
-			azimut=236.27147;
+			azimut=236.271;
 			id=180;
 			side="EMPTY";
 			vehicle="O_HMG_01_high_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			text="vCSAT_CP_veh_1b";
 		};
 		class Item134
 		{
@@ -2460,6 +2467,7 @@ class Mission
 			leader=1;
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			ammo=0;
 			text="vCSAT_CP_veh_4";
 		};
 		class Item141
@@ -2975,6 +2983,7 @@ class Mission
 			leader=1;
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			ammo=0;
 			text="vCSAT_apt_AA";
 		};
 		class Item188
@@ -2986,6 +2995,7 @@ class Mission
 			vehicle="O_GMG_01_high_F";
 			leader=1;
 			skill=0.33333331;
+			ammo=0;
 			text="vCSAT_stat_2";
 		};
 		class Item189
@@ -3007,6 +3017,7 @@ class Mission
 			vehicle="O_MRAP_02_hmg_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			ammo=0;
 			text="vCSAT_CP_veh_1";
 		};
 		class Item191
@@ -3372,7 +3383,7 @@ class Mission
 		{
 			position[]={4924.2295,29.723934,6166.2622};
 			name="mCSAT_base_1";
-			text=" 42 ArmInf Bat";
+			text=" CSAT 42 ArmInf Bat";
 			type="o_hq";
 			a=0.69999999;
 			b=0.69999999;
@@ -3400,7 +3411,7 @@ class Mission
 		{
 			position[]={3505.3962,22.35,4011.3467};
 			name="mCSAT_base_2";
-			text=" 129 Air Support Group";
+			text=" CSAT 129 Air Support Group";
 			type="o_air";
 			a=0.69999999;
 			b=0.69999999;
@@ -3443,7 +3454,7 @@ class Mission
 		{
 			position[]={5031.6709,33.366745,1886.1807};
 			name="mCSAT_CP_1";
-			text=" Checkpoint";
+			text=" CSAT Checkpoint";
 			type="o_unknown";
 			a=0.5;
 			b=0.5;
@@ -3452,7 +3463,7 @@ class Mission
 		{
 			position[]={3154.0388,5.7124577,640.9021};
 			name="mCSAT_CP_2";
-			text=" Checkpoint";
+			text=" CSAT Checkpoint";
 			type="o_unknown";
 			a=0.5;
 			b=0.5;
@@ -3461,7 +3472,7 @@ class Mission
 		{
 			position[]={3727.5486,28.566643,6447.9629};
 			name="mCSAT_CP_3";
-			text=" Checkpoint";
+			text=" CSAT Checkpoint";
 			type="o_unknown";
 			a=0.5;
 			b=0.5;
@@ -4376,7 +4387,7 @@ class Mission
 		items=10;
 		class Item0
 		{
-			position[]={5987.6919,43.184498,7703.5088};
+			position[]={5950.27,40.787289,7700.6738};
 			a=0;
 			b=0;
 			activationBy="JULIET";
@@ -4409,8 +4420,8 @@ class Mission
 		class Item2
 		{
 			position[]={3393.5679,22.35,3950.2192};
-			a=600;
-			b=800;
+			a=350;
+			b=600;
 			rectangular=1;
 			activationBy="WEST";
 			interruptable=1;
@@ -4493,7 +4504,7 @@ class Mission
 			age="UNKNOWN";
 			name="tZargMosque";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_zargMosque.sqf"";";
+			expActiv="0 = execVM ""Scr\SOD_zargMosque.sqf""; ";
 			class Effects
 			{
 			};

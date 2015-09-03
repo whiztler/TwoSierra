@@ -18,7 +18,7 @@ for "_i" from 1 to 2 do {
 	_bravoVehArray deleteAt _idx;
 	_spawnDir = markerDir _spawnPos;
 
-	_c = createGroup INDEPENDENT;
+	_c = createGroup EAST;
 	_v = [getMarkerPos _spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 	_vX = _v select 0;
@@ -36,7 +36,7 @@ for "_i" from 1 to 3 do {
 	_idx =  _bravoPaxPatrolhArray find _spawnPos;
 	_bravoPaxPatrolhArray deleteAt _idx;
 
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
+	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 600, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
@@ -45,7 +45,7 @@ for "_i" from 1 to 3 do {
 for "_i" from 10 to 13 do {
 	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
+	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 75, 2, true] call CBA_fnc_taskDefend;	
 };
@@ -54,6 +54,6 @@ for "_i" from 10 to 13 do {
 for "_i" from 1 to 2 do {
 	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxTwr_%1",_i];
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
+	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun; _x setPosATL [getMarkerPos _spawnPos select 0, getMarkerPos _spawnPos select 1, 5.8];} forEach units _g;
 };

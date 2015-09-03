@@ -27,14 +27,16 @@ class Mission
 		"A3_Modules_F_Effects",
 		"A3_Structures_F_EPC_Civ_Kiosks",
 		"aia_misc_e_config",
-		"A3_Structures_F_Kart_Mil_Flags"
+		"A3_Structures_F_Kart_Mil_Flags",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
 		"A3_Modules_F",
 		"cba_main",
 		"A3_Characters_F",
-		"A3_Modules_F_Curator_Curator",
+		"3DEN",
+		"a3_modules_f_curator_curator",
 		"A3_Characters_F_INDEP",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_Mark",

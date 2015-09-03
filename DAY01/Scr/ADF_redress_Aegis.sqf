@@ -2,7 +2,7 @@
 0 = execVM "aegis.sqf"; [player] call ADF_fnc_redressAegis;
 *********************************/
 
-diag_log "ADF RPT: Init - executing aegis.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing ADF_redress_Aegis.sqf"; // Reporting. Do NOT edit/remove
 
 ADF_fnc_redressAegis_priWpn = {
 	private ["_weapon"];
@@ -38,9 +38,9 @@ ADF_fnc_redressAegis = {
 	_vest 			= ["V_PlateCarrier2_rgr","V_PlateCarrierSpec_rgr","V_PlateCarrierIA2_dgtl","V_I_G_resistanceLeader_F"] call BIS_fnc_selectRandom;
 	_goggles			= ["G_Lowprofile","None","G_Shades_Red","G_Sport_Red","None","G_Sport_Blackred","G_Squares_Tinted","None","None"] call Bis_fnc_SelectRandom;
 	_headGear 		= ["H_Cap_tan","None","H_Cap_khaki_specops_UK","H_MilCap_gry","None","H_Beret_blk","H_Watchcap_khk","None","None"] call Bis_fnc_SelectRandom;
-	_priWeaponArr	= call ADF_fnc_redressAegis_priWpn;
+	_priWeaponArr		= call ADF_fnc_redressAegis_priWpn;
 	_priWeapon		= _priWeaponArr select 0;	
-	_priWeaponMag	= _priWeaponArr select 1;
+	_priWeaponMag		= _priWeaponArr select 1;
 	_priWeaponMagAm	= _priWeaponArr select 2;
 	_face			= ["WhiteHead_09","WhiteHead_11","WhiteHead_19","WhiteHead_17","WhiteHead_15","WhiteHead_20"] call BIS_fnc_selectRandom;
 	_voice			= ["Male01ENGB","Male02ENGB","Male03ENGB","Male04ENGB","Male05ENGB"] call Bis_fnc_SelectRandom;

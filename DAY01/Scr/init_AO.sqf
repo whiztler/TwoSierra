@@ -1,6 +1,7 @@
 // Init Server/HC
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
+call compile preprocessFileLineNumbers "Scr\ADF_redress_CSAT.sqf";
 ADF_airActive = false;
 
 diag_log	"-----------------------------------------------------";
@@ -9,32 +10,34 @@ diag_log	"-----------------------------------------------------";
 
 // CSAT CP 1
 // CP pax
-_g = [getMarkerPos "mCSAT_CP_1", EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+_g = [getMarkerPos "mCSAT_CP_1", INDEPENDENT, (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
 [_g, getMarkerPos "mCSAT_CP_1", 50, 1, true] call CBA_fnc_taskDefend;
-{_x addPrimaryWeaponItem "acc_flashlight"; _x unassignItem "NVGoggles_OPFOR"; _x removeItem "NVGoggles_OPFOR"; _x enableGunlights "forceOn";} forEach units _g;
+{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 // Static/Vehicle gunners
-_g = CreateGroup EAST; 
+_g = CreateGroup INDEPENDENT; 
 _p = _g createUnit ["O_Soldier_F", getMarkerPos "mCSAT_CP_1", [], 0, "PRIVATE"]; _p moveInGunner vCSAT_CP_veh_1;
+{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 
 // CSAT CP 2
 // CP pax
-_g = [getMarkerPos "mCSAT_CP_2", EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
+_g = [getMarkerPos "mCSAT_CP_2", INDEPENDENT, (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 [_g, getMarkerPos "mCSAT_CP_2", 50, 1, true] call CBA_fnc_taskDefend;
-{_x addPrimaryWeaponItem "acc_flashlight"; _x unassignItem "NVGoggles_OPFOR"; _x removeItem "NVGoggles_OPFOR"; _x enableGunlights "forceOn";} forEach units _g;
+{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 // Static/Vehicle gunners
-_g = CreateGroup EAST; 
-_p = _g createUnit ["O_Soldier_F", getMarkerPos "mCSAT_CP_2", [], 0, "PRIVATE"]; _p moveInGunner vCSAT_CP_veh_2;
+_g = CreateGroup INDEPENDENT; 
+_p = _g createUnit ["I_Soldier_F", getMarkerPos "mCSAT_CP_2", [], 0, "PRIVATE"]; _p moveInGunner vCSAT_CP_veh_2;
 
 
 // CSAT CP 3
 // CP pax
-_g = [getMarkerPos "mCSAT_CP_3", EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+_g = [getMarkerPos "mCSAT_CP_3", INDEPENDENT, (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
 [_g, getMarkerPos "mCSAT_CP_3", 50, 1, true] call CBA_fnc_taskDefend;
-{_x addPrimaryWeaponItem "acc_flashlight"; _x unassignItem "NVGoggles_OPFOR"; _x removeItem "NVGoggles_OPFOR"; _x enableGunlights "forceOn";} forEach units _g;
+{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 // Static/Vehicle gunners
-_g = CreateGroup EAST; 
-_p = _g createUnit ["O_Soldier_F", getMarkerPos "mCSAT_CP_3", [], 0, "PRIVATE"]; _p moveInGunner vCSAT_CP_veh_3;
-_p = _g createUnit ["O_Soldier_F", getMarkerPos "mCSAT_CP_3", [], 0, "PRIVATE"]; _p moveInGunner vCSAT_CP_veh_4;
+_g = CreateGroup INDEPENDENT; 
+_p = _g createUnit ["I_Soldier_F", getMarkerPos "mCSAT_CP_3", [], 0, "PRIVATE"]; _p moveInGunner vCSAT_CP_veh_3;
+_p = _g createUnit ["I_Soldier_F", getMarkerPos "mCSAT_CP_3", [], 0, "PRIVATE"]; _p moveInGunner vCSAT_CP_veh_4;
+{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 
 // CSAT random air traffic 
 ADF_fnc_CSAT_airPool = {
@@ -53,7 +56,7 @@ ADF_fnc_CSAT_airPool = {
 		_heli = call ADF_fnc_CSAT_airPool;			
 		_startPos = ["mCSATair_1","mCSATair_2","mCSATair_3","mCSATair_4","mCSATair_5","mCSATair_6","mCSATair_7","mCSATair_8"] call BIS_fnc_selectRandom;		
 		_landPos = [land_1,land_2,land_1,land_2] call BIS_fnc_selectRandom;		
-		_c = createGroup EAST;		
+		_c = createGroup INDEPENDENT;
 		_v = [getMarkerPos _startPos, 0, _heli, _c] call BIS_fnc_spawnVehicle;
 		{_x unassignItem "NVGoggles_OPFOR"; _x removeItem "NVGoggles_OPFOR"; _x enableGunlights "forceOn";} forEach units _c;
 		v1 = _v select 0;
@@ -116,14 +119,20 @@ for "_i" from 1 to 6 do {
 	private ["_spawnPos","_vPool"];	
 	_vPool = call ADF_fnc_CSAT_liteVeh_pool;
 	_spawnPos = format ["mCSATVeh_%1",_i];
-	[EAST, _vPool, _spawnPos, "mCSATpatrol", 2500, 5, "MOVE", "SAFE", "WHITE", "LIMITED", 25] call ADF_fnc_createVehiclePatrol;
+	_g = createGroup INDEPENDENT;	
+	_v = [getMarkerPos _spawnPos, markerDir _spawnPos, _vPool, _g] call BIS_fnc_spawnVehicle;	
+	[_g, _spawnPos, 2500, 5, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
+	{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 };
 
 for "_i" from 7 to 8 do {
 	private ["_spawnPos","_vPool"];	
 	_vPool = call ADF_fnc_CSAT_armVeh_pool;
 	_spawnPos = format ["mCSATVeh_%1",_i];
-	[EAST, _vPool, _spawnPos, "mCSATpatrol", 2500, 5, "MOVE", "SAFE", "WHITE", "LIMITED", 25] call ADF_fnc_createVehiclePatrol;
+	_g = createGroup INDEPENDENT;
+	_v = [getMarkerPos _spawnPos, markerDir _spawnPos, _vPool, _g] call BIS_fnc_spawnVehicle;	
+	[_g, _spawnPos, 2500, 5, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
+	{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 };
 
 // Pashtun Veh patrols (map)
@@ -137,9 +146,9 @@ for "_i" from 0 to 2 do {
 	_mapVehArray deleteAt _idx;
 	_spawnDir = markerDir _spawnPos;
 
-	_c = createGroup INDEPENDENT;
+	_c = createGroup EAST;
 	_v = [getMarkerPos _spawnPos, _spawnDir, _vPool, _c] call BIS_fnc_spawnVehicle;
-	_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 	_vX = _v select 0;
 	_vX setVariable ["BIS_enableRandomization", false];
 	if (_vPool == "I_Truck_02_transport_F") then {
@@ -152,3 +161,23 @@ for "_i" from 0 to 2 do {
 	
 	[_c, _spawnPos, 800, 4, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
 };
+
+//{if (side _x == CIVILIAN) then {_x setAmmo [currentWeapon _x, 0]} forEach allUnits;	
+
+[] spawn { // CSAT switch side random timer
+	private ["_time","_CSATswitch","_CSAThostileSet"];
+	_time = [45,60,75,90,105,120] call BIS_fnc_selectRandom;
+	_CSATswitch = 60 * _time;
+	waitUntil {sleep 10; time > _CSATswitch};
+	CSAThostile = true; publicVariable "CSAThostile";
+	_CSAThostileSet = 5 * _time;
+	sleep _CSAThostileSet;
+	
+	//_vCSATall = [vCSAT_CP_veh_4,vCSAT_CP_veh_4b,vCSAT_CP_veh_3,vCSAT_CP_veh_1,vCSAT_CP_veh_1b,vCSAT_CP_veh_2,vCSAT_apt_AA,vCSAT_stat_2,vCSAT_stat_1];
+	//{x setVehicleAmmo 1} forEach _vCSATall;
+	
+	_validBlueFor = allPlayers + (units gBearclaw);	
+	{if ((side _x == INDEPENDENT) && !((leader _x) in _validBlueFor)) then {_gEAST = createGroup EAST; (units _x) joinSilent _gEAST}} forEach allGroups;
+	//sleep 1;
+	//{if (side _x == EAST) then {_x setAmmo [currentWeapon _x, 1]} forEach allUnits;	
+};	

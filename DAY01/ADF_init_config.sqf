@@ -16,7 +16,7 @@ modules and scripts.
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_init_config.sqf";}; // Reporting. Do NOT edit/remove
 
 /********** GENERAL **********/
-_ADF_mission_version = 1.0; // Mission version
+ADF_mission_version = 1.0; // Mission version
 _ADF_mission_init_time = 45; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
 _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)
@@ -60,7 +60,7 @@ _ADF_TFAR_personalRadio = "tf_rf7800str"; // TaskForce Radio. Personal (rifleman
 _ADF_TFAR_SWRadio = "tf_anprc152"; // TaskForce Radio. ShortWave radio [classname].
 _ADF_TFAR_LRRadio = "tf_rt1523g_big"; // TaskForce Radio. Long Range radio [classname].
 _ADF_TFAR_LRRadioSOR = "tf_rt1523g_black"; // TaskForce Radio. Long Range radio Special Operations Squadron [classname].
-_ADF_TFAR_microDAGR = false; // enable/add the TFAR MicroDAGR [true/false]
+_ADF_TFAR_microDAGR = true; // enable/add the TFAR MicroDAGR [true/false]
 ADF_TFAR_preset = true; // Preset TFAR freq's per group? Define in 'Core\ADF_TFAR-freq.sqf'. [true/false].
 // ACRE
 _ADF_ACRE_personalRadio = "ACRE_PRC343"; // ACRE2. Personal (rifleman) radio [classname].
@@ -141,6 +141,6 @@ _ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/f
 _ADF_altitude = false; // Enable altitude based fatigue (altitude mountain sickness)? True increases fatigue when > 1500 meter altitude [true/false].
 
 /********** ADF DEV BUILD SETTINGS **********/
-_ADF_tpl_version = 1.41; // ADF version DO NOT EDIT
+ADF_tpl_version = 1.41; // ADF version DO NOT EDIT
 _ADF_devBuild = "Production"; // [Alpha/Beta/Production] DO NOT EDIT
 _ADF_devBuildNr = "02"; // Build number. DO NOT EDIT

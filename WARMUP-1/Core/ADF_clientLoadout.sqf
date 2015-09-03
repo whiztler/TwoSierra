@@ -4,7 +4,7 @@ ADF version: 1.41 / JULY 2015
 
 Script: Loadout Client
 Author: Whiztler
-Script version: 5.60
+Script version: 5.61
 
 Game type: n/a
 File: ADF_clientLoadout.sqf
@@ -15,7 +15,14 @@ NOTE: Gear loads on actual players only. Does not load on AI's!!
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_clientLoadout.sqf"}; // Reporting. Do NOT edit/remove
 
 // Let the server apply Two Sierra uniform textures globally after the client loadout has been applied fully > 1.41 - 5.60
-if (isServer && (ADF_clanName == "Two Sierra")) then {[] spawn {waitUntil {ADF_gearLoaded};sleep 10;{_x setObjectTextureGlobal [0, "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa"]} forEach playableUnits}};
+if (isServer && (ADF_clanName == "Two Sierra")) then {
+	[] spawn {
+		if (isMultiplayer) then {ADF_uArray = playableUnits;} else {ADF_uArray = switchableUnits};
+		sleep 20; // wait till units have geared up
+		{_x setObjectTextureGlobal [0, "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa"]} forEach ADF_uArray; 
+		ADF_uArray = nil;
+	};
+};
 
 _ADF_perfDiagStart = diag_tickTime;
 if (ADF_debug) then {["LOADOUT - Loadout Client started",false] call ADF_fnc_log};
@@ -85,7 +92,7 @@ if ((_ADF_unitFaction == "BLU_F") && _ADF_customLoadout_MOD) exitWith { // BLUFO
 	
 	// Split the player variable into Squad, Role
 	_ADF_unitString = str _ADF_unit;
-	_u = [_ADF_unitString, "_"] call CBA_fnc_split;
+	_u = _ADF_unitString splitString "_";
 	_s = toLower (_u select 0);
 	_r = toLower (_u select 1);
 	

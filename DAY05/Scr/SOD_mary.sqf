@@ -1,6 +1,3 @@
-// St. Mary composition
-#include "SOD_mary_comp.sqf"
-
 // Init
 _ADF_debug_testALL	= false;
 
@@ -51,7 +48,7 @@ _ADF_maryCreate = {
 	_m setMarkerType "n_med";
 	_m setMarkerColor "ColorWhite";
 	_m setMarkerDir 0;
-	_m setMarkerText " ST. MARY'S";
+	_m setMarkerText " ST. MARY";
 	
 	diag_log	"-----------------------------------------------------";
 	diag_log format ["TWO SIERRA: St. Mary's created. Position: %1,%2",round(_ADF_maryLocPos select 0),round(_ADF_maryLocPos select 1)];
