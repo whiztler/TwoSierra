@@ -138,7 +138,7 @@ Arms and ammunitions: NRF VJTF 2 PLT SOP<br/><br/>
 <font size='14' color='#d7dbd5'>VEHICLES</font><br/>
 
 PC – 1 x MRAP<br/>
-2-1 Squad/2-2 Squad – 2 x MRAP, 2 x MRAP HMG, 1 x HEMTT<br/>
+2-1 Squad/2-2 Squad – 4 x MRAP, 2 x MRAP HMG<br/>
 2-3 Squad – 2 x MRAP GMG<br/>
 Captured material: SOP<br/><br/>
 </font>
@@ -317,7 +317,7 @@ Two Sierra missions have been tested (to work with) with the optional AI behavio
 Recommend server settings for optimal gameplay:<br/><br/>
 Difficulty: Expert.<br/>
 Style: COOP.<br/>
-Slots: 37 (34 players + 3 optional Headless Client).<br/>
+Slots: 33 (30 players + 3 optional Headless Client).<br/>
 Duration: 2-3 hours depending on style of gameplay.
 </font><br/><br/>"]];
 
@@ -349,7 +349,7 @@ Two Sierra, or 2 Sierra is a VJTF platoon, currently based at the temporarily ho
 <font size='14' color='#d7dbd5'>ORBAT</font><br/>
 <img width='380' height='380' image='Img\ORBAT_NRF_5-1-2PLT.paa'/>
 <font color='#9DA698'>
-Two Sierra SOP: one command element, two rifle squads and one weapons squad. Total 34 pax.
+Two Sierra SOP: one command element, two rifle squads and one weapons squad. Total 30 pax.
 </font><br/><br/>
 "]];
 
@@ -357,7 +357,7 @@ player createDiaryRecord ["2SCPGN",["Background","<br/><br/>
 <font size='18'>BACKGROUND</font><br/><br/>
 
 <font color='#9DA698'>
-Two Sierra Vol. 1 | Takistan, May 2019. On 11 February 2019 the Taliban ceased to exist after a coalition forces UAV successfully targeted and killed the entire Taliban leadership council. The majority of Taliban fighters joined The Pashtun within the following weeks.
+Two Sierra Tour 1 | Takistan, May 2019. On 11 February 2019 the Taliban ceased to exist after a coalition forces UAV successfully targeted and killed the entire Taliban leadership council. The majority of Taliban fighters joined The Pashtun within the following weeks.
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>THE PASHTUN</font><br/>
@@ -379,15 +379,15 @@ player createDiaryRecord ["2SCPGN",["About TWO SIERRA Campaign","<br/><br/>
 <font size='14' color='#d7dbd5'>DESCRIPTION</font><br/>
 
 <font color='#9DA698'>
-Two Sierra is a CO-37 multiplayer (34 player slots) NRF infantry campaign for MilSim communities. Volume 1 consists of 4 challenging missions and a warm-up mission. 
+Two Sierra is a CO-33 multiplayer (30 player slots) NRF infantry campaign for MilSim communities. Three tours with each tour consisting of 4 challenging missions and a warm-up mission.
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>FEATURES</font><br/>
 
 <font color='#9DA698'>
-- 4 missions offering challenging and immersive game play in a lively<br/>
-  area of operations;<br/>
-- 1 Warm-up Mission for warming up, mod-line testing and general<br/>
+- 4 missions per tour, offering challenging and immersive<br/>
+  gameplay in a lively area of operations;<br/>
+- Warm-up Missions for warming up, mod-line testing and general<br/>
   training;<br/>
 - Detailed OPORD’s (in-game and PDF/TXT for forum briefings);<br/>
 - Optimized for dedicated server play;<br/>

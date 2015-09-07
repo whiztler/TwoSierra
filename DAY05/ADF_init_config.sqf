@@ -25,9 +25,9 @@ ADF_debug = false; // For mission testing/debugging set to true. Make sure to se
 ADF_Log_ServerPerfEnable = true; // Enable server performance logging in RPT. [true/false]
 ADF_clanName = "Two Sierra"; // What is the name of your community/clan. Used in Hints, intro's etc.
 ADF_clanTAG = "2 SIERRA"; // What is the tag of your community/clan. Used in Hints, intro's etc.
-ADF_clanLogo = "Img\clan_logo_2SIERRA.paa"; // Full path to the clan logo. 
+ADF_clanLogo = "Img\logo_clan_TwoSierra.paa"; // Full path to the clan logo. 
 ADF_clanFlag = ""; // Full path to the clan flag (dimensions 512 x 256, pref PAA format).
-_ADF_MissionIntroImage = "Img\2SIERRA_intro.paa"; // Full path to the mission intro image (dimensions: 2038 x 1024, PAA format only). 
+_ADF_MissionIntroImage = "Img\intro_TwoSierra.paa"; // Full path to the mission intro image (dimensions: 2038 x 1024, PAA format only). 
 ADF_Clan_uniformInsignia = true; // Apply custom clan insignia on uniform. Define in the description.ext [true/false]. 
 _ADF_preset = "2SIERRA"; // pre-defined call sign/radio freq presets. [DEFAULT / SHAPE / NOPRYL / CUSTOM]. Configure the presets in 'Core\F\ADF_fnc_presets.sqf'
 
@@ -71,7 +71,7 @@ _ADF_ACRE_interference = true; // Sets whether transmissions will interfere with
 _ADF_ACRE_AIcanHear = true; // Sets whether AI can detect players speaking. [true/false].
 ADF_ACRE_preset = false; // Preset ACRE freq's per group? Define in 'Core\ADF_ACRE-freq.sqf'. [true/false].
 // Crates / Vehicle supplies
-_ADF_suppliesInit = true; // load crate/vehicle supplies for ADF template crates/vehicles
+_ADF_suppliesInit = false; // load crate/vehicle supplies for ADF template crates/vehicles
 
 /********** MISSION BALANCING **********/
 _ADF_misBal = false; // Enable/disable Mission Balancer [true/false]. See 'Core/F/ADF_fnc_missionBalancer.sqf' for more info.

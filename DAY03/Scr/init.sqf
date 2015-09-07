@@ -6,11 +6,12 @@ diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/rem
 call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 
 // Vars init
-ADF_missionStartTime	= 0;
-ADF_endMission		= false;
-ADF_greenCnt			= 0;
-ADF_msg_greenZoneCross = {};
-ADF_msg_tDolphin = {};
+ADF_missionStartTime		= 0;
+ADF_endMission			= false;
+ADF_greenCnt				= 0;
+ADF_msg_greenZoneCross 	= {};
+ADF_msg_tDolphin 			= {};
+ADF_msg_endMission		= {};
 
 // Server Init
 if (isServer) then {

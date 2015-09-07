@@ -1,5 +1,5 @@
 if (hasInterface) then {
-	hintSilent parseText"<img size= '7' shadow='false' image='Img\CSAT_logo.paa'/><br/><br/><t color='#e36b6b' size='1.5'>STOP!</t><br/><br/><t color='#6C7169' align='left'>Corporal Derafsh: wait here infidel.</t><br/><br/>";
+	hintSilent parseText"<img size= '7' shadow='false' image='Img\logo_CSAT.paa'/><br/><br/><t color='#e36b6b' size='1.5'>STOP!</t><br/><br/><t color='#6C7169' align='left'>Corporal Derafsh: wait here infidel.</t><br/><br/>";
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: Corporal Derafsh</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>STOP! Wait here infidel.</font><br/><br/>"]];

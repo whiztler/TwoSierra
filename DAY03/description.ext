@@ -14,12 +14,12 @@ File: description.ext
 class Header {
 	gameType = Coop; // A3: Coop, ZCoop (Zeus Coop) - See https://community.bistudio.com/wiki/Multiplayer_Game_Types for other game types
 	minPlayers = 1;
-	maxPlayers = 37; // 34 + 3 HC. Change to the exact amount of available player slots including all HC's.
+	maxPlayers = 33; // 30 players + 3 HC. Change to the exact amount of available player slots including all HC's.
 	playerCountMultipleOf = 1; // Coop setting. Set to 0 for other game types.
 };
 
 /**********  Respawn & JIP Settings **********/
-respawn = 0; //  0 = No respawn, 1 = Spectator, 2 = Instant, respawn just where you died, 3 = Respawn at base (respawn_west marker), 4 = Respawn in your group, 5 = Respawn into an AI unit on your side
+respawn = 1; //  0 = No respawn, 1 = Spectator, 2 = Instant, respawn just where you died, 3 = Respawn at base (respawn_west marker), 4 = Respawn in your group, 5 = Respawn into an AI unit on your side
 respawnDelay = 3; // Respawn delay time in seconds (set to 3 for testing, set to 300 (= 5 min) for final).
 RespawnDialog = 0; // Respawn dialog in case of multiple locations. 0 = false (no dialog), 1 = true (show dialog).
 respawnOnStart = -1; // 1 = Respawn on start. Run respawn script on start, 0 = Dont respawn on start. Run respawn script on start, -1 = Dont respawn on start. Don't run respawn script on start.
@@ -32,12 +32,12 @@ respawnTemplatesCiv[] = {};
 
 /**********  Loading Screen **********/
 author = "Whiztler";
-overviewText = "Two Sierra Vol. 1 / Day 03 - v1.00";
+overviewText = "Two Sierra Tour 1 / Day 03 - v1.00";
 onLoadName = "DOLPHIN";
 onLoadMission = "TWO SIERRA | Day 03";
 onLoadIntroTime = false;
 onLoadMissionTime = false;
-loadScreen = "Img\2SIERRA_loadscreen.jpg";
+loadScreen = "Img\loadScreen_TwoSierra.jpg";
 onLoadIntro = "Powered by ADF";
 
 /**********  Mission specific settings **********/

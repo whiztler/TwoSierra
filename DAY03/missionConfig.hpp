@@ -16,7 +16,7 @@ class CfgUnitInsignia {
 	class CLANPATCH {
 		displayName = "NRF"; // Name displayed in Arsenal
 		author = "ADF / Whiztler";
-		texture = "Img\clan_patch_NRF.paa";
+		texture = "Img\patch_TwoSierra.paa";
 		textureVehicle = ""; // Does nothing currently, reserved for future use
 	};
 };
@@ -35,7 +35,7 @@ class CfgVehicleTemplates {
 		displayName = "ADF_opforOffroad"; 
 		author = "Whiztler";
 		textures[] = {
-			"Img\NRF_cusTex_offroad.jpg"
+			"Img\cusTex_offroad.jpg"
 		};
 		animationList[] = {
 			"HideDoor1", 1,
@@ -80,26 +80,26 @@ class CfgDebriefing
 		title = "Mission Completed";
 		subtitle = "Day 03 | Dolphin";
 		description = "Job well done Two Sierra!";
-		//pictureBackground = "Img/2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
-		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		//pictureBackground = "Img/loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\logo_TwoSierra.paa"; // Marker icon
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 	class End2
 	{
 		title = "Mission Failed";
 		subtitle = "Day 03 | Dolphin";
-		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		picture = "Img\logo_TwoSierra.paa"; // Marker icon
 		description = "Back to training Two Sierra.";
-		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		//pictureBackground = "Img\loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 	class Killed
 	{
 		title = "All players K.I.A.";
 		subtitle = "Day 03 | Dolphin";
-		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		picture = "Img\logo_TwoSierra.paa"; // Marker icon
 		description = "TWO SIERRA R.I.P.";
-		//pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		//pictureBackground = "Img\loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 };

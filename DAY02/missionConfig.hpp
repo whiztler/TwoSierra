@@ -16,13 +16,13 @@ class CfgUnitInsignia {
 	class CLANPATCH {
 		displayName = "NRF"; // Name displayed in Arsenal
 		author = "ADF / Whiztler";
-		texture = "Img\clan_patch_NRF.paa";
+		texture = "Img\patch_TwoSierra.paa";
 		textureVehicle = ""; // Does nothing currently, reserved for future use
 	};
 	class CLANPATCH_Aegis {
 		displayName = "Aegis"; // Name displayed in Arsenal
 		author = "ADF / Whiztler";
-		texture = "Img\clan_patch_Aegis.paa";
+		texture = "Img\patch_Aegis.paa";
 		textureVehicle = ""; // Does nothing currently, reserved for future use
 	};
 };
@@ -41,7 +41,7 @@ class CfgVehicleTemplates {
 		displayName = "ADF_opforOffroad"; 
 		author = "Whiztler";
 		textures[] = {
-			"Img\NRF_cusTex_offroad.jpg"
+			"Img\cusTex_offroad.jpg"
 		};
 		animationList[] = {
 			"HideDoor1", 1,
@@ -60,7 +60,7 @@ class CfgVehicleTemplates {
 		displayName = "ADF_aegisOffroad"; 
 		author = "Whiztler";
 		textures[] = {
-			"Img\NRF_cusTex_offroad_Aegis.jpg"
+			"Img\cusTex_offroad_Aegis.jpg"
 		};
 		animationList[] = {
 			"HideDoor1", 0,
@@ -104,7 +104,7 @@ class CfgEnvSounds {
 		sound[]={"Core\s\sandstorm.ogg",db-0,0,1};
 	};
 };
-
+/*
 // End Screen / Debriefing
 class CfgDebriefing
 {  
@@ -113,8 +113,8 @@ class CfgDebriefing
 		title = "Mission Completed";
 		subtitle = "Day 02 | Satan's Fire";
 		description = "Splendid achievement Two Sierra! RTB.";
-		//pictureBackground = "Img/2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
-		picture = "Img\2SIERRA_logo.paa"; // Marker icon
+		//pictureBackground = "Img/loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		picture = "Img\logo_TwoSierra.paa"; // Marker icon
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 	class End2
@@ -122,7 +122,7 @@ class CfgDebriefing
 		title = "Mission Finished";
 		subtitle = "Day 02 | Satan's Fire";
 		description = "It's been three hours. Time to come home. RTB.";
-		pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		pictureBackground = "Img\loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 	class Killed
@@ -130,7 +130,7 @@ class CfgDebriefing
 		title = "All players K.I.A.";
 		subtitle = "Day 02 | Satan's Fire";
 		description = "TWO SIERRA R.I.P.";
-		pictureBackground = "Img\2SIERRA_loadscreen.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
+		pictureBackground = "Img\loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 };
@@ -727,3 +727,4 @@ class ACE_Settings {
 	};
 	// Custom ACE3 Setting above
 };
+*/

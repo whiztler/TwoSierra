@@ -2,7 +2,6 @@ diag_log "ADF RPT: Init - executing init_AO.sqf"; // Reporting. Do NOT edit/remo
 // init
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 
 ADF_wpPosRdm = {
 	private "_wpPos";
@@ -23,7 +22,7 @@ ADF_wpPosRdm = {
 		_v = [getMarkerPos _startPos, 0, _heli, _c] call BIS_fnc_spawnVehicle;
 		_c setGroupIdGlobal ["6-1 AIRBUS"];
 		vAirbus = _v select 0;
-		vAirbus setObjectTextureGlobal [0, "Img\NRF_cusTex_NRFcamo.jpg"]; vAirbus setObjectTextureGlobal [1, "Img\NRF_cusTex_NRFcamo.jpg"];		
+		vAirbus setObjectTextureGlobal [0, "Img\cusTex_NRFcamo.jpg"]; vAirbus setObjectTextureGlobal [1, "Img\cusTex_NRFcamo.jpg"];		
 		{_x unassignItem "NVGoggles"; _x removeItem "NVGoggles"; _x enableGunlights "forceOn";} forEach units _c;
 		vAirbus flyInHeight 75;
 		_wp = _c addWaypoint [getPos _landPos, 0];
@@ -80,24 +79,7 @@ ADF_wpPosRdm = {
 	};
 };
 
-// Create random IED's
-_iedMarkerArr = ["mIED_1","mIED_2","mIED_3","mIED_4","mIED_5","mIED_6","mIED_7","mIED_8","mIED_9","mIED_10","mIED_11","mIED_12","mIED_13","mIED_14","mIED_15","mIED_16"];
-for "_i" from 1 to 10 do {
-	private ["_iedMarkerPos","_v","_mN","_m","_idx"];
-	_iedMarkerPos = _iedMarkerArr call BIS_fnc_selectRandom;
-	_idx =  _iedMarkerArr find _iedMarkerPos;
-	_iedMarkerArr deleteAt _idx;
-	[_iedMarkerPos,100,250,6] call ADF_fnc_createRandomIEDs;
-};
-
-// Dolphin vehicle
-[vDolphin,0, 120] call bis_fnc_setpitchbank;
-vDolphin setDamage .7;
-vDolphin setHit ["wheel_1_2_steering", 1];
-vDolphin setHit ["wheel_1_4_steering", 1];
-vDolphin setHit ["wheel_1_1_steering", 1];
-
-waitUntil {sleep 10; triggerActivated tStart};
+waitUntil {sleep 10; triggerActivated tStart || time > 1250};
 
 diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: Started spawning AO ai's";
@@ -136,34 +118,3 @@ for "_i" from 20 to 25 do {
 	[_g, getMarkerPos _spawnPos, 125, 1, true] call CBA_fnc_taskDefend;	
 };
 
-// Count units/track time for win/loose scenario
-ADF_OpforCnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
-_opforCntWin = round ((ADF_OpforCnt / 7) + (random 10));
-_ADF_missionTime = ADF_missionStartTime + 7200;
-
-diag_log	"-----------------------------------------------------";
-diag_log format ["TWO SIERRA: AO spawned. Number of OpFor: %1",ADF_OpforCnt];
-diag_log	"-----------------------------------------------------";
-
-waitUntil {
-	sleep 30;
-	_cnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
-	((_cnt <= _opforCntWin) || (time > _ADF_missionTime)); // 2 hours + prep time
-};
-
-diag_log	"-----------------------------------------------------";
-diag_log "TWO SIERRA: End Mission process started";
-diag_log	"-----------------------------------------------------";
-
-ADF_endMission = true; publicVariable "ADF_endMission";
-
-// Create end mission trigger at LMAB
-tEndMission = createTrigger ["EmptyDetector", getMarkerPos "mLMAB", true];
-tEndMission setTriggerActivation ["WEST","PRESENT",false];
-tEndMission setTriggerArea [200,325,240,true];
-tEndMission setTriggerTimeout [0,0,0,false];
-tEndMission setTriggerStatements [
-	"{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;",
-	"",
-	""
-];

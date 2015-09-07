@@ -79,5 +79,4 @@ for "_i" from 1 to 8 do {
 // Bearclaw Defence Team
 _g = [getPos objBearclaw, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 {[_x] call ADF_fnc_redressPashtun} forEach units _g;
-[_g, getPos objBearclaw, 10, 2, true] call CBA_fnc_taskDefend;	
-
+[_g, getPos objBearclaw, 10, 2, true] call CBA_fnc_taskDefend;

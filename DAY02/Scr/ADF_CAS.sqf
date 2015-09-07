@@ -75,21 +75,21 @@ ADF_fnc_CAS_Activated = {
 
 	if (!hasInterface) exitWith {};
 	// 9=liner CAS proc
-	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1 this is TWO SIERRA. Request %2. How copy?</t><br/><br/>",ADF_CAS_callSign, ADF_CAS_station];
+	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br/><br/><t color='#6C7169' align='left'>%1 this is TWO SIERRA. Request %2. How copy?</t><br/><br/>",ADF_CAS_callSign, ADF_CAS_station];
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: TWO SIERRA</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>"+ ADF_CAS_callSign +" this is TWO SIERRA. Request "+ ADF_CAS_station +". How copy?</font><br/><br/>"]];
 	
 	sleep 6;
 
-	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\6SQDR_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1: TWO SIERRA this is %2. Ready to copy.</t><br/><br/>",ADF_CAS_pilotName, ADF_CAS_callSign];
+	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1: TWO SIERRA this is %2. Ready to copy.</t><br/><br/>",ADF_CAS_pilotName, ADF_CAS_callSign];
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: "+ ADF_CAS_callSign +"</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/>	<font color='#6C7169'>"+ ADF_CAS_pilotName +": TWO SIERRA this is "+ ADF_CAS_callSign +". Ready to copy.</font><br/><br/>"]];
 	
 	sleep 9;
 	
-	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1 with %2:</t><br/><br/><t color='#6C7169' align='left'>PRIORIY: #1</t><br/><t color='#6C7169' align='left'>TARGET: %3, %4</t><br/><t color='#6C7169' align='left'>LOCATION: %5, %6 MSL</t><br/><t color='#6C7169' align='left'>TARGET TIME: NLT %7</t><br/><t color='#6C7169' align='left'>RESULT: %8</t><br/><t color='#6C7169' align='left'>CONTROL: 2S PC</t><br/><t color='#6C7169' align='left'>REMARKS: Vectors %9, Friendlies close. How copy?</t><br/><br/>",ADF_CAS_callSign, ADF_CAS_station, ADF_CAS_targetName, ADF_CAS_targetDesc, _ADF_CAS_posString, _ADF_CAS_MSL, _ADF_CAS_targetTime, ADF_CAS_result, ADF_CAS_apprVector];
+	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br/><br/><t color='#6C7169' align='left'>%1 with %2:</t><br/><br/><t color='#6C7169' align='left'>PRIORIY: #1</t><br/><t color='#6C7169' align='left'>TARGET: %3, %4</t><br/><t color='#6C7169' align='left'>LOCATION: %5, %6 MSL</t><br/><t color='#6C7169' align='left'>TARGET TIME: NLT %7</t><br/><t color='#6C7169' align='left'>RESULT: %8</t><br/><t color='#6C7169' align='left'>CONTROL: 2S PC</t><br/><t color='#6C7169' align='left'>REMARKS: Vectors %9, Friendlies close. How copy?</t><br/><br/>",ADF_CAS_callSign, ADF_CAS_station, ADF_CAS_targetName, ADF_CAS_targetDesc, _ADF_CAS_posString, _ADF_CAS_MSL, _ADF_CAS_targetTime, ADF_CAS_result, ADF_CAS_apprVector];
 	
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
@@ -98,7 +98,7 @@ ADF_fnc_CAS_Activated = {
 	
 	sleep 30;
 	
-	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\6SQDR_logo.paa'/><br/><br/>
+	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/>
 	<t color='#6C7169' align='left'>%1: Read back. PRIORIY: #1, TARGET: %2, %3, LOCATION: %4, %5 MSL, TARGET TIME: NLT %6, RESULT: %7, CONTROL: 2S PC, REMARKS: Vectors %8, Friendlies close. </t><br/><br/>",ADF_CAS_pilotName, ADF_CAS_targetName, ADF_CAS_targetDesc, _ADF_CAS_posString, _ADF_CAS_MSL, _ADF_CAS_targetTime, ADF_CAS_result,ADF_CAS_apprVector];
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
@@ -106,7 +106,7 @@ ADF_fnc_CAS_Activated = {
 
 	sleep 18;
 	
-	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>Read back correct. Execute %1. Cleared %1. How Copy?</t><br/><br/>",ADF_CAS_station];
+	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br/><br/><t color='#6C7169' align='left'>Read back correct. Execute %1. Cleared %1. How Copy?</t><br/><br/>",ADF_CAS_station];
 	
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
@@ -114,7 +114,7 @@ ADF_fnc_CAS_Activated = {
 	
 	sleep 8;
 	
-	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\6SQDR_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1: Go on %2. ETA %3 Mikes.</t><br/><br/>",ADF_CAS_pilotName,ADF_CAS_station,_ADF_CAS_delayMin];
+	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1: Go on %2. ETA %3 Mikes.</t><br/><br/>",ADF_CAS_pilotName,ADF_CAS_station,_ADF_CAS_delayMin];
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: " +ADF_CAS_callSign+ "</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_callSign+ ": Go on " +ADF_CAS_station+ ". ETA "+ _ADF_CAS_delayMin +" Mikes.</font><br/><br/>"]];
@@ -126,16 +126,16 @@ ADF_fnc_CAS_Activated = {
 	waitUntil {sleep 3; ADF_CAS_bingoFuel}; // Wait till the CAS ao timer runs out
 	
 	if (!alive vCAS) exitWith { // CAS is kia!
-		hintSilent parseText format ["<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1 this is TWO SIERRA. %2 is down. How copy?</t><br/><br/>",ADF_ACO_callSign,ADF_CAS_callSign];
+		hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br/><br/><t color='#6C7169' align='left'>%1 this is TWO SIERRA. %2 is down. How copy?</t><br/><br/>",ADF_ACO_callSign,ADF_CAS_callSign];
 		sleep 12;
-		hintSilent parseText"<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>" +ADF_ACO_callSign+ ": Copy TWO SIERRA. We'll inform MOTHER. Stay on mission. Out.</t><br/><br/>";
+		hintSilent parseText"<img size= '5' shadow='false' image='Img\logo_ACO.paa'/><br/><br/><t color='#6C7169' align='left'>" +ADF_ACO_callSign+ ": Copy TWO SIERRA. We'll inform MOTHER. Stay on mission. Out.</t><br/><br/>";
 		_logTime = [dayTime] call BIS_fnc_timeToString;
 		_logTimeText = "Log: " + _logTime;
 		player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_ACO_callSign+ ": Copy TWO SIERRA. We'll inform AOC. Stay on mission. Out.</font><br/><br/>"]];
 		call ADF_fnc_destroyVars;
 	};	
 	
-	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\6SQDR_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%2: TWO SIERRA this is %1 with bingo fuel. We are RTB. Out.</t><br/><br/>",ADF_CAS_callSign,ADF_CAS_pilotName];
+	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%2: TWO SIERRA this is %1 with bingo fuel. We are RTB. Out.</t><br/><br/>",ADF_CAS_callSign,ADF_CAS_pilotName];
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: "+ ADF_CAS_callSign +"</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>"+ ADF_CAS_pilotName +": TWO SIERRA this is " +ADF_CAS_callSign+ " with bingo fuel. We are RTB. Out.</font><br/><br/>"]];
@@ -178,10 +178,10 @@ if (hasInterface) then {
 	if (ADF_CAS_active) exitWith {};
 	sleep ((random 150) + (random 150));
 	if (ADF_CAS_active) exitWith {};
-	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\6SQDR_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1: TWO SIERRA this is %2. Standing by with %3. Out.</t><br/><br/>",ADF_CAS_pilotName, ADF_CAS_callSign, ADF_CAS_station];
+	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1: TWO SIERRA this is %2. Standing by with %3. Out.</t><br/><br/>",ADF_CAS_pilotName, ADF_CAS_callSign, ADF_CAS_station];
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: RAPTOR</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_pilotName+ ": TWO SIERRA this is " +ADF_CAS_callSign+ ". Standing by with " +ADF_CAS_station+ ". Out.</font><br/><br/>"]];	
+	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: "+ ADF_CAS_callSign +"</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_pilotName+ ": TWO SIERRA this is " +ADF_CAS_callSign+ ". Standing by with " +ADF_CAS_station+ ". Out.</font><br/><br/>"]];	
 };
 
 // From here on server only. Create the CAS vehicle, create markers etc.

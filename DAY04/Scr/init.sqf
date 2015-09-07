@@ -6,7 +6,8 @@ diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/rem
 call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 
 // Vars init
-ADF_Fairlight	= false;
+tBOPspawnPos		= getPos tBOPspawn;
+ADF_Fairlight		= false;
 ADF_endMission	= false;
 tBOPlive			= false;
 

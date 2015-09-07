@@ -152,8 +152,8 @@ for "_i" from 0 to 2 do {
 	_vX = _v select 0;
 	_vX setVariable ["BIS_enableRandomization", false];
 	if (_vPool == "I_Truck_02_transport_F") then {
-		_vX setObjectTextureGlobal [0, "Img\NRF_cusTex_zamak.jpg"];
-		_vX setObjectTextureGlobal [1, "Img\NRF_cusTex_pashtun.jpg"];
+		_vX setObjectTextureGlobal [0, "Img\cusTex_zamak.jpg"];
+		_vX setObjectTextureGlobal [1, "Img\cusTex_pashtun.jpg"];
 		
 	} else {
 		[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
@@ -161,8 +161,6 @@ for "_i" from 0 to 2 do {
 	
 	[_c, _spawnPos, 800, 4, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
 };
-
-//{if (side _x == CIVILIAN) then {_x setAmmo [currentWeapon _x, 0]} forEach allUnits;	
 
 [] spawn { // CSAT switch side random timer
 	private ["_time","_CSATswitch","_CSAThostileSet"];
@@ -173,11 +171,6 @@ for "_i" from 0 to 2 do {
 	_CSAThostileSet = 5 * _time;
 	sleep _CSAThostileSet;
 	
-	//_vCSATall = [vCSAT_CP_veh_4,vCSAT_CP_veh_4b,vCSAT_CP_veh_3,vCSAT_CP_veh_1,vCSAT_CP_veh_1b,vCSAT_CP_veh_2,vCSAT_apt_AA,vCSAT_stat_2,vCSAT_stat_1];
-	//{x setVehicleAmmo 1} forEach _vCSATall;
-	
 	_validBlueFor = allPlayers + (units gBearclaw);	
-	{if ((side _x == INDEPENDENT) && !((leader _x) in _validBlueFor)) then {_gEAST = createGroup EAST; (units _x) joinSilent _gEAST}} forEach allGroups;
-	//sleep 1;
-	//{if (side _x == EAST) then {_x setAmmo [currentWeapon _x, 1]} forEach allUnits;	
+	{if (side _x == INDEPENDENT) then {_gEAST = createGroup EAST; (units _x) joinSilent _gEAST}} forEach allGroups;		
 };	

@@ -46,12 +46,12 @@ ADF_fnc_MessageParser = {
 	params ["_ADF_caller","_ADF_callerName","_ADF_msg"];
 
 	// Caller is player unit? exit (no log)
-	if (_ADF_caller == "2S") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg];true};
+	if (_ADF_caller == "2S") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg];true};
 	
 	// Crete the hint message base on the caller and call the log function
-	if (_ADF_caller == "ACO") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\ACO_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
-	if (_ADF_caller == "Aegis") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\aegis_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
-	if (_ADF_caller == "CSAT") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\CSAT_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
-	if (_ADF_caller == "CAS") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\6SQDR_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
+	if (_ADF_caller == "ACO") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_ACO.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
+	if (_ADF_caller == "Aegis") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_Aegis.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
+	if (_ADF_caller == "CSAT") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_CSAT.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
+	if (_ADF_caller == "CAS") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
 	if (_ADF_caller == "NONE") exitWith {hintSilent parseText format ["<br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
 };

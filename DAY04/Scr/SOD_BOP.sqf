@@ -28,65 +28,6 @@ if (_ADF_debug_testALL) exitWith {
 	hint "BOP's spawned...";
 };
 
-ADF_fnc_BOPactive = {
-	// Spawn defence squads
-	for "_i" from 1 to 3 do {
-		private ["_g","_spawnPos"];
-		_spawnPos = getPos tBOPspawn;
-		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
-		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-		[_g, _spawnPos, 150, 1, true] call CBA_fnc_taskDefend;	
-	};
-	
-	// Spawn patrol teams
-	for "_i" from 1 to 5 do {
-		private ["_g","_spawnPos"];
-		_spawnPos = getPos tBOPspawn;
-		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-		[_g, _spawnPos, 300, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
-	};
-	
-	// Static Vehicles/MG/AT/etc
-	private ["_g","__p","_gX"];
-	_g = CreateGroup INDEPENDENT; 
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_01; // Mortar
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_02; // HMG small bunker 1 
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_03; // HMG small bunker 2
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_04; // GMG tower
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_05; // HMG tower
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_06; // Madrid
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_07; // Strider
-	_gX = units _g; {[_x] call ADF_fnc_redressPashtun} forEach _gX;
-	
-	// Delete the spawn trigger
-	tBOPspawnPos = getPos tBOPspawn;
-	deleteVehicle tBOPspawn;
-	true
-};
-
-ADF_fnc_BOPreenforce = {
-	// Init
-	private ["_c","_wp","_v","_t"];
-	
-	// enable the vehicles
-	{_x hideObject false; _x enableSimulationGlobal false;} forEach [vOpforAPC_1,vOpforAPC_2,vOpforAPC_3];
-	
-	// Crew the vehicles and give them orders
-	for "_i" from 1 to 3 do {
-		_t = format ["vOpforAPC_%1",_i];
-		_v = call compile format ["%1",_t];	
-		_wpPos = getPos tBOPdetect;
-		_c = CreateGroup INDEPENDENT; 
-		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "LIEUTENANT"]; _p moveInCommander _v;
-		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "SERGEANT"]; _p moveInGunner _v;
-		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "CORPORAL"]; _p moveInDriver _v;
-		{[_x] call ADF_fnc_redressPashtun} forEach units _c;
-		_wp = _c addWaypoint [_wpPos, 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED";
-	};
-	true
-};
-
 _ADF_bopCreate = {
 	// init
 	params ["_ADF_bopComp"];
@@ -124,7 +65,7 @@ _ADF_bopCreate = {
 
 	{
 		if ((_x in _vReTexQue) && ((typeOf _x) in _vReTexArr)) then {
-			_x setObjectTextureGlobal [0, "Img\NRF_cusTex_zamak.jpg"]; _X setObjectTextureGlobal [1, "Img\NRF_cusTex_pashtun.jpg"]
+			_x setObjectTextureGlobal [0, "Img\cusTex_zamak.jpg"]; _X setObjectTextureGlobal [1, "Img\cusTex_pashtun.jpg"]
 		};
 	} forEach vehicles;
 	
@@ -186,14 +127,12 @@ waitUntil {
 	_cnt <= _opforCntWin
 };
 
-// Create the trigger at FOB Johnson for succes or failed mission
+// Create the end mission trigger at FOB Johnson
 tEndMission = createTrigger ["EmptyDetector", getMarkerPos "mJohnson", true];
 tEndMission setTriggerActivation ["WEST","PRESENT",false];
 tEndMission setTriggerArea [75,50,143,true];
 tEndMission setTriggerTimeout [0,0,0,false];
 tEndMission setTriggerStatements ["{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;","",""];
-
-// Fairlight protocol. Time is up.
 
 diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: End Mission process started";

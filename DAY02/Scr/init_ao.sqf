@@ -14,9 +14,9 @@ ADF_TargetRandom = {
 
 [] spawn {
 	// Init
-	_assaultTimer		= [600,700,800,900,1000,1100,1200] call BIS_fnc_selectRandom;
+	_assaultTimer			= [600,700,800,900,1000,1100,1200] call BIS_fnc_selectRandom;
 	_assaultTimer 		= _assaultTimer - (random floor 300);
-	_assaultTimer		= round _assaultTimer;
+	_assaultTimer			= round _assaultTimer;
 	_opforCnt			= 0;
 	_opforCntWin			= 0;
 	ADF_vehSpawnCnt		= 0;	
@@ -208,7 +208,7 @@ _p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE
 for "_i" from 1 to 4 do {
 	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
+	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 100, 1, true] call CBA_fnc_taskDefend;	
 };
@@ -217,7 +217,7 @@ for "_i" from 1 to 4 do {
 for "_i" from 10 to 20 do {
 	private ["_g","_spawnPos"];
 	_spawnPos = format ["mGuerPaxDef_%1",_i];
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
+	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	[_g, getMarkerPos _spawnPos, 50, 2, true] call CBA_fnc_taskDefend;	
 };
@@ -250,6 +250,3 @@ waitUntil {
 // End mission
 if (ADF_redZoneOpforCnt <= _opforCntWinAO) then {ADF_SatanControl = true; publicVariable "ADF_SatanControl";};
 ADF_SatanClearUp = true; publicVariable "ADF_SatanClearUp";
-
-
-

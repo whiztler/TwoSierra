@@ -1,9 +1,9 @@
 // init
-call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Rebels.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Russians.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Cherno.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
+///call compile preprocessFileLineNumbers "Core\F\ADF_fnc_sensor.sqf";
 
 indep_cp1 = [CP_1a,CP_1b,CP_1c,CP_1d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp1;
 indep_cp2 = [CP_2a,CP_2b,CP_2c,CP_2d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp2;
@@ -27,7 +27,7 @@ ADF_wpPosRdm = {
 		_v = [getMarkerPos _startPos, 0, _heli, _c] call BIS_fnc_spawnVehicle;
 		_c setGroupIdGlobal ["6-1 AIRBUS"];
 		vAirbus = _v select 0;
-		vAirbus setObjectTextureGlobal [0, "Img\NRF_cusTex_NRFcamo.jpg"]; vAirbus setObjectTextureGlobal [1, "Img\NRF_cusTex_NRFcamo.jpg"];
+		vAirbus setObjectTextureGlobal [0, "Img\cusTex_NRFcamo.jpg"]; vAirbus setObjectTextureGlobal [1, "Img\cusTex_NRFcamo.jpg"];
 		vAirbus allowDamage false;
 		{_x unassignItem "NVGoggles"; _x removeItem "NVGoggles"; _x enableGunlights "forceOn";} forEach units _c;
 		vAirbus flyInHeight 75;
@@ -119,8 +119,8 @@ for "_i" from 1 to 3 do {
 	_v = [getMarkerPos _spawnPos, _spawnDir, "I_APC_tracked_03_cannon_F", _c] call BIS_fnc_spawnVehicle;
 	{[_x] call ADF_fnc_redressCherno} forEach units _c;
 	_vX = _v select 0;
-	_vX setObjectTextureGlobal [0, "Img\NRF_cusTex_ChernCamo.jpg"];
-	_vX setObjectTextureGlobal [1, "Img\NRF_cusTex_ChernCamo.jpg"];
+	_vX setObjectTextureGlobal [0, "Img\cusTex_ChernCamo.jpg"];
+	_vX setObjectTextureGlobal [1, "Img\cusTex_ChernCamo.jpg"];
 	[_c, _spawnPos, 2000, 4, "MOVE", "SAFE", "GREEN", "LIMITED",25] call ADF_fnc_vehiclePatrol;
 };
 

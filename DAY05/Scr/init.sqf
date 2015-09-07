@@ -15,7 +15,7 @@ if (isServer) then {
 
 // Client init
 if (hasInterface) then {
-	//#include "init_client.sqf"
+	#include "init_client.sqf"
 };
 
 // All clients
