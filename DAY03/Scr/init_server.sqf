@@ -95,5 +95,48 @@ vDolphin setHit ["wheel_1_1_steering", 1];
 		""
 	];
 };
-	
+
+_mmObjArray = [
+"Land_fortified_nest_big",
+"Land_fortified_nest_small_EP1",
+"Land_Fort_Watchtower_EP1",
+"Land_HBarrier_large",
+"Land_HBarrier_5_F",
+"Land_HBarrier_3_F",
+"Land_HBarrierWall_corridor_F",
+"Land_HBarrierWall_corner_F",
+"Land_HBarrierWall4_F",
+"Land_HBarrierWall6_F",
+"US_WarfareBFieldhHospital_Base_EP1",
+"US_WarfareBBarracks_Base_EP1",
+"Land_Barrack2_EP1",
+"StorageBladder_01_fuel_sand_F",
+"Land_Ind_TankSmall2_EP1",
+"PowGen_Big_EP1",
+"US_WarfareBVehicleServicePoint_Base_EP1",
+"US_WarfareBUAVterminal_Base_EP1",
+"US_WarfareBAntiAirRadar_Base_EP1",
+"Land_BagBunker_Large_F",
+"Land_Cargo40_military_green_F",
+"Land_Cargo40_sand_F",
+"Land_Cargo20_military_green_F",
+"Land_Cargo20_sand_F",
+"Land_ReservoirTank_Airport_F",
+"Land_u_Barracks_V2_F",
+"Land_Cargo_House_V3_F",
+"Land_Cargo_House_V1_F",
+"Land_Cargo_Patrol_V1_F",
+"Land_Cargo_Patrol_V3_F",
+"Land_Cargo_Tower_V1_F",
+"Land_Cargo_Tower_V3_F",
+"Land_TentHangar_V1_F",
+"Land_CncBarrier_stripes_F"
+];
+
+// Obj Map markerAlpha
+[_mmObjArray,	"mLMAB",400] call ADF_fnc_objectMarker;
+
+// Re-create critical markers
+
+//{[_x] call ADF_fnc_reMarker} forEach ["mAegisHQ","mAegisFort_1","mAegisFort","mAegisMed","mAegisFort_2","mAegisFort_3","mVehRepair"];
 	

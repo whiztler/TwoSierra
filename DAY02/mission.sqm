@@ -43,7 +43,6 @@ class Mission
 		"A3_Characters_F_INDEP",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_Mark",
-		"A3_Soft_F_HEMTT",
 		"A3_Soft_F_TruckHeavy",
 		"A3_Static_F_Beta_Mortar_01",
 		"a3_static_f_mortar_01",
@@ -5033,7 +5032,7 @@ class Mission
 		class Item380
 		{
 			position[]={687.82013,35.380001,441.93585};
-			azimut=-52.482681;
+			azimut=-52.4827;
 			id=439;
 			side="EMPTY";
 			vehicle="Land_CncBarrier_stripes_F";
@@ -5987,14 +5986,14 @@ class Mission
 		class Item92
 		{
 			position[]={799.26898,35.316151,423.00171};
-			name="mAegisFort_1_1";
+			name="mAegisFort_2";
 			type="loc_Bunker";
 			colorName="ColorWEST";
 		};
 		class Item93
 		{
 			position[]={731.02557,35.333065,474.90747};
-			name="mAegisFort_1_2";
+			name="mAegisFort_3";
 			type="loc_Bunker";
 			colorName="ColorWEST";
 		};

@@ -115,7 +115,7 @@ class CfgMarkers {
 };
 
 // ACE3 settings v. 3.2.0
-
+/*
 class ACE_Settings {
 	// Custom ACE3 Setting below
 		

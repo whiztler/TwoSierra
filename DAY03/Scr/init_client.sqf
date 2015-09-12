@@ -74,9 +74,41 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 	["2S","","TWO SIERRA: Copy FIRESTONE. TWO SIERRA coming home. Out."] call ADF_fnc_MessageParser;
 };
 
+ADF_msg_cache1 = {
+	["2S","","TWO SIERRA: FIRESTONE, message over."] call ADF_fnc_MessageParser;
+	sleep 6;
+	["ACO","ACO","FIRESTONE: Ready to copy."] call ADF_fnc_MessageParser;
+	sleep 10;
+	["2S","","TWO SIERRA: We discovered an ammo cache at the Mosque in Feruz Abad city. How copy?"] call ADF_fnc_MessageParser;
+	sleep 12;
+	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. MOTHER wants you neutralize the cache. Out"] call ADF_fnc_MessageParser;
+};
+
+ADF_msg_apc1 = {
+	["2S","","TWO SIERRA: FIRESTONE, we found two brand new APC's at the old base in Feruz Abad city. How copy?"] call ADF_fnc_MessageParser;
+	sleep 8;
+	["ACO","ACO","FIRESTONE: Wait one."] call ADF_fnc_MessageParser;
+	sleep 41;
+	["ACO","ACO","FIRESTONE: TWO SIERRA, do the APC's have any markings? Over."] call ADF_fnc_MessageParser;
+	sleep 9;
+	["2S","","TWO SIERRA: Negative FIRESTONE. But they are painted in the same colour scheme of JONAH vehicles in SATAN. Over"] call ADF_fnc_MessageParser;
+	sleep 14;
+	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. MOTHER wants those vehicles destroyed. How copy?"] call ADF_fnc_MessageParser;
+	sleep 12;
+	["2S","","TWO SIERRA: Copy FIRESTONE. Blowing them to bits. Out."] call ADF_fnc_MessageParser;
+};
+
+ADF_msg_base1 = {
+	["2S","","TWO SIERRA: FIRESTONE, we found some sort of supply base. How copy?"] call ADF_fnc_MessageParser;
+	sleep 13;
+	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. Search the premises for intel. Out."] call ADF_fnc_MessageParser;
+	sleep 120;
+	["2S","","TWO SIERRA: FIRESTONE, discovered a laptop. Bringing it with. out."] call ADF_fnc_MessageParser;
+};
+
 ADF_msg_endMission = {			
 	sleep 25;
-	["ACO","ACO","Capt. James O'Conner:. Welcome back TWO SIERRA<br/><br/>We are getting reports about Pashtun insurgents all over the Feruz Abad province. They must have a base of operations somewhere. MOTHER has already tasked TWO SIEERA with a mission for tomorrow.<br/><br/>Nice work today. Doris has some hot coffee waiting for you."] call ADF_fnc_MessageParser;
+	["ACO","ACO","Capt. James O'Conner:. Welcome back TWO SIERRA<br/><br/>We are getting reports about Pashtun insurgents all over the Feruz Abad province. They must have a base of operations somewhere. MOTHER has already tasked TWO SIEERA with a mission for tomorrow.<br/><br/>Nice work today. Doris has hot coffee and chow waiting for you in the mess."] call ADF_fnc_MessageParser;
 	sleep 20;
 	_l = ["tLayer"] call BIS_fnc_rscLayer; 
 	_l cutText ["", "BLACK", 20];
@@ -84,7 +116,8 @@ ADF_msg_endMission = {
 	['END1',true,22] call BIS_fnc_endMission;
 };
 
-waitUntil {time > 360};
-["ACO","ACO","FIRESTONE: TWO SIERRA, Frago: do not attempt to disarm IED's. Mark them and EOD will take of them later. Out"] call ADF_fnc_MessageParser;
-
+[] spawn {
+	waitUntil {time > 360};
+	["ACO","ACO","FIRESTONE: TWO SIERRA, Frago: do not attempt to disarm IED's. Mark them and EOD will take of them later. Out"] call ADF_fnc_MessageParser;
+};
 	

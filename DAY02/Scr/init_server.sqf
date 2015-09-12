@@ -36,3 +36,30 @@ uAegis_g5_2 moveInGunner sCP_2;
 // Airport patrols
 [gAegis_3, getMarkerPos "mAegisText_1", 150, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 [gAegis_6, getMarkerPos "mAegisText_1", 150, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+
+_mmObjArray = [
+"Land_fortified_nest_big",
+"Land_fortified_nest_small_EP1",
+"Land_Fort_Watchtower_EP1",
+"Land_HBarrier_large",
+"Land_HBarrier_5_F",
+"Land_HBarrier_3_F",
+"US_WarfareBFieldhHospital_Base_EP1",
+"US_WarfareBBarracks_Base_EP1",
+"Land_Barrack2_EP1",
+"StorageBladder_01_fuel_sand_F",
+"Land_Ind_TankSmall2_EP1",
+"PowGen_Big_EP1",
+"US_WarfareBVehicleServicePoint_Base_EP1",
+"US_WarfareBUAVterminal_Base_EP1",
+"Land_CncBarrier_stripes_F"
+];
+
+// Obj Map markerAlpha
+[_mmObjArray,	"mAegisCP",75] call ADF_fnc_objectMarker;
+[_mmObjArray,	"mAegisText_1",300] call ADF_fnc_objectMarker;
+
+// Re-create critical markers
+
+{[_x] call ADF_fnc_reMarker} forEach ["mAegisHQ","mAegisFort_1","mAegisFort","mAegisMed","mAegisFort_2","mAegisFort_3","mVehRepair"];
+

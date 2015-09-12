@@ -50,7 +50,7 @@ ADF_wpPosRdm = {
 };
 
 [] spawn {
-	sleep 300;
+	sleep random 300;
 	while {alive vGunship} do {
 		private ["_c","_wp","_wpPos","_pausePad"];	
 		_c = createGroup WEST;

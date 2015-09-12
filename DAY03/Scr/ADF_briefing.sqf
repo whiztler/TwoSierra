@@ -196,7 +196,7 @@ None.<br/><br/>
 player createDiaryRecord ["2SOPORD",["Mission","<br/><br/>
 <font size='18'>MISSION</font><br/><br/>
 <font color='#9DA698'>
-2PLT to leave LEO NLT 04:45Z. 2PLT to drive to DOLPHIN and investigate. 2PLT to patrol MSR Miami between Jilavur and Falar. Searh the Feruz Abad/Anar grids for OpFor activity and/or intel.
+2PLT to leave LEO NLT 04:45Z. 2PLT to drive to DOLPHIN and investigate. 2PLT to patrol MSR Miami between Jilavur and Falar. Search the Feruz Abad/Anar grids for OpFor activity and/or intel.
 </font><br/><br/>
 "]];
 

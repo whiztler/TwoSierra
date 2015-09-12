@@ -115,6 +115,8 @@ ADF_fnc_CSAT_armVeh_pool = {
 	_vPoolArray;
 };	
 
+sleep 5; systemchat "############# start spawn ###############";
+
 for "_i" from 1 to 6 do {
 	private ["_spawnPos","_vPool"];	
 	_vPool = call ADF_fnc_CSAT_liteVeh_pool;

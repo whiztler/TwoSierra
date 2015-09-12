@@ -54,10 +54,15 @@ ADF_fnc_CAS_supportRq = {
 	params ["_unit", "_actionID"];
 	// Removed the action
 	_unit removeAction _actionID;
-	// Map click process. 
-	openMap true;
-	hintSilent format ["\n%1, click on a location\n on the map where you want\n Close Air Support.\n\n", name vehicle _unit];
-	_unit onMapSingleClick {ADF_CAS_pos = _pos; publicVariableServer "ADF_CAS_pos"; onMapSingleClick ""; true; openMap false; hint ""; [] spawn ADF_fnc_CAS_Activated;};
+	// Map click process.
+	if (player == ADF_CAS_requester) then {openMap true; hintSilent format ["\n%1, click on a location\n on the map where you want\n Close Air Support.\n\n", name vehicle _unit];};
+	ADF_CAS_requester onMapSingleClick {
+		ADF_CAS_pos = _pos;
+		publicVariableServer "ADF_CAS_pos";
+		onMapSingleClick ""; true;
+		openMap false; hint "";
+		[] spawn ADF_fnc_CAS_Activated;
+	};
 };
 
 ADF_fnc_CAS_Activated = {
@@ -149,9 +154,9 @@ ADF_fnc_destroyVars = {
 	ADF_CAS_active 		= nil;
 	ADF_CAS_marker		= nil;
 	ADF_CAS_bingoFuel 	= nil; 
-	ADF_CAS_spawn		= nil;
+	ADF_CAS_spawn			= nil;
 	ADF_CAS_vector		= nil;
-	ADF_CAS_delay		= nil;
+	ADF_CAS_delay			= nil;
 	ADF_CAS_onSite		= nil;
 	ADF_fnc_CAS_supportRq = nil;
 	ADF_fnc_CAS_Activated = nil;
