@@ -2106,7 +2106,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=5;
+		items=6;
 		class Item0
 		{
 			position[]={1061.4109,272.16196,5789.2876};
@@ -2188,6 +2188,23 @@ class Mission
 			name="tBOPspawn";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
 			expActiv="if (ADF_HC_execute) then {[] call ADF_fnc_BOPactive};";
+			class Effects
+			{
+			};
+		};
+		class Item5
+		{
+			position[]={1007.6926,272.79037,5768.8579};
+			a=70;
+			b=30;
+			angle=150;
+			rectangular=1;
+			activationBy="WEST";
+			interruptable=1;
+			age="UNKNOWN";
+			name="tEndMission";
+			expCond="ADF_endMission && ({vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0);";
+			expActiv="0 = [] spawn ADF_msg_endMission;";
 			class Effects
 			{
 			};

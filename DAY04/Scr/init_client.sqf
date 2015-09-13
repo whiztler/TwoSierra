@@ -1,4 +1,4 @@
-diag_log "ADF RPT: Init - executing init_client.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing Scr\init_client.sqf"; // Reporting. Do NOT edit/remove
 
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];

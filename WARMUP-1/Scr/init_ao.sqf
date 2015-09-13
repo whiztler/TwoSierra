@@ -5,7 +5,7 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 _maridSpawnLoc = ["mMarid_1","mMarid_2","mMarid_3","mMarid_4","mMarid_5"] call BIS_fnc_selectRandom;
 _v = [getMarkerPos _maridSpawnLoc, markerDir _maridSpawnLoc, "O_APC_Wheeled_02_rcws_F", INDEPENDENT] call BIS_fnc_spawnVehicle;
 _vMadrid = _v select 0;
-_vMadrid setObjectTextureGlobal [0, "Img\NRF_cusTex_pashtun.jpg"]; _vMadrid setObjectTextureGlobal [2, "Img\NRF_cusTex_pashtun.jpg"];
+_vMadrid setObjectTextureGlobal [0, "Img\cusTex_pashtun.jpg"]; _vMadrid setObjectTextureGlobal [2, "Img\cusTex_pashtun.jpg"];
 
 _g = CreateGroup INDEPENDENT; 
 _p = _g createUnit ["I_Soldier_F", getMarkerPos "mOpforSpawn", [], 0, "PRIVATE"]; _p moveInGunner oStat_1; 
@@ -57,8 +57,8 @@ for "_i" from 1 to 5 do {
 	if (_vp == "I_G_Offroad_01_armed_F") then {
 		[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
 	} else {
-		_vX setObjectTextureGlobal [0, "Img\NRF_cusTex_pashtun.jpg"];
-		_vX setObjectTextureGlobal [2, "Img\NRF_cusTex_pashtun.jpg"];
+		_vX setObjectTextureGlobal [0, "Img\cusTex_pashtun.jpg"];
+		_vX setObjectTextureGlobal [2, "Img\cusTex_pashtun.jpg"];
 	};
 	
 	[_c, _spawnPos, 300, 5, "MOVE", "SAFE", "RED", "LIMITED",10] call ADF_fnc_vehiclePatrol;

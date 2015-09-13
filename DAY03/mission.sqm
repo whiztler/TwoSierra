@@ -146,7 +146,7 @@ class Mission
 		windForced=1;
 		year=2019;
 		day=26;
-		hour=10;
+		hour=4;
 		minute=25;
 		startFogDecay=0.013;
 		forecastFogDecay=0.013;
@@ -4196,7 +4196,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=10;
+		items=11;
 		class Item0
 		{
 			position[]={8409.6416,296.04001,1916.3116};
@@ -4360,6 +4360,21 @@ class Mission
 			age="UNKNOWN";
 			name="tBase1";
 			expActiv="0 = [] spawn ADF_msg_base1;";
+			class Effects
+			{
+			};
+		};
+		class Item10
+		{
+			position[]={8237.2354,296.04001,2127.3511};
+			angle=60;
+			rectangular=1;
+			activationBy="WEST";
+			interruptable=1;
+			age="UNKNOWN";
+			name="tEndMission";
+			expCond="ADF_endMission && ({vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0);";
+			expActiv="0 = [] spawn ADF_msg_endMission;";
 			class Effects
 			{
 			};

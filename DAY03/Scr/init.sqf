@@ -6,7 +6,6 @@ diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/rem
 call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 
 // Vars init
 ADF_missionStartTime		= 0;
@@ -17,7 +16,7 @@ ADF_msg_tDolphin 			= {};
 ADF_msg_endMission		= {};
 ADF_msg_cache1			= {};
 ADF_msg_apc1				= {};
-ADF_msg_base1				= {};
+ADF_msg_base1			= {};
 
 // Server Init
 if (isServer) then {

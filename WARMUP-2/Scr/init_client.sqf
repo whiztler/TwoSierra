@@ -4,64 +4,37 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
-waitUntil {ADF_gearLoaded}; // Wait till the unit has their gear before continuing
-
-sleep 3; // Loadout finished > pri weapon loaded
-
-// PC 		- MRAP_2PC
-if !(isNil "INF_RTO_1") then {if (player == INF_RTO_1) then {INF_RTO_1 assignAsDriver MRAP_2PC; INF_RTO_1 moveInDriver MRAP_2PC}};
-if !(isNil "INF_PC") then {if (player == INF_PC) then {INF_PC assignAsCargo MRAP_2PC; INF_PC moveInCargo MRAP_2PC}};
-
-// 2-1 SQUAD L	- MRAP_2_1_SQUAD
-if !(isNil "INF_SQL_1") then {if (player == INF_SQL_1) then {INF_SQL_1 assignAsDriver MRAP_2_1_SQUAD; INF_SQL_1 moveInDriver MRAP_2_1_SQUAD}};
-if !(isNil "INF_CLS_1") then {if (player == INF_CLS_1) then {INF_CLS_1 assignAsCargo MRAP_2_1_SQUAD; INF_CLS_1 moveInCargo MRAP_2_1_SQUAD}};
-// 2-1 ALPHA	- MRAP_2_1_ALPHA
-if !(isNil "INF_AR_1") then {if (player == INF_AR_1) then {INF_AR_1 assignAsDriver MRAP_2_1_ALPHA; INF_AR_1 moveInDriver MRAP_2_1_ALPHA}};
-if !(isNil "INF_AAR_1") then {if (player == INF_AAR_1) then {INF_AAR_1 assignAsGunner MRAP_2_1_ALPHA; INF_AAR_1 moveInGunner MRAP_2_1_ALPHA}};
-if !(isNil "INF_RAT_1") then {if (player == INF_RAT_1) then {INF_RAT_1 assignAsCargo MRAP_2_1_ALPHA; INF_RAT_1 moveInCargo MRAP_2_1_ALPHA}};
-if !(isNil "INF_FTL_1") then {if (player == INF_FTL_1) then {INF_FTL_1 assignAsCargo MRAP_2_1_ALPHA; INF_FTL_1 moveInCargo MRAP_2_1_ALPHA}};
-// 2-1 BRAVO	- MRAP_2_1_BRAVO
-if !(isNil "INF_AR_2") then {if (player == INF_AR_2) then {INF_AR_2 assignAsDriver MRAP_2_1_BRAVO; INF_AR_2 moveInDriver MRAP_2_1_BRAVO}};
-if !(isNil "INF_AAR_2") then {if (player == INF_AAR_2) then {INF_AAR_2 assignAsCargo MRAP_2_1_BRAVO; INF_AAR_2 moveInCargo MRAP_2_1_BRAVO}};
-if !(isNil "INF_RAT_2") then {if (player == INF_RAT_2) then {INF_RAT_2 assignAsCargo MRAP_2_1_BRAVO; INF_RAT_2 moveInCargo MRAP_2_1_BRAVO}};
-if !(isNil "INF_FTL_2") then {if (player == INF_FTL_2) then {INF_FTL_2 assignAsCargo MRAP_2_1_BRAVO; INF_FTL_2 moveInCargo MRAP_2_1_BRAVO}};
-
-// 2-2 SQUAD L	- MRAP_2_2_SQUAD
-if !(isNil "INF_SQL_2") then {if (player == INF_SQL_2) then {INF_SQL_2 assignAsDriver MRAP_2_2_SQUAD; INF_SQL_2 moveInDriver MRAP_2_2_SQUAD}};
-if !(isNil "INF_CLS_2") then {if (player == INF_CLS_2) then {INF_CLS_2 assignAsCargo MRAP_2_2_SQUAD; INF_CLS_2 moveInCargo MRAP_2_2_SQUAD}};
-// 2-2 ALPHA	- MRAP_2_2_ALPHA
-if !(isNil "INF_AR_3") then {if (player == INF_AR_3) then {INF_AR_3 assignAsDriver MRAP_2_2_ALPHA; INF_AR_3 moveInDriver MRAP_2_2_ALPHA}};
-if !(isNil "INF_AAR_3") then {if (player == INF_AAR_3) then {INF_AAR_3 assignAsGunner MRAP_2_2_ALPHA; INF_AAR_3 moveInGunner MRAP_2_2_ALPHA}};
-if !(isNil "INF_RAT_3") then {if (player == INF_RAT_3) then {INF_RAT_3 assignAsCargo MRAP_2_2_ALPHA; INF_RAT_3 moveInCargo MRAP_2_2_ALPHA}};
-if !(isNil "INF_FTL_3") then {if (player == INF_FTL_3) then {INF_FTL_3 assignAsCargo MRAP_2_2_ALPHA; INF_FTL_3 moveInCargo MRAP_2_2_ALPHA}};
-// 2-2 BRAVO	- MRAP_2_2_BRAVO
-if !(isNil "INF_AR_4") then {if (player == INF_AR_4) then {INF_AR_4 assignAsDriver MRAP_2_2_BRAVO; INF_AR_4 moveInDriver MRAP_2_2_BRAVO}};
-if !(isNil "INF_AAR_4") then {if (player == INF_AAR_4) then {INF_AAR_4 assignAsCargo MRAP_2_2_BRAVO; INF_AAR_4 moveInCargo MRAP_2_2_BRAVO}};
-if !(isNil "INF_RAT_4") then {if (player == INF_RAT_4) then {INF_RAT_4 assignAsCargo MRAP_2_2_BRAVO; INF_RAT_4 moveInCargo MRAP_2_2_BRAVO}};
-if !(isNil "INF_FTL_4") then {if (player == INF_FTL_4) then {INF_FTL_4 assignAsCargo MRAP_2_2_BRAVO; INF_FTL_4 moveInCargo MRAP_2_2_BRAVO}};
-
-// 2-3 ALPHA	- MRAP_2_3_WT1
-if !(isNil "INF_AMG_1") then {if (player == INF_AMG_1) then {INF_AMG_1 assignAsDriver MRAP_2_3_WT1; INF_AMG_1 moveInDriver MRAP_2_3_WT1}};
-if !(isNil "INF_MG_1") then {if (player == INF_MG_1) then {INF_MG_1 assignAsGunner MRAP_2_3_WT1; INF_MG_1 moveInGunner MRAP_2_3_WT1}};
-if !(isNil "INF_WTL_1") then {if (player == INF_WTL_1) then {INF_WTL_1 assignAsCargo MRAP_2_3_WT1; INF_WTL_1 moveInCargo MRAP_2_3_WT1}};
-if !(isNil "INF_CLS_3") then {if (player == INF_CLS_3) then {INF_CLS_3 assignAsCargo MRAP_2_3_WT1; INF_CLS_3 moveInCargo MRAP_2_3_WT1}};
-// 2-3 ALPHA	- MRAP_2_3_WT2
-if !(isNil "INF_AMS_1") then {if (player == INF_AMS_1) then {INF_AMS_1 assignAsDriver MRAP_2_3_WT2; INF_AMS_1 moveInDriver MRAP_2_3_WT2}};
-if !(isNil "INF_MS_1") then {if (player == INF_MS_1) then {INF_MS_1 assignAsGunner MRAP_2_3_WT2; INF_MS_1 moveInGunner MRAP_2_3_WT2}};
-if !(isNil "INF_HMG_1") then {if (player == INF_HMG_1) then {INF_HMG_1 assignAsCargo MRAP_2_3_WT2; INF_HMG_1 moveInCargo MRAP_2_3_WT2}};
-if !(isNil "INF_AHMG_1") then {if (player == INF_AHMG_1) then {INF_AHMG_1 assignAsCargo MRAP_2_3_WT2; INF_AHMG_1 moveInCargo MRAP_2_3_WT2}};
-
 waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 
 [
-	["17 JUN 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
-	["CHERNARUS","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"],
-	["BALOTA AB","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
+	["11 JUN 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
+	["REPUBLIC OF CHERNARUS","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"],
+	["FOB KAVANGO, SOMEWHERE IN CHERNARUS","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
-["2S","","FAIRCHILD this is TWO SIERRA. We're OSCAR MIKE."] call ADF_fnc_MessageParser; sleep 12;
-["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. ACE has spotted several victors on the roads in NOVEMBER. It seems that KUJO is mostly indoors, so keep an eye out.<br /><br />IED’s are much harder to spot in the dark. Instruct your drivers to scan the roads carefully.<br /><br />DONALD is patrolling in the green zone. Do not engage them.<br /><br />Avoid the BORIS perimeter at any cost.<br /><br />Good luck TWO Sierra. out."] call ADF_fnc_MessageParser; 
+_logTime = [dayTime] call BIS_fnc_timeToString;
+_logTimeText = "Log: " + _logTime;
+player createDiaryRecord ["Two Sierra Log", [_logTimeText,"
+<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/>
+<font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/>
+<font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/>
+<t color='#A1A4AD' size='17'>Two Sierra WarmUp</t><br/><br/>
+<font color='#6c7169'>WarmUp for a TWO SIERRA mission<br/><br/>	
+Train your (motorized) infantry skills<br/><br/>
+Test TWO SIERRA mission mods<br/><br/>
+Objective: Neutralize all OpFor<br/><br/>
+JIP / Respawn enabled<br/><br/>
+Teleport to Leader at Flagpole<br/><br/>
+Vanilla loadout. Supplies in vehicles</font>
+"]];
 
-
-
-	
+hint parseText"<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br/><br/>
+<t color='#A1A4AD' size='1.7'>Two Sierra WarmUp</t><br/><br/>
+<t color='#6C7169'>WarmUp for a<br/>TWO SIERRA mission</t><br/><br/>	
+<t color='#6C7169'>Train your (motorized)<br/>infantry skills</t><br/><br/>
+<t color='#6C7169'>Test mission mods</t><br/><br/>
+<t color='#6C7169'>Objective: Neutralize<br/>all OpFor</t><br/><br/>
+<t color='#6C7169'>JIP / Respawn enabled</t><br/><br/>
+<t color='#6C7169'>Teleport to Leader<br/>at Flagpole</t><br/><br/>
+<t color='#6C7169'>Vanilla loadout. Supplies<br/>in vehicles</t><br/><br/>	
+";

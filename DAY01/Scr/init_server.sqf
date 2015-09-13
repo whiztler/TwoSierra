@@ -1,4 +1,4 @@
-diag_log "ADF RPT: Init - executing init_server.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing Scr\init_server.sqf"; // Reporting. Do NOT edit/remove
 execVM "Scr\bearclaw_server.sqf";
 execVM "Scr\xray_server.sqf";	
 

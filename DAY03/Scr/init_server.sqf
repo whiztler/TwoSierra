@@ -1,7 +1,8 @@
-diag_log "ADF RPT: Init - executing init_server.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing Scr\init_server.sqf"; // Reporting. Do NOT edit/remove
 if (!isServer) exitWith {};
 call compile preprocessFileLineNumbers "Scr\ADF_redress_NRF.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 
 // Load vehicle Supplies
 [MRAP_2PC] execVM "Core\C\ADF_vCargo_B_Car.sqf";
@@ -15,11 +16,11 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 NRF_grp_4 = CreateGroup WEST; 
 _p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "SERGEANT"]; _p moveInGunner oStat_01;
 _p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "CORPORAL"]; _p moveInGunner oStat_02;
-_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "CORPORAL"]; _p moveInGunner oStat_03;
-_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_04;
-_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_05;
-_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_06;
-_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_07;
+//_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "CORPORAL"]; _p moveInGunner oStat_03;
+//_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_04;
+//_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_05;
+//_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_06;
+//_p = NRF_grp_4 createUnit ["B_Soldier_F", getPos oLand_1, [], 0, "PRIVATE"]; _p moveInGunner oStat_07;
 {[_x] call ADF_fnc_redressNRF; _x enableSimulationGlobal false;} forEach units NRF_grp_4;
 NRF_grp_4 setGroupIdGlobal ["5-3 CHARLIE"];
 
@@ -42,7 +43,7 @@ NRF_grp_3 setGroupIdGlobal ["5-2 ALPHA"];
 // Create random IED's
 _iedMarkerArr = ["mIED_1","mIED_2","mIED_3","mIED_4","mIED_5","mIED_6","mIED_7","mIED_8","mIED_9","mIED_10","mIED_11","mIED_12","mIED_13","mIED_14","mIED_15","mIED_16"];
 for "_i" from 1 to 10 do {
-	private ["_iedMarkerPos","_v","_mN","_m","_idx"];
+	private ["_iedMarkerPos","_idx"];
 	_iedMarkerPos = _iedMarkerArr call BIS_fnc_selectRandom;
 	_idx =  _iedMarkerArr find _iedMarkerPos;
 	_iedMarkerArr deleteAt _idx;
@@ -83,19 +84,9 @@ vDolphin setHit ["wheel_1_1_steering", 1];
 	diag_log	"-----------------------------------------------------";
 
 	ADF_endMission = true; publicVariable "ADF_endMission";
-
-	// Create end mission trigger at LMAB
-	tEndMission = createTrigger ["EmptyDetector", getMarkerPos "mLMAB", true];
-	tEndMission setTriggerActivation ["WEST","PRESENT",false];
-	tEndMission setTriggerArea [200,325,240,true];
-	tEndMission setTriggerTimeout [0,0,0,false];
-	tEndMission setTriggerStatements [
-		"{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;",
-		"[] spawn ADF_msg_endMission;",
-		""
-	];
 };
 
+/*
 _mmObjArray = [
 "Land_fortified_nest_big",
 "Land_fortified_nest_small_EP1",
@@ -134,9 +125,8 @@ _mmObjArray = [
 ];
 
 // Obj Map markerAlpha
-[_mmObjArray,	"mLMAB",400] call ADF_fnc_objectMarker;
+[_mmObjArray,"mLMAB",400] call ADF_fnc_objectMarker;
 
 // Re-create critical markers
-
-//{[_x] call ADF_fnc_reMarker} forEach ["mAegisHQ","mAegisFort_1","mAegisFort","mAegisMed","mAegisFort_2","mAegisFort_3","mVehRepair"];
-	
+{[_x] call ADF_fnc_reMarker} forEach ["mLMAB","mVehRepair","mMed"];
+*/

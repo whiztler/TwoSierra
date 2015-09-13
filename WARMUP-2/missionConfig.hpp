@@ -62,6 +62,25 @@ class CfgVehicleTemplates {
 		};
 	};
 	
+	class ADF_russianOffroad {
+		displayName = "ADF_russianOffroad"; 
+		author = "Whiztler";
+		textures[] = {
+			"Img\cusTex_offroad_Russians.jpg"
+		};
+		animationList[] = {
+			"HideDoor1", 1,
+			"HideDoor2", 1,
+			"HideGlass2", 1,
+			"HideDoor3", 1,
+			"HideBackpacks", 0,
+			"HideBumper2", 0,
+			"HideConstruction", 0,
+			"Proxy", 0,
+			"Destruct", 0
+		};
+	};
+	
 	class ADF_opforTruck {
 		displayName = "ADF_opforTruck"; 
 		author = "Whiztler";
@@ -117,7 +136,7 @@ class CfgDebriefing
 };
 
 // ACE3 settings v. 3.2.0
-
+/*
 class ACE_Settings {
 	// Custom ACE3 Setting below
 		

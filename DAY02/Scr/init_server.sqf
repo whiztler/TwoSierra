@@ -1,4 +1,4 @@
-diag_log "ADF RPT: Init - executing init_server.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing Scr\init_server.sqf"; // Reporting. Do NOT edit/remove
 
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Aegis.sqf";
 

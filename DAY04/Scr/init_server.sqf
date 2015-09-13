@@ -1,6 +1,7 @@
-diag_log "ADF RPT: Init - executing init_server.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing Scr\init_server.sqf"; // Reporting. Do NOT edit/remove
 call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 
 // Load vehicle Supplies
 [MRAP_2PC] execVM "Core\C\ADF_vCargo_B_Car.sqf";
@@ -86,6 +87,7 @@ for "_i" from 1 to 12 do {
 // Create the Pashtn base of operations
 execVM "Scr\SOD_BOP.sqf";
 
+/*
 _mmObjArray = [
 "Land_fortified_nest_big",
 "Land_fortified_nest_small_EP1",
@@ -129,3 +131,4 @@ _mmObjArray = [
 
 // Re-create critical markers
 {[_x] call ADF_fnc_reMarker} forEach ["mJohnson","mFobMed"];
+*/

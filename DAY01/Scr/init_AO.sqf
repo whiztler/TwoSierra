@@ -1,4 +1,5 @@
 // Init Server/HC
+diag_log "ADF RPT: Init - executing Scr\init_AO.sqf"; // Reporting. Do NOT edit/remove
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_CSAT.sqf";

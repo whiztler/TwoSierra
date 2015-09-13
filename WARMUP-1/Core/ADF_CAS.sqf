@@ -93,10 +93,15 @@ ADF_fnc_CAS_supportRq = {
 	params ["_unit", "_actionID"];
 	// Removed the action
 	_unit removeAction _actionID;
-	// Map click process. 
-	openMap true;
-	hintSilent format ["\n%1, click on a location\n on the map where you want\n Close Air Support.\n\n", name vehicle _unit];
-	_unit onMapSingleClick {ADF_CAS_pos = _pos; publicVariableServer "ADF_CAS_pos"; onMapSingleClick ""; true; openMap false; hint ""; [] spawn ADF_fnc_CAS_Activated;};
+	// Map click process.
+	if (player == ADF_CAS_requester) then {openMap true; hintSilent format ["\n%1, click on a location\n on the map where you want\n Close Air Support.\n\n", name vehicle _unit];};
+	ADF_CAS_requester onMapSingleClick {
+		ADF_CAS_pos = _pos;
+		publicVariableServer "ADF_CAS_pos";
+		onMapSingleClick ""; true;
+		openMap false; hint "";
+		[] spawn ADF_fnc_CAS_Activated;
+	};
 };
 
 ADF_fnc_CAS_Activated = {
@@ -221,7 +226,7 @@ if (hasInterface) then {
 	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\6SQDR_logo.paa'/><br/><br/><t color='#6C7169' align='left'>%1: TWO SIERRA this is %2. Standing by with %3. Out.</t><br/><br/>",ADF_CAS_pilotName, ADF_CAS_callSign, ADF_CAS_station];
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord [_ADF_CAS_logName, [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: RAPTOR</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_pilotName+ ": TWO SIERRA this is " +ADF_CAS_callSign+ ". Standing by with " +ADF_CAS_station+ ". Out.</font><br/><br/>"]];	
+	player createDiaryRecord [_ADF_CAS_logName, [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: "+ ADF_CAS_callSign +"</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_pilotName+ ": TWO SIERRA this is " +ADF_CAS_callSign+ ". Standing by with " +ADF_CAS_station+ ". Out.</font><br/><br/>"]];	
 };
 
 // From here on server only. Create the CAS vehicle, create markers etc.

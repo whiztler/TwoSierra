@@ -14,7 +14,7 @@ File: description.ext
 class Header {
 	gameType = Coop; // A3: Coop, ZCoop (Zeus Coop) - See https://community.bistudio.com/wiki/Multiplayer_Game_Types for other game types
 	minPlayers = 1;
-	maxPlayers = 37; // 34 + 3 HC. Change to the exact amount of available player slots including all HC's.
+	maxPlayers = 33; // 30 players + 3 HC. Change to the exact amount of available player slots including all HC's.
 	playerCountMultipleOf = 1; // Coop setting. Set to 0 for other game types.
 };
 
@@ -35,7 +35,7 @@ onLoadName = "TWO SIERRA WARMUP";
 onLoadMission = "WarmUp, Testing &amp; Training";
 onLoadIntroTime = false;
 onLoadMissionTime = false;
-loadScreen = "Img\2SIERRA_loadscreen.jpg";
+loadScreen = "Img\loadScreen_TwoSierra.jpg";
 onLoadIntro = "Powered by ADF";
 
 /**********  Mission specific settings **********/

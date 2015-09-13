@@ -28,7 +28,7 @@ Teleport to Leader at Flagpole<br/><br/>
 Vanilla loadout. Supplies in vehicles</font>
 "]];
 
-hint parseText"<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/><br/>
+hint parseText"<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br/><br/>
 <t color='#A1A4AD' size='1.7'>Two Sierra WarmUp</t><br/><br/>
 <t color='#6C7169'>WarmUp for a<br/>TWO SIERRA mission</t><br/><br/>	
 <t color='#6C7169'>Train your (motorized)<br/>infantry skills</t><br/><br/>
@@ -44,7 +44,6 @@ hint parseText"<img size= '5' shadow='false' image='Img\2SIERRA_logo.paa'/><br/>
 
 	_l = ["tLayer"] call BIS_fnc_rscLayer; 
 	_l cutText ["", "BLACK", 20];
-	["<img size= '10' shadow='false' image='Img\2SIERRA_intro.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Two Sierra - WarmUp</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
+	["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Two Sierra - WarmUp</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 	['END1',true,22] call BIS_fnc_endMission;
 };
-	

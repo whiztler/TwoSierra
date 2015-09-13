@@ -4,12 +4,16 @@ diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/rem
 
 // PreComp
 call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
+call compile preprocessFileLineNumbers "Scr\ADF_redress_Rebels.sqf";
+call compile preprocessFileLineNumbers "Scr\ADF_redress_Russians.sqf";
 
 // Vars init
-ADF_endMission	= false;
-ADF_cacheCount	= 0;
-ADF_cacheCnt		= 0;
-ADF_endMissionMsg	= {};
+ADF_SOD_zones = {};
 
 // Server Init
 if (isServer) then {
@@ -22,8 +26,7 @@ if (hasInterface) then {
 };
 
 // All clients
-execVM "Scr\ADF_CAS.sqf";
-execVM "Scr\SOD_cache.sqf";
+
 
 // Server/HC
 if (!ADF_HC_execute) exitWith {}; // HC Autodetect. If no HC present execute on the Server.

@@ -1,4 +1,4 @@
-diag_log "ADF RPT: Init - executing init_AO.sqf"; // Reporting. Do NOT edit/remove
+diag_log "ADF RPT: Init - executing Scr\init_AO.sqf"; // Reporting. Do NOT edit/remove
 // init
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";

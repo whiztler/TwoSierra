@@ -17,7 +17,7 @@ if (isServer) then {diag_log "ADF RPT: Init - executing ADF_init_config.sqf";}; 
 
 /********** GENERAL **********/
 ADF_mission_version = 1.0; // Mission version
-_ADF_mission_init_time = 45; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
+_ADF_mission_init_time = 25; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
 _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)
 ADF_playerSide = WEST; // Which side are playable units on [WEST / EAST / GUER / CIV]
