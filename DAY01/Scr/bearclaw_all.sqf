@@ -1,11 +1,10 @@
 objBearclaw setName ["Jeff Kroger","Jeff","Kroger"];
-bearClawAction = objBearclaw addAction ["<t align='left' color='#9DA698'>Rescue Bearclaw</t>",{[[],"ADF_TS_bearclawRescued"] call BIS_fnc_MP;},[],-95,true,true,"",""];
-objBearclaw addEventHandler ["killed", {[[],"ADF_TS_bearclawKilled",true,false,false] spawn BIS_fnc_MP;}];
+bearClawAction = objBearclaw addAction ["<t align='left' color='#9DA698'>Rescue Bearclaw</t>",{remoteExec ["ADF_TS_bearclawRescued",0,true]},[],-95,true,true,"",""];
 
 ADF_TS_bearclawRescued = {
 	//objBearclaw enableAI "MOVE";
 	objBearclaw removeAction bearClawAction;
-	[objBearclaw] joinSilent player;
+	[objBearclaw] joinSilent (group player);
 	BearclawRescued = true; publicVariable "BearclawRescued";
 	if (!hasInterface) exitWith {};
 	["NONE","Jeff Kroger","Jeff Kroger (BEARCLAW), thanks fellas, it is really good to see you guys."] call ADF_fnc_MessageParser; sleep 8;
@@ -19,8 +18,9 @@ ADF_TS_bearclawRescued = {
 };
 
 ADF_TS_bearclawKilled = {
+	if (!hasInterface) exitWith {};
 	["ACO","ACO","FIRESTONE: TWO SIERRA, we just received intel that BEARCLAW is K.I.A. Mission aborted. RTB asap!"] call ADF_fnc_MessageParser;
-	sleep 12;
+	sleep 20;
 	["END2",false,5] call BIS_fnc_endMission;
 };
 

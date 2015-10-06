@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Cfg entries
 Author: Whiztler
@@ -11,6 +11,23 @@ File: missionConfig.hpp
 ****************************************************************
 Config entry registration goes in here.
 ****************************************************************/
+
+class CfgRemoteExec {        
+   class Functions {
+		mode = 2;
+		jip = 1;
+		class ADF_fnc_fobDeploy {allowedTargets=0};
+		class ADF_fnc_fobPackUp {allowedTargets=0};
+		class ADF_fnc_fobDeleteObj {allowedTargets=0};
+		class ADF_fnc_MHQ_respawn {allowedTargets=0};
+		class ADF_fnc_MHQ_FinalSpawn {allowedTargets=0};
+		class ADF_fnc_MHQ_addEH {allowedTargets=0};
+		class ADF_fnc_MHQ_respawned {allowedTargets=0};
+		class ADF_fnc_HCLB_taskDefend {allowedTargets=0};
+		class ADF_fnc_CAS_SupportRq {allowedTargets=0};
+		class BIS_fnc_spawn {allowedTargets=0};
+	};
+};
 
 class CfgUnitInsignia {
 	class CLANPATCH {
@@ -104,7 +121,7 @@ class CfgEnvSounds {
 		sound[]={"Core\s\sandstorm.ogg",db-0,0,1};
 	};
 };
-/*
+
 // End Screen / Debriefing
 class CfgDebriefing
 {  
@@ -135,11 +152,11 @@ class CfgDebriefing
 	};
 };
 
-// ACE3 settings v. 3.2.0
+// ACE3 settings v. 3.3.2.0
 
 class ACE_Settings {
 	// Custom ACE3 Setting below
-		
+
 	class ace_common_forceAllSettings {
 		value = 0;
 		typeName = "BOOL";
@@ -161,7 +178,7 @@ class ACE_Settings {
 		force = 1;
 	};
 	class ace_finger_enabled {
-		value = 1;
+		value = 0;
 		typeName = "BOOL";
 		force = 1;
 	};
@@ -241,6 +258,11 @@ class ACE_Settings {
 		force = 1;
 	};
 	class ace_map_mapIllumination {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_map_mapGlow {
 		value = 1;
 		typeName = "BOOL";
 		force = 1;
@@ -440,8 +462,8 @@ class ACE_Settings {
 		typeName = "BOOL";
 		force = 1;
 	};
-	class ace_medical_menuTypeStyle {
-		value = 0;
+	class ace_medical_menu_allow {
+		value = 1;
 		typeName = "SCALAR";
 		force = 1;
 	};
@@ -480,6 +502,51 @@ class ACE_Settings {
 		typeName = "SCALAR";
 		force = 1;
 	};
+	class ace_repair_engineerSetting_Repair {
+		value = 1;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_repair_engineerSetting_Wheel {
+		value = 0;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_repair_repairDamageThreshold {
+		value = 0.6;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_repair_repairDamageThreshold_Engineer {
+		value = 0.4;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_repair_consumeItem_ToolKit {
+		value = 1;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_repair_fullRepairLocation {
+		value = 2;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_repair_engineerSetting_fullRepair {
+		value = 2;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_repair_addSpareParts {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_repair_wheelRepairRequiredItems {
+		value = 0;
+		typeName = "SCALAR";
+		force = 1;
+	};
 	class ace_respawn_SavePreDeathGear {
 		value = 0;
 		typeName = "BOOL";
@@ -496,8 +563,28 @@ class ACE_Settings {
 		force = 1;
 	};
 	class ace_sitting_enable {
-		value = 1;
+		value = 0;
 		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_spectator_filterUnits {
+		value = 2;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_spectator_filterSides {
+		value = 0;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_spectator_restrictModes {
+		value = 0;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_spectator_restrictVisions {
+		value = 0;
+		typeName = "SCALAR";
 		force = 1;
 	};
 	class ace_switchunits_EnableSwitchUnits {
@@ -541,7 +628,7 @@ class ACE_Settings {
 		force = 1;
 	};
 	class ace_vehiclelock_LockVehicleInventory {
-		value = 1;
+		value = 0;
 		typeName = "BOOL";
 		force = 1;
 	};
@@ -635,12 +722,27 @@ class ACE_Settings {
 		typeName = "SCALAR";
 		force = 1;
 	};
+	class ace_zeus_autoAddObjects {
+		value = 0;
+		typeName = "BOOL";
+		force = 1;
+	};
 	class ace_captives_allowHandcuffOwnSide {
 		value = 1;
 		typeName = "BOOL";
 		force = 1;
 	};
+	class ace_captives_requireSurrender {
+		value = 1;
+		typeName = "SCALAR";
+		force = 1;
+	};
 	class ace_captives_allowSurrender {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_cargo_enable {
 		value = 1;
 		typeName = "BOOL";
 		force = 1;
@@ -673,6 +775,11 @@ class ACE_Settings {
 	class ace_hearing_UnconsciousnessVolume {
 		value = 0.4;
 		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_hearing_enabledForZeusUnits {
+		value = 1;
+		typeName = "BOOL";
 		force = 1;
 	};
 	class ace_advanced_ballistics_enabled {
@@ -727,4 +834,3 @@ class ACE_Settings {
 	};
 	// Custom ACE3 Setting above
 };
-*/

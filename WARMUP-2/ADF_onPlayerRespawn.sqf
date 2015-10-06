@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Respawn init 
 Author: Whiztler
-Script version: 2.3
+Script version: 2.4
 
 Game type: n/a
 File: ADF_onPlayerRespawn.sqf
@@ -24,7 +24,7 @@ if (ADF_Tickets) then {
 	_ADF_unitName = name vehicle player;
 
 	if (side player == WEST) then {
-		[[[_ADF_unitName,_ADF_wTix],
+		[[_ADF_unitName,_ADF_wTix],
 			{
 				HintSilent parseText format
 					["					
@@ -33,13 +33,13 @@ if (ADF_Tickets) then {
 						<t color='#1262c4' align='left'>BLUEFOR</t><t color='#A1A4AD' align='left'> slots remaining: </t><t color='#FFFFFF' align='right'>%3</t><br/>
 					",ADF_clanName, _this select 0, _this select 1];
 			}
-		],"BIS_fnc_spawn", WEST, true, false] spawn BIS_fnc_MP;
+		] remoteExec ["BIS_fnc_spawn",WEST,false];		
 		sleep 8;
 		hintSilent "";
 	};
 
 	if (side player == EAST) then {	
-		[[[_ADF_unitName,_ADF_eTix],
+		[[_ADF_unitName,_ADF_eTix],
 			{
 				HintSilent parseText format
 					["					
@@ -48,7 +48,7 @@ if (ADF_Tickets) then {
 						<t color='#d45454' align='left'>OPFOR</t><t color='#A1A4AD' align='left'> slots remaining: </t><t color='#FFFFFF' align='right'>%3</t><br/>
 					",ADF_clanName, _this select 0, _this select 1];
 			}
-		],"BIS_fnc_spawn", EAST, true, false] spawn BIS_fnc_MP;
+		] remoteExec ["BIS_fnc_spawn",EAST,false];	
 		sleep 8;
 		hintSilent "";
 	};
@@ -92,10 +92,10 @@ if ((typeOf player) IN ["B_recon_F","B_recon_LAT_F","B_recon_exp_F","B_recon_med
 	
 		waitUntil {time > 10};
 		
-		player setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+		player setObjectTextureGlobal [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
 		{
 			{			
-				_x setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+				_x setObjectTextureGlobal [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
 			} forEach units _x;
 		} forEach ADF_sorUnits;
 	};

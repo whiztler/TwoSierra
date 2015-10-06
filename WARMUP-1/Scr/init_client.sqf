@@ -7,9 +7,9 @@ player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br
 waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 
 [
-	["6 MAY 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
-	["PORTO REPUBLIC","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"],
-	["FOB GRENADA, WEST OF PORTO CITY","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
+	["04 APR 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
+	["REPUBLIC OF TAKISTAN","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"],
+	["FOB LYON, FERUZ ABAD","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
 _logTime = [dayTime] call BIS_fnc_timeToString;
@@ -22,7 +22,7 @@ player createDiaryRecord ["Two Sierra Log", [_logTimeText,"
 <font color='#6c7169'>WarmUp for a TWO SIERRA mission<br/><br/>	
 Train your (motorized) infantry skills<br/><br/>
 Test TWO SIERRA mission mods<br/><br/>
-Objective: Neutralize all OpFor<br/><br/>
+Objective: Clear OpFor AO's<br/><br/>
 JIP / Respawn enabled<br/><br/>
 Teleport to Leader at Flagpole<br/><br/>
 Vanilla loadout. Supplies in vehicles</font>
@@ -33,17 +33,8 @@ hint parseText"<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br
 <t color='#6C7169'>WarmUp for a<br/>TWO SIERRA mission</t><br/><br/>	
 <t color='#6C7169'>Train your (motorized)<br/>infantry skills</t><br/><br/>
 <t color='#6C7169'>Test mission mods</t><br/><br/>
-<t color='#6C7169'>Objective: Neutralize<br/>all OpFor</t><br/><br/>
+<t color='#6C7169'>Objective: Clear<br/>OpFor AO's</t><br/><br/>
 <t color='#6C7169'>JIP / Respawn enabled</t><br/><br/>
 <t color='#6C7169'>Teleport to Leader<br/>at Flagpole</t><br/><br/>
 <t color='#6C7169'>Vanilla loadout. Supplies<br/>in vehicles</t><br/><br/>	
 ";
-
-[] spawn {
-	waitUntil {sleep 30; ADF_endMission};
-
-	_l = ["tLayer"] call BIS_fnc_rscLayer; 
-	_l cutText ["", "BLACK", 20];
-	["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Two Sierra - WarmUp</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
-	['END1',true,22] call BIS_fnc_endMission;
-};

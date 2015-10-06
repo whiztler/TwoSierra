@@ -2,7 +2,7 @@ if (hasInterface) then {
 	["ACO","ACO","FIRESTONE: TWO SIERRA, message: new and additional intel re ALPHA grid:<br/><br/>1. MOTHER has confirmed 30+ ELVIS pax in and around ALPHA.<br/><br/>2. MOTHER is tracking 3 ELVIS victors around ALPHA. Out."] call ADF_fnc_MessageParser;
 };
 
-if (!ADF_HC_execute) exitWith {}; // Double check
+if (!isServer) exitWith {};
 
 _ADF_perfDiagStart = diag_tickTime;
 
@@ -27,36 +27,40 @@ for "_i" from 0 to 2 do {
 };
 
 // Random vehicle patrols
+private ["_alphaVehArray"];
 _alphaVehArray = ["mGuerVeh_1","mGuerVeh_2","mGuerVeh_3","mGuerVeh_4","mGuerVeh_5"];
 
 for "_i" from 1 to 2 do {
-	private ["_spawnPos","_spawnDir","_v","_mN","_m","_idx","_vX"];
-	_spawnPos = _alphaVehArray call BIS_fnc_selectRandom;
-	_idx =  _alphaVehArray find _spawnPos;
-	_alphaVehArray deleteAt _idx;
-	_spawnDir = markerDir _spawnPos;
+	private ["_spawnPos","_spawnDir","_c","_v","_vX","_idx"];
+	_spawnPos	= _alphaVehArray call BIS_fnc_selectRandom;
+	_idx 		= _alphaVehArray find _spawnPos;
+	_spawnDir	= markerDir _spawnPos;
+	_spawnPos	= getMarkerPos _spawnPos;
+	_alphaVehArray deleteAt _idx;	
 
 	_c = createGroup EAST;
-	_v = [getMarkerPos _spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
+	_v = [_spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 	_vX = _v select 0;
 	_vX setVariable ["BIS_enableRandomization", false];
 	[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
-	[_c, getMarkerPos _spawnPos, 1200, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+	[_c,_spawnPos, 1200, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
 
+private ["_alphaPaxPatrolhArray"];
 _alphaPaxPatrolhArray = ["mGuerPaxPatrol_1","mGuerPaxPatrol_2","mGuerPaxPatrol_3","mGuerPaxPatrol_4","mGuerPaxPatrol_5","mGuerPaxPatrol_6","mGuerPaxPatrol_7","mGuerPaxPatrol_8","mGuerPaxPatrol_9","mGuerPaxPatrol_10"];
 
 // Random foot patrols
 for "_i" from 0 to 3 do {
 	private ["_spawnPos","_mN","_m","_g","_idx"];
-	_spawnPos = _alphaPaxPatrolhArray call BIS_fnc_selectRandom;
-	_idx =  _alphaPaxPatrolhArray find _spawnPos;
+	_spawnPos	= _alphaPaxPatrolhArray call BIS_fnc_selectRandom;
+	_idx 		= _alphaPaxPatrolhArray find _spawnPos;
+	_spawnPos	= getMarkerPos _spawnPos;
 	_alphaPaxPatrolhArray deleteAt _idx;
 
-	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	[_g, getMarkerPos _spawnPos, 600, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+	[_g, _spawnPos, 600, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
 };
 
 // Bearclaw foot patrols
@@ -69,14 +73,22 @@ for "_i" from 1 to 3 do {
 
 // Defence groups
 for "_i" from 1 to 8 do {
-	private ["_g","_spawnPos"];
-	_spawnPos = format ["mGuerPaxDef_%1",_i];
-	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+	private ["_g","_spawnPos","_defArr"];
+	_spawnPos 	= format ["mGuerPaxDef_%1",_i];
+	_spawnPos	= getMarkerPos _spawnPos;
+	
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	[_g, getMarkerPos _spawnPos, 50, 2, true] call CBA_fnc_taskDefend;	
+	_defArr = [_g, _spawnPos, 100, 2, true];
+	_defArr call CBA_fnc_taskDefend;
+	_g setVariable ["ADF_HC_garrison_CBA",true];
+	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
 // Bearclaw Defence Team
 _g = [getPos objBearclaw, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 {[_x] call ADF_fnc_redressPashtun} forEach units _g;
-[_g, getPos objBearclaw, 10, 2, true] call CBA_fnc_taskDefend;
+_defArr = [_g, getPos objBearclaw, 10, 2, true];
+_defArr call CBA_fnc_taskDefend;
+_g setVariable ["ADF_HC_garrison_CBA",true];
+_g setVariable ["ADF_HC_garrisonArr",_defArr];

@@ -2,8 +2,6 @@ if (ADF_isHC) exitWith {};
 
 // Clients
 if (hasInterface) then {
-	{_x addEventHandler ["Killed",{[_this select 0] spawn ADF_fnc_CacheDestroyed}]	} forEach [cacheObj1,cacheObj2,cacheObj3,cacheObj4,cacheObj5,cacheObj6];
-
 	ADF_fnc_CacheDestroyed = {
 		ADF_cacheCnt = ADF_cacheCnt + 1;
 		if (ADF_cacheCnt == 1) exitWith {
@@ -55,6 +53,8 @@ if (hasInterface) then {
 // Server
 if (isServer) then {
 	_ADF_debug_testALL = false;
+	
+	{_x addEventHandler ["killed", {remoteExec ["ADF_fnc_CacheDestroyed", 0, true];}]} forEach [cacheObj1,cacheObj2,cacheObj3,cacheObj4,cacheObj5,cacheObj6];
 
 	{	
 		_x allowDamage false;
@@ -141,10 +141,5 @@ if (isServer) then {
 	
 	// End mission
 	waitUntil {sleep 30; ADF_cacheCount == 3};
-	// Create the trigger at Balota for end mission
-	tEndMission = createTrigger ["EmptyDetector", getMarkerPos "mFargo", true];
-	tEndMission setTriggerActivation ["WEST","PRESENT",false];
-	tEndMission setTriggerArea [150,75,30,true];
-	tEndMission setTriggerTimeout [0,0,0,false];
-	tEndMission setTriggerStatements ["{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;","[] spawn ADF_endMissionMsg",""];
+	ADF_endMission = true; publicVariable "ADF_endMission";
 };

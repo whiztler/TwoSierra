@@ -1,4 +1,4 @@
-if (!ADF_HC_execute) exitWith {};
+if (!isServer) exitWith {};
 
 params ["_cp"];
 

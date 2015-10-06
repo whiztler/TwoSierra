@@ -8,7 +8,7 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
 
 // Vars init
-ADF_endMission = false;
+ADF_SOD_zones = {};
 
 // Server Init
 if (isServer) then {
@@ -20,13 +20,7 @@ if (hasInterface) then {
 	#include "init_client.sqf"
 };
 
-// All Clients
-
-
-// Server/HC
-if (!ADF_HC_execute) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
-
-#include "init_AO.sqf" // Server/HC
+// All clients
 
 _diagTestEnd = diag_tickTime;
 diag_log format ["ADF RPT: Init - FINISHED Scr\init.sqf  [%1]",_diagTestStart - _diagTestEnd];

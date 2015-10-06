@@ -69,7 +69,7 @@ class Mission
 	randomSeed=14476792;
 	class Intel
 	{
-		briefingName="CO33 - Two Sierra Tour 2 / WarmUp";
+		briefingName="CO37 - Two Sierra Tour 2 / WarmUp";
 		overviewText="WarmUp, Testing & Training";
 		resistanceWest=0;
 		resistanceEast=1;
@@ -1003,11 +1003,11 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=117;
+		items=118;
 		class Item0
 		{
-			position[]={866.44006,304.29739,6998.6211};
-			azimut=48.60051;
+			position[]={877.31018,304.68552,6996.5791};
+			azimut=48.600498;
 			id=43;
 			side="EMPTY";
 			vehicle="Flag_NATO_F";
@@ -1804,14 +1804,14 @@ class Mission
 		class Item77
 		{
 			position[]={890.95093,304.39899,6978.6123};
-			azimut=756.54089;
+			azimut=756.54102;
 			offsetY=0.000106812;
 			id=120;
 			side="EMPTY";
 			vehicle="B_Slingload_01_Medevac_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false;this setVectorUp [0,0,1]";
+			init="this enableSimulationGlobal false;this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item78
 		{
@@ -2241,10 +2241,21 @@ class Mission
 			skill=0.60000002;
 			init="this allowDamage false; this enableSimulationGlobal false; this setObjectTexture [0, ""Img\sign_Russian_terr.paa""];";
 		};
+		class Item117
+		{
+			position[]={921.38647,305.07147,6971.8979};
+			azimut=-56.097923;
+			id=160;
+			side="EMPTY";
+			vehicle="B_Truck_01_medical_F";
+			lock="LOCKEDPLAYER";
+			skill=0.60000002;
+			init="this setObjectTextureGlobal [0, ""Img\cusTex_HEMTT_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_HEMTT_cover.jpg""]; this enableSimulationGlobal false;  if (isServer) then {this setVariable [""ace_medical_isMedicalVehicle"", true];};";
+		};
 	};
 	class Markers
 	{
-		items=122;
+		items=123;
 		class Item0
 		{
 			position[]={907.62366,301.01584,6930.8042};
@@ -2269,8 +2280,8 @@ class Mission
 		};
 		class Item2
 		{
-			position[]={899.66626,304.16254,6968.9023};
-			name="respawn_west";
+			position[]={928.19562,304.99344,6994.9072};
+			name="mKav";
 			text=" Kavango";
 			type="b_hq";
 			colorName="ColorWEST";
@@ -2365,6 +2376,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item12
 		{
@@ -2373,6 +2386,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item13
 		{
@@ -2381,6 +2396,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item14
 		{
@@ -2389,6 +2406,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item15
 		{
@@ -2397,6 +2416,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item16
 		{
@@ -2405,6 +2426,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item17
 		{
@@ -2421,6 +2444,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item19
 		{
@@ -2429,6 +2454,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item20
 		{
@@ -2437,6 +2464,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item21
 		{
@@ -2445,6 +2474,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item22
 		{
@@ -2453,6 +2484,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item23
 		{
@@ -2461,6 +2494,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item24
 		{
@@ -2469,6 +2504,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item25
 		{
@@ -2485,6 +2522,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 		};
 		class Item27
 		{
@@ -2493,6 +2532,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-39.5177;
 		};
 		class Item28
@@ -2502,6 +2543,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=15.2787;
 		};
 		class Item29
@@ -2511,6 +2554,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-39.5177;
 		};
 		class Item30
@@ -2520,6 +2565,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item31
 		{
@@ -2528,6 +2575,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item32
 		{
@@ -2536,6 +2585,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item33
 		{
@@ -2544,6 +2595,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item34
 		{
@@ -2552,6 +2605,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item35
 		{
@@ -2560,6 +2615,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item36
 		{
@@ -2568,6 +2625,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item37
 		{
@@ -2576,6 +2635,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item38
 		{
@@ -2584,6 +2645,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item39
 		{
@@ -2592,6 +2655,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item40
 		{
@@ -2600,6 +2665,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item41
 		{
@@ -2608,6 +2675,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item42
 		{
@@ -2616,6 +2685,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=52.487701;
 		};
 		class Item43
@@ -2625,6 +2696,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-43.393799;
 		};
 		class Item44
@@ -2634,6 +2707,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-131.922;
 		};
 		class Item45
@@ -2643,6 +2718,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-235.438;
 		};
 		class Item46
@@ -2652,6 +2729,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item47
 		{
@@ -2660,6 +2739,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item48
 		{
@@ -2668,6 +2749,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item49
 		{
@@ -2676,6 +2759,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item50
 		{
@@ -2684,6 +2769,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item51
 		{
@@ -2692,6 +2779,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item52
 		{
@@ -2700,6 +2789,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item53
 		{
@@ -2708,6 +2799,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item54
 		{
@@ -2716,6 +2809,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item55
 		{
@@ -2724,6 +2819,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item56
 		{
@@ -2732,6 +2829,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item57
 		{
@@ -2740,6 +2839,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item58
 		{
@@ -2748,6 +2849,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item59
 		{
@@ -2756,6 +2859,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-235.438;
 		};
 		class Item60
@@ -2765,6 +2870,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item61
 		{
@@ -2773,6 +2880,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-235.438;
 		};
 		class Item62
@@ -2782,6 +2891,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-176.689;
 		};
 		class Item63
@@ -2791,6 +2902,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-153.265;
 		};
 		class Item64
@@ -2800,6 +2913,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item65
 		{
@@ -2808,6 +2923,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item66
 		{
@@ -2816,6 +2933,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item67
 		{
@@ -2824,6 +2943,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item68
 		{
@@ -2832,6 +2953,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item69
 		{
@@ -2840,6 +2963,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item70
 		{
@@ -2848,6 +2973,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item71
 		{
@@ -2856,6 +2983,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item72
 		{
@@ -2864,6 +2993,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item73
 		{
@@ -2872,6 +3003,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item74
 		{
@@ -2880,6 +3013,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item75
 		{
@@ -2888,6 +3023,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item76
 		{
@@ -2896,6 +3033,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item77
 		{
@@ -2904,6 +3043,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-267.71899;
 		};
 		class Item78
@@ -2913,6 +3054,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-340.57999;
 		};
 		class Item79
@@ -2922,6 +3065,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-519.57599;
 		};
 		class Item80
@@ -2931,6 +3076,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-587.28998;
 		};
 		class Item81
@@ -2940,6 +3087,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item82
 		{
@@ -2948,6 +3097,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item83
 		{
@@ -2956,6 +3107,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item84
 		{
@@ -2964,6 +3117,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item85
 		{
@@ -2972,6 +3127,8 @@ class Mission
 			text="DEF";
 			type="Empty";
 			colorName="ColorRed";
+			a=0.5;
+			b=0.5;
 		};
 		class Item86
 		{
@@ -2980,6 +3137,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item87
 		{
@@ -2988,6 +3147,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item88
 		{
@@ -2996,6 +3157,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item89
 		{
@@ -3004,6 +3167,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item90
 		{
@@ -3012,6 +3177,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item91
 		{
@@ -3020,6 +3187,8 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
 		};
 		class Item92
 		{
@@ -3028,6 +3197,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-587.28998;
 		};
 		class Item93
@@ -3037,6 +3208,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-587.28998;
 		};
 		class Item94
@@ -3046,6 +3219,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-714.94702;
 		};
 		class Item95
@@ -3055,6 +3230,8 @@ class Mission
 			text="VEH";
 			type="Empty";
 			colorName="ColorCIV";
+			a=0.5;
+			b=0.5;
 			angle=-470.07599;
 		};
 		class Item96
@@ -3064,6 +3241,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item97
 		{
@@ -3072,6 +3251,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item98
 		{
@@ -3080,6 +3261,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item99
 		{
@@ -3088,6 +3271,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item100
 		{
@@ -3096,6 +3281,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item101
 		{
@@ -3104,6 +3291,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item102
 		{
@@ -3112,6 +3301,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item103
 		{
@@ -3120,6 +3311,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item104
 		{
@@ -3128,6 +3321,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item105
 		{
@@ -3136,6 +3331,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item106
 		{
@@ -3144,6 +3341,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item107
 		{
@@ -3152,6 +3351,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item108
 		{
@@ -3160,6 +3361,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item109
 		{
@@ -3168,6 +3371,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item110
 		{
@@ -3176,6 +3381,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item111
 		{
@@ -3184,6 +3391,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item112
 		{
@@ -3192,6 +3401,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item113
 		{
@@ -3200,6 +3411,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item114
 		{
@@ -3208,6 +3421,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item115
 		{
@@ -3216,6 +3431,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item116
 		{
@@ -3224,6 +3441,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item117
 		{
@@ -3232,6 +3451,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item118
 		{
@@ -3240,6 +3461,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item119
 		{
@@ -3248,6 +3471,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item120
 		{
@@ -3256,6 +3481,8 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
 		};
 		class Item121
 		{
@@ -3264,6 +3491,17 @@ class Mission
 			text="IED";
 			type="Empty";
 			colorName="ColorOrange";
+			a=0.5;
+			b=0.5;
+		};
+		class Item122
+		{
+			position[]={899.57056,304.1351,6968.6182};
+			name="respawn_west";
+			type="b_med";
+			colorName="ColorWEST";
+			a=0.69999999;
+			b=0.69999999;
 		};
 	};
 	class Sensors

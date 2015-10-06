@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Mission Config
 Author: Whiztler
@@ -34,7 +34,7 @@ _ADF_preset = "2SIERRA"; // pre-defined call sign/radio freq presets. [DEFAULT /
 /********** GEAR & LOADOUT **********/
 ADF_sameGearRespawn = true; // enable respawn with same gear (either ADF or ACE3)? [true/false]
 _ADF_customLoadout_MOD = true; // Are you using ADF loadout/gear or BIS Vanilla gear. Set to true for preset ADF gear (+ ACE, CTAB, Radios)? [true/false]
-_ADF_noLoadout = false; // Set to true if you use your own loadout script or loadout mod. [true/false]
+_ADF_noLoadout = true; // Set to true if you use your own loadout script or loadout mod. [true/false]
 _ADF_uniform_inf = "U_B_CombatUniform_mcam"; // Infantry. Use uniform class name. Crew, pilots etc keep their Vanilla uniform.
 _ADF_uniform_sor = "U_B_CombatUniform_mcam_vest"; // Recon. Use uniform class name.
 _ADF_add_NVGoggles = true; // add NV Goggles as default loadout [true/false].
@@ -141,6 +141,6 @@ _ADF_zeusEagle = true; // Enable the Zeus Eagle? False removes the eagle [true/f
 _ADF_altitude = false; // Enable altitude based fatigue (altitude mountain sickness)? True increases fatigue when > 1500 meter altitude [true/false].
 
 /********** ADF DEV BUILD SETTINGS **********/
-ADF_tpl_version = 1.41; // ADF version DO NOT EDIT
+ADF_tpl_version = 1.42; // ADF version DO NOT EDIT
 _ADF_devBuild = "Production"; // [Alpha/Beta/Production] DO NOT EDIT
 _ADF_devBuildNr = "02"; // Build number. DO NOT EDIT

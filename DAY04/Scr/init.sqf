@@ -4,14 +4,16 @@ diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/rem
 
 // PreComp
 call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
 
 // Vars init
-tBOPspawnPos		= getPos tBOPspawn;
-ADF_Fairlight		= false;
-ADF_endMission	= false;
-tBOPlive			= false;
+tBOPspawnPos			= getPos tBOPspawn;
+ADF_Fairlight			= false;
+ADF_endMission		= false;
+tBOPlive				= false;
+ADF_HC_spawn			= false;
+ADF_fnc_BOPactive 	= {};
+ADF_fnc_BOPreenforce 	= {};
+ADF_msg_endMission	= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: End Mission Trigger (FOB Johnson) activated";diag_log	"-----------------------------------------------------";};
 
 // Server Init
 if (isServer) then {
@@ -25,11 +27,6 @@ if (hasInterface) then {
 
 // All clients
 execVM "Scr\ADF_CAS.sqf";
-
-// Server/HC
-if (!ADF_HC_execute) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
-
-#include "init_AO.sqf" // Server/HC
 
 _diagTestEnd = diag_tickTime;
 diag_log format ["ADF RPT: Init - FINISHED Scr\init.sqf  [%1]",_diagTestStart - _diagTestEnd];

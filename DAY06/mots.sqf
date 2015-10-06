@@ -1,5 +1,5 @@
 // Mission Objective Test Script
-// DAY 5
+// DAY 6
 
 diag_log "ADF RPT: Debug - Mission Objective Test Script (MOTS) started";
 
@@ -12,7 +12,7 @@ waitUntil {ADF_missionInit};
 
 {_x allowDamage false} forEach ADF_mots_uArray;
 
-ADF_AO_initTime	= 60;
+ADF_AO_initTime	= 180;
 ADF_setCurTime	= ADF_AO_initTime - time;
 ADF_timeMin		= round (ADF_setCurTime / 60); publicVariable "ADF_timeMin";
 ADF_timeSec		= round (ADF_setCurTime - 4); uiSleep 2;  publicVariable "ADF_timeSec";
@@ -26,12 +26,25 @@ while {time < ADF_AO_initTime} do {
 
 [{systemChat "Starting MOTS process. Make sure you are NOT in a vehicle!"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
 
-[{systemChat "Teleporting to the objective in 5 seconds: MARY"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
-vObj1 allowDamage false; vObj1 setPos (oMary modelToWorldVisual [10, -10, 0]); sleep .5;
-{_x setCaptive false; _x setPos (oMary modelToWorldVisual [-.5, .5, 5])} forEach ADF_mots_uArray; uiSleep 2;
-(ADF_mots_uArray select 0) moveInDriver vObj1; sleep .5; (ADF_mots_uArray select 0) action ["getOut", vObj1];
-[{systemChat "AO mission process"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; sleep 2;
-{_x setCaptive true;} forEach ADF_mots_uArray; uiSleep 88;
+[{systemChat "Teleporting to the AO, just for scenery"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
+
+{_x setPos (getMarkerPos "mGuerPaxPatrol_2")} forEach ADF_mots_uArray; uiSleep 2;
+
+[{systemChat "Detonating first random cache"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; sleep 2;
+cacheObj1 setDamage 1;
+[{systemChat "Waiting for 'Cache destroyed' messages'"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 40;
+[{systemChat "Detonating second random cache"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; sleep 2;
+cacheObj2 setDamage 1;
+[{systemChat "Waiting for 'Cache destroyed' messages'"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 40;
+[{systemChat "Detonating third random cache"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; sleep 2;
+cacheObj3 setDamage 1;
+[{systemChat "Waiting for 'Cache destroyed' messages'"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 40;
+[{systemChat "Detonating fourth random cache"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; sleep 2;
+cacheObj4 setDamage 1;
+[{systemChat "Waiting for 'Cache destroyed' messages'"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 40;
+[{systemChat "Detonating filth random cache"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; sleep 2;
+cacheObj5 setDamage 1;
+[{systemChat "Waiting for 'Cache destroyed' messages'"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 40;
 
 [{systemChat "Teleporting back to BGOGOTA AB in 5 seconds"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
 {_x setCaptive false} forEach ADF_mots_uArray;

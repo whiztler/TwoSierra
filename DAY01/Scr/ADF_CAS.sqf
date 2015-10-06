@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.42 / SEPTEMBER 2015
 
 Script: CAS request with 9-liner
 Author: Whiztler
-Script version: 1.01
+Script version: 1.03
 
 Game type: n/a
 File: ADF_SOD_CAS.sqf
@@ -28,7 +28,7 @@ ADF_CAS_requester		= INF_PC; // the name of the unit that can request the CAS. U
 ADF_CAS_spawn			= getMarkerPos "mAirSupport"; // This is where the CAS aircraft will spawn. Place on edge of map.
 ADF_CAS_vector		= getMarkerPos "mAirSupportVector"; // Approach vector marker.
 ADF_CAS_delay			= round (180 + (random 60)); // Delay for the CAS to be created. Simulate that CAS aircraft needs to depart from a distant airbase.
-ADF_CAS_onSite		= round (20 + (random 30)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
+ADF_CAS_onSite		= round (60 + (random 60)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
 ADF_CAS_vehClass		= "B_Heli_Attack_01_F"; // classname of CAS aircraft
 ADF_CAS_callSign		= "RAPTOR"; // ingame Callsign of CAS aircraft
 ADF_CAS_pilotName		= "Lt. John (Garfield) McFarland"; // ingame name of the CAS pilot
@@ -84,7 +84,7 @@ ADF_fnc_CAS_Activated = {
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: TWO SIERRA</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>"+ ADF_CAS_callSign +" this is TWO SIERRA. Request "+ ADF_CAS_station +". How copy?</font><br/><br/>"]];
-	
+	/*
 	sleep 6;
 
 	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1: TWO SIERRA this is %2. Ready to copy.</t><br/><br/>",ADF_CAS_pilotName, ADF_CAS_callSign];
@@ -125,7 +125,7 @@ ADF_fnc_CAS_Activated = {
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: " +ADF_CAS_callSign+ "</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_callSign+ ": Go on " +ADF_CAS_station+ ". ETA "+ _ADF_CAS_delayMin +" Mikes.</font><br/><br/>"]];
 
 	sleep ADF_CAS_delay; // Time from map entrance it will take CAS to reach the AO
-
+*/
 	ADF_CAS_active = true; publicVariableServer "ADF_CAS_active"; // Inform the server to create the CAS vehicle
 	
 	waitUntil {sleep 3; ADF_CAS_bingoFuel}; // Wait till the CAS ao timer runs out
@@ -169,7 +169,10 @@ ADF_fnc_destroyVars = {
 	ADF_ACO_callSign		= nil;
 	ADF_CAS_aoTriggerRad	= nil;
 	ADF_CAS_vehClass		= nil;
-	true
+	if (!isServer) exitWith {};
+	diag_log	"-----------------------------------------------------";
+	diag_log "TWO SIERRA: CAS (server) terminated";
+	diag_log	"-----------------------------------------------------";
 };
 
 // Add the action to the unit that can request CAS
@@ -193,6 +196,10 @@ if (hasInterface) then {
 if (!isServer) exitWith {};
 
 waitUntil {ADF_CAS_marker}; // wait till the CAS request action was executed
+
+diag_log	"-----------------------------------------------------";
+diag_log "TWO SIERRA: CAS (server) activated";
+diag_log	"-----------------------------------------------------";
 
 // Create the CAS circle marker
 _m = createMarker ["mRaptorSAD", ADF_CAS_pos];
@@ -257,9 +264,13 @@ if (vCASkia) exitWith {call ADF_fnc_destroyVars;};
 
 // RTB Bingo Fuel
 deleteMarker "mRaptorSAD";
+{_x disableAI "FSM"} forEach units _c; // v1.03
 ADF_CAS_bingoFuel = true; publicVariable "ADF_CAS_bingoFuel";
 vCAS setFuel 0.3;
-vCAS flyInHeight 250;
+{_x enableAI "FSM"} forEach units _c; // v1.03
+vCAS flyInHeight 800;
+_c setCombatMode "BLUE"; // v1.03
+_c setBehaviour "SAFE"; // v1.03
 
 _wp = _c addWaypoint [ADF_CAS_vector, 0];
 _wp setWaypointType "MOVE";
@@ -273,6 +284,8 @@ _wp setWaypointType "MOVE";
 _wp setWaypointBehaviour "SAFE";
 _wp setWaypointSpeed "FULL";
 _wp setWaypointCombatMode "BLUE";
+
+//{_x disableAI "FSM"} forEach units _c; // v1.03
 waitUntil {if (vCASkia) exitWith {call ADF_fnc_destroyVars;};(currentWaypoint (_wp select 0)) > (_wp select 1)};
 
 // Delete Raptor and Raptor crew

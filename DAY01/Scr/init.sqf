@@ -4,14 +4,12 @@ diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/rem
 
 // PreComp
 call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 
 // Vars init
 CSAThostile 			= false;
 xRayDestroyed 		= false;
 bearclawRescued 		= false;
+if (ADF_isHC) then {ADF_fnc_xRayDestroyed = {}};
 
 // Server Init
 if (isServer) then {
@@ -27,11 +25,6 @@ if (hasInterface) then {
 // All Clients
 #include "bearclaw_all.sqf"
 execVM "Scr\ADF_CAS.sqf";
-
-
-// Server/HC
-if (!ADF_HC_execute) exitWith {}; // HC Autodetect. If no HC present execute on the Server.
-#include "init_AO.sqf" // Server/HC
 
 _diagTestEnd = diag_tickTime;
 diag_log format ["ADF RPT: Init - FINISHED Scr\init.sqf  [%1]",_diagTestStart - _diagTestEnd];

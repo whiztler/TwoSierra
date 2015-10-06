@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Mission Briefing
 Author: Whiztler
@@ -296,17 +296,58 @@ player createDiaryRecord ["2SOPORD",["Terrain & weather","<br/><br/>
 ///// CAMPAIGN
 player createDiarySubject ["2SCPGN","Two Sierra Campaign"];
 
+player createDiaryRecord ["2SCPGN",["Game Master/Commander Info","<br/><br/>
+<font size='18'>GAME MASTER/COMMANDER INFORMATION</font><br/><br/>
+<font color='#9DA698'>
+Game Masters/Commanders, please note the following:<br/><br/>
+01. All Two Sierra missions have pre-defined objectives.<br/>
+02. All communication (hints) is logged in the 'Two Sierra log'<br/>
+    which can be accessed from the map screen menu.<br/>
+03. Please pay attention to additional objective orders or end<br/>
+    mission information. Check the log frequently.<br/>
+04. All missions have been play tested. If you discover a bug,<br/>
+    please report the bug on the BIS forum or on GitHub. Contact<br/>
+    information can be found on 2sierra.com.<br/>
+05. Usage of 1 or more headless clients is recommended for smooth<br/>
+    game play. AI's are automatically distributed across multiple<br/>
+    headless clients for optimal performance.<br/>
+    Note that AI's are spawned on the server. The load balancer kicks<br/>
+    in after 120 seconds after mission start.<br/>
+05. Most missions are time-sensitive. Command will be informed in<br/>
+    case they run out of time (2-3 hours, depending on the<br/>
+    mission).<br/>
+06. All player roles are equipped with pre-defined role loadout.<br/>
+    Additional gear and supplies can be found in the vehicles.<br/>
+07. If you play with ACE3 enabled, please note that Two Sierra<br/>
+    missions have advanced ballistics and advanced medical<br/>
+    settings enabled by default.<br/>
+08. Most missions offer CAS support. CAS can be called in by the<br/>
+    platoon commander using the action menu.<br/>
+09. Two Sierra has a pre-configured platoon radio net.<br/>
+    Settings/frequencies can be found under 'Two Sierra Roster'<br/>
+    in the map screen menu	
+<br/><br/>
+<font size='14' color='#d7dbd5'>FEEDBACK</font><br/>
+I would love to hear feedback about your game night. If you have a YouTube cam recording or screen shots, please let me know. I'll post them on the 2sierra.com website.<br/><br/>
+Contact details and links can be found on 2sierra.com.<br/><br/>
+I hope your community/clan have as much fun playing the missions as I had making them!<br/><br/>
+-Whiz
+</font><br/><br/>"]];
+
+player createDiarySubject ["2SCPGN","Two Sierra Campaign"];
+
 player createDiaryRecord ["2SCPGN",["Mission Testing","<br/><br/>
 <font size='18'>MISSION TESTING</font><br/><br/>
 
 <font color='#9DA698'>
 Each mission has its own 'Mission Objectives Test Script' to test mission critical triggers and exfil. The script works in a dedicated server environment and can be evoked by a server admin (or anyone who has server admin access).<br/><br/>
-1.	Make sure you are logged in as server admin<br/>
-2.	Hit the escape key to bring up the 'debug console';<br/>
-3.	in the execute window enter: null = execVM 'mots.sqf';<br/>
-4.	Click on GLOBAL EXEC (or LOCAL EXEC if testing in mission editor).<br/>
-5.	Follow instructions as presented on screen in-game.
-
+1. Make sure you are logged in as server admin<br/>
+2. Hit the escape key to bring up the 'debug console';<br/>
+3. In the execute window enter: null = execVM 'mots.sqf';<br/>
+4. Click on SERVER EXEC (or LOCAL EXEC if you are testing<br/>
+   in the mission editor);<br/>
+5. Follow instructions as presented on screen in-game.<br/><br/>
+Please note that when testing from within the ARMA III editor, the mission load time is longer as the client (player) and the server are considered the same.
 </font><br/><br/>"]];
 
 player createDiaryRecord ["2SCPGN",["Server information","<br/><br/>
@@ -323,11 +364,11 @@ Two Sierra missions have been tested (to work with) with the optional AI behavio
 
 <font size='14' color='#d7dbd5'>SERVER SETTINGS</font><br/>
 <font color='#9DA698'>
-Recommend server settings for optimal gameplay:<br/><br/>
+Recommend server settings for optimal game play:<br/><br/>
 Difficulty: Expert.<br/>
 Style: COOP.<br/>
-Slots: 33 (30 players + 3 optional Headless Client).<br/>
-Duration: 2-3 hours depending on style of gameplay.
+Slots: 37 (30 + 4 players + 3 optional Headless Client).<br/>
+Duration: 2-3 hours depending on style of game play.
 </font><br/><br/>"]];
 
 player createDiaryRecord ["2SCPGN",["Client Information","<br/><br/>
@@ -339,9 +380,9 @@ The Two Sierra campaign requires the following Add-Ons:<br/><br/>
 - Community Based Addons ARMA 3 (CBA_A3)<br/>
 - All in ARMA Terrain Pack (AIATP)<br/><br/>
 <font size='14' color='#d7dbd5'>RECOMMENDED ADD-ONS</font><br/>
-To enhance gameplay, the following client add-ons are recommended:<br/><br/>
+To enhance game play, the following client add-ons are recommended:<br/><br/>
 - Advanced Combat Radio Environment (ACRE 2) -or-<br/>
-  Taskforce Arrowhead Radio (TFAR)<br/>
+  TaskForce Arrowhead Radio (TFAR)<br/>
 - Commanders Tablet (cTAB)<br/>
 - Advanced Combat Environment 3 (ACE3). 
 <br/><br/></font>
@@ -366,17 +407,19 @@ player createDiaryRecord ["2SCPGN",["Background","<br/><br/>
 <font size='18'>BACKGROUND</font><br/><br/>
 
 <font color='#9DA698'>
-Two Sierra Tour 2 | Chernarus, June 2019. Since CSAT Russia annexed the Lopatino district in 2014 a local insurgency faction emerged and declared the Sobor region as independent. Aptly naming it Soborisk. The Soborian Separatists quickly gained ground with the unofficial support of CSAT Russia. Over the years several attempts have been made to solve the crisis, but neither Chernarussian Government nor the Soborian separatists were willing to give in. Now, nearly 4 years later, CSAT Russia has issued an ultimatum to the Chernarussian Government: recognize Soborisk as an independent state. All diplomatic solutions seem to have been exhausted.<br /><br /> 
-Two Sierra is relieving Third Platoon who has been training Chernarussian Armed Forces (CAF) and assisting with humanitarian operations. NRF forces are considered neutral. NATO does not have a mandate to get involved in the escalation between Soborian Separatists and CAF. That said, last week a patrol from Third Platoon got engaged by presumably Soborian Separatists. And two weeks ago a HEMTT from 2ND SPT GRP was taken out by an IED. On both occasions, vehicles were clearly marked as NRF vehicles.<br />
-Things are heating up and the world is watching.
+Two Sierra Tour 1 | Takistan, May 2019. On 11 February 2019 the Taliban ceased to exist after a coalition forces UAV successfully targeted and killed the entire Taliban leadership council. The majority of Taliban fighters joined The Pashtun within the following weeks.
 <br/><br/></font>
 
-<font size='14' color='#d7dbd5'>SOBORIAN SEPARATISTS</font><br/>
+<font size='14' color='#d7dbd5'>THE PASHTUN</font><br/>
 
 <font color='#9DA698'>
-In April 2014, pro-Russian activists seized control of government buildings in towns and cities across the Sobor region. The events were a repeat of what had happened in the Lopatino region. .<br /><br />
-Gunmen there seized government buildings in February 2014 and raised the Russian flag a week after elected President Boris Yanukotav, friendly to Moscow, fled during massive pro-EU street protests in Novigrad. An early attempt by nationalists to remove the status of Russian as a second language alarmed many Russian speakers, and officials in Moscow portrayed the new leaders in Novigrad as NATO-backed Chernarussian nationalists bent on violating minority rights. A flawed referendum on joining Russia was quickly held in Lopatino and within a month the region's annexation was complete. .<br /><br />
-There was little bloodshed in Lopatino, but Chernarus' fledgling revolutionary government was in no position to fight back, with only 6,000 troops reportedly ready for combat. However, when pro-Russian separatists made a move on Chernarus' industrial east and Russian forces appeared to be building up on the borders, the authorities in Novigrad ordered an 'anti-terrorist operation'. The start of a conflict that has dragged on for nearly 5 years.
+The Pashtun are a race of warriors who originate from Afghanistan, Takistan and Pakistan. The Pashtun consists of about sixty tribes, each with its own territory.<br/><br/>
+
+The Pashtun has rapidly been expanding its foothold in Asia and the Middle East after the fall of the Taliban, and previously the fall of IS and other factions. The Pashtun are well funded, moderately well organized and very ambitious. Little is known about their goals as they keep a low public relations profile. Intelligence agencies are busy mapping the Pashtun organization. So far reliable intelligence is scares at best.<br/><br/>
+
+CSAT has on several occasions tried to open diplomatic channels. Up till now the Pashtun and CSAT are maintaining neutral relations. Allied Command Operations (ACO) is monitoring the CSAT/Pashtun situation closely.<br/><br/>
+Currently The Pashtun are moderately armed with mostly small arms and 2nd generation RPG’s. The BBC reported last week that The Pashtun are in progress of purchasing Iranian-made APC’s and M-ATV’s.  
+
 </font><br/><br/>
 "]];
 
@@ -386,18 +429,23 @@ player createDiaryRecord ["2SCPGN",["About TWO SIERRA Campaign","<br/><br/>
 <font size='14' color='#d7dbd5'>DESCRIPTION</font><br/>
 
 <font color='#9DA698'>
-Two Sierra is a CO-33 multiplayer (30 player slots) NRF infantry campaign for MilSim communities. Three tours with each tour consisting of 4 challenging missions and a warm-up mission.
+Two Sierra is a CO-37 multiplayer (30 + 4 player slots) NRF infantry campaign for MilSim communities. Three tours with each tour consisting of 4 challenging missions and a warm-up mission.
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>FEATURES</font><br/>
 
 <font color='#9DA698'>
-- 8 missions offering challenging and immersive gameplay in a lively<br/>
-  area of operations;<br/>
-- 2 Warm-up Missions for warming up, mod-line testing and general<br/>
+- 30 Player slots + 4 JIP Support Slots + 3 (optional) headless<br/>
+  clients.<br/>
+- 4 missions per tour, offering challenging and immersive game play<br/>
+  in a lively area of operations;<br/>
+- Warm-up Missions for warming up, mod-line testing and general<br/>
   training;<br/>
 - Detailed OPORD’s (in-game and PDF/TXT for forum briefings);<br/>
-- Optimized for dedicated server play;<br/>
+- Join in Progress (JIP) supported.;<br/>
+- No respawn;<br/>
+- Optimized for dedicated server play with up to 3 headless clients<br/>
+  with load balancing;<br/>
 - Challenging opponents;<br/>
 - Automatic detection of ACRE2, TFAR, cTab and ACE3 add-ons.
 </font><br/><br/>

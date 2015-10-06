@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.42 / SEPTEMBER 2015
 
 Script: CAS request with 9-liner
 Author: Whiztler
-Script version: 1.01
+Script version: 1.03
 
 Game type: n/a
 File: ADF_SOD_CAS.sqf
@@ -28,7 +28,7 @@ ADF_CAS_requester		= INF_PC; // the name of the unit that can request the CAS. U
 ADF_CAS_spawn			= getMarkerPos "mAirSupport"; // This is where the CAS aircraft will spawn. Place on edge of map.
 ADF_CAS_vector		= getMarkerPos "mAirSupportVector"; // Approach vector marker.
 ADF_CAS_delay			= round (320 + (random 60)); // Delay for the CAS to be created. Simulate that CAS aircraft needs to depart from a distant airbase.
-ADF_CAS_onSite		= round (25 + (random 30)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
+ADF_CAS_onSite		= round (60 + (random 60)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
 ADF_CAS_vehClass		= "B_Heli_Attack_01_F"; // classname of CAS aircraft
 ADF_CAS_callSign		= "AARDVARK"; // ingame Callsign of CAS aircraft
 ADF_CAS_pilotName		= "Lt. Mike (Weasel) Tillman"; // ingame name of the CAS pilot
@@ -169,7 +169,11 @@ ADF_fnc_destroyVars = {
 	ADF_ACO_callSign		= nil;
 	ADF_CAS_aoTriggerRad	= nil;
 	ADF_CAS_vehClass		= nil;
-	true
+	if (!isServer) exitWith {};
+	if (!isServer) exitWith {};
+	diag_log	"-----------------------------------------------------";
+	diag_log "TWO SIERRA: CAS (server) terminated";
+	diag_log	"-----------------------------------------------------";
 };
 
 // Add the action to the unit that can request CAS
@@ -193,6 +197,10 @@ if (hasInterface) then {
 if (!isServer) exitWith {};
 
 waitUntil {ADF_CAS_marker}; // wait till the CAS request action was executed
+
+diag_log	"-----------------------------------------------------";
+diag_log "TWO SIERRA: CAS (server) activated";
+diag_log	"-----------------------------------------------------";
 
 // Create the CAS circle marker
 _m = createMarker ["mRaptorSAD", ADF_CAS_pos];
@@ -257,9 +265,13 @@ if (vCASkia) exitWith {call ADF_fnc_destroyVars;};
 
 // RTB Bingo Fuel
 deleteMarker "mRaptorSAD";
+{_x disableAI "FSM"} forEach units _c; // v1.03
 ADF_CAS_bingoFuel = true; publicVariable "ADF_CAS_bingoFuel";
 vCAS setFuel 0.3;
-vCAS flyInHeight 250;
+{_x enableAI "FSM"} forEach units _c; // v1.03
+vCAS flyInHeight 800;
+_c setCombatMode "BLUE"; // v1.03
+_c setBehaviour "SAFE"; // v1.03
 
 _wp = _c addWaypoint [ADF_CAS_vector, 0];
 _wp setWaypointType "MOVE";

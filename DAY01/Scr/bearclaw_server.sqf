@@ -30,6 +30,8 @@ objBearclaw enableSimulationGlobal false;
 // Move Obj trigger to captive position
 tObjBearclaw setPos (getPos objBearclaw);
 
+objBearclaw addEventHandler ["killed", {remoteExec ["ADF_TS_bearclawKilled",0,true];}];
+
 if (ADF_debug) then {
 	_m = createMarker ["mBearClawPos", getPos objBearclaw];
 	_m setMarkerSize [1, 1];

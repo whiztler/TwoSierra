@@ -55,9 +55,28 @@ _ADF_bopCreate = {
 	tBOPdetect setTriggerTimeout [0,0,0,false];
 	tBOPdetect setTriggerStatements [
 		"this",
-		"tBOPlive = true; publicVariableServer 'tBOPlive'; 0 = [tBOPdetect,independent,500] execVM 'Core\ADF_DetectSensor.sqf'; if (ADF_HC_execute) then {[] call ADF_fnc_BOPreenforce}; 0 = execVM 'Scr\MSG_BOPlive.sqf';",
+		"tBOPlive = true;
+		 publicVariable 'tBOPlive';
+		 0 = [tBOPdetect,independent,500] execVM 'Core\ADF_DetectSensor.sqf';
+		 0 = execVM 'Scr\SOD_BOPlive.sqf';
+		",
 		""
 	];
+	
+	if (ADF_debug) then {
+		_m = createMarker ["tBOPdetectMarker", getPos tBOPdetect];
+		_m setMarkerShape "ICON";
+		_m setMarkerType "mil_dot";
+		_m setMarkerColor "ColorBlack";
+		_m setMarkerText "tBOPdetect Trigger 500 x 500";
+		
+		_m = createMarker ["tBOPdetectMarkerBorder", getPos tBOPdetect];
+		_m setMarkerShape "ELLIPSE";
+		_m setMarkerType "EMPTY";
+		_m setMarkerSize [500,500];
+		_m setMarkerColor "ColorBlack";
+		_m setMarkerBrush "Border";
+	};
 	
 	// (re)Apply Texture to trucks
 	_vReTexArr = ["I_Truck_02_transport_F","I_Truck_02_ammo_F","I_Truck_02_box_F","I_Truck_02_fuel_F","I_Truck_02_Repair_F"];
@@ -104,13 +123,13 @@ if (ADF_bopLoc == "mOpForBOO_7") then {[_ADF_comp_BOP7] call _ADF_bopCreate};
 
 // Win mission criteria
 _opforCntBOP = 50; // pax/crews spawned at BOP (incl reinforcement)
-_opforCntWin = 5;
+_opforCntWin = 10;
 
 // Wait till Blufor is close (1500m) to the BOP
 waitUntil {
 	sleep 10;
-	if (time > 10800) exitWith {ADF_Fairlight = true; publicVariable "ADF_Fairlight"}; // set fairlight to TRUE
-	if (ADF_endMission) exitWith {};
+	if (time > 10800) exitWith {ADF_Fairlight = true; publicVariable "ADF_Fairlight"}; // set fairlight to TRUE if time > 3 hours
+	if (ADF_endMission) exitWith {}; // End mission already started
 	tBOPlive
 };
 
@@ -124,15 +143,8 @@ waitUntil {
 	_cnt = {(side _x == INDEPENDENT) && (alive _x) && (_x in _vBOPpaxQue)} count allUnits;
 	if (ADF_debug) then {systemChat format ["TWO SIERRA debug: BOP opfor remaining: %1",_cnt];};
 	if (time > 10800) exitWith {ADF_Fairlight = true; publicVariable "ADF_Fairlight"};  // set fairlight to TRUE
-	_cnt <= _opforCntWin
+	_cnt < _opforCntWin
 };
-
-// Create the end mission trigger at FOB Johnson
-tEndMission = createTrigger ["EmptyDetector", getMarkerPos "mJohnson", true];
-tEndMission setTriggerActivation ["WEST","PRESENT",false];
-tEndMission setTriggerArea [75,50,143,true];
-tEndMission setTriggerTimeout [0,0,0,false];
-tEndMission setTriggerStatements ["{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;","",""];
 
 diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: End Mission process started";
