@@ -58,14 +58,33 @@ if (didJIP) exitWith {};
 waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 
 [
-	["19 JUN 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
+	["21 JUN 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
 	["CHERNARUS","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"],
 	["FOB KEARNEY","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
 ["2S","","FAIRCHILD this is TWO SIERRA. We're OSCAR MIKE."] call ADF_fnc_MessageParser; sleep 12;
-["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. MOTHER wants you to raise the NRF flag at both DIANA and NOLA. Approach the flag pole to raise the flag and make MOTHER proud.<br /><br />Good luck TWO Sierra. out."] call ADF_fnc_MessageParser; 
+["ACO","ACO","FAIRCHILD: Copy TWO SIERRA.<br/><br/>Your orders are to seize and secure both DIANA and NOLA.<br/>MOTHER wants you to raise the NRF flag at both DIANA and NOLA. Approach the flag pole to raise the flag and make MOTHER proud.<br /><br />CAS will be available once both AA batteries have been taken out.<br /><br />Good luck TWO Sierra. out."] call ADF_fnc_MessageParser; 
 
+ADF_msg_AA1 = {
+	["2S","","FAIRCHILD this is TWO SIERRA. AA battery at JANE neutralized. How copy?"] call ADF_fnc_MessageParser; sleep 7;
+	if (ADF_CAS_activate) then {
+		execVM "Scr\ADF_CAS.sqf";
+		["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. Good job. CAS is on station. Out"] call ADF_fnc_MessageParser;
+	} else {
+		["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. Good work. Out."] call ADF_fnc_MessageParser;
+	};
+};
+
+ADF_msg_AA2 = {
+	["2S","","FAIRCHILD this is TWO SIERRA. AA battery at PATTY destroyed. How copy?"] call ADF_fnc_MessageParser; sleep 7;
+	if (ADF_CAS_activate) then {
+		execVM "Scr\ADF_CAS.sqf";
+		["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. Good job. CAS is on station. Out"] call ADF_fnc_MessageParser;
+	} else {
+		["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. PATTY cleared. Good work. Out."] call ADF_fnc_MessageParser;
+	};
+};
 
 
 	

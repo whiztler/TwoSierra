@@ -2,14 +2,15 @@ diag_log "ADF RPT: Init - executing init_server.sqf"; // Reporting. Do NOT edit/
 
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_defendArea.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_footPatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Rebels.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Russians.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Cherno.sqf";
-///call compile preprocessFileLineNumbers "Core\F\ADF_fnc_sensor.sqf";
 
 // Add EH's to medical vehicles
 vObj1 addEventHandler ["killed", {remoteExec ["ADF_Everest1", 0, true]}];
@@ -47,7 +48,7 @@ NRF_grp_3 setGroupIdGlobal ["5-1 CHARLIE"];
 {_x enableSimulationGlobal false} forEach units NRF_grp_3;
 {{[_x] call ADF_fnc_redressNRF;} forEach units _x} forEach [NRF_grp_1,NRF_grp_2,NRF_grp_3];
 
-{[_x, position leader _x, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [1,2,3]] call CBA_fnc_taskPatrol;} forEach [NRF_grp_1,NRF_grp_2];
+{[_x, position leader _x, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;} forEach [NRF_grp_1,NRF_grp_2];
 
 sleep .5;
 {{_x setObjectTextureGlobal [0, "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa"];} forEach units _x} forEach [NRF_grp_1,NRF_grp_2,NRF_grp_3];
@@ -140,13 +141,12 @@ ADF_wpPosRdm = {
 		vAirbus = _v select 0;
 		vAirbus setObjectTextureGlobal [0, "Img\cusTex_NRFcamo.jpg"]; vAirbus setObjectTextureGlobal [1, "Img\cusTex_NRFcamo.jpg"];
 		vAirbus allowDamage false;
+		vAirbus flyInHeight 500;
 		{_x unassignItem "NVGoggles"; _x removeItem "NVGoggles"; _x enableGunlights "forceOn";} forEach units _c;
 		vAirbus flyInHeight 75;
 		_wpPad = [oAirbusPad_1,oAirbusPad_2,oAirbusPad_3,oAirbusPad_4] call BIS_fnc_selectRandom;
 		_wp = _c addWaypoint [getPos _wpPad, 0];
-		_wp setWaypointType "MOVE";
-		_wp setWaypointBehaviour "SAFE";
-		_wp setWaypointSpeed "NORMAL";
+		_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "GREEN";
 		_wp setWaypointStatements ["true", "vAirbus land 'LAND';"];	
 		waitUntil {(currentWaypoint (_wp select 0)) > (_wp select 1)};
 		waitUntil {isTouchingGround vAirbus};
@@ -158,9 +158,7 @@ ADF_wpPosRdm = {
 		vAirbus setFuel 1;
 		{vAirbus animateDoor [_x, 0];} forEach ["door_L_source","door_R_source","Door_rear_source"];
 		_wp = _c addWaypoint [getMarkerPos _exitPos, 0];
-		_wp setWaypointType "MOVE";
-		_wp setWaypointBehaviour "SAFE";
-		_wp setWaypointSpeed "NORMAL";
+		_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL";  _wp setWaypointCombatMode "GREEN";
 		waitUntil {(currentWaypoint (_wp select 0)) > (_wp select 1)};
 		sleep 2;
 		if !(isNil "vAirbus") then {{deleteVehicle _x} forEach (crew vAirbus); deleteVehicle vAirbus; vAirbus = nil};
@@ -173,20 +171,18 @@ ADF_wpPosRdm = {
 	while {alive vGunship} do {
 		private ["_c","_wp","_wpPos","_pausePad","_wpPad"];	
 		_c = createGroup WEST;
-		_p = _c createUnit ["B_helipilot_F", getMarkerPos "mLMAB",[],0,"LIEUTENANT"]; _p moveInDriver vGunship;
-		_p = _c createUnit ["B_helipilot_F", getMarkerPos "mLMAB",[],0,"LIEUTENANT"]; _p moveInGunner vGunship;
+		_p = _c createUnit ["B_helipilot_F", getMarkerPos "mFargo",[],0,"LIEUTENANT"]; _p moveInDriver vGunship;
+		_p = _c createUnit ["B_helipilot_F", getMarkerPos "mFargo",[],0,"LIEUTENANT"]; _p moveInGunner vGunship;
 		_c setGroupIdGlobal ["6-6 PHANTOM"];
-		vGunship flyInHeight 50;
+		vGunship flyInHeight 20;
 		_wpPos = call ADF_wpPosRdm;
 		_wp = _c addWaypoint [getMarkerPos _wpPos, 0];
-		_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL";
+		_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "GREEN";
 		_wpPos = call ADF_wpPosRdm;
 		_wp = _c addWaypoint [getMarkerPos _wpPos, 0]; _wp setWaypointType "MOVE";
 		_wpPad = [oGunshipPad_1,oGunshipPad_2,oGunshipPad_3] call BIS_fnc_selectRandom;
 		_wp = _c addWaypoint [getPos _wpPad, 0];
-		_wp setWaypointType "MOVE";
-		_wp setWaypointBehaviour "SAFE";
-		_wp setWaypointSpeed "NORMAL";
+		_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "GREEN";
 		_wp setWaypointStatements ["true", "vGunship land 'LAND';"];		
 		waitUntil {(currentWaypoint (_wp select 0)) > (_wp select 1)};
 		waitUntil {isTouchingGround vGunship};
@@ -246,9 +242,9 @@ for "_i" from 1 to 11 do {
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 	
-	_defArr = [_g, _spawnPos, 100, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
+	_defArr = [_g, _spawnPos, 150, 2, true];
+	_defArr call ADF_fnc_defendArea;
+	_g setVariable ["ADF_HC_garrison_ADF",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
@@ -261,9 +257,9 @@ for "_i" from 20 to 23 do {
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 
-	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
+	_defArr = [_g, _spawnPos, 250, 2, true];
+	_defArr call ADF_fnc_defendArea;
+	_g setVariable ["ADF_HC_garrison_ADF",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];	
 };
 
@@ -276,7 +272,7 @@ for "_i" from 1 to 5 do {
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 
-	[_g, _spawnPos, 1500, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+	[_g, _spawnPos, 1500, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 // Russian Lopatino patrols
@@ -287,8 +283,8 @@ for "_i" from 1 to 3 do {
 	
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRussian} forEach units _g;
-	
-	[_g, _spawnPos, 350, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+
+	[_g, _spawnPos, 350, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 ADF_t_Lapotino = {
@@ -299,8 +295,8 @@ ADF_t_Lapotino = {
 	_p = _c createUnit ["O_Pilot_F", _spawnPos, [], 0, "MAJOR"]; _p moveInDriver oRusAttackHeli;
 	_p = _c createUnit ["O_Pilot_F", _spawnPos, [], 0, "CORPORAL"]; _p moveInGunner oRusAttackHeli;
 	{[_x] call ADF_fnc_redressRussian} forEach units _c;
-	
-	[_c, getMarkerPos "mRusPatrol_2", 2500, 4, "MOVE", "COMBAT", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+
+	[_c, getMarkerPos "mRusPatrol_2", 2500, 4, "MOVE", "COMBAT", "RED", "LIMITED", "FILE", 100] call ADF_fnc_footPatrol;
 };
 
 // Count spawned units

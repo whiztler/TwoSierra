@@ -26,5 +26,10 @@ if (hasInterface) then {
 	#include "init_client.sqf"
 };
 
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
+};
+
 _diagTestEnd = diag_tickTime;
 diag_log format ["ADF RPT: Init - FINISHED Scr\init.sqf  [%1]",_diagTestStart - _diagTestEnd];

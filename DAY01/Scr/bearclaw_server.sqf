@@ -25,7 +25,7 @@ gBearclaw setBehaviour "CARELESS";
 objBearclaw allowDamage false;
 objBearclaw setPos (getMarkerPos _bearclawLoc);
 objBearclaw setDir _bearclawDir;
-objBearclaw enableSimulationGlobal false;
+objBearclaw disableAI "MOVE";
 
 // Move Obj trigger to captive position
 tObjBearclaw setPos (getPos objBearclaw);
@@ -47,10 +47,11 @@ diag_log "TWO SIERRA: BEARCLAW spawned and set";
 diag_log	"-----------------------------------------------------";
 
 waitUntil {sleep 3; BearclawRescued};
-objBearclaw enableSimulationGlobal true;
-objBearclaw SetUnitPos "up";
+objBearclaw enableAI "MOVE";
 objBearclaw disableAI "FSM";
+objBearclaw SetUnitPos "up";
 objBearclaw allowDamage true;
+objBearclaw allowFleeing 0;
 
 {deleteMarker _x} forEach ["mSector_Alpha","mSector_AlphaTxt","mSector_Bravo","mSector_bravoTxt"];
 

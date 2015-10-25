@@ -24,6 +24,11 @@ if (hasInterface) then {
 	#include "init_client.sqf"
 };
 
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
+};
+
 // All Clients
 execVM "Scr\ADF_CAS.sqf";
 

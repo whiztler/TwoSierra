@@ -65,31 +65,34 @@ player createDiaryRecord ["2SOPORD",["Call Signs","<br/><br/>
 <font size='18'>CALL SINGS</font><br/><br/>
 
 <font color='#9DA698'>
-ACO	- FAIRCHILD<br/>
-CAS	- RAVEN<br/>
+ACO - FAIRCHILD<br/>
+CAS - LANCER<br/>
 SatNav AJR - ACE<br/>
 VJTF 5 BAT TOC - MOTHER<br/>
 NRF 2 SPT GRP - UNCLE<br/>
-Chernarussian Armed Forces - DONALD<br/><br/>
+Chern. Armed Forces - DONALD<br/><br/>
 
 BALOTA AB - FARGO<br/>
-Ammo Cache - BULLDOG<br/>
-Search Grid - NOVEMBER<br/><br/>
+FOB Kearney - KEARNEY<br/>
+Disha AB - NOLA<br/>
+Klen Hill stronghold - DIANA<br/>
+Black Mountain AA-site - JANE<br/>
+Olsha AA-site - PATTY<br/><br/>
 
-Soborian Separatists - KUJO<br/>
+Soborian Separatists - YURI<br/>
 CSAT Russian Forces - BORIS
 
 </font><br/><br/><font size='14' color='#d7dbd5'>NOTAF</font><br/>
 
 <font color='#9DA698'>
 VEGAS - Primary MSR<br/>
-YORK - Secondary MSR
+ATHENS - Secondary MSR
 
 <br/><br/></font><font size='14' color='#d7dbd5'>CHALLENGES</font><br/>
 
 <font color='#9DA698'>
-Challenge: TRUMP<br/>
-Password: BUSH
+Challenge: SEASIDE<br/>
+Password: PARADISE
 </font><br/><br/>
 "]];
 
@@ -97,9 +100,10 @@ Password: BUSH
 player createDiaryRecord ["2SOPORD",["Notes","<br/><br/>
 <font size='18'>NOTES</font><br/><br/>
 <font color='#9DA698'>
-Soborian Separatists have launched blitz attacks in combination with artillery barrages on cities in the green zone. Last nights’ barrages caused hundreds of civilian casualties. Widespread coverage on global media resulted in NATO finally getting a mandate to assist CAF (DONALD) with the security of Eastern Chernarus. Time to get some real work done! <br /><br />
-MOTHER believes that the Soborian Separatists are trying to break through to Solnichniy and create a corridor that divides the green CAF zone. This will result in Disha AB being cut-off by road.<br />
-The Soborian Separatists are being supplied from various cache locations north of Balota AB. Finding and destroying these weapons and ammunition caches will slow down the Soborian Separatists advance and will give CAF time to regroup.
+It seems that ACE was wrong about the Soborian Separatists (YURI) trying to break through to Solnichniy and create a corridor that divides the green CAF zone. Yesterday morning, YURI launched an all-out assault on Disha AB (NOLA) and managed to seize the entire North East Chernarus. CAF (DONALD) was forced to vacate the area.<br/><br/>
+MOTHER believes that BORIS assisted in the assault. ACE confirmed two AA-batteries at two strategic locations, JANE and PATTY. CAS will not be possible unless JANE and PATTY are neutralized.<br/><br/>
+MOTHER wants Nola back under NATO control before YURI gets comfortable and is able to bring in supplies and more troops. There is also concern that BORIS will annex the entire region.<br/><br/>
+First and Third platoon are to assault and secure YORK and OLAV. Second platoon is to assault and secure NOLA and DIANA.
 </font><br/><br/>
 "]];
 
@@ -131,7 +135,7 @@ player createDiaryRecord ["2SOPORD",["Service & Support","<br/><br/>
 <font size='14' color='#d7dbd5'>SUPPLY</font><br/>
 
 <font color='#9DA698'>
-SOPs in effect for sustainment operations. CCPs to be established on-site. MediVac available at FARGO.<br/><br/>
+SOPs in effect for sustainment operations. CCPs to be established on-site. MediVac available at KEARNEY.<br/><br/>
 Rations: ammo and material supply in vehicles, NRF SOP<br/>
 Uniforms: NRF VJTF 2 PLT SOP<br/>
 Arms and ammunitions: NRF VJTF 2 PLT SOP
@@ -148,7 +152,7 @@ Captured material: SOP
 <font size='14' color='#d7dbd5'>SUPPORT</font><br/>
 
 <font color='#9DA698'>
-CAS: RABBIT, AH-99 ex FARGO. Station: DELTA
+CAS: LANCER, AH-99 ex FARGO. Station: ZULU
 </font><br/><br/>
 "]];
 
@@ -159,10 +163,10 @@ player createDiaryRecord ["2SOPORD",["Execution","<br/><br/>
 <font size='14' color='#d7dbd5'>CONCEPT OF OPERATIONS</font><br/>
 
 <font color='#9DA698'>
-1. 2PLT to move out ex FARGO and drive north towards DONALD CP via YORK.<br/>
-2. 2PLT to enter NOVEMBER grid.<br/>
-3. 2PLT to search and destroy BULLDOG.<br/>
-4. 2PLT to return to FARGO for debrief.<br/>
+1. 2PLT to move out ex KEARNEY and drive north towards DIANA via ATHENS.<br/>
+2. 2PLT to enter NOLA grid.<br/>
+3. 2PLT to search and secure DIANA and NOLA.<br/>
+4. 2PLT to return to KEARNEY for debrief.<br/>
 5. ORP’s to be established prior to departure.<br/>
 6. Execution of mission objectives to be briefed on site by PC.
 
@@ -171,7 +175,7 @@ player createDiaryRecord ["2SOPORD",["Execution","<br/><br/>
 <font size='14' color='#d7dbd5'>COMMANDERS INTENT</font><br/>
 
 <font color='#9DA698'>
-2PLT will travel in SOP convoy to NOVEMBER. 2PLT will locate BULLDOG. 2PLT destroy BULLDOG. 2PLT will travel in SOP convoy to FARGO. 
+2PLT will travel in SOP convoy to DIANA. 2PLT will secure DIANA and raise NRF flag at the main tower. 2PLT will travel in SOP convoy to NOLA. 2 PLT will assault and secure NOLA and raise NRF flag at NOLA control tower. 
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>SUB UNIT MISSIONS</font><br/>
@@ -185,8 +189,8 @@ None.<br/><br/>
 <font color='#9DA698'>
 1. Order of movement, formations: On-site commanders intent, SOP<br/>
 2. Actions at halts (short/long): SOP<br/>
-3. Routes (primary/alternate): MSR YORK / MSR VEGAS.<br/>
-4. IRP: MSR YORK.<br/>
+3. Routes (primary/alternate): MSR VEGAS / MSR ATHENS.<br/>
+4. IRP: MSR DURBAN.<br/>
 5. Actions at danger areas: SOP<br/>
 6. Actions on enemy contact: SOP<br/>
 7. Reorganization and consolidation: SOP<br/>
@@ -202,7 +206,7 @@ None.<br/><br/>
 player createDiaryRecord ["2SOPORD",["Mission","<br/><br/>
 <font size='18'>MISSION</font><br/><br/>
 <font color='#9DA698'>
-Search and destroy ammo caches in NOVEMBER grid.
+Seize and secure NOLA and DIANA. 
 </font><br/><br/>
 "]];
 
@@ -211,23 +215,22 @@ player createDiaryRecord ["2SOPORD",["Situation","<br/><br/>
 <font size='18'>SITUATION</font><br/><br/>
 
 <font color='#9DA698'>
-OpFor: Soborian Separatists (KUJO) and Armed Forces of the Russian Federation (BORIS).<br/>
-KUJO’s recent successes partly depend on their ability to rapidly re-supply their forces. MOTHER suggests they have various ammo caches hidden throughout the Soborian grid. 
+OpFor: Soborian Separatists (YURI) and Armed Forces of the Russian Federation (BORIS).<br/>
+YURI has captured high value locations North East Chernarus with the unofficial support from Boris. MOTHER wants these locations retaken before YURI settles in. 
 <br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>ENEMY FORCES</font><br/>
 
 <font color='#9DA698'>
-1. KUJO has a moderate presence in most urban areas north of the green zone.<br/>
-2. BORIS is actively patrolling the Russian grid. ACE suggests they cross over into the Soborian zone occasionally.<br/>
-3. KUJO: Small arms and IFV’s patrol north of the green zone and occasionally cross over into DONALD territory.<br/>
-4. Strength KUJO: Est. 3000-4000 separatists in the Sobor Province.<br/>
-5. Strength BORIS: 3 Infantry Battalions, 1 Cavalry Battalion and 2 Air Wings + support coy’s. Est. 2700 pax.<br/>
-6. MPCOA: Additional security for BULLDOG locations. No intel on reinforcements.<br/>
-7. KUJO arms: various small arms, mostly Russian, some Iranian and unknown origin. <br/>
+1. YURI has a moderate presence at DIANA and NOLA.<br/>
+2. BORIS is providing air security for the NOLA sector with two AA-batteries at JANE and PATTY.<br/>
+3. YURI patrols the NOLA sector extensively with foot patrols and several victors.<br/>
+4. Strength YURI: 1 company at NOLA and 2-3 squads at DIANA. <br/>
+5. MPCOA: Additional forces will arrive at NOLA to reinforce the entire sector.<br/>
+6. YURI arms: various small arms, mostly Russian, some Iranian and unknown origin. <br/>
    AT capability: RPG, MPRL.<br/>
-8. KUJO CR: mostly casual clothing + light body armor + improvised vests. Most KUJO carry backpacks with IED’s and limited supplies.
+7. YURI CR: mostly casual clothing + light body armor + improvised vests. Most YURI carry backpacks with IED’s and limited supplies.
 
 <br/><br/>
 </font>
@@ -237,8 +240,7 @@ KUJO’s recent successes partly depend on their ability to rapidly re-supply th
 <font color='#9DA698'>
 1. VJTF 5 BAT, 2nd Platoon. OUS: ANNEX A.<br/>
 2. NRF 2 SPT GRP at FARGO.<br/>
-3. CAF 3rd and 4th BATT at Disha AB.<br/>
-4. CAF 2nd AIRBORN INF BRIG at Elektrozavodsko
+3. CAF 2nd AIRBORN INF BRIG at Elektrozavodsko
 
 <br/><br/>
 </font>
@@ -252,7 +254,7 @@ KUJO’s recent successes partly depend on their ability to rapidly re-supply th
 <font size='14' color='#d7dbd5'>CIVILIANS</font><br/>
 
 <font color='#9DA698'>
-1. Civilians in the AO are generally neutral towards coalition forces.
+1. Civilians in the AO are hostile towards coalition forces.
 </font><br/><br/>
 
 <font size='14' color='#d7dbd5'>ATTACHMENTS AND DETACHMENTS</font><br/>
@@ -286,9 +288,9 @@ player createDiaryRecord ["2SOPORD",["Terrain & weather","<br/><br/>
 <font size='14' color='#d7dbd5'>WEATHER</font><br/>
 
 <font color='#9DA698'>
-1.	Temperature High: 17C.<br/>
-2.	Temperature Low: 11C, Dew point: 14C.<br/>
-3.	Wind: Moderate, 7-12 Knots.
+1.	Temperature High: 19C.<br/>
+2.	Temperature Low: 12C, Dew point: 15C.<br/>
+3.	Wind: Moderate, 6-10 Knots.
 </font><br/><br/>
 "]];
 
@@ -406,19 +408,16 @@ player createDiaryRecord ["2SCPGN",["Background","<br/><br/>
 <font size='18'>BACKGROUND</font><br/><br/>
 
 <font color='#9DA698'>
-Two Sierra Tour 1 | Takistan, May 2019. On 11 February 2019 the Taliban ceased to exist after a coalition forces UAV successfully targeted and killed the entire Taliban leadership council. The majority of Taliban fighters joined The Pashtun within the following weeks.
+Two Sierra Tour 2 | Chernarus, June 2019. Since CSAT Russia annexed the Lopatino district in 2014 a local insurgency faction emerged and declared the Sobor region as independent. Aptly naming it Soborisk. The Soborian Separatists quickly gained ground with the unofficial support of CSAT Russia. Over the years several attempts have been made to solve the crisis, but neither Chernarussian Government nor the Soborian separatists were willing to give in. Now, nearly 4 years later, CSAT Russia has issued an ultimatum to the Chernarussian Government: 'recognize Soborisk as an independent state'. All diplomatic solutions seem to have been exhausted.<br /><br /> 
+Two Sierra is relieving Third Platoon who has been training Chernarussian Armed Forces (CAF) and assisting with humanitarian operations. NRF forces are considered neutral. NATO does not have a mandate to get involved in the escalation between Soborian Separatists and CAF. That said, last week a patrol from Third Platoon got engaged by presumably Soborian Separatists. And two weeks ago a HEMTT from 2ND SPT GRP was taken out by an improvised explosive device. On both occasions, vehicles were clearly marked as NRF vehicles. Things are heating up and the world is watching. 
 <br/><br/></font>
 
-<font size='14' color='#d7dbd5'>THE PASHTUN</font><br/>
+<font size='14' color='#d7dbd5'>SOBORIAN SEPARATISTS</font><br/>
 
 <font color='#9DA698'>
-The Pashtun are a race of warriors who originate from Afghanistan, Takistan and Pakistan. The Pashtun consists of about sixty tribes, each with its own territory.<br/><br/>
-
-The Pashtun has rapidly been expanding its foothold in Asia and the Middle East after the fall of the Taliban, and previously the fall of IS and other factions. The Pashtun are well funded, moderately well organized and very ambitious. Little is known about their goals as they keep a low public relations profile. Intelligence agencies are busy mapping the Pashtun organization. So far reliable intelligence is scares at best.<br/><br/>
-
-CSAT has on several occasions tried to open diplomatic channels. Up till now the Pashtun and CSAT are maintaining neutral relations. Allied Command Operations (ACO) is monitoring the CSAT/Pashtun situation closely.<br/><br/>
-Currently The Pashtun are moderately armed with mostly small arms and 2nd generation RPG’s. The BBC reported last week that The Pashtun are in progress of purchasing Iranian-made APC’s and M-ATV’s.  
-
+In April 2014, pro-Russian activists seized control of government buildings in towns and cities across the Sobor region. The events were a repeat of what had happened in the Lopatino region. .<br /><br />
+Gunmen there seized government buildings in February 2014 and raised the Russian flag a week after elected President Boris Yanukotov, friendly to Moscow, fled during massive pro-EU street protests in Novigrad. An early attempt by nationalists to remove the status of Russian as a second language alarmed many Russian speakers, and officials in Moscow portrayed the new leaders in Novigrad as NATO-backed Chernarussian nationalists bent on violating minority rights. A flawed referendum on joining Russia was quickly held in Lopatino and within a month the region's annexation was complete. .<br /><br />
+There was little bloodshed in Lopatino, but Chernarus' fledgling revolutionary government was in no position to fight back, with only 6,000 troops reportedly ready for combat. However, when pro-Russian separatists made a move on Chernarus' industrial east and Russian forces appeared to be building up on the borders, the authorities in Novigrad ordered an 'anti-terrorist operation'. The start of a conflict that has dragged on for nearly 5 years.
 </font><br/><br/>
 "]];
 

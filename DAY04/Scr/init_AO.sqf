@@ -37,8 +37,8 @@ for "_i" from 1 to 12 do {
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
+	_defArr call ADF_fnc_defendArea;
+	_g setVariable ["ADF_HC_garrison_ADF",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
@@ -52,8 +52,8 @@ for "_i" from 20 to 21 do {
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
+	_defArr call ADF_fnc_defendArea;
+	_g setVariable ["ADF_HC_garrison_ADF",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
@@ -65,8 +65,8 @@ for "_i" from 1 to 6 do {
 	
 	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	
-	[_g, _spawnPos, 750, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+
+	[_g, _spawnPos, 750, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 ADF_fnc_BOPactive = {
@@ -83,8 +83,8 @@ ADF_fnc_BOPactive = {
 		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 		
 		_defArr = [_g, _spawnPos, 150, 2, true];
-		_defArr call CBA_fnc_taskDefend;
-		_g setVariable ["ADF_HC_garrison_CBA",true];
+		_defArr call ADF_fnc_defendArea;
+		_g setVariable ["ADF_HC_garrison_ADF",true];
 		_g setVariable ["ADF_HC_garrisonArr",_defArr];
 	};
 	
@@ -95,8 +95,8 @@ ADF_fnc_BOPactive = {
 		
 		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-		
-		[_g, _spawnPos, 300, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+
+		[_g, _spawnPos, 300, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	};
 	
 	// Static Vehicles/MG/AT/etc

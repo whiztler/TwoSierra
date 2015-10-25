@@ -59,7 +59,9 @@ class Mission
 		"A3_Structures_F_EPA_Civ_Camping",
 		"A3_Structures_F_EPA_Mil_Scrapyard",
 		"A3_Structures_F_EPC_Items_Electronics",
-		"A3_Weapons_F_Ammoboxes"
+		"A3_Weapons_F_Ammoboxes",
+		"A3_Soft_F_Gamma_Offroad",
+		"a3_soft_f_offroad_01"
 	};
 	addOnsAuto[]=
 	{
@@ -119,6 +121,8 @@ class Mission
 		"A3_Structures_F_EPA_Mil_Scrapyard",
 		"A3_Structures_F_EPC_Items_Electronics",
 		"A3_Weapons_F_Ammoboxes",
+		"A3_Soft_F_Gamma_Offroad",
+		"a3_soft_f_offroad_01",
 		"aia_takistan_config"
 	};
 	randomSeed=9907019;
@@ -888,7 +892,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=254;
+		items=271;
 		class Item0
 		{
 			position[]={8212.29,296.71109,2230.5317};
@@ -1075,6 +1079,7 @@ class Mission
 			vehicle="B_Truck_01_medical_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			text="medTruck";
 			init="this setObjectTextureGlobal [0, ""Img\cusTex_HEMTT_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_HEMTT_cover.jpg""]; this enableSimulationGlobal false;  if (isServer) then {this setVariable [""ace_medical_isMedicalVehicle"", true];};";
 		};
 		class Item18
@@ -3593,6 +3598,224 @@ class Mission
 			skill=0.60000002;
 			init="this enableSimulationGlobal false;";
 		};
+		class Item254
+		{
+			position[]={7017.4155,326.37683,5812.5537};
+			azimut=433.09735;
+			offsetY=3.9000001;
+			special="NONE";
+			id=295;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item255
+		{
+			position[]={6775.7783,295.03323,6101.8135};
+			azimut=1072.2462;
+			special="NONE";
+			id=296;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item256
+		{
+			position[]={5730.2627,320.47964,5543.9922};
+			azimut=468.306;
+			special="NONE";
+			id=297;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item257
+		{
+			position[]={6870.7461,327.5376,4984.7441};
+			azimut=466.37399;
+			offsetY=3.8299999;
+			special="NONE";
+			id=298;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item258
+		{
+			position[]={5859.0415,188.08537,6269.625};
+			azimut=1072.2462;
+			special="NONE";
+			id=299;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item259
+		{
+			position[]={5862.478,187.98193,6269.644};
+			azimut=557.24377;
+			offsetY=3.8299999;
+			special="NONE";
+			id=300;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item260
+		{
+			position[]={5887.3936,186.51326,6275.7617};
+			azimut=913.53101;
+			offsetY=8;
+			special="NONE";
+			id=301;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item261
+		{
+			position[]={5269.6997,145.70992,6178.1157};
+			azimut=1210.733;
+			special="NONE";
+			id=302;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item262
+		{
+			position[]={5162.6025,161.78787,6218.7397};
+			azimut=510.44998;
+			offsetY=3.8299999;
+			special="NONE";
+			id=303;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item263
+		{
+			position[]={5444.5293,185.70731,6145.3135};
+			azimut=292.60049;
+			offsetY=3.8299999;
+			special="NONE";
+			id=304;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item264
+		{
+			position[]={5203.8652,145.35687,6110.6221};
+			azimut=421.84601;
+			offsetY=8.9499998;
+			special="NONE";
+			id=305;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item265
+		{
+			position[]={3668.6321,169.23109,5594.5684};
+			azimut=1089.7554;
+			special="NONE";
+			id=306;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item266
+		{
+			position[]={2500.8752,194.60503,5089.8462};
+			azimut=423.099;
+			offsetY=3.9000001;
+			special="NONE";
+			id=307;
+			side="EMPTY";
+			vehicle="I_HMG_01_high_F";
+			leader=1;
+			skill=0.2;
+		};
+		class Item267
+		{
+			position[]={2551.0342,195.58559,5069.4092};
+			azimut=883.94446;
+			special="NONE";
+			id=308;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item268
+		{
+			position[]={6176.2163,304.28131,5730.4219};
+			azimut=614.75958;
+			special="NONE";
+			id=309;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item269
+		{
+			position[]={5062.0933,197.37364,5413.1108};
+			azimut=1227.7637;
+			special="NONE";
+			id=310;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item270
+		{
+			position[]={6228.1807,315.68726,5178.8374};
+			azimut=1171.2725;
+			special="NONE";
+			id=311;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
 	};
 	class Markers
 	{
@@ -4210,7 +4433,7 @@ class Mission
 		};
 		class Item62
 		{
-			position[]={5252.5571,142.60713,6127.3335};
+			position[]={5231.7061,143.06264,6124.9126};
 			name="mGuerPaxDef_20";
 			text="DEF";
 			type="Empty";
@@ -4220,7 +4443,7 @@ class Mission
 		};
 		class Item63
 		{
-			position[]={5329.2241,142.83115,6257.3354};
+			position[]={5338.3462,142.63368,6246.7236};
 			name="mGuerPaxDef_21";
 			text="DEF";
 			type="Empty";

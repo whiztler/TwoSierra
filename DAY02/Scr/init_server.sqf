@@ -2,6 +2,10 @@ diag_log "ADF RPT: Init - executing Scr\init_server.sqf"; // Reporting. Do NOT e
 
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_defendArea.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_footPatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Aegis.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
@@ -13,6 +17,7 @@ forceWeatherChange;
 
 // Load vehicle Supplies
 [MRAP_2PC] execVM "Core\C\ADF_vCargo_B_Car.sqf";
+[medFacil] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf"; 
 {[_x] execVM "Core\C\ADF_vCargo_B_CarSQD.sqf"} forEach [MRAP_2_1_SQUAD,MRAP_2_2_SQUAD];
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIFT.sqf"} forEach [MRAP_2_1_ALPHA,MRAP_2_1_BRAVO,MRAP_2_2_ALPHA,MRAP_2_2_BRAVO];
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIWT.sqf"} forEach [MRAP_2_3_WT1,MRAP_2_3_WT2];
@@ -28,18 +33,24 @@ uAegis_g1_2 moveInGunner sApt_2;
 uAegis_g1_3 moveInGunner sApt_3;
 uAegis_g1_4 moveInGunner sApt_4;
 
-[gAegis_2, getMarkerPos "mAegisText_1", 50, 1, true] call CBA_fnc_taskDefend;
+_defArr = [gAegis_2, getMarkerPos "mAegisText_1", 50, 1, true];
+_defArr call ADF_fnc_defendArea;
+gAegis_2 setVariable ["ADF_HC_garrison_ADF",true];
+gAegis_2 setVariable ["ADF_HC_garrisonArr",_defArr];
 
 // Oil Storage Facility defence
-[gAegis_4, getMarkerPos "mAegisText_2", 50, 1, true] call CBA_fnc_taskDefend;
+_defArr = [gAegis_4, getMarkerPos "mAegisText_1", 50, 1, true];
+_defArr call ADF_fnc_defendArea;
+gAegis_4 setVariable ["ADF_HC_garrison_ADF",true];
+gAegis_4 setVariable ["ADF_HC_garrisonArr",_defArr];
 
 // Checkpoint defence
 uAegis_g5_1 moveInGunner sCP_1;
 uAegis_g5_2 moveInGunner sCP_2;
 
 // Airport patrols
-[gAegis_3, getMarkerPos "mAegisText_1", 150, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
-[gAegis_6, getMarkerPos "mAegisText_1", 150, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+[gAegis_3,  getMarkerPos "mAegisText_1", 150, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+[gAegis_6,  getMarkerPos "mAegisText_1", 150, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 
 private ["_mmObjArray"];
 _mmObjArray = [
@@ -65,7 +76,6 @@ _mmObjArray = [
 [_mmObjArray,	"mAegisText_1",300] call ADF_fnc_objectMarker;
 
 // Re-create critical markers
-
 {[_x] call ADF_fnc_reMarker} forEach ["mAegisHQ","mAegisFort_1","mAegisFort","mAegisMed","mAegisFort_2","mAegisFort_3","mVehRepair"];
 
 ///// PASHTUN
@@ -73,10 +83,9 @@ _mmObjArray = [
 // Airport assault forces
 
 ADF_fnc_TargetRandom = {
-	private ["_return","_p","_r"];
+	private ["_return","_p"];
 	_p		= getMarkerPos "mAegisText_1";
-	_r		= random 600;
-	_return	= [_p, _r] call CBA_fnc_randPos;  
+	_return	= [_p, 600, random 360] call ADF_fnc_randomPos;  
 	_return
 };
 
@@ -308,8 +317,8 @@ for "_i" from 1 to 4 do {
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	
 	_defArr = [_g, _spawnPos, 100, 1, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
+	_defArr call ADF_fnc_defendArea;
+	_g setVariable ["ADF_HC_garrison_ADF",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
@@ -323,8 +332,8 @@ for "_i" from 10 to 20 do {
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	
 	_defArr = [_g, _spawnPos, 50, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
+	_defArr call ADF_fnc_defendArea;
+	_g setVariable ["ADF_HC_garrison_ADF",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
@@ -337,7 +346,7 @@ for "_i" from 1 to 6 do {
 	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	
-	[_g, _spawnPos, 400, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+	[_g, _spawnPos, 400, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 // Count & track spawned units for win/loose scenario

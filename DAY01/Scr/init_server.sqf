@@ -1,7 +1,10 @@
 diag_log "ADF RPT: Init - executing Scr\init_server.sqf"; // Reporting. Do NOT edit/remove
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_defendArea.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_footPatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_CSAT.sqf";
@@ -26,13 +29,13 @@ diag_log	"-----------------------------------------------------";
 private ["_g","_defArr"];
 _g = [getMarkerPos "mCSAT_CP_1", INDEPENDENT, (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
 _defArr = [_g, getMarkerPos "mCSAT_CP_1", 50, 1, true];
-_defArr call CBA_fnc_taskDefend;
-_g setVariable ["ADF_HC_garrison_CBA",true];
+_defArr call ADF_fnc_defendArea;
+_g setVariable ["ADF_HC_garrison_ADF",true];
 _g setVariable ["ADF_HC_garrisonArr",_defArr];
 {[_x] call ADF_fnc_redressCSAT} forEach units _g;
 // Static/Vehicle gunners
 _g = CreateGroup INDEPENDENT; 
-_p = _g createUnit ["O_Soldier_F", getMarkerPos "mCSAT_CP_1", [], 0, "PRIVATE"]; _p moveInGunner vCSAT_CP_veh_1;
+_p = _g createUnit ["I_Soldier_F", getMarkerPos "mCSAT_CP_1", [], 0, "PRIVATE"]; _p moveInGunner vCSAT_CP_veh_1;
 {[_x] call ADF_fnc_redressCSAT} forEach units _g;
 
 // CSAT CP 2
@@ -40,8 +43,8 @@ _p = _g createUnit ["O_Soldier_F", getMarkerPos "mCSAT_CP_1", [], 0, "PRIVATE"];
 private ["_g","_defArr"];
 _g = [getMarkerPos "mCSAT_CP_2", INDEPENDENT, (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 _defArr = [_g, getMarkerPos "mCSAT_CP_2", 50, 1, true];
-_defArr call CBA_fnc_taskDefend;
-_g setVariable ["ADF_HC_garrison_CBA",true];
+_defArr call ADF_fnc_defendArea;
+_g setVariable ["ADF_HC_garrison_ADF",true];
 _g setVariable ["ADF_HC_garrisonArr",_defArr];
 {[_x] call ADF_fnc_redressCSAT} forEach units _g;
 // Static/Vehicle gunners
@@ -53,8 +56,8 @@ _p = _g createUnit ["I_Soldier_F", getMarkerPos "mCSAT_CP_2", [], 0, "PRIVATE"];
 private ["_g","_defArr"];
 _g = [getMarkerPos "mCSAT_CP_3", INDEPENDENT, (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
 _defArr = [_g, getMarkerPos "mCSAT_CP_3", 50, 1, true];
-_defArr call CBA_fnc_taskDefend;
-_g setVariable ["ADF_HC_garrison_CBA",true];
+_defArr call ADF_fnc_defendArea;
+_g setVariable ["ADF_HC_garrison_ADF",true];
 _g setVariable ["ADF_HC_garrisonArr",_defArr];
 {[_x] call ADF_fnc_redressCSAT} forEach units _g;
 // Static/Vehicle gunners

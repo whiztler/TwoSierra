@@ -43,7 +43,7 @@ for "_i" from 1 to 3 do {
 
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	[_g, _spawnPos, 600, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+	[_g, _spawnPos, 600, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 // Defence groups
@@ -56,8 +56,8 @@ for "_i" from 10 to 13 do {
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
+	_defArr call ADF_fnc_defendArea;	
+	_g setVariable ["ADF_HC_garrison_ADF",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 

@@ -9,6 +9,7 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
 
 // Vars init
 ADF_SOD_zones = {};
+ADF_msg_clearedAO = {};
 
 // Server Init
 if (isServer) then {
@@ -18,6 +19,11 @@ if (isServer) then {
 // Client init
 if (hasInterface) then {
 	#include "init_client.sqf"
+};
+
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
 };
 
 // All clients

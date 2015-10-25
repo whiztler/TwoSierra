@@ -19,11 +19,13 @@ if (isServer) then {
 		_t = format ["vOpforAPC_%1",_i];
 		_v = call compile format ["%1",_t];	
 		_wpPos = getPos tBOPdetect;
+		
 		_c = CreateGroup INDEPENDENT; 
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "LIEUTENANT"]; _p moveInCommander _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "SERGEANT"]; _p moveInGunner _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "CORPORAL"]; _p moveInDriver _v;
 		{[_x] call ADF_fnc_redressPashtun} forEach units _c;
-		[_c, _wpPos, 300, 2, "SAD", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+
+		[_c, _wpPos, 300, 2, "SAD", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
 	};
 };
