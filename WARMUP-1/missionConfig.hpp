@@ -59,6 +59,15 @@ class CfgRespawnTemplates { // F3 Spectator Script
     };
 };
 
+class CfgSounds {
+	sounds[] = {};
+	class radioTransmit {
+		name = "Radio_Transmit_Sound";
+		sound[] = {"Core\S\in2c.ogg", 1, 1}; 		// filename, volume, pitch
+		titles[] = {};
+	};
+};
+
 class CfgVehicleTemplates {
 	class ADF_opforOffroad {
 		displayName = "ADF_opforOffroad"; 
