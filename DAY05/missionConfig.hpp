@@ -88,9 +88,17 @@ class CfgVehicleTemplates {
 	};
 };
 
+class CfgSounds {
+	sounds[] = {};
+	class radioTransmit {
+		name = "Radio_Transmit_Sound";
+		sound[] = {"Core\S\in2c.ogg", 1, 1}; 		// filename, volume, pitch
+		titles[] = {};
+	};
+};
+
 class cfgNotifications { // Preconfigured messages
-	class ADF_noticeMsg
-	{
+	class ADF_noticeMsg {
 		title = "NOTICE";
 		description = "%1";
 		iconPicture = "\A3\ui_f\data\map\markers\military\warning_ca.paa";

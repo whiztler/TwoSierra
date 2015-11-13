@@ -146,7 +146,7 @@ class Mission
 		month=6;
 		day=19;
 		hour=3;
-		minute=55;
+		minute=40;
 		startFogDecay=0.013;
 		forecastFogDecay=0.013;
 	};
@@ -2381,13 +2381,14 @@ class Mission
 		class Item138
 		{
 			position[]={4605.4736,8.8517618,2488.0969};
-			azimut=751.11908;
+			azimut=751.11902;
 			offsetY=0.000106812;
 			id=180;
 			side="EMPTY";
 			vehicle="B_Slingload_01_Ammo_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			text="MedFacil";
 			init="this enableSimulationGlobal false;this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item139
@@ -6091,7 +6092,7 @@ class Mission
 			age="UNKNOWN";
 			name="tLapotino";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="if (ADF_HC_execute) then {[] spawn ADF_t_Lapotino};";
+			expActiv="if (isServer) then {0 = [] spawn ADF_t_Lapotino};";
 			class Effects
 			{
 			};

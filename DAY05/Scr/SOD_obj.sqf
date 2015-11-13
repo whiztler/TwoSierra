@@ -23,7 +23,7 @@ if (hasInterface) then {
 	
 	["ACO","ACO","FAIRCHILD: Wait one."] call ADF_fnc_MessageParser;
 	sleep 40 + (random 90);
-	["ACO","ACO","FAIRCHILD: Good job TWO SIERRA. RTB asap. Out."] call ADF_fnc_MessageParser; 
+	["ACO","ACO","FAIRCHILD: Good job TWO SIERRA. Return to FARGO asap. Out."] call ADF_fnc_MessageParser; 
 };
 
 ADF_endMissionMsg = {
@@ -55,7 +55,7 @@ for "_i" from 1 to 2 do {
 	_rY			= 100 + (random 300);	
 	_spawnPos	= [(_maryPos select 0) + _rX,(_maryPos select 1) + _rY,0];
 	
-	_g = [ _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 	
 	_wp = _g addWaypoint [_maryPos, 0];

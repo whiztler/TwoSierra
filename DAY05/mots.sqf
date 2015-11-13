@@ -27,13 +27,19 @@ while {time < ADF_AO_initTime} do {
 [{systemChat "Starting MOTS process. Make sure you are NOT in a vehicle!"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
 
 [{systemChat "Teleporting to the objective in 5 seconds: MARY"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
-vObj1 allowDamage false; vObj1 setPos (oMary modelToWorldVisual [10, -10, 0]); sleep .5;
-{_x setCaptive false; _x setPos (oMary modelToWorldVisual [-.5, .5, 5])} forEach ADF_mots_uArray; uiSleep 2;
-(ADF_mots_uArray select 0) moveInDriver vObj1; sleep .5; (ADF_mots_uArray select 0) action ["getOut", vObj1];
+private "_rd";
+vObj1 allowDamage false;
+_rd = [getPos oMary, 200] call ADF_fnc_roadPos;	
+vObj1 setPos _rd;
+{_x setCaptive false; _x setPos _rd} forEach ADF_mots_uArray; uiSleep 2;
+(ADF_mots_uArray select 0) moveInDriver vObj1;
+[{systemChat "Drive the Medical Truck to Mary and wait for mission trigger to start"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP;
+waitUntil {triggerActivated tObj};
+[{systemChat "Driver, please disembark the medical truck."},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; sleep 2;
 [{systemChat "AO mission process"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; sleep 2;
 {_x setCaptive true;} forEach ADF_mots_uArray; uiSleep 88;
 
-[{systemChat "Teleporting back to BGOGOTA AB in 5 seconds"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
+[{systemChat "Teleporting back to BOGOTA AB in 5 seconds"},"BIS_fnc_call",true,false] spawn BIS_fnc_MP; uiSleep 5;
 {_x setCaptive false} forEach ADF_mots_uArray;
 {_x setPos (getMarkerPos "mFargo")} forEach ADF_mots_uArray; uiSleep 2;
 

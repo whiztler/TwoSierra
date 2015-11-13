@@ -1,4 +1,5 @@
 // Init
+private ["_ADF_debug_testALL","_ADF_maryCreate"];
 _ADF_debug_testALL	= false;
 
 ADF_maryLoc = ["mObj1","mObj2","mObj3","mObj4"] call BIS_fnc_selectRandom;
@@ -71,12 +72,14 @@ if (ADF_debug) then {
 [_stMaryComp] call _ADF_maryCreate;
 
 // Foot patrols around Mary
-for "_i" from 1 to 3 do {
-	private ["_g","_spawnPos"];
+for "_i" from 1 to 4 do {
+	private ["_g","_spawnPos","_r","_w"];
 	_spawnPos = getMarkerPos ADF_maryLoc;
+	_r = ((random 300) + (random 300));
+	_w = [3,4,5] call BIS_fnc_selectRandom;
 	
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 
-	[_g, _spawnPos, 500, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };

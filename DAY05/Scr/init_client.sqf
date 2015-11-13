@@ -65,6 +65,3 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 
 ["2S","","FAIRCHILD this is TWO SIERRA. Ready to move out."] call ADF_fnc_MessageParser; sleep 12;
 ["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. The two medical packages are on the docks just south of FARGO.<br /><br />MARY urgently needs those supplies. Deliver both packages safely asap.<br /><br />Note that DONALD is active in the green zone. Do not engage them.<br /><br />Avoid the BORIS perimeter at any cost.<br /><br />Good luck TWO Sierra. out."] call ADF_fnc_MessageParser; 
-
-
-	
