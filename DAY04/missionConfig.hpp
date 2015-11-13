@@ -47,6 +47,15 @@ class CfgRespawnTemplates { // F3 Spectator Script
     };
 };
 
+class CfgSounds {
+	sounds[] = {};
+	class radioTransmit {
+		name = "Radio_Transmit_Sound";
+		sound[] = {"Core\S\in2c.ogg", 1, 1}; 		// filename, volume, pitch
+		titles[] = {};
+	};
+};
+
 class CfgVehicleTemplates {
 	class ADF_opforOffroad {
 		displayName = "ADF_opforOffroad"; 
@@ -104,7 +113,7 @@ class CfgDebriefing
 	class End2
 	{
 		title = "Mission Failed";
-		subtitle = "Day 05 | Hannibal";
+		subtitle = "Day 04 | Hannibal";
 		description = "Hard to believe you got defeated by the Pashtun.";
 		//pictureBackground = "Img\loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
 		picture = "Img\logo_TwoSierra.paa"; // Marker icon
@@ -113,7 +122,7 @@ class CfgDebriefing
 	class Killed
 	{
 		title = "All players K.I.A.";
-		subtitle = "Day 05 | Hannibal";
+		subtitle = "Day 04 | Hannibal";
 		description = "TWO SIERRA R.I.P.";
 		//pictureBackground = "Img\loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
 		picture = "Img\logo_TwoSierra.paa"; // Marker icon
