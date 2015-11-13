@@ -4555,7 +4555,8 @@ class Mission
 			side="EMPTY";
 			vehicle="MASH_EP1";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
+			text="MedFacil";
+			init="this enableSimulationGlobal false; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];}; ";
 		};
 		class Item344
 		{
