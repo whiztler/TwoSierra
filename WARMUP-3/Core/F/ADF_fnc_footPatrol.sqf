@@ -33,8 +33,8 @@ Config:
 ] call ADF_fnc_footPatrol;
 
 Example for scripted groups:
-[_grp, _Position, 300, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
-[_grp, getMarkerPos "PatrolMarker", 500, 6, "MOVE", "SAFE", "RED", "LIMITED","FILE",5] call ADF_fnc_footPatrol;
+[_grp, _Position, 300, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+[_grp, getMarkerPos "PatrolMarker", 500, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 
 Notes
 
@@ -82,7 +82,7 @@ ADF_fnc_addLandWaypoint = {
 	// Find a position within the parameters (near to the random position)
 	for "_i" from 1 to 3 do {
 		private ["_pos"];		
-		_pos = [_p, _r, (random 360)] call ADF_fnc_randomPos;				
+		_pos = [_p, _r, random 360] call ADF_fnc_randomPos;				
 		if !(surfaceIsWater _pos) exitWith {_p = _pos};
 		_r = _r + 25;
 	};

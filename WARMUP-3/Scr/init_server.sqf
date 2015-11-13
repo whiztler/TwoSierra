@@ -41,25 +41,27 @@ _v lock 3;
 
 // foot patrols
 for "_i" from 2 to 9 do {
-	private ["_spawnPos","_g","_r"];
+	private ["_spawnPos","_g","_r","_w"];
 	_spawnPos = getMarkerPos "mOpforSpawn";
 	_r = (random 200) + (random 200);
+	_w = [3,4,5] call BIS_fnc_selectRandom;
 
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OI_reconSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
-	[_g, _spawnPos, _r, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 // foot patrols LR
 for "_i" from 1 to 3 do {
-	private ["_spawnPos","_g","_r"];
+	private ["_spawnPos","_g","_r","_w"];
 	_spawnPos = getMarkerPos "mOpforSpawn";
 	_r = 200 + ((random 200) + (random 200));
 	if (_r < 300) then {_r = 250 + (random 300)};
+	_w = [3,4,5] call BIS_fnc_selectRandom;
 
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OI_infTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
-	[_g, _spawnPos, _r, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 // AO Defence Squad
@@ -83,7 +85,7 @@ waitUntil {
 	sleep 60;
 	private "_cnt";
 	_cnt = {(side _x == EAST) && (alive _x)} count allUnits;
-	if (ADF_debug) then {systemChat format ["TWO SIERRA debug: Opfor remaining: %1",_cnt];};
+	if (ADF_debug) then {systemChat format ["TWO SIERRA debug: Opfor remaining: %1",_cnt];} else {diag_log format ["TWO SIERRA: Opfor remaining: %1",_cnt];};
 	_cnt <= _opforCntWin
 };
 
