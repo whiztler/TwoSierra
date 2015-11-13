@@ -10,7 +10,7 @@ ADF_endMission			= false;
 ADF_cacheCount			= 0;
 ADF_cacheCnt				= 0;
 ADF_endMissionMsg			= {};
-ADF_fnc_CacheDestroye		= {};
+ADF_fnc_CacheDestroyed	= {};
 
 // Server Init
 if (isServer) then {
