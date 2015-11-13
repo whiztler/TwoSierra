@@ -33,8 +33,8 @@ Config:
 ] call ADF_fnc_footPatrol;
 
 Example for scripted groups:
-[_grp, _Position, 300, 5, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
-[_grp, getMarkerPos "PatrolMarker", 500, 6, "MOVE", "SAFE", "RED", "LIMITED","FILE",5] call ADF_fnc_footPatrol;
+[_grp, _Position, 300, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+[_grp, getMarkerPos "PatrolMarker", 500, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 
 Notes
 
