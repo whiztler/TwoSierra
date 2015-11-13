@@ -3193,11 +3193,12 @@ class Mission
 		class Item215
 		{
 			position[]={12011.172,158.8,12630.429};
-			azimut=17.443594;
+			azimut=17.4436;
 			id=257;
 			side="EMPTY";
 			vehicle="MASH_EP1";
 			skill=0.60000002;
+			text="MedFacil";
 			init="this enableSimulationGlobal false; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item216

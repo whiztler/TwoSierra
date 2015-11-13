@@ -20,6 +20,7 @@ call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIFT.sqf"} forEach [MRAP_2_1_ALPHA,MRAP_2_1_BRAVO,MRAP_2_2_ALPHA,MRAP_2_2_BRAVO];
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIWT.sqf"} forEach [MRAP_2_3_WT1,MRAP_2_3_WT2];
 [AMMOTRUCK] execVM "Core\C\ADF_vCargo_B_TruckAmmo.sqf";
+{[_x] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf"} forEach [MEDITRUCK_XO_1,MedFacil];
 
 ///// NOLA Support
 
