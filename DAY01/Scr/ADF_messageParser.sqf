@@ -4,7 +4,7 @@ ADF version: 1.42 / SEPTEMBER 2015
 
 Script: Message parser/log
 Author: Whiztler
-Script version: 1.00
+Script version: 1.01
 
 Game type: n/a
 File: ADF_messageParser.sqf
@@ -19,7 +19,7 @@ Use with:
 	"Message"		// Message
 ] call ADF_fnc_MessageParser;
 
-e.g.: ["2S","TWO SIERRA","Message"] call ADF_fnc_MessageParser; sleep 10;
+e.g.: ["2S","Name","Message"] call ADF_fnc_MessageParser; sleep 10;
 or: : ["ACO","ACO","Message"] call ADF_fnc_MessageParser; sleep 10;
 Script is WIP. For now only simple messages (without complex formatting)
 ****************************************************************/
@@ -46,12 +46,12 @@ ADF_fnc_MessageParser = {
 	params ["_ADF_caller","_ADF_callerName","_ADF_msg"];
 
 	// Caller is player unit? exit (no log)
-	if (_ADF_caller == "2S") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg];true};
+	if (_ADF_caller == "2S") exitWith {playSound "radioTransmit"; hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg];true};
 	
 	// Crete the hint message base on the caller and call the log function
-	if (_ADF_caller == "ACO") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_ACO.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
-	if (_ADF_caller == "Aegis") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_Aegis.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
-	if (_ADF_caller == "CSAT") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_CSAT.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
-	if (_ADF_caller == "CAS") exitWith {hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
-	if (_ADF_caller == "NONE") exitWith {hintSilent parseText format ["<br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
+	if (_ADF_caller == "ACO") exitWith {playSound "radioTransmit"; hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_ACO.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
+	if (_ADF_caller == "Aegis") exitWith {playSound "radioTransmit"; hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_Aegis.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
+	if (_ADF_caller == "CSAT") exitWith {playSound "radioTransmit"; hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_CSAT.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
+	if (_ADF_caller == "CAS") exitWith {playSound "radioTransmit"; hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
+	if (_ADF_caller == "NONE") exitWith {playSound "radioTransmit"; hintSilent parseText format ["<br/><br/><t color='#6C7169' align='left'>%1<br/><br/></t>",_ADF_msg]; [_ADF_callerName,_ADF_msg] call ADF_fnc_MessageLog;};
 };
