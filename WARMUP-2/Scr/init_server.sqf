@@ -115,11 +115,12 @@ ADF_SOD_zones = {
 	// spawn/create groups
 
 	for "_i" from _startMarker to _endMarker do {
-		private ["_g","_spawnPos"];	
+		private ["_g","_spawnPos","_w"];	
 		_spawnPos = format ["mPaxPat_%1",_i];
 		_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _patrolsGrp)] call BIS_fnc_spawnGroup;
+		_w = [3,4,5] call BIS_fnc_selectRandom;
 		{[_x] call _redress} forEach units _g;
-		[_g, getMarkerPos _spawnPos, _patrolRad, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+		[_g, getMarkerPos _spawnPos, _patrolRad, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	};
 	for "_i" from _startMarker to _endMarker do {
 		private ["_g","_spawnPos"];
@@ -145,7 +146,7 @@ ADF_SOD_zones = {
 		_vX setVariable ["BIS_enableRandomization", false];
 		[_vX, _vSkin, nil] call bis_fnc_initVehicle;
 		
-		[_c, _spawnPos, 1000, 6, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
+		[_c, _spawnPos, 1000, 5, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
 	};
 	
 	sleep 3;
