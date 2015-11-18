@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / NOVEMBER 2015
 
 Script: Defend area script
 Author: Whiztler
-Script version: 1.06
+Script version: 1.08
 
 Game type: N/A
 File: ADF_fnc_defendArea.sqf
@@ -82,10 +82,10 @@ ADF_fnc_getTurrets = {
 
 ADF_fnc_setGarrison = {
 	// init
-	params ["_u",["_p", [0,0,0], [[]], [3]],"_b","_gt"];
+	params ["_u",["_p", [0,0,0], [[]], [3]],"_b","_gt","_hc"];
 	
 	// Join a new group and move the unit inside the predefined building position
-	[_u] joinSilent _gt;
+	if (!_hc) then {[_u] joinSilent _gt};
 	_u doMove _p;
 	sleep 5;
 	waitUntil {unitReady _u};	
@@ -118,17 +118,23 @@ ADF_fnc_setTurretGunner = {
 
 ADF_fnc_defendArea = {	
 	params ["_g","_p",["_r",10,[0]]];
-	private ["_b","_bs","_bp","_t","_u","_uf","_c","_ct","_i","_a","_gt","_ADF_perfDiagStart","_ADF_perfDiagStop"];
+	private ["_hc","_b","_bs","_bp","_t","_u","_uf","_c","_ct","_i","_a","_gt","_ADF_perfDiagStart","_ADF_perfDiagStop","_defArr"];
 	
 	// init
+	_hc = false;
+	if (_g getVariable ["ADF_noHC_transfer",false]) then {_hc = true};
 	_ADF_perfDiagStart = diag_tickTime;
-	if !(local _g) exitWith {}; 
-	_p	= [_p] call ADF_fnc_checkPosition;
+	
+	if (!_hc) then {
+		_gt = createGroup (side _g);
+		_gt enableAttack false;
+		_p	= [_p] call ADF_fnc_checkPosition;
+	};
+	
 	_bs	= [_p,_r] call ADF_fnc_buildingArr;
 	_t	= [_p,_r] call ADF_fnc_getTurrets;
 	
 	_g enableAttack false;
-	_gt	= createGroup (side _g);
 	_u	= units _g;
 	_c	= count _u;
 	_i	= 0;
@@ -142,7 +148,7 @@ ADF_fnc_defendArea = {
 		_l = _l + 1;
 		
 		if ((_ct > -1) && (_x != leader _g)) then {
-			[_x] joinSilent _gt;
+			if (!_hc) then {[_x] joinSilent _gt};			
 			_x assignAsGunner (_t select _ct);
 			_x moveInGunner (_t select _ct);
 			[_x] call ADF_fnc_setTurretGunner;
@@ -165,9 +171,10 @@ ADF_fnc_defendArea = {
 						_b setVariable ["ADF_garrPos",0];
 					} else {
 						_b setVariable ["ADF_garrPos",_p];
-					};					
+					};
+					
+					if (!_hc) then {[_x,_b buildingPos _bp,_b,_gt,_hc] spawn ADF_fnc_setGarrison;} else {[_x,_b buildingPos _bp,_b,_g,_hc] spawn ADF_fnc_setGarrison;};				
 									
-					[_x,_b buildingPos _bp,_b,_gt] spawn ADF_fnc_setGarrison;				
 					_i = _i + 1;
 				} else {if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_defendArea - No positions found for unit %1 (nr. %2)",_x,_l]}};
 			};
@@ -176,13 +183,23 @@ ADF_fnc_defendArea = {
 	
 	{_x setVariable ["ADF_garrPos",nil]} forEach _bs;
 	
-	// Non garrisoned units patrol the area	
-	[_c,_l,_i,_g,_p,_r] spawn {
-		params ["_c","_l","_i","_g","_p","_r"];
-		waitUntil {_c == _l};
-		if (_i < _c) then {
-			if (_r < 75) then {_r = 75};
-			[_g, _p, _r, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+	if (!_hc) then {
+		// Set HC loadbalancing variables
+		_defArr = [_gt, _p, _r];
+		_gt setVariable ["ADF_HC_garrison_ADF",true];
+		_gt setVariable ["ADF_HC_garrisonArr",_defArr];
+		if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_defendArea - ADF_HC_garrisonArr set for (_gt) group: %1 -- array: %2",_gt,_defArr]};
+	
+		// Non garrisoned units patrol the area	
+		[_c,_l,_i,_g,_p,_r] spawn {
+			params ["_c","_l","_i","_g","_p","_r"];
+			waitUntil {_c == _l};
+			if (_i < _c) then {
+				if (_r < 75) then {_r = 75};
+				[_g, _p, _r, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+				_g setVariable ["ADF_HC_garrison_ADF",false];
+				_g enableAttack true;
+			};
 		};
 	};
 	
