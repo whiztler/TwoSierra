@@ -120,9 +120,23 @@ for "_i" from 1 to 11 do {
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call ADF_fnc_defendArea;
-	_g setVariable ["ADF_HC_garrison_ADF",true];
+	_defArr call CBA_fnc_taskDefend;
+	_g setVariable ["ADF_HC_garrison_CBA",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];
+};
+
+// AO patrol Fire Team City
+for "_i" from 1 to 11 do {
+	private ["_g","_spawnPos","_r","_w","_t"];
+	_spawnPos = format ["mGuerPaxDef_%1",_i];
+	_spawnPos = getMarkerPos _spawnPos;
+	_r = floor ((random 125) + (random 100));
+	_w = [3,4,5] call BIS_fnc_selectRandom;
+	
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
+	{[_x] call ADF_fnc_redressRebel} forEach units _g;
+	
+	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 // AO Defence Squad
@@ -135,8 +149,8 @@ for "_i" from 20 to 23 do {
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 
 	_defArr = [_g, _spawnPos, 250, 2, true];
-	_defArr call ADF_fnc_defendArea;
-	_g setVariable ["ADF_HC_garrison_ADF",true];
+	_defArr call CBA_fnc_taskDefend;
+	_g setVariable ["ADF_HC_garrison_CBA",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];	
 };
 

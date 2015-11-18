@@ -118,7 +118,5 @@ _mmObjArray = [
 // Re-create critical markers
 {[_x] call ADF_fnc_reMarker} forEach ["mFargo","mMed"];
 
-// Create Mary
-#include "SOD_mary_comp.sqf" // St. Mary composition
 #include "SOD_mary.sqf"
 #include "init_AO.sqf"

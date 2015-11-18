@@ -19,7 +19,7 @@ if (_cp == "CP1_in") exitWith {
 	CP_1_g3 = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	[CP_1_g3, _spawnPos, 125, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	
-	{{[_x] call ADF_fnc_redressCherno;} forEach units _x} forEach [CP_1_g1,CP_1_g2,CP_1_g3];
+	{{[_x] call ADF_fnc_redressCherno;} forEach units _x; _x setVariable ["ADF_noHC_transfer", true];} forEach [CP_1_g1,CP_1_g2,CP_1_g3];
 };
 
 // CP1 cache
@@ -48,7 +48,7 @@ if (_cp == "CP2_in") exitWith {
 	CP_2_g3 = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	[CP_2_g3, _spawnPos, 125, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	
-	{{[_x] call ADF_fnc_redressCherno;} forEach units _x} forEach [CP_2_g1,CP_2_g2,CP_2_g3];
+	{{[_x] call ADF_fnc_redressCherno;} forEach units _x; _x setVariable ["ADF_noHC_transfer", true];} forEach [CP_2_g1,CP_2_g2,CP_2_g3];
 };
 
 // CP2 cache
@@ -77,7 +77,7 @@ if (_cp == "CP3_in") exitWith {
 	CP_3_g3 = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	[CP_3_g3, _spawnPos, 125, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	
-	{{[_x] call ADF_fnc_redressCherno;} forEach units _x} forEach [CP_3_g1,CP_3_g2,CP_3_g3];
+	{{[_x] call ADF_fnc_redressCherno;} forEach units _x; _x setVariable ["ADF_noHC_transfer", true];} forEach [CP_3_g1,CP_3_g2,CP_3_g3];
 };
 
 // CP3 cache
@@ -106,7 +106,7 @@ if (_cp == "CP4_in") exitWith {
 	CP_4_g3 = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	[CP_4_g3, _spawnPos, 125, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	
-	{{[_x] call ADF_fnc_redressCherno;} forEach units _x} forEach [CP_4_g1,CP_4_g2,CP_4_g3];
+	{{[_x] call ADF_fnc_redressCherno;} forEach units _x; _x setVariable ["ADF_noHC_transfer", true];} forEach [CP_4_g1,CP_4_g2,CP_4_g3];
 };
 
 // CP4 cache

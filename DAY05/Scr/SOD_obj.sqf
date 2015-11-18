@@ -29,7 +29,7 @@ if (hasInterface) then {
 ADF_endMissionMsg = {
 	if !(hasInterface) exitWith {};
 	sleep 10;	
-	["ACO","ACO","FAIRCHILD: Good to see you back in once piece TWO SIERRA.<br/><br/>MARY is very grateful for the supplies. Hot meals waiting in the mess. You're heading back out tonight."] call ADF_fnc_MessageParser; 
+	["ACO","ACO","FAIRCHILD: Good to see you back in one piece TWO SIERRA.<br/><br/>MARY is very grateful for the supplies. Hot meals waiting in the mess. You're heading back out tonight."] call ADF_fnc_MessageParser; 
 	sleep 20;
 
 	_l = ["tLayer"] call BIS_fnc_rscLayer; 
@@ -49,13 +49,14 @@ diag_log	"-----------------------------------------------------";
 
 // Counter Fireteams
 for "_i" from 1 to 2 do {
-	private ["_g","_maryPos","_rX","_rY","_spawnPos","_wp"];
+	private ["_g","_maryPos","_rX","_rY","_spawnPos","_wp","_t"];
 	_maryPos		= getMarkerPos ADF_maryLoc;
-	_rX			= 100 + (random 250);
-	_rY			= 100 + (random 300);	
+	_rX			= 150 + (random 150);
+	_rY			= 150 + (random 300);	
 	_spawnPos	= [(_maryPos select 0) + _rX,(_maryPos select 1) + _rY,0];
+	_t 			= ["OIA_InfTeam","OIA_InfSquad"] call BIS_fnc_selectRandom;
 	
-	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _t)] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 	
 	_wp = _g addWaypoint [_maryPos, 0];
