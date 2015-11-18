@@ -68,7 +68,7 @@ for "_i" from 1 to 5 do {
 	_vX setVariable ["BIS_enableRandomization", false];
 	[_vX, "ADF_rebelOffroad", nil] call bis_fnc_initVehicle;
 	
-	[_c, _spawnPos, 2500, 4, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
+	[_c, _spawnPos, 1500, 4, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
 };
 
 // Random vehicle patrols INDEP
@@ -98,7 +98,7 @@ for "_i" from 1 to 24 do {
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 
-	_defArr = [_g, _spawnPos, 100, 2, true];
+	_defArr = [_g, _spawnPos, 50, 2, true];
 	_defArr call ADF_fnc_defendArea;
 	_g setVariable ["ADF_HC_garrison_ADF",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];	
@@ -111,10 +111,10 @@ for "_i" from 1 to 6 do {
 	_spawnPos	= call compile format ["%1",_p];
 	_spawnPos	= getPos _spawnPos;
 	
-	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 	
-	_defArr = [_g, _spawnPos, 250, 2, true];
+	_defArr = [_g, _spawnPos, 100, 2, true];
 	_defArr call ADF_fnc_defendArea;
 	_g setVariable ["ADF_HC_garrison_ADF",true];
 	_g setVariable ["ADF_HC_garrisonArr",_defArr];	
@@ -126,10 +126,23 @@ for "_i" from 1 to 5 do {
 	_spawnPos = format ["mGuerPaxPatrol_%1",_i];
 	_spawnPos = getMarkerPos _spawnPos;
 	
-	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 
 	[_g, _spawnPos, 1500, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+};
+
+// Foot patrols cache locations
+for "_i" from 1 to 5 do {
+	private ["_p","_g","_spawnPos"];
+	_p			= format ["cacheObj%1",_i];
+	_spawnPos	= call compile format ["%1",_p];
+	_spawnPos	= getPos _spawnPos;
+	
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+	{[_x] call ADF_fnc_redressRebel} forEach units _g;
+
+	[_g, _spawnPos, 250, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 // Russian Lopatino patrols
