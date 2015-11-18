@@ -90,12 +90,12 @@ ADF_SOD_zones = {
 	_r 				= ((triggerArea _t) select 0) / 2;
 	_m				= "";
 	_patrolRad		= _r / 1.2;
-	_garrisonRad		= 250;
+	_garrisonRad		= 150;
 	_uCache			= [];
 	_vCache			= [];
 
 	_patrolsGrp 		= "OIA_InfSentry";
-	_garrisonGrp		= "OIA_InfTeam";
+	_garrisonGrp		= "OIA_InfSquad";
 	_victorsVeh		= "O_G_Offroad_01_armed_F";
 	
 	_startMarker		= 0;
@@ -117,13 +117,15 @@ ADF_SOD_zones = {
 	for "_i" from _startMarker to _endMarker do {
 		private ["_g","_spawnPos","_w"];	
 		_spawnPos = format ["mPaxPat_%1",_i];
-		_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _patrolsGrp)] call BIS_fnc_spawnGroup;
 		_w = [3,4,5] call BIS_fnc_selectRandom;
+		
+		_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _patrolsGrp)] call BIS_fnc_spawnGroup;
 		{[_x] call _redress} forEach units _g;
+
 		[_g, getMarkerPos _spawnPos, _patrolRad, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	};
 	for "_i" from _startMarker to _endMarker do {
-		private ["_g","_spawnPos"];
+		private ["_g","_spawnPos","_r","_w"];
 		_spawnPos = format ["mPaxDef_%1",_i];
 		
 		_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _garrisonGrp)] call BIS_fnc_spawnGroup;
@@ -131,8 +133,6 @@ ADF_SOD_zones = {
 		
 		_defArr = [_g, _spawnPos, _garrisonRad, 2, true];
 		_defArr call ADF_fnc_defendArea;
-		_g setVariable ["ADF_HC_garrison_ADF",true];
-		_g setVariable ["ADF_HC_garrisonArr",_defArr];	
 	};
 	for "_i" from _startMarker to _endMarkerVictors do {
 		private ["_spawnPos","_spawnDir","_v","_vX","_c"];
