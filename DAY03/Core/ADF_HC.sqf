@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.41 / JULY 2015
+ADF version: 1.43 / NOVEMBER 2015
 
 Script: Headless Client init
 Author: Whiztler
-Script version: 2.51
+Script version: 2.55
 
 Game type: N/A
 File: ADF_HC.sqf
@@ -72,10 +72,12 @@ if (!isServer && !hasInterface) then {
 	ADF_HC_connected 	= true; publicVariable "ADF_HC_connected";
 	ADF_HC_execute 	= true;
 	ADF_isHC 		= true;
+	
 	// Check which HC slot is occupied and count HC's
-	if !(isNil "ADF_HC1") then {if (player == ADF_HC1) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC"; ADF_isHC1 = true}};
-	if !(isNil "ADF_HC2") then {if (player == ADF_HC2) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC"; ADF_isHC2 = true}};
-	if !(isNil "ADF_HC3") then {if (player == ADF_HC3) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC"; ADF_isHC3 = true}};	
+	if !(isNil "ADF_HC1") then {if (player == ADF_HC1) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC"; ADF_isHC1 = true; diag_log "ADF RPT: HC - Headless Client detected: ADF_HC1";}};
+	if !(isNil "ADF_HC2") then {if (player == ADF_HC2) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC"; ADF_isHC2 = true; diag_log "ADF RPT: HC - Headless Client detected: ADF_HC2";}};
+	if !(isNil "ADF_HC3") then {if (player == ADF_HC3) then {ADF_log_CntHC = ADF_log_CntHC + 1; publicVariable "ADF_log_CntHC"; ADF_isHC3 = true; diag_log "ADF RPT: HC - Headless Client detected: ADF_HC3";}};	
+	
 	// HC FPS reporting in RPT. The frequency of the reporting is based on HC performance.
 	if (isMultiplayer) then {ADF_log_pUnits = playableUnits;} else {ADF_log_pUnits = switchableUnits};
 	[] spawn {
@@ -95,7 +97,6 @@ if (!isServer && !hasInterface) then {
 			false
 		};
 	};
-	if (ADF_debug) then {["HC - Headless Client detected",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC - Headless Client detected"};
 } else {	
 	sleep 3; // Wait for HC to publicVar ADF_HC_connected (if a HC is present)
 	if (!ADF_HC_connected && isServer) then { // No HC present. Disable ADF_HC_execute on all clients except the server
