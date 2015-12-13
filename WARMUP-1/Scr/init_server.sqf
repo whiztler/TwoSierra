@@ -121,11 +121,8 @@ ADF_SOD_zones = {
 		
 		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> _garrisonGrp)] call BIS_fnc_spawnGroup;
 		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-		
-		_defArr = [_g, _spawnPos, _garrisonRad, 2, true];
-		_defArr call ADF_fnc_defendArea;
-		_g setVariable ["ADF_HC_garrison_ADF",true];
-		_g setVariable ["ADF_HC_garrisonArr",_defArr];
+
+		[_g, _spawnPos, _garrisonRad, 2, true] call ADF_fnc_defendArea;
 	};
 
 	for "_i" from _startMarker to _endMarkerVictors do {

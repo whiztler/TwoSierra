@@ -85,7 +85,9 @@ ADF_msg_cache1 = {
 	sleep 10;
 	["2S","","TWO SIERRA: We discovered an ammo cache at the Mosque in Feruz Abad city. How copy?"] call ADF_fnc_MessageParser;
 	sleep 12;
-	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. MOTHER wants you neutralize the cache. Out"] call ADF_fnc_MessageParser;
+	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. Stand-by."] call ADF_fnc_MessageParser;
+	sleep 32;
+	["ACO","ACO","FIRESTONE: TWO SIERRA, MOTHER want the cache detroyed. Your orders are to neutralize the cache. Out"] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_apc1 = {
@@ -104,10 +106,10 @@ ADF_msg_apc1 = {
 
 ADF_msg_base1 = {
 	["2S","","TWO SIERRA: FIRESTONE, we found some sort of supply base. How copy?"] call ADF_fnc_MessageParser;
-	sleep 13;
+	sleep 15;
 	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. Search the premises for intel. Out."] call ADF_fnc_MessageParser;
 	sleep 120;
-	["2S","","TWO SIERRA: FIRESTONE, discovered a laptop. Bringing it with. out."] call ADF_fnc_MessageParser;
+	["2S","","TWO SIERRA: FIRESTONE, we found a laptop. Bringing it with. out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_endMission = {			
@@ -121,7 +123,7 @@ ADF_msg_endMission = {
 };
 
 [] spawn {
-	waitUntil {time > 360};
-	["ACO","ACO","FIRESTONE: TWO SIERRA, Frago: do not attempt to disarm IED's. Mark them and EOD will take of them later. Out"] call ADF_fnc_MessageParser;
+	waitUntil {sleep 1; time > 360};
+	["ACO","ACO","FIRESTONE: TWO SIERRA, Frago: do not attempt to disarm IED's. Mark them and EOD will take of them later. Out."] call ADF_fnc_MessageParser;
 };
 	

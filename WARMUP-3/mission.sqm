@@ -26,10 +26,10 @@ class Mission
 		"A3_Structures_F_EPC_Civ_Kiosks",
 		"aia_misc_e_config",
 		"A3_Structures_F_Kart_Mil_Flags",
-		"3DEN",
 		"aia_misc_config",
 		"A3_Characters_F_Civil",
-		"A3_Boat_F_Boat_Armed_01"
+		"A3_Boat_F_Boat_Armed_01",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
@@ -1269,7 +1269,7 @@ class Mission
 			vehicle="US_WarfareBFieldhHospital_Base_EP1";
 			skill=0.60000002;
 			text="oMed";
-			init="this enableSimulationGlobal false; this setPosATL [getPosATL this select 0, getPosATL this select 1, -.13]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.13]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item21
 		{

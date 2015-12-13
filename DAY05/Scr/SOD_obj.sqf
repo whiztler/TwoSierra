@@ -7,6 +7,9 @@ _vObj2atMary = false;
 if (vObj1 in _tObjList) then {_vObj1atMary = true};
 if (vObj2 in _tObjList) then {_vObj2atMary = true};
 
+if (vObj1 in _tObjList && alive vObj2) then {_vObj2atMary = true};
+if (vObj2 in _tObjList && alive vObj1) then {_vObj1atMary = true};
+
 if (hasInterface) then {
 	if (_vObj1atMary && _vObj2atMary) then {
 		["2S","","FAIRCHILD this is TWO SIERRA at MARY. Both EVEREST1 and EVEREST2 delivered safely. How copy?"] call ADF_fnc_MessageParser;

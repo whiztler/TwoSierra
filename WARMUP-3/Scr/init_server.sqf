@@ -48,7 +48,7 @@ for "_i" from 2 to 9 do {
 
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OI_reconSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
-	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5, true] call ADF_fnc_footPatrol;
 };
 
 // foot patrols LR
@@ -73,8 +73,6 @@ for "_i" from 1 to 12 do {
 	
 	_defArr = [_g, _spawnPos, 125, 2, true];
 	_defArr call ADF_fnc_defendArea;
-	_g setVariable ["ADF_HC_garrison_ADF",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
 private ["_opforCntWin"];

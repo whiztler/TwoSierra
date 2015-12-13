@@ -27,7 +27,7 @@ player createDiaryRecord ["Diary",["Credits","<br/>
 Concept and development: whiztler
 </font><br/><br/>
 
-<font size='14' color='#d7dbd5'>2SEIRRA.COM</font><font color='#9DA698'><br/>
+<font size='14' color='#d7dbd5'>2SIERRA.COM</font><font color='#9DA698'><br/>
 <font color='#9DA698'>
 More information and latest version of the Two Sierra campaign can be found at the official website: www.2sierra.com
 </font><br/><br/>
@@ -66,30 +66,33 @@ player createDiaryRecord ["2SOPORD",["Call Signs","<br/><br/>
 
 <font color='#9DA698'>
 ACO	- FAIRCHILD<br/>
-CAS	- RAVEN<br/>
+CAS	- GATOR<br/>
 SatNav AJR - ACE<br/>
 VJTF 5 BAT TOC - MOTHER<br/>
 NRF 2 SPT GRP - UNCLE<br/>
 Chernarussian Armed Forces - DONALD<br/><br/>
 
 BALOTA AB - FARGO<br/>
-Ammo Cache - BULLDOG<br/>
-Search Grid - NOVEMBER<br/><br/>
+FOB Kearney - KEARNEY<br/>
+Disha AB - NOLA<br/>
+Klen Hill stronghold - DIANA<br/>
+Black Mountain site - JANE<br/>
+Olsha site - PATTY<br/><br/>
 
-Soborian Separatists - KUJO<br/>
+Soborian Separatists - YURI<br/>
 CSAT Russian Forces - BORIS
 
 </font><br/><br/><font size='14' color='#d7dbd5'>NOTAF</font><br/>
 
 <font color='#9DA698'>
-VEGAS - Primary MSR<br/>
-YORK - Secondary MSR
+ATHENS - Primary MSR<br/>
+VEGAS - Secondary MSR
 
 <br/><br/></font><font size='14' color='#d7dbd5'>CHALLENGES</font><br/>
 
 <font color='#9DA698'>
-Challenge: TRUMP<br/>
-Password: BUSH
+Challenge: ANGEL<br/>
+Password: CASTIEL
 </font><br/><br/>
 "]];
 
@@ -97,9 +100,9 @@ Password: BUSH
 player createDiaryRecord ["2SOPORD",["Notes","<br/><br/>
 <font size='18'>NOTES</font><br/><br/>
 <font color='#9DA698'>
-Soborian Separatists have launched blitz attacks in combination with artillery barrages on cities in the green zone. Last nights’ barrages caused hundreds of civilian casualties. Widespread coverage on global media resulted in NATO finally getting a mandate to assist CAF (DONALD) with the security of Eastern Chernarus. Time to get some real work done! <br /><br />
-MOTHER believes that the Soborian Separatists are trying to break through to Solnichniy and create a corridor that divides the green CAF zone. This will result in Disha AB being cut-off by road.<br />
-The Soborian Separatists are being supplied from various cache locations north of Balota AB. Finding and destroying these weapons and ammunition caches will slow down the Soborian Separatists advance and will give CAF time to regroup.
+One last stand. CSAT Russia has hinted that they might hand-over the Lopatino region back to Chernarus. If NRF can hold on to NOLA than this would force Russia’s hand. Russia would then have no choice but to leave the region. The Soborian Separatists would then be defeated and peace will return to the area.<br/><br/>
+Holding NOLA is critical. MOTHER thinks that they will throw everything they have at NOLA. CAF (DONALD) is taking care of the security of the southern flank and have established several squads at DIANA. ACE advises to keep an eye out on the Southern Flank in case DONALD decides to retreat their AO.<br/><br/>
+2SPG is taking care of the fixed defense positions at NOLA. They’ll also bring two MBT’s and supplies.
 </font><br/><br/>
 "]];
 
@@ -131,8 +134,8 @@ player createDiaryRecord ["2SOPORD",["Service & Support","<br/><br/>
 <font size='14' color='#d7dbd5'>SUPPLY</font><br/>
 
 <font color='#9DA698'>
-SOPs in effect for sustainment operations. CCPs to be established on-site. MediVac available at FARGO.<br/><br/>
-Rations: ammo and material supply in vehicles, NRF SOP<br/>
+SOPs in effect for sustainment operations. CCPs to be established on-site. MediVac available at NOLA Hangar 1.<br/><br/>
+Rations: ammo and material supply in vehicles, NRF SOP. 2SPG has 2 Ammo trucks in hangar 2.<br/>
 Uniforms: NRF VJTF 2 PLT SOP<br/>
 Arms and ammunitions: NRF VJTF 2 PLT SOP
 
@@ -148,7 +151,7 @@ Captured material: SOP
 <font size='14' color='#d7dbd5'>SUPPORT</font><br/>
 
 <font color='#9DA698'>
-CAS: RABBIT, AH-99 ex FARGO. Station: DELTA
+CAS: GATOR, AH-99 ex FARGO. Station: OSCAR
 </font><br/><br/>
 "]];
 
@@ -159,19 +162,17 @@ player createDiaryRecord ["2SOPORD",["Execution","<br/><br/>
 <font size='14' color='#d7dbd5'>CONCEPT OF OPERATIONS</font><br/>
 
 <font color='#9DA698'>
-1. 2PLT to move out ex FARGO and drive north towards DONALD CP via YORK.<br/>
-2. 2PLT to enter NOVEMBER grid.<br/>
-3. 2PLT to search and destroy BULLDOG.<br/>
-4. 2PLT to return to FARGO for debrief.<br/>
-5. ORP’s to be established prior to departure.<br/>
-6. Execution of mission objectives to be briefed on site by PC.
+1. 2PLT to set up defensive positions at NOLA.<br/>
+2. 2PLT to counter OpFor assault on NOLA.<br/>
+3. ORP’s to be established prior to departure.<br/>
+4. Execution of mission objectives to be briefed on site by PC.
 
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>COMMANDERS INTENT</font><br/>
 
 <font color='#9DA698'>
-2PLT will travel in SOP convoy to NOVEMBER. 2PLT will locate BULLDOG. 2PLT destroy BULLDOG. 2PLT will travel in SOP convoy to FARGO. 
+2PLT will divide NOLA into defense sectors and assign appropriate manpower to the defense of each sector. 2PLT to hold and secure the NOLA grid.
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>SUB UNIT MISSIONS</font><br/>
@@ -185,8 +186,8 @@ None.<br/><br/>
 <font color='#9DA698'>
 1. Order of movement, formations: On-site commanders intent, SOP<br/>
 2. Actions at halts (short/long): SOP<br/>
-3. Routes (primary/alternate): MSR YORK / MSR VEGAS.<br/>
-4. IRP: MSR YORK.<br/>
+3. Routes (primary/alternate): MSR ATHENS.<br/>
+4. IRP: MSR DURBAN.<br/>
 5. Actions at danger areas: SOP<br/>
 6. Actions on enemy contact: SOP<br/>
 7. Reorganization and consolidation: SOP<br/>
@@ -202,7 +203,7 @@ None.<br/><br/>
 player createDiaryRecord ["2SOPORD",["Mission","<br/><br/>
 <font size='18'>MISSION</font><br/><br/>
 <font color='#9DA698'>
-Search and destroy ammo caches in NOVEMBER grid.
+Defend and hold NOLA.
 </font><br/><br/>
 "]];
 
@@ -211,23 +212,22 @@ player createDiaryRecord ["2SOPORD",["Situation","<br/><br/>
 <font size='18'>SITUATION</font><br/><br/>
 
 <font color='#9DA698'>
-OpFor: Soborian Separatists (KUJO) and Armed Forces of the Russian Federation (BORIS).<br/>
-KUJO’s recent successes partly depend on their ability to rapidly re-supply their forces. MOTHER suggests they have various ammo caches hidden throughout the Soborian grid. 
+OpFor: Soborian Separatists (YURI) and Armed Forces of the Russian Federation (BORIS).<br/>
+ACE received intel that YURI and BORIS are preparing an assault to retake NOLA.
 <br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>ENEMY FORCES</font><br/>
 
 <font color='#9DA698'>
-1. KUJO has a moderate presence in most urban areas north of the green zone.<br/>
-2. BORIS is actively patrolling the Russian grid. ACE suggests they cross over into the Soborian zone occasionally.<br/>
-3. KUJO: Small arms and IFV’s patrol north of the green zone and occasionally cross over into DONALD territory.<br/>
-4. Strength KUJO: Est. 3000-4000 separatists in the Sobor Province.<br/>
-5. Strength BORIS: 3 Infantry Battalions, 1 Cavalry Battalion and 2 Air Wings + support coy’s. Est. 2700 pax.<br/>
-6. MPCOA: Additional security for BULLDOG locations. No intel on reinforcements.<br/>
-7. KUJO arms: various small arms, mostly Russian, some Iranian and unknown origin. <br/>
-   AT capability: RPG, MPRL.<br/>
-8. KUJO CR: mostly casual clothing + light body armor + improvised vests. Most KUJO carry backpacks with IED’s and limited supplies.
+1. YURI has retreated to the Lopatino region.<br>
+2. BORIS is supporting YURI with manpower and equipment.<br>
+3. Strength assault force: 2 coy’s plus supporting IFV’s and possible Russian MBT’s.<br>
+4. MPCOA: Opfor will assault from Northern and Western flanks.<br>
+5. YURI arms: various small arms, mostly Russian, some Iranian and unknown origin. AT capability: RPG, MPRL.<br>
+6. BORIS arms: High-tech Russian small arms, APC’s and MBT’s (T100 II. AT capability: MPRL.<br>
+7. YURI CR: mostly casual clothing + light body armor + improvised vests.<br>
+8. BORIS CR: Woodlands uniform + heavy body armor.<br>
 
 <br/><br/>
 </font>
@@ -286,9 +286,10 @@ player createDiaryRecord ["2SOPORD",["Terrain & weather","<br/><br/>
 <font size='14' color='#d7dbd5'>WEATHER</font><br/>
 
 <font color='#9DA698'>
-1.	Temperature High: 17C.<br/>
-2.	Temperature Low: 11C, Dew point: 14C.<br/>
-3.	Wind: Moderate, 7-12 Knots.
+1.	Temperature High: 16C.<br/>
+2.	Temperature Low: 7C, Dew point: 13C.<br/>
+3.	Wind: Strong, 14-22 Knots.<br/>
+4.  Overcast, possible thunderstorm.
 </font><br/><br/>
 "]];
 

@@ -69,7 +69,7 @@ if (!didJIP) then {
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: Copy TWO SIERRA. FRAGO:<br/><br/>1. Locate BEARCLAW. Intel indicates BEARCLAW is held captive somewhere in grid ALPHA or in grid BRAVO.<br/><br/>2. Neutralize XRAY. Break</font><br/><br/>"]];
 
-	sleep 12;
+	sleep 14;
 
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;

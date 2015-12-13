@@ -39,8 +39,8 @@ for "_i" from 1 to 12 do {
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
 	_defArr call ADF_fnc_defendArea;
-	_g setVariable ["ADF_HC_garrison_ADF",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
+	//_g setVariable ["ADF_HC_garrison_ADF",true];
+	//_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 	
 // Foot patrols
@@ -71,8 +71,8 @@ for "_i" from 1 to 2 do {
 	
 	_defArr = [_g, _spawnPos, 100, 2, true];
 	_defArr call ADF_fnc_defendArea;
-	_g setVariable ["ADF_HC_garrison_ADF",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
+	//_g setVariable ["ADF_HC_garrison_ADF",true];
+	//_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 	
 // Calvin Foot patrols

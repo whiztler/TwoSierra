@@ -38,8 +38,6 @@ for "_i" from 1 to 12 do {
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
 	_defArr call ADF_fnc_defendArea;
-	_g setVariable ["ADF_HC_garrison_ADF",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
 // AO Defence Squad
@@ -53,8 +51,6 @@ for "_i" from 20 to 21 do {
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
 	_defArr call ADF_fnc_defendArea;
-	_g setVariable ["ADF_HC_garrison_ADF",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
 // Foot patrols
@@ -74,6 +70,18 @@ ADF_fnc_BOPactive = {
 	diag_log "TWO SIERRA: BOP active trigger activated";
 	diag_log	"-----------------------------------------------------";
 
+	// Static Vehicles/MG/AT/etc
+	private ["_g","_p"];
+	_g = CreateGroup INDEPENDENT; 
+	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_01; // Mortar
+	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_02; // HMG small bunker 1 
+	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_03; // HMG small bunker 2
+	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_04; // GMG tower
+	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_05; // HMG tower
+	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_06; // Madrid
+	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_07; // Strider
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;	
+	
 	// Spawn defence squads
 	for "_i" from 1 to 3 do {
 		private ["_g","_spawnPos","_defArr"];
@@ -84,8 +92,6 @@ ADF_fnc_BOPactive = {
 		
 		_defArr = [_g, _spawnPos, 150, 2, true];
 		_defArr call ADF_fnc_defendArea;
-		_g setVariable ["ADF_HC_garrison_ADF",true];
-		_g setVariable ["ADF_HC_garrisonArr",_defArr];
 	};
 	
 	// Spawn patrol teams
@@ -99,18 +105,6 @@ ADF_fnc_BOPactive = {
 		[_g, _spawnPos, 300, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	};
 	
-	// Static Vehicles/MG/AT/etc
-	private ["_g","_p"];
-	_g = CreateGroup INDEPENDENT; 
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_01; // Mortar
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_02; // HMG small bunker 1 
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_03; // HMG small bunker 2
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_04; // GMG tower
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_05; // HMG tower
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_06; // Madrid
-	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_07; // Strider
-	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	
 	// Delete the spawn trigger
 	tBOPspawnPos = getPos tBOPspawn; publicVariable "tBOPspawnPos";
 	if (!isNil "tBOPspawn") then {deleteVehicle tBOPspawn};
@@ -123,3 +117,5 @@ _ADF_OpforCnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
 diag_log	"-----------------------------------------------------";
 diag_log format ["TWO SIERRA: AO (excl Opfor Base) spawned. Number of OpFor: %1",_ADF_OpforCnt];
 diag_log	"-----------------------------------------------------";
+
+ADF_init_AO = true; publicVariable "ADF_init_AO";

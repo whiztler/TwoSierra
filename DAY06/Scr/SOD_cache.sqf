@@ -51,95 +51,136 @@ if (hasInterface) then {
 
 
 // Server
-if (isServer) then {
-	_ADF_debug_testALL = false;
-	
-	{_x addEventHandler ["killed", {remoteExec ["ADF_fnc_CacheDestroyed", 0, true];}]} forEach [cacheObj1,cacheObj2,cacheObj3,cacheObj4,cacheObj5,cacheObj6];
+if (!isServer) exitWith {};
+_ADF_debug_testALL = false;
 
-	{	
-		_x allowDamage false;
-		_x addEventHandler ["Killed",{[_this select 0] spawn ADF_fnc_CacheExplosion}];
-	} forEach [cacheObj1,cacheObj2,cacheObj3,cacheObj4,cacheObj5,cacheObj6];
+{_x addEventHandler ["killed", {remoteExec ["ADF_fnc_CacheDestroyed", 0, true];}]} forEach [cacheObj1,cacheObj2,cacheObj3,cacheObj4,cacheObj5,cacheObj6];
 
-	// Test all compositions
-	if (_ADF_debug_testALL) exitWith {
-		private ["_p","_pos","_d","_c","_n","_m","_i"];
-		for "_i" from 1 to 24 do {
-			_p = format ["mObj%1",_i];
-			_pos = getMarkerPos _p;
-			_pos = [_pos select 0, _pos select 1, .30];
-			_d = markerDir _p;
-			diag_log format ["Cache: %1",_p];
-			_c = createVehicle ["Box_FIA_Ammo_F", _pos, [], 0, "NONE"];
-			_c allowDamage false;
-			_c setVectorUp surfaceNormal position _c;
-			_c setDir _d;
-			_c allowDamage true;
-			_n = format ["CacheDebug_%1",_i];
-			_m = createMarker [_n, getMarkerPos _p];
-			_m setMarkerShape "ICON";
-			_m setMarkerType "mil_dot";
-			_m setMarkerColor "ColorGreen";
-			sleep .1;	
-		};	
-		hint "All caches created...";
-	};
+{	
+	_x allowDamage false;
+	_x addEventHandler ["Killed",{[_this select 0] spawn ADF_fnc_CacheExplosion}];
+} forEach [cacheObj1,cacheObj2,cacheObj3,cacheObj4,cacheObj5,cacheObj6];
 
-	// Create random Weapoms Caches
-	_cachePosArr = ["mObj1","mObj2","mObj3","mObj4","mObj5","mObj6","mObj7","mObj8","mObj9","mObj10","mObj11","mObj12","mObj13","mObj14","mObj15","mObj16","mObj17","mObj18","mObj19","mObj20","mObj21","mObj22","mObj23","mObj24"];
-	diag_log	"-----------------------------------------------------";
-	{
-		private ["_cacheMarkerPos","_idx","_p","_pos","_d","_mName","_m"];
-		_cacheMarkerPos = _cachePosArr call BIS_fnc_selectRandom;
-		_idx = _cachePosArr find _cacheMarkerPos;
-		_cachePosArr deleteAt _idx;
-		
-		_p = getMarkerPos _cacheMarkerPos;
-		_pos = [_p select 0, _p select 1, 1];
-		_d = markerDir _cacheMarkerPos;
-		
-		// Move Cache item to random selected position
-		_x setPosATL _pos;
-		_x setDamage 0;
-		_x setVectorUp surfaceNormal position _x;
-		_x setDir _d;
-		_x allowDamage true;
-
-		diag_log format ["TWO SIERRA: cache objective %1 at marker %2 (position: %3 %4",_x,_cacheMarkerPos,round (_pos select 0), round (_pos select 1)];
-
-		if (ADF_debug) then {
-			_mName = format ["debug_%1",_cacheMarkerPos];
-			_m = createMarker [_mName,_p];
-			_m setMarkerSize [1,1];
-			_m setMarkerShape "ICON";
-			_m setMarkerType "mil_dot";
-			_m setMarkerColor "ColorGreen";
-			_m setMarkerText format ["%1: %2",_x,_cacheMarkerPos];
-		};
-	} forEach [cacheObj1,cacheObj2,cacheObj3,cacheObj4,cacheObj5,cacheObj6];
-	diag_log	"-----------------------------------------------------";
-	
-	ADF_fnc_CacheExplosion = {
-		params ["_cachePos"];
-		private ["_p"];
-		_p = getPos _cachePos;
-		"Bo_GBU12_LGB" createVehicle _p; sleep random 1;
-		"2Rnd_Mk82" createVehicle _p; sleep random 1;
-		"Bo_GBU12_LGB" createVehicle _p; sleep random 1;
-		"M_RPG32_AA_F" createVehicle _p; sleep random 1;
-		"HelicopterExploSmall" createVehicle _p; sleep random 1;
-		"Bo_GBU12_LGB" createVehicle _p; sleep random 1;
-		"2Rnd_Mk82" createVehicle _p; sleep random 1;
-		"Bo_GBU12_LGB" createVehicle _p; sleep random 1;
-		"M_RPG32_AA_F" createVehicle _p; sleep random 1;
-		"HelicopterExploSmall" createVehicle _p; sleep 1;
-		"Bo_GBU12_LGB" createVehicle _p; sleep 1;
-		"Bo_GBU12_LGB" createVehicle _p;
-		ADF_cacheCount = ADF_cacheCount + 1;
-		publicVariable "ADF_cacheCount";
-	};
-	
-	// End mission
-	waitUntil {sleep 30; ADF_cacheCount == 3};
-	ADF_endMission = true; publicVariable "ADF_endMission";
+// Test all compositions
+if (_ADF_debug_testALL) exitWith {
+	private ["_p","_pos","_d","_c","_n","_m","_i"];
+	for "_i" from 1 to 24 do {
+		_p = format ["mObj%1",_i];
+		_pos = getMarkerPos _p;
+		_pos = [_pos select 0, _pos select 1, .30];
+		_d = markerDir _p;
+		diag_log format ["Cache: %1",_p];
+		_c = createVehicle ["Box_FIA_Ammo_F", _pos, [], 0, "NONE"];
+		_c allowDamage false;
+		_c setVectorUp surfaceNormal position _c;
+		_c setDir _d;
+		_c allowDamage true;
+		_n = format ["CacheDebug_%1",_i];
+		_m = createMarker [_n, getMarkerPos _p];
+		_m setMarkerShape "ICON";
+		_m setMarkerType "mil_dot";
+		_m setMarkerColor "ColorGreen";
+		sleep .1;	
+	};	
+	hint "All caches created...";
 };
+
+// Create random Weapoms Caches
+_cachePosArr = ["mObj1","mObj2","mObj3","mObj4","mObj5","mObj6","mObj7","mObj8","mObj9","mObj10","mObj11","mObj12","mObj13","mObj14","mObj15","mObj16","mObj17","mObj18","mObj19","mObj20","mObj21","mObj22","mObj23","mObj24"];
+diag_log	"-----------------------------------------------------";
+{
+	private ["_cacheMarkerPos","_idx","_p","_pos","_d","_mName","_m"];
+	_cacheMarkerPos = _cachePosArr call BIS_fnc_selectRandom;
+	_idx = _cachePosArr find _cacheMarkerPos;
+	_cachePosArr deleteAt _idx;
+	
+	_p = getMarkerPos _cacheMarkerPos;
+	_pos = [_p select 0, _p select 1, 1];
+	_d = markerDir _cacheMarkerPos;
+	
+	// Move Cache item to random selected position
+	_x setPosATL _pos;
+	_x setDamage 0;
+	_x setVectorUp surfaceNormal position _x;
+	_x setDir _d;
+	_x allowDamage true;
+
+	diag_log format ["TWO SIERRA: cache objective %1 at marker %2 (position: %3 %4",_x,_cacheMarkerPos,round (_pos select 0), round (_pos select 1)];
+
+	if (ADF_debug) then {
+		_mName = format ["debug_%1",_cacheMarkerPos];
+		_m = createMarker [_mName,_p];
+		_m setMarkerSize [1,1];
+		_m setMarkerShape "ICON";
+		_m setMarkerType "mil_dot";
+		_m setMarkerColor "ColorGreen";
+		_m setMarkerText format ["%1: %2",_x,_cacheMarkerPos];
+	};
+} forEach [cacheObj1,cacheObj2,cacheObj3,cacheObj4,cacheObj5,cacheObj6];
+
+if (ADF_debug) then {
+	{
+		private ["_p"];
+		_p = getPos _x;
+		_mn = format ["debug%1",_x];
+		_m = createMarker [_mn,_p];
+		_m setMarkerSize [50,50];
+		_m setMarkerShape "ELLIPSE";
+		_m setMarkerColor "ColorRed";
+	} forEach [cacheObj1,cacheObj2,cacheObj3,cacheObj4,cacheObj5,cacheObj6];
+};
+
+ADF_fnc_CacheExplosion = {
+	params ["_cachePos"];
+	private ["_p"];
+	_p = getPos _cachePos;
+	"Bo_GBU12_LGB" createVehicle _p; sleep random 1;
+	"2Rnd_Mk82" createVehicle _p; sleep random 1;
+	"Bo_GBU12_LGB" createVehicle _p; sleep random 1;
+	"M_RPG32_AA_F" createVehicle _p; sleep random 1;
+	"HelicopterExploSmall" createVehicle _p; sleep random 1;
+	"Bo_GBU12_LGB" createVehicle _p; sleep random 1;
+	"2Rnd_Mk82" createVehicle _p; sleep random 1;
+	"Bo_GBU12_LGB" createVehicle _p; sleep random 1;
+	"M_RPG32_AA_F" createVehicle _p; sleep random 1;
+	"HelicopterExploSmall" createVehicle _p; sleep 1;
+	"Bo_GBU12_LGB" createVehicle _p; sleep 1;
+	"Bo_GBU12_LGB" createVehicle _p;
+	ADF_cacheCount = ADF_cacheCount + 1;
+	publicVariable "ADF_cacheCount";
+};
+
+waitUntil {time > 120};
+
+// Extra AO Defence Team at actual cache locations
+for "_i" from 1 to 6 do {
+	private ["_g","_p","_spawnPos","_defArr"];
+	_p			= format ["cacheObj%1",_i];
+	_spawnPos	= call compile format ["%1",_p];
+	_spawnPos	= getPos _spawnPos;
+	
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+	{[_x] call ADF_fnc_redressRebel} forEach units _g;
+	
+	_defArr = [_g, _spawnPos, 150, 2, true];
+	_defArr call ADF_fnc_defendArea;
+	//_g setVariable ["ADF_HC_garrison_ADF",true];
+	//_g setVariable ["ADF_HC_garrisonArr",_defArr];	
+};
+
+// Foot patrols cache locations
+for "_i" from 1 to 5 do {
+	private ["_p","_g","_spawnPos"];
+	_p			= format ["cacheObj%1",_i];
+	_spawnPos	= call compile format ["%1",_p];
+	_spawnPos	= getPos _spawnPos;
+	
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
+	{[_x] call ADF_fnc_redressRebel} forEach units _g;
+
+	[_g, _spawnPos, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+};
+
+// End mission
+waitUntil {sleep 30; ADF_cacheCount == 3};
+ADF_endMission = true; publicVariable "ADF_endMission";

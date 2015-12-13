@@ -14,8 +14,6 @@ for "_i" from 1 to 7 do {
 	
 	_defArr = [_g, _spawnPos, 50, 2, true];
 	_defArr call ADF_fnc_defendArea;
-	_g setVariable ["ADF_HC_garrison_ADF",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 	
 	if (CSAThostile) then {_gEAST = createGroup EAST; (units _g) joinSilent _gEAST};
 };

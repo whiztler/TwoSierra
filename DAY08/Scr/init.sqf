@@ -7,7 +7,12 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 
 // Vars init
 ADF_endMission		= false;
-ADF_msg_endMission	= {};
+ADF_init_AO			= false;
+MotsActive			= false;
+ADF_msg_endMission	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: End Mission message";diag_log	"-----------------------------------------------------";};
+ADF_msg_MBT			= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: MBT message";diag_log	"-----------------------------------------------------";};
+ADF_msg_INF			= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: INF message";diag_log	"-----------------------------------------------------";};
+ADF_msg_sweep			= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Last 25 (sweep) message";diag_log	"-----------------------------------------------------";};
 
 // Server Init
 if (isServer) then {
@@ -16,7 +21,7 @@ if (isServer) then {
 
 // Client init
 if (hasInterface) then {
-	//#include "init_client.sqf"
+	#include "init_client.sqf"
 };
 
 // HC init

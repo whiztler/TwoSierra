@@ -51,7 +51,6 @@ class Mission
 		"A3_Modules_F_Curator_Curator",
 		"A3_Characters_F_INDEP",
 		"A3_Characters_F_Mark",
-		"3DEN",
 		"A3_Weapons_F_Bootcamp_Ammoboxes",
 		"A3_Armor_F_Marid",
 		"A3_Structures_F_Heli_Furniture",
@@ -61,7 +60,8 @@ class Mission
 		"A3_Structures_F_EPC_Items_Electronics",
 		"A3_Weapons_F_Ammoboxes",
 		"A3_Soft_F_Gamma_Offroad",
-		"a3_soft_f_offroad_01"
+		"a3_soft_f_offroad_01",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
@@ -1080,7 +1080,7 @@ class Mission
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
 			text="medTruck";
-			init="this setObjectTextureGlobal [0, ""Img\cusTex_HEMTT_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_HEMTT_cover.jpg""]; this enableSimulationGlobal false;  if (isServer) then {this setVariable [""ace_medical_isMedicalVehicle"", true];};";
+			init="this setObjectTextureGlobal [0, ""Img\cusTex_HEMTT_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_HEMTT_cover.jpg""];  if (isServer) then {this setVariable [""ace_medical_isMedicalVehicle"", true];};";
 		};
 		class Item18
 		{
@@ -3252,7 +3252,7 @@ class Mission
 			vehicle="B_Slingload_01_Ammo_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false;this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
+			init="this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item223
 		{
@@ -3337,7 +3337,7 @@ class Mission
 			id=270;
 			side="EMPTY";
 			vehicle="O_APC_Wheeled_02_rcws_F";
-			lock="LOCKEDPLAYER";
+			lock="LOCKED";
 			skill=0.60000002;
 			init="this setObjectTextureGlobal [0, ""Img\cusTex_pashtun.jpg""]; this setObjectTextureGlobal [2, ""Img\cusTex_pashtun.jpg""];";
 		};
@@ -3348,7 +3348,7 @@ class Mission
 			id=271;
 			side="EMPTY";
 			vehicle="O_APC_Wheeled_02_rcws_F";
-			lock="LOCKEDPLAYER";
+			lock="LOCKED";
 			skill=0.60000002;
 			init="this setObjectTextureGlobal [0, ""Img\cusTex_pashtun.jpg""]; this setObjectTextureGlobal [2, ""Img\cusTex_pashtun.jpg""];";
 		};
@@ -3690,7 +3690,7 @@ class Mission
 		};
 		class Item261
 		{
-			position[]={5269.6997,145.70992,6178.1157};
+			position[]={5269.8809,145.72238,6178.4312};
 			azimut=1210.733;
 			special="NONE";
 			id=302;
@@ -3703,39 +3703,37 @@ class Mission
 		};
 		class Item262
 		{
-			position[]={5162.6025,161.78787,6218.7397};
-			azimut=510.44998;
+			position[]={5162.6304,161.81981,6219.1587};
+			azimut=510.45001;
 			offsetY=3.8299999;
 			special="NONE";
 			id=303;
 			side="EMPTY";
-			vehicle="I_HMG_01_A_F";
-			isUAV=1;
+			vehicle="O_HMG_01_high_F";
 			leader=1;
 			skill=0.2;
 		};
 		class Item263
 		{
 			position[]={5444.5293,185.70731,6145.3135};
-			azimut=292.60049;
+			azimut=292.60001;
 			offsetY=3.8299999;
 			special="NONE";
 			id=304;
 			side="EMPTY";
-			vehicle="I_HMG_01_A_F";
-			isUAV=1;
+			vehicle="O_HMG_01_high_F";
 			leader=1;
 			skill=0.2;
 		};
 		class Item264
 		{
-			position[]={5203.8652,145.35687,6110.6221};
+			position[]={5203.9282,145.35052,6110.811};
 			azimut=421.84601;
 			offsetY=8.9499998;
 			special="NONE";
 			id=305;
 			side="EMPTY";
-			vehicle="I_HMG_01_A_F";
+			vehicle="O_HMG_01_A_F";
 			isUAV=1;
 			leader=1;
 			skill=0.2;
@@ -3853,35 +3851,35 @@ class Mission
 		};
 		class Item3
 		{
-			position[]={-433.92334,309.88901,2395.9358};
+			position[]={-281.54218,619.48065,148.31549};
 			name="mAirPos_1";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item4
 		{
-			position[]={-599.00244,639.82263,10535.617};
+			position[]={-345.03439,269.15091,2599.1101};
 			name="mAirPos_2";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item5
 		{
-			position[]={6385.125,153.53,13278.475};
+			position[]={13000.996,688.20551,5062.6016};
 			name="mAirPos_3";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item6
 		{
-			position[]={13458.142,471.96701,6421.334};
+			position[]={13089.888,551.99152,2332.4463};
 			name="mAirPos_4";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item7
 		{
-			position[]={13331.159,324.06436,1405.4612};
+			position[]={13178.779,312.41,-4.0634155};
 			name="mAirPos_5";
 			type="Empty";
 			colorName="ColorBlue";

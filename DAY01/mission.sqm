@@ -50,9 +50,9 @@ class Mission
 		"A3_Signs_F_AD",
 		"CAMisc_E_WF",
 		"A3_Characters_F_Mark",
-		"3DEN",
 		"A3_Soft_F_Gamma_Offroad",
-		"a3_soft_f_offroad_01"
+		"a3_soft_f_offroad_01",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{

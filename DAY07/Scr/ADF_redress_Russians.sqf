@@ -42,7 +42,7 @@ ADF_fnc_redressRussian = {
 
 	// Add generic containers
 	_unit forceAddUniform "U_O_CombatUniform_ocamo";
-	_unit addVest "V_PlateCarrier1_rgr";
+	_unit addVest "V_TacVestIR_blk";
 	_unit addHeadgear "H_HelmetIA";
 	_unit addGoggles "G_Balaclava_oli";
 	

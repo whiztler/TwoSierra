@@ -27,7 +27,7 @@ player createDiaryRecord ["Diary",["Credits","<br/>
 Concept and development: whiztler
 </font><br/><br/>
 
-<font size='14' color='#d7dbd5'>2SEIRRA.COM</font><font color='#9DA698'><br/>
+<font size='14' color='#d7dbd5'>2SIERRA.COM</font><font color='#9DA698'><br/>
 <font color='#9DA698'>
 More information and latest version of the Two Sierra campaign can be found at the official website: www.2sierra.com
 </font><br/><br/>
@@ -203,7 +203,7 @@ None.<br/><br/>
 player createDiaryRecord ["2SOPORD",["Mission","<br/><br/>
 <font size='18'>MISSION</font><br/><br/>
 <font color='#9DA698'>
-Transport and deliver EVEREST1 and EVEREST2 to MARY.
+Transport and deliver two medical trucks, EVEREST1 and EVEREST2, to MARY.
 </font><br/><br/>
 "]];
 
@@ -307,7 +307,7 @@ Game Masters/Commanders, please note the following:<br/><br/>
     mission information. Check the log frequently.<br/>
 04. All missions have been play tested. If you discover a bug,<br/>
     please report the bug on the BIS forum or on GitHub. Contact<br/>
-    information can be found on 2sierra.com.<br/>
+    information can be found on www.2sierra.com.<br/>
 05. Usage of 1 or more headless clients is recommended for smooth<br/>
     game play. AI's are automatically distributed across multiple<br/>
     headless clients for optimal performance.<br/>
@@ -328,8 +328,8 @@ Game Masters/Commanders, please note the following:<br/><br/>
     in the map screen menu	
 <br/><br/>
 <font size='14' color='#d7dbd5'>FEEDBACK</font><br/>
-I would love to hear feedback about your game night. If you have a YouTube cam recording or screen shots, please let me know. I'll post them on the 2sierra.com website.<br/><br/>
-Contact details and links can be found on 2sierra.com.<br/><br/>
+I would love to hear feedback about your game night. If you have a YouTube cam recording or screen shots, please let me know. I'll post them on the www.2sierra.com website.<br/><br/>
+Contact details and links can be found on www.2sierra.com.<br/><br/>
 I hope your community/clan have as much fun playing the missions as I had making them!<br/><br/>
 -Whiz
 </font><br/><br/>"]];

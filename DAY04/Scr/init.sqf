@@ -11,6 +11,7 @@ ADF_Fairlight			= false;
 ADF_endMission		= false;
 tBOPlive				= false;
 ADF_HC_spawn			= false;
+ADF_init_AO			= false;
 ADF_fnc_BOPactive 	= {};
 ADF_fnc_BOPreenforce 	= {};
 ADF_msg_endMission	= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: End Mission Trigger (FOB Johnson) activated";diag_log	"-----------------------------------------------------";};

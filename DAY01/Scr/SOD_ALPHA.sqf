@@ -1,5 +1,6 @@
 if (hasInterface) then {
-	["ACO","ACO","FIRESTONE: TWO SIERRA, message: new and additional intel re ALPHA grid:<br/><br/>1. MOTHER has confirmed 30+ ELVIS pax in and around ALPHA.<br/><br/>2. MOTHER is tracking 3 ELVIS victors around ALPHA. Out."] call ADF_fnc_MessageParser;
+	["2S","TWO SIERRA","FIRESTONE we are approaching ALPHA. How copy?"] call ADF_fnc_MessageParser; sleep 15;
+	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. New and additional intel re ALPHA grid:<br/><br/>1. MOTHER has confirmed 30+ ELVIS pax in and around ALPHA.<br/><br/>2. MOTHER is tracking 3 ELVIS victors around ALPHA. Out."] call ADF_fnc_MessageParser;
 };
 
 if (!isServer) exitWith {};
@@ -82,8 +83,6 @@ for "_i" from 1 to 8 do {
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	_defArr = [_g, _spawnPos, 100, 2, true];
 	_defArr call ADF_fnc_defendArea;
-	_g setVariable ["ADF_HC_garrison_ADF",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
 // Bearclaw Defence Team
@@ -91,5 +90,3 @@ _g = [getPos objBearclaw, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" 
 {[_x] call ADF_fnc_redressPashtun} forEach units _g;
 _defArr = [_g, getPos objBearclaw, 10, 2, true];
 _defArr call ADF_fnc_defendArea;
-_g setVariable ["ADF_HC_garrison_ADF",true];
-_g setVariable ["ADF_HC_garrisonArr",_defArr];

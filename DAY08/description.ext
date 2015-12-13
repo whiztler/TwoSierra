@@ -33,7 +33,7 @@ respawnTemplatesCiv[] = {};
 /**********  Loading Screen **********/
 author = "Whiztler";
 overviewText = "Two Sierra Tour 2 / Day 08 - v1.01";
-onLoadName = "NOVY DISHA";
+onLoadName = "NOVI DISHA";
 onLoadMission = "TWO SIERRA | Day 08";
 onLoadIntroTime = false;
 onLoadMissionTime = false;

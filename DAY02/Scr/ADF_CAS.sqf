@@ -196,7 +196,7 @@ if (hasInterface) then {
 // From here on server only. Create the CAS vehicle, create markers etc.
 if (!isServer) exitWith {};
 
-waitUntil {ADF_CAS_marker}; // wait till the CAS request action was executed
+waitUntil {sleep 2; ADF_CAS_marker}; // wait till the CAS request action was executed
 
 diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: CAS (server) activated";

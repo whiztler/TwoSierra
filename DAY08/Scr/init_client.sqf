@@ -65,11 +65,26 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 
 ["ACO","ACO","FAIRCHILD: TWO SIERRA, get your defences in order as soon as possible. ACE expects VLAD to commence its assault within the next 30 minutes.<br/><br/>DONALD is securing DIANA and JANE<br/><br/>Good luck TWO SIERRA. Out."] call ADF_fnc_MessageParser; 
 
-[] spawn {
-	waitUntil {sleep 10; ADF_endMission};
-	
-	if (time > 7200) then {
-		["ACO","ACO","FAIRCHILD: TWO Sierra, message. Over."] call ADF_fnc_MessageParser; sleep 20;
+ADF_msg_MBT = {
+	["ACO","ACO","FAIRCHILD: TWO SIERRA, urgent message. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","TWO SIERRA","Go ahead FAIRCHILD"] call ADF_fnc_MessageParser; sleep 9;
+	["ACO","ACO","FAIRCHILD: ACE is tracking 2 kings and several victors and APC's. ETA 6 mikes. Get your AT specialists ready! Out."] call ADF_fnc_MessageParser;
+};
+
+ADF_msg_INF = {
+	["ACO","ACO","FAIRCHILD: TWO SIERRA, message. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","TWO SIERRA","Ready to copy FAIRCHILD"] call ADF_fnc_MessageParser; sleep 9;
+	["ACO","ACO","FAIRCHILD: TWO SIERRA, ACE is tracking more than 10 squads heading your way. Get ready! Out."] call ADF_fnc_MessageParser;
+};
+
+ADF_msg_sweep = {
+	["ACO","ACO","FAIRCHILD: TWO SIERRA, ACE reports the last remaining OPFOR are scattered around NOLA. Do not let them retreat. Mount up in your vehicles and clean and secure the area. How copy?"] call ADF_fnc_MessageParser; sleep 16;
+	["2S","TWO SIERRA","Understood FAIRCHILD. Clear and secure the area. Out."] call ADF_fnc_MessageParser; sleep 9;
+};
+
+ADF_msg_endMission = {
+	if (time > 9000) then {
+		["ACO","ACO","FAIRCHILD: TWO SIERRA, message. Over."] call ADF_fnc_MessageParser; sleep 20;
 		["2S","TWO SIERRA","Go ahead FAIRCHILD"] call ADF_fnc_MessageParser; sleep 12;
 		["ACO","ACO","FAIRCHILD: MOTHER is pulling you out. 4TH will finish up at NOLA.<br/><br/>Head back to FARGO and pack up you gear. You're moving out to another hot zone tomorrow morning.<br/><br/>Good job TWO SIERRA. Out."] call ADF_fnc_MessageParser; sleep 25;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
@@ -79,7 +94,7 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 	} else {
 		["2S","TWO SIERRA","FAIRCHILD this is TWO SIERRA, message. Over."] call ADF_fnc_MessageParser; sleep 15;
 		["ACO","ACO","Go ahead TWO SIERRA"] call ADF_fnc_MessageParser; sleep 12;
-		["2S","TWO SIERRA","It looks like YURI and BORIS are running scared. MORA is blue. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+		["2S","TWO SIERRA","NOLA is blue and secured. How copy?"] call ADF_fnc_MessageParser; sleep 14;
 		["ACO","ACO","Excellent TWO SIERRA. Job well done.<br/><br/>MOTHER is pulling you out. 4TH will take care of NOLA security.<br/><br/>Head back to FARGO and pack up you gear. You're moving out to another hot zone tomorrow morning. Out."] call ADF_fnc_MessageParser; sleep 15;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];

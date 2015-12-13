@@ -54,10 +54,10 @@ class Mission
 		"A3_Structures_F_Mil_Fortification",
 		"A3_Signs_F_AD",
 		"A3_Structures_F_Walls",
-		"3DEN",
 		"A3_Air_F_Heli_Heli_Light_01",
 		"a3_air_f_heli_light_01",
-		"A3_Soft_F_MRAP_01"
+		"A3_Soft_F_MRAP_01",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
@@ -3376,7 +3376,7 @@ class Mission
 			vehicle="US_WarfareBFieldhHospital_Base_EP1";
 			skill=0.60000002;
 			text="medFacil";
-			init="this enableSimulationGlobal false; this setPosATL [getPosATL this select 0, getPosATL this select 1, -.13]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.13]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item219
 		{
@@ -6122,7 +6122,7 @@ class Mission
 		};
 		class Item90
 		{
-			position[]={864.73169,35.380001,296.1095};
+			position[]={862.8103,35.380001,296.41418};
 			name="mAegisFort";
 			type="loc_Bunker";
 			colorName="ColorWEST";

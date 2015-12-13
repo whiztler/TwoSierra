@@ -8,6 +8,9 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 // Vars init
 ADF_endMission			= false;
 ADF_CAS_activate			= false;
+ADF_init_AO				= false;
+Obj_1					= false;
+Obj_2					= false;
 ADF_cacheCount			= 0;
 ADF_cacheCnt				= 0;
 ADF_endMissionMsg			= {};
@@ -23,7 +26,7 @@ if (isServer) then {
 
 // Client init
 if (hasInterface) then {
-	//#include "init_client.sqf"
+	#include "init_client.sqf"
 };
 
 // HC init

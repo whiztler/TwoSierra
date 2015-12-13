@@ -18,8 +18,6 @@ class Mission
 		"A3_Modules_F_Multiplayer",
 		"A3_Structures_F_Ind_Cargo",
 		"A3_Modules_F_Effects",
-		"aia_utes_config",
-		"3DEN",
 		"A3_Soft_F_Gamma_HEMTT",
 		"A3_Soft_F_HEMTT",
 		"A3_Supplies_F_Heli_Slingload",
@@ -30,7 +28,8 @@ class Mission
 		"aia_afghan_config",
 		"A3_Structures_F_Mil_Flags",
 		"A3_Static_F_Gamma",
-		"a3_static_f"
+		"a3_static_f",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
@@ -1516,18 +1515,18 @@ class Mission
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
 			text="medTruck";
-			init="this setObjectTextureGlobal [0, ""Img\cusTex_HEMTT_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_HEMTT_cover.jpg""]; this enableSimulationGlobal false;  if (isServer) then {this setVariable [""ace_medical_isMedicalVehicle"", true];};";
+			init="this setObjectTextureGlobal [0, ""Img\cusTex_HEMTT_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_HEMTT_cover.jpg""]; if (isServer) then {this setVariable [""ace_medical_isMedicalVehicle"", true];};";
 		};
 		class Item52
 		{
 			position[]={4542.6406,145.39999,6079.3208};
-			azimut=797.07025;
+			azimut=797.07001;
 			id=93;
 			side="EMPTY";
 			vehicle="B_Slingload_01_Ammo_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false;this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
+			init="this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item53
 		{

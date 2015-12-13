@@ -18,6 +18,8 @@ diag_log	"-----------------------------------------------------";
 		({(side _x == WEST) && (alive _x)} count _a) > 0;	
 	};
 	diag_log "TWO SIERRA: Objective FOXTROT activated";
+	tFoxtrotBase enableSimulation true;
+	tFoxtrotAmmo enableSimulation true;
 	waitUntil {
 		private ["_a","_o","_b"];
 		sleep 30;		
@@ -39,6 +41,7 @@ diag_log	"-----------------------------------------------------";
 		({(side _x == WEST) && (alive _x)} count _a) > 0;	
 	};
 	diag_log "TWO SIERRA: Objective GOLF activated";
+	tGolfFuel enableSimulation true;
 	waitUntil {
 		private ["_a","_o","_b"];
 		sleep 30;		
@@ -59,6 +62,7 @@ diag_log	"-----------------------------------------------------";
 		({(side _x == WEST) && (alive _x)} count _a) > 0;	
 	};
 	diag_log "TWO SIERRA: Objective HOTEL activated";
+	tHotelSupply enableSimulation true;
 	waitUntil {
 		private ["_a","_o","_b"];
 		sleep 30;		

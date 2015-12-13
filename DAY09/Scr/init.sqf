@@ -10,7 +10,10 @@ ADF_msg_endMission	= {diag_log "------------------------------------------------
 ADF_msg_corazolBlue	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Objective CORAZOL completed";diag_log "-----------------------------------------------------";};
 ADF_msg_calvinBlue	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Objective CALVIN completed";diag_log "-----------------------------------------------------";};
 ADF_msg_foxtrotBlue	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Objective FOXTROT completed";diag_log "-----------------------------------------------------";};
+ADF_msg_foxtrotBase	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: message FOXTROT base";diag_log "-----------------------------------------------------";};
+ADF_msg_foxtrotAmmo	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: message FOXTROT ammo cache";diag_log "-----------------------------------------------------";};
 ADF_msg_golfBlue		= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Objective GOLF completed";diag_log "-----------------------------------------------------";};
+ADF_msg_golfFuel		= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: message GOLF fuel";diag_log "-----------------------------------------------------";};
 ADF_msg_hotelBlue		= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Objective HOTEL completed";diag_log "-----------------------------------------------------";};
 ADF_msg_DeltaBlue		= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Objective DELTA completed";diag_log "-----------------------------------------------------";};
 ADF_msg_EchoBlue		= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Objective ECHO completed";diag_log "-----------------------------------------------------";};
@@ -27,7 +30,7 @@ ADF_obj_Romeo			= false;
 
 // Server Init
 if (isServer) then {
-	#include "init_server.sqf"
+	//#include "init_server.sqf"
 };
 
 // Client init

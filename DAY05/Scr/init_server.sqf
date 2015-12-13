@@ -71,52 +71,6 @@ indep_cp1 = [CP_1a,CP_1b,CP_1c,CP_1d]; {_x enableSimulationGlobal false; _x hide
 indep_cp2 = [CP_2a,CP_2b,CP_2c,CP_2d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp2;
 indep_cp3 = [CP_3a,CP_3b,CP_3c,CP_3d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp3;
 indep_cp4 = [CP_4a,CP_4b,CP_4c,CP_4d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp4;
-	
-_mmObjArray = [
-"Land_fortified_nest_big",
-"Land_fortified_nest_small_EP1",
-"Land_Fort_Watchtower_EP1",
-"Land_HBarrier_large",
-"Land_HBarrier_5_F",
-"Land_HBarrier_3_F",
-"Land_HBarrierWall_corridor_F",
-"Land_HBarrierWall_corner_F",
-"Land_HBarrierWall4_F",
-"Land_HBarrierWall6_F",
-"US_WarfareBFieldhHospital_Base_EP1",
-"US_WarfareBBarracks_Base_EP1",
-"Land_Barrack2_EP1",
-"MASH_EP1",
-"StorageBladder_01_fuel_sand_F",
-"Land_Ind_TankSmall2_EP1",
-"PowGen_Big_EP1",
-"US_WarfareBVehicleServicePoint_Base_EP1",
-"US_WarfareBUAVterminal_Base_EP1",
-"US_WarfareBAntiAirRadar_Base_EP1",
-"Land_Hangar_2",
-"Land_BagBunker_Large_F",
-"Land_Cargo40_military_green_F",
-"Land_Cargo40_sand_F",
-"Land_Cargo20_military_green_F",
-"Land_Cargo20_sand_F",
-"Land_ReservoirTank_Airport_F",
-"Land_u_Barracks_V2_F",
-"Land_i_Barracks_V1_F",
-"Land_Cargo_House_V3_F",
-"Land_Cargo_House_V1_F",
-"Land_Cargo_Patrol_V1_F",
-"Land_Cargo_Patrol_V3_F",
-"Land_Cargo_Tower_V1_F",
-"Land_Cargo_Tower_V3_F",
-"Land_TentHangar_V1_F",
-"Land_CncBarrier_stripes_F"
-];
-
-// Obj Map markerAlpha
-[_mmObjArray,	"mFargo",400] call ADF_fnc_objectMarker;
-
-// Re-create critical markers
-{[_x] call ADF_fnc_reMarker} forEach ["mFargo","mMed"];
 
 #include "SOD_mary.sqf"
 #include "init_AO.sqf"

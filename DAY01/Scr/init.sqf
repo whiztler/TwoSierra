@@ -9,6 +9,7 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 CSAThostile 			= false;
 xRayDestroyed 		= false;
 bearclawRescued 		= false;
+ADF_init_AO			= false;
 
 // Server Init
 if (isServer) then {

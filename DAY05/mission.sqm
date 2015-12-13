@@ -54,12 +54,12 @@ class Mission
 		"A3_Supplies_F_Heli_CargoNets",
 		"A3_Armor_F_EPB_MBT_03",
 		"A3_Armor_F_EPB_APC_tracked_03",
-		"3DEN",
 		"A3_Air_F_Beta_Heli_Attack_02",
 		"A3_Static_F_Beta_Mortar_01",
 		"a3_static_f_mortar_01",
 		"A3_Soft_F_Gamma_Offroad",
-		"a3_soft_f_offroad_01"
+		"a3_soft_f_offroad_01",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
@@ -1026,7 +1026,7 @@ class Mission
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
 			text="MEDITRUCK_XO";
-			init="this setObjectTextureGlobal [0, ""Img\cusTex_HEMTT_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_HEMTT_cover.jpg""]; this enableSimulationGlobal false; if (isServer) then {this setVariable [""ace_medical_isMedicalVehicle"", true];};";
+			init="this setObjectTextureGlobal [0, ""Img\cusTex_HEMTT_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_HEMTT_cover.jpg""]; if (isServer) then {this setVariable [""ace_medical_isMedicalVehicle"", true];};";
 		};
 		class Item11
 		{
@@ -2389,7 +2389,7 @@ class Mission
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
 			text="MedFacil";
-			init="this enableSimulationGlobal false;this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
+			init="this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item139
 		{
@@ -4647,12 +4647,12 @@ class Mission
 		};
 		class Item351
 		{
-			position[]={2889.1814,328.98526,7793.4229};
-			azimut=101.98013;
+			position[]={2909.6292,329.19345,7751.96};
+			azimut=101.98;
 			special="NONE";
 			id=393;
 			side="EMPTY";
-			vehicle="I_HMG_01_F";
+			vehicle="O_HMG_01_high_F";
 			leader=1;
 			skill=0.2;
 		};
@@ -4664,7 +4664,7 @@ class Mission
 			special="NONE";
 			id=394;
 			side="EMPTY";
-			vehicle="I_HMG_01_F";
+			vehicle="O_HMG_01_high_F";
 			leader=1;
 			lock="LOCKED";
 			skill=0.2;
@@ -4693,12 +4693,12 @@ class Mission
 		};
 		class Item355
 		{
-			position[]={2575.9548,193.47423,4991.1621};
+			position[]={2577.5957,193.46754,4991.0557};
 			azimut=-67.182503;
 			special="NONE";
 			id=397;
 			side="EMPTY";
-			vehicle="I_HMG_01_F";
+			vehicle="O_HMG_01_high_F";
 			leader=1;
 			skill=0.2;
 		};
@@ -4768,12 +4768,12 @@ class Mission
 		class Item361
 		{
 			position[]={6324.0781,300.99023,7672.6841};
-			azimut=216.50732;
+			azimut=216.507;
 			offsetY=15.6;
 			special="NONE";
 			id=403;
 			side="EMPTY";
-			vehicle="I_HMG_01_F";
+			vehicle="O_HMG_01_high_F";
 			leader=1;
 			skill=0.2;
 		};
@@ -4843,7 +4843,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=114;
+		items=116;
 		class Item0
 		{
 			position[]={5159.3184,9,2304.2893};
@@ -5584,7 +5584,7 @@ class Mission
 		};
 		class Item74
 		{
-			position[]={2554.2737,300.76779,6356.978};
+			position[]={2548.958,300.62479,6357.4497};
 			name="mGuerPaxDef_3";
 			text="FT";
 			type="Empty";
@@ -5713,7 +5713,7 @@ class Mission
 		};
 		class Item87
 		{
-			position[]={3583.5449,381.09384,6076.4673};
+			position[]={3035.5139,305.4856,6070.1665};
 			name="mGuerPaxPatrol_1";
 			text="PAT";
 			type="Empty";
@@ -5753,7 +5753,7 @@ class Mission
 		};
 		class Item91
 		{
-			position[]={5727.6108,311.67538,7532.3433};
+			position[]={5514.7324,319.59708,7043.9751};
 			name="mGuerPaxPatrol_5";
 			text="PAT";
 			type="Empty";
@@ -5763,7 +5763,7 @@ class Mission
 		};
 		class Item92
 		{
-			position[]={6853.6816,324.40192,8296.6689};
+			position[]={6606.3662,282.83368,7448.2856};
 			name="mGuerPaxPatrol_6";
 			text="PAT";
 			type="Empty";
@@ -5773,7 +5773,7 @@ class Mission
 		};
 		class Item93
 		{
-			position[]={7664.6865,334.77695,7532.3408};
+			position[]={3908.0081,296.41583,7566.7773};
 			name="mGuerPaxPatrol_7";
 			text="PAT";
 			type="Empty";
@@ -5981,6 +5981,26 @@ class Mission
 			text="PAT";
 			type="Empty";
 			colorName="ColorCIV";
+		};
+		class Item114
+		{
+			position[]={5568.6123,310.79263,7649.7583};
+			name="mGuerPaxPatrol_9";
+			text="PAT";
+			type="Empty";
+			colorName="ColorPink";
+			a=0.5;
+			b=0.5;
+		};
+		class Item115
+		{
+			position[]={6557.8711,345.64038,8279.0029};
+			name="mGuerPaxPatrol_10";
+			text="PAT";
+			type="Empty";
+			colorName="ColorPink";
+			a=0.5;
+			b=0.5;
 		};
 	};
 	class Sensors

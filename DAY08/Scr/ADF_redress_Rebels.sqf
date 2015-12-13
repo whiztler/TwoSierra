@@ -110,9 +110,10 @@ ADF_fnc_redressRebel = {
 	if (_priWeapon == "arifle_Katiba_GL_F") then {for "_i" from 1 to 6 do {_unit addMagazine "1Rnd_HE_Grenade_shell"};};
 	
 	// Add default items
-	_unit linkItem "ItemMap"; _unit linkItem "ItemCompass"; _unit linkItem "ItemWatch"; _unit linkItem "ItemRadio";
+	_unit linkItem "ItemMap"; _unit linkItem "ItemCompass"; _unit linkItem "ItemWatch"; _unit linkItem "ItemRadio"; _unit linkItem "NVGoggles_OPFOR";
 	for "_i" from 1 to 2 do {_unit addMagazine "HandGrenade"; _unit addMagazine "SmokeShell"; _unit addMagazine "16Rnd_9x21_Mag"; _unit addMagazine "Chemlight_red"; _unit addItem "FirstAidKit";};
 	_unit addWeapon "hgun_Rook40_F";
+	_unit addWeapon "NVGoggles_OPFOR";
 	
 	// Identity
 	_unit setFace _face;

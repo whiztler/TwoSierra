@@ -1,5 +1,6 @@
 if (hasInterface) then {
-	["ACO","ACO","FIRESTONE: TWO SIERRA, Message. BRAVO grid intel:<br/><br/>1. MOTHER is tracking 20+ ELVIS pax in BRAVO grid.<br/><br/>2. ACE is tracking 2 victors around BRAVO. Several CEASAR victors in the vicinity of BRAVO. Out."] call ADF_fnc_MessageParser;
+	["2S","TWO SIERRA","FIRESTONE we are closing on the BRAVO sector. How copy?"] call ADF_fnc_MessageParser; sleep 15;
+	["ACO","ACO","FIRESTONE: Understood TWO SIERRA. We have some additional BRAVO grid intel:<br/><br/>1. MOTHER is tracking 20+ ELVIS pax in BRAVO grid.<br/><br/>2. ACE is tracking 2 victors around BRAVO. Several CEASAR victors in the vicinity of BRAVO. Out."] call ADF_fnc_MessageParser;
 };
 
 if (!isServer) exitWith {};
@@ -57,8 +58,6 @@ for "_i" from 10 to 13 do {
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
 	_defArr call ADF_fnc_defendArea;	
-	_g setVariable ["ADF_HC_garrison_ADF",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
 };
 
 // Defence Oil Rigs

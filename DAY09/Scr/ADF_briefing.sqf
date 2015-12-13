@@ -27,7 +27,7 @@ player createDiaryRecord ["Diary",["Credits","<br/>
 Concept and development: whiztler
 </font><br/><br/>
 
-<font size='14' color='#d7dbd5'>2SEIRRA.COM</font><font color='#9DA698'><br/>
+<font size='14' color='#d7dbd5'>2SIERRA.COM</font><font color='#9DA698'><br/>
 <font color='#9DA698'>
 More information and latest version of the Two Sierra campaign can be found at the official website: www.2sierra.com
 </font><br/><br/>

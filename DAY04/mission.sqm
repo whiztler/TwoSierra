@@ -27,11 +27,11 @@ class Mission
 		"A3_Armor_F_Marid",
 		"A3_Characters_F_Mark",
 		"aia_misc_e_config",
-		"3DEN",
 		"A3_Soft_F_Gamma_Offroad",
 		"a3_soft_f_offroad_01",
 		"A3_Static_F_Gamma",
-		"a3_static_f"
+		"a3_static_f",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
@@ -836,7 +836,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=70;
+		items=68;
 		class Item0
 		{
 			position[]={1038.5027,272.6908,5771.252};
@@ -1236,12 +1236,13 @@ class Mission
 		class Item37
 		{
 			position[]={1009.3132,273.48297,5750.4668};
-			azimut=226.97614;
+			azimut=226.976;
 			id=78;
 			side="EMPTY";
 			vehicle="MASH_EP1";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
+			text="MEDTENT";
+			init="if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item38
 		{
@@ -1253,7 +1254,7 @@ class Mission
 			vehicle="B_Slingload_01_Medevac_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false;this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
+			init="this setVectorUp [0,0,1]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item39
 		{
@@ -1497,8 +1498,8 @@ class Mission
 		};
 		class Item59
 		{
-			position[]={5477.8975,96.048233,10632.89};
-			azimut=265.75201;
+			position[]={3430.9817,63.526711,9986.877};
+			azimut=276.51349;
 			offsetY=3.0999999;
 			special="NONE";
 			age="10 MIN";
@@ -1510,9 +1511,9 @@ class Mission
 		};
 		class Item60
 		{
-			position[]={3430.9817,63.526711,9986.877};
-			azimut=276.51349;
-			offsetY=3.0999999;
+			position[]={3810.2546,43.710339,10385.447};
+			azimut=276.513;
+			offsetY=3.2;
 			special="NONE";
 			age="10 MIN";
 			id=101;
@@ -1523,9 +1524,9 @@ class Mission
 		};
 		class Item61
 		{
-			position[]={3810.2546,43.710339,10385.447};
+			position[]={4180.8789,38.531639,10818.62};
 			azimut=276.513;
-			offsetY=3.2;
+			offsetY=6.21;
 			special="NONE";
 			age="10 MIN";
 			id=102;
@@ -1536,23 +1537,10 @@ class Mission
 		};
 		class Item62
 		{
-			position[]={4180.8789,38.531639,10818.62};
-			azimut=276.513;
-			offsetY=6.21;
-			special="NONE";
-			age="10 MIN";
-			id=103;
-			side="EMPTY";
-			vehicle="I_HMG_01_F";
-			leader=1;
-			skill=0.2;
-		};
-		class Item63
-		{
 			position[]={3997.7747,41.273251,10567.509};
 			azimut=1342.3275;
 			special="NONE";
-			id=104;
+			id=103;
 			side="EMPTY";
 			vehicle="B_G_Offroad_01_armed_F";
 			leader=1;
@@ -1560,51 +1548,38 @@ class Mission
 			skill=0.2;
 			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
 		};
-		class Item64
-		{
-			position[]={4774.6475,80.601631,11183.873};
-			azimut=276.513;
-			offsetY=3.2;
-			special="NONE";
-			age="10 MIN";
-			id=105;
-			side="EMPTY";
-			vehicle="I_HMG_01_F";
-			leader=1;
-			skill=0.2;
-		};
-		class Item65
+		class Item63
 		{
 			position[]={4146.7437,25.149021,11712.433};
 			azimut=276.513;
 			offsetY=3.2;
 			special="NONE";
 			age="10 MIN";
-			id=106;
+			id=104;
 			side="EMPTY";
 			vehicle="I_HMG_01_F";
 			leader=1;
 			skill=0.2;
 		};
-		class Item66
+		class Item64
 		{
 			position[]={1813.9156,145.87,11915.472};
 			azimut=358.142;
 			offsetY=7.1999998;
 			special="NONE";
 			age="ACTUAL";
-			id=107;
+			id=105;
 			side="EMPTY";
 			vehicle="I_HMG_01_high_F";
 			leader=1;
 			skill=0.2;
 		};
-		class Item67
+		class Item65
 		{
 			position[]={1805.1919,199.19269,11492.308};
 			azimut=909.09692;
 			special="NONE";
-			id=108;
+			id=106;
 			side="EMPTY";
 			vehicle="B_G_Offroad_01_armed_F";
 			leader=1;
@@ -1612,25 +1587,25 @@ class Mission
 			skill=0.2;
 			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
 		};
-		class Item68
+		class Item66
 		{
 			position[]={2029.2234,39.257828,12839.967};
 			azimut=276.513;
 			offsetY=3.2;
 			special="NONE";
 			age="10 MIN";
-			id=109;
+			id=107;
 			side="EMPTY";
 			vehicle="I_HMG_01_F";
 			leader=1;
 			skill=0.2;
 		};
-		class Item69
+		class Item67
 		{
 			position[]={1957.7347,144.32834,11748.632};
 			azimut=959.43475;
 			special="NONE";
-			id=110;
+			id=108;
 			side="EMPTY";
 			vehicle="B_G_Offroad_01_armed_F";
 			leader=1;
@@ -2674,7 +2649,7 @@ class Mission
 			age="UNKNOWN";
 			name="tBOPspawn";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = [] spawn  ADF_fnc_BOPactive;";
+			expActiv="0 = [] spawn ADF_fnc_BOPactive;";
 			class Effects
 			{
 			};

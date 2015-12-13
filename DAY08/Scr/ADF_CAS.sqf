@@ -28,7 +28,7 @@ ADF_CAS_requester		= INF_PC; // the name of the unit that can request the CAS. U
 ADF_CAS_spawn			= getMarkerPos "mFargo"; // This is where the CAS aircraft will spawn. Place on edge of map.
 ADF_CAS_vector		= getMarkerPos "mAirSupportVector"; // Approach vector marker.
 ADF_CAS_delay			= round (40 + (random 60)); // Delay for the CAS to be created. Simulate that CAS aircraft needs to depart from a distant airbase.
-ADF_CAS_onSite		= round (50 + (random 30)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
+ADF_CAS_onSite		= round (120 + (random 30)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
 ADF_CAS_vehClass		= "B_Heli_Attack_01_F"; // classname of CAS aircraft
 ADF_CAS_callSign		= "GATOR"; // ingame Callsign of CAS aircraft
 ADF_CAS_pilotName		= "Lt. Frank (Casanova) Giberti"; // ingame name of the CAS pilot
@@ -122,7 +122,7 @@ ADF_fnc_CAS_Activated = {
 	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1: Go on %2. ETA %3 Mikes.</t><br/><br/>",ADF_CAS_pilotName,ADF_CAS_station,_ADF_CAS_delayMin];
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
-	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: " +ADF_CAS_callSign+ "</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_callSign+ ": Go on " +ADF_CAS_station+ ". ETA "+ _ADF_CAS_delayMin +" Mikes.</font><br/><br/>"]];
+	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: " +ADF_CAS_callSign+ "</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_callSign+ ": Go on " +ADF_CAS_station+ ". ETA 4 Mikes.</font><br/><br/>"]];
 
 	sleep ADF_CAS_delay; // Time from map entrance it will take CAS to reach the AO
 
@@ -195,7 +195,7 @@ if (hasInterface) then {
 // From here on server only. Create the CAS vehicle, create markers etc.
 if (!isServer) exitWith {};
 
-waitUntil {ADF_CAS_marker}; // wait till the CAS request action was executed
+waitUntil {sleep 2; ADF_CAS_marker}; // wait till the CAS request action was executed
 
 diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: CAS (server) activated";

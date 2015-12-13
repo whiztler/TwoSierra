@@ -118,6 +118,30 @@ ADF_msg_RomeoBlue		= {
 	["ACO","ACO","VADER: Copy TWO SIERRA. MSR is open. Out"] call ADF_fnc_MessageParser;
 };
 
+ADF_msg_foxtrotAmmo	= {
+	ADF_obj_foxtrot = true;
+	["2S","","TWO SIERRA: VADER this is TWO SIERRA. The south hangar at Foxtrot houses a large ammo cache. Enough to blow up this city twice over. How copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["ACO","ACO","VADER: Copy TWO SIERRA. Stay clear of the ammo cache. We'll dispatch engineers to deal with it. Out."] call ADF_fnc_MessageParser;
+};
+
+ADF_msg_foxtrotBase	= {
+	ADF_obj_foxtrot = true;
+	["2S","","TWO SIERRA: VADER this is TWO SIERRA. We are at FOXTROT. There is a lot of hardware here, including two APC's How copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["ACO","ACO","VADER: Copy TWO SIERRA. We'll send some engineers to deal with the CSAT assets. Out."] call ADF_fnc_MessageParser;
+};
+
+ADF_msg_hotelSupply	= {
+	ADF_obj_foxtrot = true;
+	["2S","","TWO SIERRA: VADER this is TWO SIERRA. We found a CSAT supply warehouse at HOTEL. How copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["ACO","ACO","VADER: Copy TWO SIERRA. Supply warehouse at HOTEL. Ignore the warehouse and continue with the mission. Out."] call ADF_fnc_MessageParser;
+};
+
+ADF_msg_golfFuel	= {
+	ADF_obj_foxtrot = true;
+	["2S","","TWO SIERRA: VADER this is TWO SIERRA. There's a large fuel dump at Golf. How copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["ACO","ACO","VADER: Copy TWO SIERRA. Fuel dump at GOLF. MOTHER wants to salvage the fuel dump. Proceed with mission. Out."] call ADF_fnc_MessageParser;
+};
+
 ADF_msg_endMission	= {
 	["ACO","ACO","VADER: Excellent job TWO SIERRA. MOTHER wasn't sure we could take Corazol in one go. Glad we proved them wrong.<br/><br/>MOTHER is dispatching 22nd, 1ST and 3RD to set-up security. Head over to FOXTROT. 22nd will bring the mess truck with some cold ones.<br/><br/>Splendid adchievement boys!"] call ADF_fnc_MessageParser;
 	sleep 10;

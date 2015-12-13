@@ -26,6 +26,7 @@ ADF_wpPosRdm = {
 		_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "GREEN";
 		_wp setWaypointStatements ["true", "vAirbus land 'LAND';"];	
 		waitUntil {(currentWaypoint (_wp select 0)) > (_wp select 1)};
+		vAirbus flyInHeight 0;
 		waitUntil {isTouchingGround vAirbus};
 		vAirbus setDir (getDir _wpPad);
 		{vAirbus animateDoor [_x, 1];} forEach ["door_L_source","door_R_source","Door_rear_source"];
@@ -35,6 +36,7 @@ ADF_wpPosRdm = {
 		vAirbus setFuel 1;
 		{vAirbus animateDoor [_x, 0];} forEach ["door_L_source","door_R_source","Door_rear_source"];
 		_wp = _c addWaypoint [getMarkerPos _exitPos, 0];
+		vAirbus flyInHeight 500;
 		_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL";  _wp setWaypointCombatMode "GREEN";
 		waitUntil {(currentWaypoint (_wp select 0)) > (_wp select 1)};
 		sleep 2;
@@ -76,6 +78,30 @@ diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: Started spawning AO ai's";
 diag_log	"-----------------------------------------------------";
 
+// AO Defence Fire Team
+for "_i" from 1 to 11 do {
+	private ["_g","_spawnPos"];
+	_spawnPos = format ["mGuerPaxDef_%1",_i];
+	_spawnPos = getMarkerPos _spawnPos;
+	
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+	{[_x] call ADF_fnc_redressRebel} forEach units _g;
+	
+	[_g, _spawnPos, 150, 2, true] call ADF_fnc_defendArea;
+};
+
+// AO Defence Squad
+for "_i" from 20 to 23 do {
+	private ["_g","_spawnPos"];
+	_spawnPos = format ["mGuerPaxDef_%1",_i];
+	_spawnPos = getMarkerPos _spawnPos;
+	
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad")] call BIS_fnc_spawnGroup;
+	{[_x] call ADF_fnc_redressRebel} forEach units _g;
+
+	[_g, _spawnPos, 250, 2, true] call ADF_fnc_defendArea;
+};
+
 // Random vehicle patrols GUER
 for "_i" from 1 to 5 do {
 	private ["_spawnPos","_d","_v","_vX"];
@@ -110,21 +136,6 @@ for "_i" from 1 to 3 do {
 	[_c, _spawnPos, 2000, 4, "MOVE", "SAFE", "GREEN", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
 };
 
-// AO Defence Fire Team
-for "_i" from 1 to 11 do {
-	private ["_g","_spawnPos","_defArr"];
-	_spawnPos = format ["mGuerPaxDef_%1",_i];
-	_spawnPos = getMarkerPos _spawnPos;
-	
-	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
-	{[_x] call ADF_fnc_redressRebel} forEach units _g;
-	
-	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
-};
-
 // AO patrol Fire Team City
 for "_i" from 1 to 11 do {
 	private ["_g","_spawnPos","_r","_w","_t"];
@@ -139,31 +150,16 @@ for "_i" from 1 to 11 do {
 	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
-// AO Defence Squad
-for "_i" from 20 to 23 do {
-	private ["_g","_spawnPos","_defArr"];
-	_spawnPos = format ["mGuerPaxDef_%1",_i];
-	_spawnPos = getMarkerPos _spawnPos;
-	
-	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad")] call BIS_fnc_spawnGroup;
-	{[_x] call ADF_fnc_redressRebel} forEach units _g;
-
-	_defArr = [_g, _spawnPos, 250, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];	
-};
-
 // Foot patrols
-for "_i" from 1 to 5 do {
+for "_i" from 1 to 10 do {
 	private ["_g","_spawnPos","_r","_w","_t"];
 	_spawnPos = format ["mGuerPaxPatrol_%1",_i];
 	_spawnPos = getMarkerPos _spawnPos;
 	_r = floor ((random 900) + (random 900));
 	_w = [3,4,5] call BIS_fnc_selectRandom;
-	_t = ["OIA_InfTeam","OIA_InfSentry"] call BIS_fnc_selectRandom;
+	//_t = ["OIA_InfTeam","OIA_InfSentry"] call BIS_fnc_selectRandom;
 	
-	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _t)] call BIS_fnc_spawnGroup;
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
 
 	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
@@ -205,4 +201,6 @@ diag_log format ["TWO SIERRA: AO OpFor spawned, number of Opfor: %1",_ADF_OpforC
 diag_log format ["TWO SIERRA: AO Independent spawned, number of Independent: %1",_ADF_IndepCnt];
 diag_log format ["TWO SIERRA: AO BluFor spawned, number of BluFor: %1",_ADF_WestCnt];
 diag_log	"----------------------------------------------------------------------";
+
+ADF_init_AO = true; publicVariable "ADF_init_AO";
 
