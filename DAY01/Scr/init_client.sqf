@@ -69,7 +69,7 @@ if (!didJIP) then {
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: ACO</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>FIRESTONE: Copy TWO SIERRA. FRAGO:<br/><br/>1. Locate BEARCLAW. Intel indicates BEARCLAW is held captive somewhere in grid ALPHA or in grid BRAVO.<br/><br/>2. Neutralize XRAY. Break</font><br/><br/>"]];
 
-	sleep 12;
+	sleep 14;
 
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
@@ -92,7 +92,7 @@ if (!didJIP) then {
 
 // XRAY destroyed
 ADF_fnc_xRayDestroyed = {
-	player addRating 9000;
+	player addRating 15000;
 	["2S","TWO SIERRA","TWO SIERRA: FIRESTONE this is TWO SIERRA. XRAY neutralized. How copy?"] call ADF_fnc_MessageParser; sleep 12;
 	if (BearclawRescued) then {
 		["ACO","ACO","FIRESTONE: Great fireworks TWO SIERRA. Escort BEARCLAW back to RV ZEBRA. Out."] call ADF_fnc_MessageParser;

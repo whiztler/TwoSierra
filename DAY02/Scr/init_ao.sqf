@@ -1,19 +1,17 @@
-diag_log "ADF RPT: Init - executing Scr\init_AO.sqf"; // Reporting. Do NOT edit/remove
-call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 
 ///// PASHTUN
 
 // Airport assault forces
 
-ADF_TargetRandom = {
-	private ["_posRnd","_posC","_rad"];
-	_posC = getMarkerPos "mAegisText_1";
-	_rad = random 600;
-	_posRnd = [_posC, _rad] call CBA_fnc_randPos;  
-	_posRnd
+ADF_fnc_TargetRandom = {
+	private ["_return","_p"];
+	_p		= getMarkerPos "mAegisText_1";
+	_return	= [_p, 600, random 360] call ADF_fnc_randomPos;  
+	_return
 };
 
 [] spawn {
+	private ["_assaultTimer","_opforCnt","_opforCntWin","_assaultStartTime"];
 	// Init
 	_assaultTimer			= [600,700,800,900,1000,1100,1200] call BIS_fnc_selectRandom;
 	_assaultTimer 		= _assaultTimer - (random floor 300);
@@ -33,9 +31,11 @@ ADF_TargetRandom = {
 	ADF_mots_assaultTimer = (_assaultTimer + 510); publicVariable "ADF_mots_assaultTimer"; // MOTS
 
 	// Wait till the timer runs out
+	if (ADF_debug) then {_assaultTimer = 45};
 	while {(_assaultTimer != 1) && !(triggerActivated tShapur1 || triggerActivated tShapur2)} do {
 		_assaultTimer = _assaultTimer - 1;
-		sleep 1;
+		uiSleep 1;
+		if (MotsActive) exitWith {};
 		//hintSilent str _assaultTimer;
 	};
 	
@@ -46,13 +46,14 @@ ADF_TargetRandom = {
 	
 	// Simulated mortar assault
 	[] spawn {
-		sleep 90;
+		private ["_TargetCount"];
+		sleep ((random 60) + (random 60));
 		_TargetCount	= [8,10,12,14,16,18,22,30] call BIS_fnc_selectRandom;
 		
 		for "_i" from 0 to _TargetCount do {
-			private ["_posRnd","_mortar"];
-			_posRnd = call ADF_TargetRandom;
-			_mortar = createVehicle ["M_Mo_82mm_AT_LG", _posRnd, [], 0, "NONE"];
+			private ["_return","_mortar"];
+			_return = call ADF_fnc_TargetRandom;
+			_mortar = createVehicle ["M_Mo_82mm_AT_LG", _return, [], 0, "NONE"];
 			sleep (random 5);
 		};
 	};
@@ -62,10 +63,13 @@ ADF_TargetRandom = {
 		for "_i" from 0 to 2 do {
 			private ["_spawnPos","_g","_wp","_spawnPause"];
 			_spawnPos = "mGueAssaultLine1_1";
+			
 			_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
 			{[_x] call ADF_fnc_redressPashtun} forEach units _g;
+			
 			_wp = _g addWaypoint [getMarkerPos "mGueAssaultLine1_2", 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 			_wp = _g addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
+			
 			_spawnPause = [15,30,45,60,90,120] call BIS_fnc_selectRandom;
 			sleep _spawnPause;
 			ADF_vehSpawnCnt = ADF_vehSpawnCnt + _spawnPause;
@@ -76,10 +80,13 @@ ADF_TargetRandom = {
 		for "_i" from 0 to 2 do {
 			private ["_spawnPos","_g","_wp","_spawnPause"];
 			_spawnPos = "mGueAssaultLine3_1";
+			
 			_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
 			{[_x] call ADF_fnc_redressPashtun} forEach units _g;
+			
 			_wp = _g addWaypoint [getMarkerPos "mGueAssaultLine3_2", 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 			_wp = _g addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
+			
 			_spawnPause = [15,30,45,60,90,120] call BIS_fnc_selectRandom;
 			sleep _spawnPause;
 			ADF_vehSpawnCnt = ADF_vehSpawnCnt + _spawnPause;
@@ -91,10 +98,13 @@ ADF_TargetRandom = {
 		for "_i" from 0 to 2 do {
 			private ["_spawnPos","_g","_wp","_spawnPause"];
 			_spawnPos = "mGueAssaultLine2_1";
+			
 			_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad_Weapons")] call BIS_fnc_spawnGroup;
 			{[_x] call ADF_fnc_redressPashtun} forEach units _g;
+			
 			_wp = _g addWaypoint [getMarkerPos "mGueAssaultLine2_2", 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 			_wp = _g addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
+			
 			_spawnPause = [15,30,45,60,90,120] call BIS_fnc_selectRandom;
 			sleep _spawnPause;
 			ADF_vehSpawnCnt = ADF_vehSpawnCnt + _spawnPause;
@@ -113,15 +123,20 @@ ADF_TargetRandom = {
 	ADF_fnc_PashtunVehAssault = {
 		params ["_line","_vType"];
 		private ["_spawnPos","_spawnDir","_c","_wp"];
-		_spawnPos = format ["mGueAssaultLine%1_1",_line];
-		_wpPos = format ["mGueAssaultLine%1_2",_line];
-		_spawnDir = markerDir _spawnPos;
+		
+		_spawnPos	= format ["mGueAssaultLine%1_1",_line];
+		_wpPos		= format ["mGueAssaultLine%1_2",_line];
+		_spawnDir	= markerDir _spawnPos;
+		_spawnPos	= getMarkerPos _spawnPos;	
+		
+		
 		_c = createGroup INDEPENDENT;
-		_v = [getMarkerPos _spawnPos, _spawnDir, _vType, _c] call BIS_fnc_spawnVehicle;
+		_v = [_spawnPos, _spawnDir, _vType, _c] call BIS_fnc_spawnVehicle;
 		{[_x] call ADF_fnc_redressPashtun} forEach units _c;
 		_vX = _v select 0;
 		_vX setVariable ["BIS_enableRandomization", false];
 		[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
+		
 		_wp = _c addWaypoint [getMarkerPos _wpPos, 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 		_wp = _c addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
 		true
@@ -129,13 +144,15 @@ ADF_TargetRandom = {
 	
 	ADF_fnc_PashtunArmVehAssault = {
 		params ["_line","_v"];
-		private ["_c","_wp"];
+		private ["_c","_wp","_wpPos"];		
 		_wpPos = format ["mGueAssaultLine%1_2",_line];
+		
 		_c = CreateGroup INDEPENDENT; 
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "mPashtunSpawn", [], 0, "LIEUTENANT"]; _p moveInCommander _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "mPashtunSpawn", [], 0, "SERGEANT"]; _p moveInGunner _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "mPashtunSpawn", [], 0, "CORPORAL"]; _p moveInDriver _v;
 		{[_x] call ADF_fnc_redressPashtun} forEach units _c;
+		
 		_wp = _c addWaypoint [getMarkerPos _wpPos, 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 		_wp = _c addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
 		true
@@ -147,12 +164,12 @@ ADF_TargetRandom = {
 		[2,"I_G_Offroad_01_armed_F"] call ADF_fnc_PashtunVehAssault;
 	};
 	
-	sleep (random floor 400); // Pause before spawning APC's
+	sleep ((random floor 200) + (random floor 200)); // Pause before activating the APC's
 			
-	// Let's wrap it up with some APC's/MRAPS
+	// Activate APC's / IFV's
 	[1,vOpforAPC_1] call ADF_fnc_PashtunArmVehAssault; sleep 2;
 	[3,vOpforAPC_2] call ADF_fnc_PashtunArmVehAssault; sleep 2;
-	[2,vOpforAPC_3] call ADF_fnc_PashtunArmVehAssault; sleep 2;
+	[2,vOpforAPC_3] call ADF_fnc_PashtunArmVehAssault;
 	
 	// Count spawned Opfor
 	_opforCnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
@@ -161,6 +178,7 @@ ADF_TargetRandom = {
 	
 	diag_log	"-----------------------------------------------------";
 	diag_log format ["TWO SIERRA: Pashtun spawned: %1",_opforCnt];
+	diag_log format ["TWO SIERRA: Opfor Win count: %1",_opforCntWin];
 	diag_log	"-----------------------------------------------------";
 	
 	// Track Opfor count for win scenario
@@ -168,7 +186,7 @@ ADF_TargetRandom = {
 		sleep 15;
 		_opforCnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
 		if (ADF_pashtunAOtriggered) then {_opforCnt = _opforCnt - ADF_redZoneOpforCnt;};
-		((_opforCnt <= _opforCntWin) || (time > 7200));
+		((_opforCnt < _opforCntWin) || (time > 7200));
 	};
 	
 	_assaultEndTime = time;
@@ -177,7 +195,7 @@ ADF_TargetRandom = {
 	
 	// Reporting
 	diag_log			"-----------------------------------------------------";
-	diag_log format ["TWO SIERRA: Waved cleared, %1 pax left",round _opforCntWin];
+	diag_log format ["TWO SIERRA: Assault waved cleared, %1 pax left",round _opforCntWin];
 	diag_log format ["TWO SIERRA: Time needed to defeat the assault: %1 mins",round ((_assaultStartTime - _assaultEndTime)/60)];
 	diag_log			"-----------------------------------------------------";
 }; // close spawn
@@ -188,48 +206,65 @@ waitUntil {sleep 3; triggerActivated tShapur1 || triggerActivated tShapur2};
 ADF_pashtunAOtriggered = true; publicVariable "ADF_pashtunAOtriggered";
 if !(isNil "tShapur1") then {deleteVehicle tShapur1};
 if !(isNil "tShapur2") then {deleteVehicle tShapur2};
+// Reporting
+diag_log	"-----------------------------------------------------";
+diag_log "TWO SIERRA: Red Zone trigger activated";
+diag_log	"-----------------------------------------------------";
 
 // Static Vehicles/MG/AT/etc
+private ["_g","_p","_m"];
 _g = CreateGroup INDEPENDENT; 
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner vOpfor_01; // 50 cal offroad 1
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner vOpfor_02; // 50 cal offroad 2
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner vOpfor_03; // 50 cal offroad 3
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner vOpfor_04; // 50 cal offroad 4
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_01; // Mortar 1
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_02; // Mortar 2
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_03; // AT 1
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_04; // AT 2
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_05; // GMG 1
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_06; // GMG 2
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_07; // AT 3
-_p = _g createUnit ["I_Soldier_F", getMarkerPos "mPashtunSpawn", [], 0, "PRIVATE"]; _p moveInGunner sOpfor_08; // MG 1
+_m = getMarkerPos "mPashtunSpawn";
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner vOpfor_01; // 50 cal offroad 1
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner vOpfor_02; // 50 cal offroad 2
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner vOpfor_03; // 50 cal offroad 3
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner vOpfor_04; // 50 cal offroad 4
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_01; // Mortar 1
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_02; // Mortar 2
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_03; // AT 1
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_04; // AT 2
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_05; // GMG 1
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_06; // GMG 2
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_07; // AT 3
+_p = _g createUnit ["I_Soldier_F", _m, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_08; // MG 1
 {[_x] call ADF_fnc_redressPashtun} forEach units _g;
 
-// Defence groups (squads)
+// Defence groups (FT's)
 for "_i" from 1 to 4 do {
-	private ["_g","_spawnPos"];
-	_spawnPos = format ["mGuerPaxDef_%1",_i];
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
+	private ["_g","_spawnPos","_defArr"];
+	_spawnPos	= format ["mGuerPaxDef_%1",_i];
+	_spawnPos	= getMarkerPos _spawnPos;
+	
+	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	[_g, getMarkerPos _spawnPos, 100, 1, true] call CBA_fnc_taskDefend;	
+	
+	_defArr = [_g, _spawnPos, 100, 1, true];
+	_defArr call ADF_fnc_defendArea;
 };
 
-// Defence groups (Teams)
+// Defence groups (Sentries)
 for "_i" from 10 to 20 do {
-	private ["_g","_spawnPos"];
-	_spawnPos = format ["mGuerPaxDef_%1",_i];
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
+	private ["_g","_spawnPos","_defArr"];
+	_spawnPos 	= format ["mGuerPaxDef_%1",_i];
+	_spawnPos	= getMarkerPos _spawnPos;
+	
+	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	[_g, getMarkerPos _spawnPos, 50, 2, true] call CBA_fnc_taskDefend;	
+	
+	_defArr = [_g, _spawnPos, 50, 2, true];
+	_defArr call ADF_fnc_defendArea;
 };
 
 // Foot patrols
 for "_i" from 1 to 6 do {
 	private ["_g","_spawnPos"];
-	_spawnPos = format ["mGuerFootPatrol_%1",_i];
-	_g = [getMarkerPos _spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
+	_spawnPos	= format ["mGuerFootPatrol_%1",_i];
+	_spawnPos	= getMarkerPos _spawnPos;
+	
+	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	[_g, getMarkerPos _spawnPos, 400, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+	
+	[_g, _spawnPos, 400, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 // Count & track spawned units for win/loose scenario
@@ -239,6 +274,7 @@ _opforCntWinAO = (ADF_redZoneOpforCnt / 10) + (random 10);
 
 diag_log	"-----------------------------------------------------";
 diag_log format ["TWO SIERRA: AO OpFor spawned, number of Opfor: %1",ADF_redZoneOpforCnt];
+diag_log format ["TWO SIERRA: AO OpFor success mission count: %1",_opforCntWinAO];
 diag_log	"-----------------------------------------------------";
 
 waitUntil {
@@ -249,5 +285,6 @@ waitUntil {
 };
 
 // End mission
-if (ADF_redZoneOpforCnt <= _opforCntWinAO) then {ADF_SatanControl = true; publicVariable "ADF_SatanControl";};
+if (ADF_redZoneOpforCnt < _opforCntWinAO) then {ADF_SatanControl = true; publicVariable "ADF_SatanControl";};
 ADF_SatanClearUp = true; publicVariable "ADF_SatanClearUp";
+

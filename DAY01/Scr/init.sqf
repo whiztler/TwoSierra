@@ -9,7 +9,7 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 CSAThostile 			= false;
 xRayDestroyed 		= false;
 bearclawRescued 		= false;
-if (ADF_isHC) then {ADF_fnc_xRayDestroyed = {}};
+ADF_init_AO			= false;
 
 // Server Init
 if (isServer) then {
@@ -20,6 +20,11 @@ if (isServer) then {
 // Client init
 if (hasInterface) then {
 	#include "init_client.sqf"
+};
+
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
 };
 
 // All Clients

@@ -55,7 +55,6 @@ vXray addEventHandler ["killed", {remoteExec ["ADF_fnc_xRayDestroyed",0,true];}]
 
 ADF_fnc_xRayDestroyed = {
 	xRayDestroyed = true; publicVariable "xRayDestroyed";
-	{if (alive _x) then {_x addRating 15000}} forEach allPlayers;
 	deleteMarker "mXray";
 };
 

@@ -84,7 +84,7 @@ ADF_fnc_CAS_Activated = {
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: TWO SIERRA</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>"+ ADF_CAS_callSign +" this is TWO SIERRA. Request "+ ADF_CAS_station +". How copy?</font><br/><br/>"]];
-	/*
+
 	sleep 6;
 
 	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1: TWO SIERRA this is %2. Ready to copy.</t><br/><br/>",ADF_CAS_pilotName, ADF_CAS_callSign];
@@ -125,7 +125,7 @@ ADF_fnc_CAS_Activated = {
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: " +ADF_CAS_callSign+ "</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_callSign+ ": Go on " +ADF_CAS_station+ ". ETA "+ _ADF_CAS_delayMin +" Mikes.</font><br/><br/>"]];
 
 	sleep ADF_CAS_delay; // Time from map entrance it will take CAS to reach the AO
-*/
+
 	ADF_CAS_active = true; publicVariableServer "ADF_CAS_active"; // Inform the server to create the CAS vehicle
 	
 	waitUntil {sleep 3; ADF_CAS_bingoFuel}; // Wait till the CAS ao timer runs out
@@ -195,7 +195,7 @@ if (hasInterface) then {
 // From here on server only. Create the CAS vehicle, create markers etc.
 if (!isServer) exitWith {};
 
-waitUntil {ADF_CAS_marker}; // wait till the CAS request action was executed
+waitUntil {sleep 2; ADF_CAS_marker}; // wait till the CAS request action was executed
 
 diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: CAS (server) activated";

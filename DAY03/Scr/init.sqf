@@ -8,6 +8,7 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 // Vars init
 ADF_missionStartTime		= 0;
 ADF_endMission			= false;
+ADF_init_AO				= false;
 ADF_greenCnt				= 0;
 ADF_msg_greenZoneCross 	= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Green Zone Trigger activated";diag_log	"-----------------------------------------------------";};
 ADF_msg_tDolphin 			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Dolphin Trigger activated";diag_log	"-----------------------------------------------------";};
@@ -24,6 +25,11 @@ if (isServer) then {
 // Client init
 if (hasInterface) then {
 	#include "init_client.sqf"
+};
+
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
 };
 
 _diagTestEnd = diag_tickTime;

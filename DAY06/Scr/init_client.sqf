@@ -64,8 +64,4 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 ] spawn ADF_fnc_typeWriter;
 
 ["2S","","FAIRCHILD this is TWO SIERRA. We're OSCAR MIKE."] call ADF_fnc_MessageParser; sleep 12;
-["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. ACE has spotted several victors on the roads in NOVEMBER. It seems that KUJO is mostly indoors, so keep an eye out.<br /><br />IED’s are much harder to spot in the dark. Instruct your drivers to scan the roads carefully.<br /><br />DONALD is patrolling in the green zone. Do not engage them.<br /><br />Avoid the BORIS perimeter at any cost.<br /><br />Good luck TWO Sierra. out."] call ADF_fnc_MessageParser; 
-
-
-
-	
+["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. ACE has spotted several victors on the roads in NOVEMBER. Expect more resistance. KUJO has mobilized its forces in the area. It seems that the majority of KUJO forces are indoors, so keep an eye out.<br /><br />IED’s are much harder to spot in the dark. Instruct your drivers to scan the roads carefully.<br /><br />DONALD is patrolling in the green zone. Do not engage them.<br /><br />Avoid the BORIS perimeter at any cost.<br /><br />Good luck TWO Sierra. out."] call ADF_fnc_MessageParser; 

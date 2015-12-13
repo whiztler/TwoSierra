@@ -11,9 +11,7 @@ for "_i" from 1 to 3 do {
 	
 	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	_defArr = [_g, _spawnPos, 50, 1, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
+	_defArr call ADF_fnc_defendArea;
 
 	{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 	if (CSAThostile) then {_gEAST = createGroup EAST; (units _g) joinSilent _gEAST};
@@ -25,7 +23,7 @@ for "_i" from 1 to 2 do {
 	_spawnPos	= getMarkerPos "mCSAT_base_2";
 	
 	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-	[_g, _spawnPos, 150, 3, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "", [2,15,30]] call CBA_fnc_taskPatrol;
+	[_g, _spawnPos, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 	if (CSAThostile) then {_gEAST = createGroup EAST; (units _g) joinSilent _gEAST};
 };
@@ -37,7 +35,7 @@ for "_i" from 10 to 12 do {
 	_spawnPos	= getMarkerPos _spawnPos;
 	
 	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-	[_g, _spawnPos, 300, 5, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "", [1,2,3]] call CBA_fnc_taskPatrol;
+	[_g, _spawnPos, 300, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	{[_x] call ADF_fnc_redressCSAT} forEach units _g;
 	if (CSAThostile) then {_gEAST = createGroup EAST; (units _g) joinSilent _gEAST};
 };

@@ -215,7 +215,7 @@ tCAS setTriggerActivation ["WEST","PRESENT",true];
 tCAS setTriggerArea [ADF_CAS_aoTriggerRad,ADF_CAS_aoTriggerRad,0,false];
 tCAS setTriggerStatements ["{vehicle _x in thisList && ((getPosATL _x) select 2) > 25} count allUnits > 0;","",""];
 
-waitUntil {ADF_CAS_active}; // wait till the 9-liners are finished and CAS-delay timer is 0. 
+waitUntil {sleep 2; ADF_CAS_active}; // wait till the 9-liners are finished and CAS-delay timer is 0. 
 
 // Create CAR aircraft
 _c = createGroup WEST;

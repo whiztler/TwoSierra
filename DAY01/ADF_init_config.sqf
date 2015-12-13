@@ -16,7 +16,7 @@ modules and scripts.
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_init_config.sqf";}; // Reporting. Do NOT edit/remove
 
 /********** GENERAL **********/
-ADF_mission_version = 1.0; // Mission version
+ADF_mission_version = 1.01; // Mission version
 _ADF_mission_init_time = 45; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
 _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)
@@ -79,7 +79,7 @@ _ADF_misBal_low = 10; // Mission Balancer > Low number of players (spawns less e
 _ADF_misBal_high = 30; // Mission Balancer > high number of players (spawns all enemies).
 
 /********** UNIT/VEHICLE CACHING **********/
-_ADF_Caching = true; // // Enable/disable caching of units and vehicles. Auto Disabled when HC is active. [true/false].
+_ADF_Caching = false; // // Enable/disable caching of units and vehicles. Auto Disabled when HC is active. [true/false].
 _ADF_Caching_unitDistance = 1000; // AI Unit caching distance default = 1000 meters.
 _ADF_Caching_vehicleDistance_land = 250; // Cars caching distance default = 250 meters.
 _ADF_Caching_vehicleDistance_air = 1500; // aircraft caching distance default = 250 meters.

@@ -3,14 +3,17 @@ if (!isServer) exitWith {};
 
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_defendArea.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_footPatrol.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_NRF.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 
 // Load vehicle Supplies
 [MRAP_2PC] execVM "Core\C\ADF_vCargo_B_Car.sqf";
+[medTruck] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf"; 
 {[_x] execVM "Core\C\ADF_vCargo_B_CarSQD.sqf"} forEach [MRAP_2_1_SQUAD,MRAP_2_2_SQUAD];
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIFT.sqf"} forEach [MRAP_2_1_ALPHA,MRAP_2_1_BRAVO,MRAP_2_2_ALPHA,MRAP_2_2_BRAVO];
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIWT.sqf"} forEach [MRAP_2_3_WT1,MRAP_2_3_WT2];
@@ -33,17 +36,17 @@ NRF_grp_4 setGroupIdGlobal ["5-3 CHARLIE"];
 NRF_grp_1 = [getPos oLand_1, WEST, (configFile >> "CfgGroups" >> "WEST" >> "BLU_F" >> "Infantry" >> "BUS_InfSentry")] call BIS_fnc_spawnGroup;
 {[_x] call ADF_fnc_redressNRF;} forEach units NRF_grp_1;
 NRF_grp_1 setGroupIdGlobal ["5-1 ALPHA"];
-[NRF_grp_1, position leader NRF_grp_1, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [1,2,3]] call CBA_fnc_taskPatrol;
+[NRF_grp_1, position leader NRF_grp_1, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 
 NRF_grp_2 = [getPos oLand_2, WEST, (configFile >> "CfgGroups" >> "WEST" >> "BLU_F" >> "Infantry" >> "BUS_InfSentry")] call BIS_fnc_spawnGroup;
 {[_x] call ADF_fnc_redressNRF;} forEach units NRF_grp_2;
 NRF_grp_2 setGroupIdGlobal ["5-1 BRAVO"];
-[NRF_grp_2, position leader NRF_grp_2, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [1,2,3]] call CBA_fnc_taskPatrol;
+[NRF_grp_2, position leader NRF_grp_2, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 
 NRF_grp_3 = [getPos (b_net), WEST, (configFile >> "CfgGroups" >> "WEST" >> "BLU_F" >> "Infantry" >> "BUS_InfSentry")] call BIS_fnc_spawnGroup;
 {[_x] call ADF_fnc_redressNRF;} forEach units NRF_grp_3;
 NRF_grp_3 setGroupIdGlobal ["5-2 ALPHA"];
-[NRF_grp_3, position leader NRF_grp_3, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [1,2,3]] call CBA_fnc_taskPatrol;	
+[NRF_grp_3, position leader NRF_grp_3, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 
 // Create random IED's
 _iedMarkerArr = ["mIED_1","mIED_2","mIED_3","mIED_4","mIED_5","mIED_6","mIED_7","mIED_8","mIED_9","mIED_10","mIED_11","mIED_12","mIED_13","mIED_14","mIED_15","mIED_16"];
@@ -64,52 +67,6 @@ vDolphin setHit ["wheel_1_1_steering", 1];
 	
 {{_x setObjectTextureGlobal [0, "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa"];} forEach units _x} forEach [NRF_grp_1,NRF_grp_2,NRF_grp_3,NRF_grp_4];
 
-/*
-_mmObjArray = [
-"Land_fortified_nest_big",
-"Land_fortified_nest_small_EP1",
-"Land_Fort_Watchtower_EP1",
-"Land_HBarrier_large",
-"Land_HBarrier_5_F",
-"Land_HBarrier_3_F",
-"Land_HBarrierWall_corridor_F",
-"Land_HBarrierWall_corner_F",
-"Land_HBarrierWall4_F",
-"Land_HBarrierWall6_F",
-"US_WarfareBFieldhHospital_Base_EP1",
-"US_WarfareBBarracks_Base_EP1",
-"Land_Barrack2_EP1",
-"StorageBladder_01_fuel_sand_F",
-"Land_Ind_TankSmall2_EP1",
-"PowGen_Big_EP1",
-"US_WarfareBVehicleServicePoint_Base_EP1",
-"US_WarfareBUAVterminal_Base_EP1",
-"US_WarfareBAntiAirRadar_Base_EP1",
-"Land_BagBunker_Large_F",
-"Land_Cargo40_military_green_F",
-"Land_Cargo40_sand_F",
-"Land_Cargo20_military_green_F",
-"Land_Cargo20_sand_F",
-"Land_ReservoirTank_Airport_F",
-"Land_u_Barracks_V2_F",
-"Land_Cargo_House_V3_F",
-"Land_Cargo_House_V1_F",
-"Land_Cargo_Patrol_V1_F",
-"Land_Cargo_Patrol_V3_F",
-"Land_Cargo_Tower_V1_F",
-"Land_Cargo_Tower_V3_F",
-"Land_TentHangar_V1_F",
-"Land_CncBarrier_stripes_F"
-];
-
-// Obj Map markerAlpha
-[_mmObjArray,"mLMAB",400] call ADF_fnc_objectMarker;
-
-// Re-create critical markers
-{[_x] call ADF_fnc_reMarker} forEach ["mLMAB","mVehRepair","mMed"];
-*/
-
-
 ADF_wpPosRdm = {
 	private "_wpPos";
 	_wpPos = ["mAirPos_1","mAirPos_2","mAirPos_3","mAirPos_4","mAirPos_5"] call BIS_fnc_selectRandom;
@@ -126,6 +83,7 @@ ADF_wpPosRdm = {
 		_heli = "B_Heli_Transport_03_F";
 		_landPos = [oLand_1,oLand_2] call BIS_fnc_selectRandom;		
 		_c = createGroup WEST;
+		_c setCombatMode "GREEN";
 		_v = [getMarkerPos _startPos, 0, _heli, _c] call BIS_fnc_spawnVehicle;
 		_c setGroupIdGlobal ["6-1 AIRBUS"];
 		vAirbus = _v select 0;
@@ -161,6 +119,7 @@ ADF_wpPosRdm = {
 	while {alive vGunship} do {
 		private ["_c","_wp","_wpPos","_pausePad"];	
 		_c = createGroup WEST;
+		_c setCombatMode "GREEN";
 		_p = _c createUnit ["B_helipilot_F", getMarkerPos "mLMAB",[],0,"LIEUTENANT"]; _p moveInDriver vGunship;
 		_p = _c createUnit ["B_helipilot_F", getMarkerPos "mLMAB",[],0,"LIEUTENANT"]; _p moveInGunner vGunship;
 		_c setGroupIdGlobal ["6-6 CONDOR"];
@@ -186,97 +145,4 @@ ADF_wpPosRdm = {
 	};
 };
 
-waitUntil {sleep 10; triggerActivated tStart || time > 1250};
-
-diag_log	"-----------------------------------------------------";
-diag_log "TWO SIERRA: Started spawning AO ai's";
-diag_log	"-----------------------------------------------------";
-
-ADF_missionStartTime = time;
-
-// Random vehicle patrols
-for "_i" from 1 to 5 do {
-	private ["_spawnPos","_spawnDir","_c","_v","_vX"];
-	_spawnPos 	= format ["mGuerVeh_%1",_i];
-	_spawnDir	= markerDir _spawnPos;
-	_spawnPos	= getMarkerPos _spawnPos;
-
-	_c = createGroup INDEPENDENT;
-	_v = [_spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
-	{[_x] call ADF_fnc_redressPashtun} forEach units _c;
-	
-	_vX = _v select 0;
-	_vX setVariable ["BIS_enableRandomization", false];
-	[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
-	[_c, _spawnPos, 2500, 4, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
-};
-
-// AO Defence Fire Team
-for "_i" from 1 to 12 do {
-	private ["_g","_spawnPos","_defArr"];
-	_spawnPos 	= format ["mGuerPaxDef_%1",_i];
-	_spawnPos	= getMarkerPos _spawnPos;
-	
-	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfTeam")] call BIS_fnc_spawnGroup;
-	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	
-	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];	
-};
-
-// AO Defence Squad
-for "_i" from 20 to 25 do {
-	private ["_g","_spawnPos","_defArr"];
-	_spawnPos	= format ["mGuerPaxDef_%1",_i];
-	_spawnPos	= getMarkerPos _spawnPos;
-	
-	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
-	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	
-	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];		
-};
-
-// Foot patrols
-for "_i" from 1 to 6 do {
-	private ["_g","_spawnPos"];
-	_spawnPos	= format ["mGuerPatrol_%1",_i];
-	_spawnPos	= getMarkerPos _spawnPos;
-	
-	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	
-	[_g, _spawnPos, 750, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
-};
-
-if (!isNil "tStart") then {deleteVehicle tStart};
-
-private ["_opforCntWin","_ADF_missionTime"];
-// Count units/track time for win/loose scenario
-ADF_OpforCnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
-_opforCntWin = round ((ADF_OpforCnt / 7) + (random 10));
-_ADF_missionTime = ADF_missionStartTime + 7200;
-
-diag_log	"-----------------------------------------------------";
-diag_log format ["TWO SIERRA: AO spawned. Number of OpFor: %1",ADF_OpforCnt];
-diag_log format ["TWO SIERRA: Success mission OpFor count: %1",_opforCntWin];
-diag_log	"-----------------------------------------------------";
-
-waitUntil {
-	sleep 30;
-	_cnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
-	((_cnt < _opforCntWin) || (time > _ADF_missionTime)); // 2 hours + prep time
-};
-
-diag_log	"-----------------------------------------------------";
-diag_log "TWO SIERRA: End Mission process started";
-diag_log	"-----------------------------------------------------";
-
-ADF_endMission = true; publicVariable "ADF_endMission";
-
-
-
+#include "init_AO.sqf"

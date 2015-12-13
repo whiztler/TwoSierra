@@ -8,6 +8,7 @@ call compile preprocessFileLineNumbers "scr\everest.sqf";
 
 // Vars init
 ADF_endMission	= false;
+ADF_init_AO		= false;
 
 // Server Init
 if (isServer) then {
@@ -17,6 +18,11 @@ if (isServer) then {
 // Client init
 if (hasInterface) then {
 	#include "init_client.sqf"
+};
+
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
 };
 
 // All clients

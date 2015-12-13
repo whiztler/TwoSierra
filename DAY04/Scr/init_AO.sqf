@@ -37,9 +37,7 @@ for "_i" from 1 to 12 do {
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
+	_defArr call ADF_fnc_defendArea;
 };
 
 // AO Defence Squad
@@ -52,9 +50,7 @@ for "_i" from 20 to 21 do {
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
+	_defArr call ADF_fnc_defendArea;
 };
 
 // Foot patrols
@@ -65,8 +61,8 @@ for "_i" from 1 to 6 do {
 	
 	_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	
-	[_g, _spawnPos, 750, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+
+	[_g, _spawnPos, 750, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 ADF_fnc_BOPactive = {
@@ -74,31 +70,6 @@ ADF_fnc_BOPactive = {
 	diag_log "TWO SIERRA: BOP active trigger activated";
 	diag_log	"-----------------------------------------------------";
 
-	// Spawn defence squads
-	for "_i" from 1 to 3 do {
-		private ["_g","_spawnPos","_defArr"];
-		_spawnPos = getPos tBOPspawn;
-		
-		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
-		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-		
-		_defArr = [_g, _spawnPos, 150, 2, true];
-		_defArr call CBA_fnc_taskDefend;
-		_g setVariable ["ADF_HC_garrison_CBA",true];
-		_g setVariable ["ADF_HC_garrisonArr",_defArr];
-	};
-	
-	// Spawn patrol teams
-	for "_i" from 1 to 5 do {
-		private ["_g","_spawnPos"];
-		_spawnPos = getPos tBOPspawn;
-		
-		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
-		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-		
-		[_g, _spawnPos, 300, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
-	};
-	
 	// Static Vehicles/MG/AT/etc
 	private ["_g","_p"];
 	_g = CreateGroup INDEPENDENT; 
@@ -109,7 +80,30 @@ ADF_fnc_BOPactive = {
 	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_05; // HMG tower
 	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_06; // Madrid
 	_p = _g createUnit ["I_Soldier_F", getPos tBOPspawn, [], 0, "PRIVATE"]; _p moveInGunner sOpfor_07; // Strider
-	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _g;	
+	
+	// Spawn defence squads
+	for "_i" from 1 to 3 do {
+		private ["_g","_spawnPos","_defArr"];
+		_spawnPos = getPos tBOPspawn;
+		
+		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSquad")] call BIS_fnc_spawnGroup;
+		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
+		
+		_defArr = [_g, _spawnPos, 150, 2, true];
+		_defArr call ADF_fnc_defendArea;
+	};
+	
+	// Spawn patrol teams
+	for "_i" from 1 to 5 do {
+		private ["_g","_spawnPos"];
+		_spawnPos = getPos tBOPspawn;
+		
+		_g = [_spawnPos, INDEPENDENT, (configFile >> "CfgGroups" >> "INDEP" >> "IND_F" >> "Infantry" >> "HAF_InfSentry")] call BIS_fnc_spawnGroup;
+		{[_x] call ADF_fnc_redressPashtun} forEach units _g;
+
+		[_g, _spawnPos, 300, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+	};
 	
 	// Delete the spawn trigger
 	tBOPspawnPos = getPos tBOPspawn; publicVariable "tBOPspawnPos";
@@ -123,3 +117,5 @@ _ADF_OpforCnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
 diag_log	"-----------------------------------------------------";
 diag_log format ["TWO SIERRA: AO (excl Opfor Base) spawned. Number of OpFor: %1",_ADF_OpforCnt];
 diag_log	"-----------------------------------------------------";
+
+ADF_init_AO = true; publicVariable "ADF_init_AO";

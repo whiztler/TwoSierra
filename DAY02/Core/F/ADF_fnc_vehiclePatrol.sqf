@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / NOVEMBER 2015
 
 Script: (Create) Vehicle patrol script
 Author: Whiztler
@@ -9,9 +9,7 @@ Script version: 1.04
 Game type: N/A
 File: ADF_fnc_vehiclePatrol.sqf
 ****************************************************************
-This is a vehicle patrol function. You can use it on pre-created
-(editor or scripter) vehicles or the function can create the vehicle
-as well.
+This is a vehicle patrol function. 
 
 INSTRUCTIONS:
 load the function on mission start (e.g. in Scr\init.sqf):
@@ -33,12 +31,9 @@ in the init of the vehicle:
 	completion radius		// Number. Info: https://community.bistudio.com/wiki/setWaypointCompletionRadius
 ] call ADF_fnc_vehiclePatrol;
 
-Example for editor placed vehicles:
-[group this, "MyMarker", 800, 5, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
-
 Example for scripted vehicles:
 [_grp, _myPosition, 800, 5, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
-[_c, "PatrolMarker", 1000, 6, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
+[_c, "PatrolMarker", 1000, 6, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
 
 Notes
 The function looks for roads. If no nearby road is found a waypoint is created in the 'field'. Make sure the
@@ -49,6 +44,10 @@ The patrol start position and the vehicle spawn position do not need to be the s
 _c = createGroup INDEPENDENT;
 _v = [getMarkerPos _spawnPos, markerDir _spawnPos, "I_G_Offroad_01_F", _c] call BIS_fnc_spawnVehicle;
 [_c, getMarkerPos _patrolPos, 1000, 6, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
+
+Note this function requires the ADF_fnc_position.sqf and ADF_fnc_distance.sqf to be loaded:
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
 
 *** CREATE VEHICLE + PATROL ***
 
@@ -70,7 +69,7 @@ ADF_fnc_vehiclePatrolTest = true; // for performance debugging. Use in combinati
 
 ADF_fnc_addRoadWaypoint = {
 	// init	
-	params ["_g","_p","_r","_c","_t","_b","_m","_s","_cr"];
+	params ["_g","_p","_r","_c","_t","_b","_m","_s","_cr"];	
 	private ["_wp","_i","_rx"];
 	_rx = _r / _c; // radius divided by number of waypoints
 	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_addRoadWaypoint - WP radius: %1 (%2 / %3)",_rx, _r, _c]};
@@ -109,12 +108,22 @@ ADF_fnc_vehiclePatrol = {
 	_debugStart = diag_tickTime;	
 	
 	// Init
-	params ["_g","_p","_r","_c","_t","_b","_m","_s","_cr"];
+	params [
+		"_g",
+		"_p",
+		["_r", 750,[0]],
+		["_c", 4, [0]],
+		["_t", ["MOVE","DESTROY","GETIN","SAD","JOIN","LEADER","GETOUT","CYCLE","LOAD","UNLOAD","TR UNLOAD","HOLD","SENTRY","GUARD","TALK","SCRIPTED","SUPPORT","GETIN NEAREST","DISMISS","LOITER"], [""]],
+		["_b", ["UNCHANGED","CARELESS","SAFE","AWARE","COMBAT","STEALTH"], [""]],
+		["_m", ["NO CHANGE","BLUE","GREEN","WHITE","YELLOW","RED"], [""]],
+		["_s", ["UNCHANGED","LIMITED","NORMAL","FULL"], [""]],
+		["_cr",25,[0]]
+	];
 	private ["_a"];
 	_a = [_g,_p,_r,_c,_t,_b,_m,_s,_cr];
 	
 	// Loop through the number of waypoints needed
-	for "_i" from 0 to _c do {
+	for "_i" from 0 to (_c - 1) do {
 		_a call ADF_fnc_addRoadWaypoint;
 		if (ADF_debug) then {diag_log " "; diag_log format ["ADF Debug: ADF_fnc_vehiclePatrol - called ADF_fnc_addRoadWaypoint for WP %1",_i]};
 	};
@@ -137,20 +146,33 @@ ADF_fnc_createVehiclePatrol = {
 	_debugStart = diag_tickTime;
 	
 	// Init
-	params ["_gs","_vc","_vm","_vd","_vp","_r","_c","_t","_b","_m","_s","_cr"];
-	private ["_v","_a"];
+	params [
+		["_gs", [WEST, EAST, INDEPENDENT], [EAST]],
+		["_vc", "", [""]],
+		"_vs",
+		"_vp",
+		["_r", 750,[0]],
+		["_c", 4, [0]],
+		["_t", ["MOVE","DESTROY","GETIN","SAD","JOIN","LEADER","GETOUT","CYCLE","LOAD","UNLOAD","TR UNLOAD","HOLD","SENTRY","GUARD","TALK","SCRIPTED","SUPPORT","GETIN NEAREST","DISMISS","LOITER"], [""]],
+		["_b", ["UNCHANGED","CARELESS","SAFE","AWARE","COMBAT","STEALTH"], [""]],
+		["_m", ["NO CHANGE","BLUE","GREEN","WHITE","YELLOW","RED"], [""]],
+		["_s", ["UNCHANGED","LIMITED","NORMAL","FULL"], [""]],
+		["_cr",25,[0]]
+	];	
+	private ["_g","_ps","_pp","_v","_vd","_a"];
 	
 	//Create the vehicle
 	_g 	= createGroup _gs;
-	_p 	= [_vm] call ADF_fnc_checkPosition;
-	_vd	= if (typeName _vm == "STRING") then {markerDir _vm} else {getDir _vm};
-	_v 	= [getMarkerPos _p, _vd, _vc, _g] call BIS_fnc_spawnVehicle;
+	_ps 	= [_vs] call ADF_fnc_checkPosition;
+	_pp 	= [_vp] call ADF_fnc_checkPosition;
+	_vd	= if (typeName _vs == "STRING") then {markerDir _vs} else {random 360};
+	_v 	= [_ps, _vd, _vc, _g] call BIS_fnc_spawnVehicle;
 	
 	// Array to pass
-	_a = [_g,_vp,_r,_c,_t,_b,_m,_s,_cr];	
+	_a = [_g,_pp,_r,_c,_t,_b,_m,_s,_cr];	
 	
 	// Loop through the number of waypoints needed
-	for "_i" from 0 to _c do {_a call ADF_fnc_addRoadWaypoint;};
+	for "_i" from 0 to (_c - 1) do {_a call ADF_fnc_addRoadWaypoint;};
 	
 	// Add a cycle waypoint
 	_cycle =+ _a;
@@ -158,18 +180,11 @@ ADF_fnc_createVehiclePatrol = {
 	_cycle call ADF_fnc_addRoadWaypoint;
 
 	// Remove the spawn/start waypoint if not the same as the spawn location
-	if (_vm == _vp) then {deleteWaypoint ((waypoints _g) select 0)};
+	if (_vs == _vp) then {deleteWaypoint ((waypoints _g) select 0)};
 	
 	// Debug
 	_debugStop = diag_tickTime;
-	if (ADF_Debug && ADF_fnc_vehiclePatrolTest) then {
-		diag_log "--------------------------------------------------------------------------------------";
-		diag_log format ["ADF Debug: ADF_fnc_createVehiclePatrol - %1 (%2 search(es) - radius: )",_debugStart - _debugStop, ADF_VPS select 0, ADF_VPS select 1];
-		diag_log "--------------------------------------------------------------------------------------";
-	};
-	
-	// Destroy vars not needed anymore
-	ADF_VPS = nil;
+	if (ADF_Debug && ADF_fnc_vehiclePatrolTest) then {diag_log format ["ADF Debug: ADF_fnc_createVehiclePatrol DIAG: %1",_debugStart - _debugStop]};
 };
 
 /***************************************************

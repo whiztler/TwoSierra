@@ -7,10 +7,11 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 
 // Vars init
 ADF_endMission			= false;
+ADF_init_AO				= false;
 ADF_cacheCount			= 0;
 ADF_cacheCnt				= 0;
-ADF_endMissionMsg			= {};
-ADF_fnc_CacheDestroye		= {};
+ADF_endMissionMsg			= {diag_log "TWO SIERRA: ADF_endMissionMsg";};
+ADF_fnc_CacheDestroyed	= {diag_log "TWO SIERRA: ADF_fnc_CacheDestroyed EH";};
 
 // Server Init
 if (isServer) then {
@@ -20,6 +21,11 @@ if (isServer) then {
 // Client init
 if (hasInterface) then {
 	#include "init_client.sqf"
+};
+
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
 };
 
 // All clients

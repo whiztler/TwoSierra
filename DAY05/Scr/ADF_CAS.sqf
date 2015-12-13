@@ -158,8 +158,8 @@ ADF_fnc_destroyVars = {
 	ADF_CAS_vector		= nil;
 	ADF_CAS_delay			= nil;
 	ADF_CAS_onSite		= nil;
-	ADF_fnc_CAS_supportRq = nil;
-	ADF_fnc_CAS_Activated = nil;
+	ADF_fnc_CAS_supportRq	= nil;
+	ADF_fnc_CAS_Activated	= nil;
 	ADF_CAS_callSign		= nil;
 	ADF_CAS_station		= nil;
 	ADF_CAS_targetName	= nil;
@@ -195,7 +195,7 @@ if (hasInterface) then {
 // From here on server only. Create the CAS vehicle, create markers etc.
 if (!isServer) exitWith {};
 
-waitUntil {ADF_CAS_marker}; // wait till the CAS request action was executed
+waitUntil {sleep 2; ADF_CAS_marker}; // wait till the CAS request action was executed
 
 diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: CAS (server) activated";

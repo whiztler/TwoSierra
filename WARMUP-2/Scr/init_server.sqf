@@ -1,13 +1,21 @@
 diag_log "ADF RPT: Init - executing init_server.sqf"; // Reporting. Do NOT edit/remove
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_distance.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_defendArea.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_footPatrol.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Rebels.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Russians.sqf";
 call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
 
+{_x setMarkerBrush "SolidFull"; _x setMarkerColor "ColorRed"; _x setMarkerAlpha 0.1;} forEach ["mRed_1","mRed_2"];
+{_x setMarkerBrush "SolidFull"; _x setMarkerColor "ColorGreen"; _x setMarkerAlpha 0.1;} forEach ["mGreen_1","mGreen_2","mGreen_3"];
+
 // Load vehicle Supplies
 [MRAP_2PC] execVM "Core\C\ADF_vCargo_B_Car.sqf";
+{[_x] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf"} forEach [uSpawn,medTruck];
 {[_x] execVM "Core\C\ADF_vCargo_B_CarSQD.sqf"} forEach [MRAP_2_1_SQUAD,MRAP_2_2_SQUAD];
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIFT.sqf"} forEach [MRAP_2_1_ALPHA,MRAP_2_1_BRAVO,MRAP_2_2_ALPHA,MRAP_2_2_BRAVO];
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIWT.sqf"} forEach [MRAP_2_3_WT1,MRAP_2_3_WT2];
@@ -29,7 +37,7 @@ NRF_grp_3 setGroupIdGlobal ["5-1 CHARLIE"];
 {_x enableSimulationGlobal false} forEach units NRF_grp_3;
 {{[_x] call ADF_fnc_redressNRF;} forEach units _x} forEach [NRF_grp_1,NRF_grp_2,NRF_grp_3];
 
-{[_x, position leader _x, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "", "", [1,2,3]] call CBA_fnc_taskPatrol;} forEach [NRF_grp_1,NRF_grp_2];
+{[_x, position leader _x, 150, 3, "MOVE", "SAFE", "RED", "LIMITED","FILE",5] call ADF_fnc_footPatrol;} forEach [NRF_grp_1,NRF_grp_2];
 
 sleep .5;
 {{_x setObjectTextureGlobal [0, "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa"];} forEach units _x} forEach [NRF_grp_1,NRF_grp_2,NRF_grp_3];
@@ -49,60 +57,99 @@ for "_i" from 1 to 13 do {
 	[_iedMarkerPos,100,250,6] call ADF_fnc_createRandomIEDs;
 };
 
+ADF_SOD_zonesTracker = {
+	// init
+	params ["_t","_m","_o"];
+	
+	// Set marker to active AO
+	if (_m == "mRed_1" || _m == "mRed_2") then {
+		_m setMarkerColor "ColorOPFOR";
+	} else {
+		_m setMarkerColor "ColorIndependent";
+	};	
+	_m setMarkerAlpha 0.3;
+	
+	waitUntil {
+		private ["_a","_c"];
+		sleep 5;				
+		_a = nearestObjects [getPos _t, ["Man"], 1250];
+		_c = {((side _x == INDEPENDENT) || (side _x == EAST)) && (alive _x)} count _a;
+		_c < 5;
+	};
+
+	_m setMarkerColor "ColorBLUFOR";
+	_m setMarkerAlpha 0.2;
+	
+	remoteExec ["ADF_msg_clearedAO", -2];
+};
+
 ADF_SOD_zones = {
 	// init
 	params ["_t"];
 	private ["_startMarker","_endMarker","_endMarkerVictors","_patrolsGrp","_garrisonGrp","_victorsVeh","_r","_patrolRad","_garrisonRad"];
 	_r 				= ((triggerArea _t) select 0) / 2;
+	_m				= "";
 	_patrolRad		= _r / 1.2;
-	_garrisonRad		= 250;
+	_garrisonRad		= 150;
 	_uCache			= [];
 	_vCache			= [];
 
 	_patrolsGrp 		= "OIA_InfSentry";
-	_garrisonGrp		= "OIA_InfTeam";
+	_garrisonGrp		= "OIA_InfSquad";
 	_victorsVeh		= "O_G_Offroad_01_armed_F";
 	
 	_startMarker		= 0;
 	_endMarker		= 0;
 	_redress			= ADF_fnc_redressRussian;
-	_vSkin			= "ADF_rebelOffroad";
+	_vSkin			= "ADF_russianOffroad";
 
 	///// Russian zones
-	if (_t == tRusZone_1) then {_startMarker = 10; _endMarker = 15; _endMarkerVictors = 13; _redress = ADF_fnc_redressRussian; _vSkin = "ADF_russianOffroad";};
-	if (_t == tRusZone_2) then {_startMarker = 20; _endMarker = 25; _endMarkerVictors = 23; _redress = ADF_fnc_redressRussian; _vSkin = "ADF_russianOffroad";};
+	if (_t == tRusZone_1) then {_startMarker = 10; _endMarker = 15; _endMarkerVictors = 13; _m = "mRed_1"};
+	if (_t == tRusZone_2) then {_startMarker = 20; _endMarker = 25; _endMarkerVictors = 23; _m = "mRed_2"};
 	
 	///// Rebel zones
-	if (_t == tRebelZone_1) then {_startMarker = 50; _endMarker = 55; _endMarkerVictors = 53; _redress = ADF_fnc_redressRebel; _vSkin = "ADF_rebelOffroad";};
-	if (_t == tRebelZone_2) then {_startMarker = 60; _endMarker = 65; _endMarkerVictors = 63; _redress = ADF_fnc_redressRebel; _vSkin = "ADF_rebelOffroad";};
-	if (_t == tRebelZone_3) then {_startMarker = 70; _endMarker = 75; _endMarkerVictors = 73; _redress = ADF_fnc_redressRebel; _vSkin = "ADF_rebelOffroad";};
+	if (_t == tRebelZone_1) then {_startMarker = 50; _endMarker = 55; _endMarkerVictors = 53; _redress = ADF_fnc_redressRebel; _vSkin = "ADF_rebelOffroad"; _m = "mGreen_1"};
+	if (_t == tRebelZone_2) then {_startMarker = 60; _endMarker = 65; _endMarkerVictors = 63; _redress = ADF_fnc_redressRebel; _vSkin = "ADF_rebelOffroad"; _m = "mGreen_2"};
+	if (_t == tRebelZone_3) then {_startMarker = 70; _endMarker = 75; _endMarkerVictors = 73; _redress = ADF_fnc_redressRebel; _vSkin = "ADF_rebelOffroad"; _m = "mGreen_3"};
 
 	// spawn/create groups
 
 	for "_i" from _startMarker to _endMarker do {
-		private ["_g","_spawnPos"];	
+		private ["_g","_spawnPos","_w"];	
 		_spawnPos = format ["mPaxPat_%1",_i];
+		_w = [3,4,5] call BIS_fnc_selectRandom;
+		
 		_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _patrolsGrp)] call BIS_fnc_spawnGroup;
 		{[_x] call _redress} forEach units _g;
-		[_g, getMarkerPos _spawnPos, _patrolRad, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+
+		[_g, getMarkerPos _spawnPos, _patrolRad, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 	};
 	for "_i" from _startMarker to _endMarker do {
-		private ["_g","_spawnPos"];
+		private ["_g","_spawnPos","_r","_w"];
 		_spawnPos = format ["mPaxDef_%1",_i];
+		
 		_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _garrisonGrp)] call BIS_fnc_spawnGroup;
 		{[_x] call _redress} forEach units _g;
-		[_g, getMarkerPos _spawnPos, _garrisonRad, 2, true] call CBA_fnc_taskDefend;	
+		
+		_defArr = [_g, _spawnPos, _garrisonRad, 2, true];
+		_defArr call ADF_fnc_defendArea;
 	};
 	for "_i" from _startMarker to _endMarkerVictors do {
 		private ["_spawnPos","_spawnDir","_v","_vX","_c"];
 		_spawnPos = format ["mVehPat_%1",_i];
-		_spawnDir = markerDir _spawnPos;		
+		_spawnDir = markerDir _spawnPos;	
+		
 		_c = createGroup EAST;
 		_v = [getMarkerPos _spawnPos, _spawnDir, _victorsVeh, _c] call BIS_fnc_spawnVehicle;		
 		{[_x] call _redress} forEach units _c;
 		_vX = _v select 0;
 		_vX setVariable ["BIS_enableRandomization", false];
 		[_vX, _vSkin, nil] call bis_fnc_initVehicle;
-		[_c, _spawnPos, 1000, 6, "MOVE", "SAFE", "RED", "LIMITED",25] call ADF_fnc_vehiclePatrol;
+		
+		[_c, _spawnPos, 1000, 5, "MOVE", "SAFE", "RED", "LIMITED", 25] call ADF_fnc_vehiclePatrol;
 	};
+	
+	sleep 3;
+
+	[_t, _m] spawn ADF_SOD_zonesTracker;
 };

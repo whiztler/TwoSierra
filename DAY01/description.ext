@@ -32,7 +32,7 @@ respawnTemplatesCiv[] = {};
 
 /**********  Loading Screen **********/
 author = "Whiztler";
-overviewText = "Two Sierra Tour 1 / Day 01 - v1.00";
+overviewText = "Two Sierra Tour 1 / Day 01 - v1.01";
 onLoadName = "BEARCLAW";
 onLoadMission = "TWO SIERRA | Day 01";
 onLoadIntroTime = false;

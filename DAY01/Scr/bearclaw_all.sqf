@@ -1,10 +1,10 @@
 objBearclaw setName ["Jeff Kroger","Jeff","Kroger"];
-bearClawAction = objBearclaw addAction ["<t align='left' color='#9DA698'>Rescue Bearclaw</t>",{remoteExec ["ADF_TS_bearclawRescued",0,true]},[],-95,true,true,"",""];
+bearClawAction = objBearclaw addAction ["<t color='#9DA698'>Rescue Bearclaw</t>",{[_this select 0, _this select 1] remoteExec ["ADF_TS_bearclawRescued",0,true]},[],-95,true,true,"",""];
 
 ADF_TS_bearclawRescued = {
-	//objBearclaw enableAI "MOVE";
+	params ["_o","_c"];
 	objBearclaw removeAction bearClawAction;
-	[objBearclaw] joinSilent (group player);
+	[objBearclaw] joinSilent (group _c);
 	BearclawRescued = true; publicVariable "BearclawRescued";
 	if (!hasInterface) exitWith {};
 	["NONE","Jeff Kroger","Jeff Kroger (BEARCLAW), thanks fellas, it is really good to see you guys."] call ADF_fnc_MessageParser; sleep 8;

@@ -54,10 +54,10 @@ class Mission
 		"A3_Structures_F_Mil_Fortification",
 		"A3_Signs_F_AD",
 		"A3_Structures_F_Walls",
-		"3DEN",
 		"A3_Air_F_Heli_Heli_Light_01",
 		"a3_air_f_heli_light_01",
-		"A3_Soft_F_MRAP_01"
+		"A3_Soft_F_MRAP_01",
+		"3DEN"
 	};
 	addOnsAuto[]=
 	{
@@ -1163,7 +1163,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=391;
+		items=398;
 		class Item0
 		{
 			position[]={1430.4597,40.755035,796.17554};
@@ -3375,7 +3375,8 @@ class Mission
 			side="EMPTY";
 			vehicle="US_WarfareBFieldhHospital_Base_EP1";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false; this setPosATL [getPosATL this select 0, getPosATL this select 1, -.13]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
+			text="medFacil";
+			init="this setPosATL [getPosATL this select 0, getPosATL this select 1, -.13]; if (isServer) then {this setVariable [""ace_medical_isMedicalFacility"", true];};";
 		};
 		class Item219
 		{
@@ -5219,10 +5220,98 @@ class Mission
 			init="this setObjectTextureGlobal [0, ""Img\cusTex_MRAP_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_MRAP_back.jpg""];  this setObjectTextureGlobal [2, ""Img\cusTex_MRAP_turret.jpg""];";
 			description="2-2 MRAP";
 		};
+		class Item391
+		{
+			position[]={1444.7279,42.909164,1180.1667};
+			azimut=509.741;
+			special="NONE";
+			id=454;
+			side="EMPTY";
+			vehicle="I_HMG_01_high_F";
+			leader=1;
+			skill=0.2;
+		};
+		class Item392
+		{
+			position[]={1591.3053,42.955654,1140.1729};
+			azimut=966.41315;
+			special="NONE";
+			id=455;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item393
+		{
+			position[]={1518.4385,43.591526,1297.286};
+			azimut=901.42542;
+			special="NONE";
+			id=456;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item394
+		{
+			position[]={1664.6542,46.814018,1267.9485};
+			azimut=509.74115;
+			offsetY=3.6500001;
+			special="NONE";
+			id=457;
+			side="EMPTY";
+			vehicle="I_HMG_01_high_F";
+			leader=1;
+			skill=0.2;
+		};
+		class Item395
+		{
+			position[]={1514.7228,43.245846,1374.067};
+			azimut=565.95599;
+			offsetY=3.9000001;
+			special="NONE";
+			id=458;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item396
+		{
+			position[]={1324.9795,44.249683,1110.9104};
+			azimut=548.31287;
+			offsetY=3.9000001;
+			special="NONE";
+			id=459;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
+		class Item397
+		{
+			position[]={1147.5804,41.184654,852.32568};
+			azimut=548.31287;
+			offsetY=3.9000001;
+			special="NONE";
+			id=460;
+			side="EMPTY";
+			vehicle="I_HMG_01_A_F";
+			isUAV=1;
+			leader=1;
+			skill=0.2;
+		};
 	};
 	class Markers
 	{
-		items=101;
+		items=103;
 		class Item0
 		{
 			position[]={749.42035,35.380001,369.14575};
@@ -5853,7 +5942,7 @@ class Mission
 		};
 		class Item66
 		{
-			position[]={1515.2096,43.573761,1295.5145};
+			position[]={1514.8727,43.582909,1293.7333};
 			name="mGuerPaxDef_13";
 			type="Empty";
 			colorName="ColorEAST";
@@ -6033,7 +6122,7 @@ class Mission
 		};
 		class Item90
 		{
-			position[]={864.73169,35.380001,296.1095};
+			position[]={862.8103,35.380001,296.41418};
 			name="mAegisFort";
 			type="loc_Bunker";
 			colorName="ColorWEST";
@@ -6127,6 +6216,20 @@ class Mission
 			colorName="ColorYellow";
 			a=0.60000002;
 			b=0.60000002;
+		};
+		class Item101
+		{
+			position[]={1482.8679,42.702072,1218.4602};
+			name="mGuerPaxPatrol_23_1";
+			type="Empty";
+			colorName="ColorGUER";
+		};
+		class Item102
+		{
+			position[]={1476.89,42.75106,1204.4561};
+			name="mGuerPaxDef_10_1";
+			type="Empty";
+			colorName="ColorCIV";
 		};
 	};
 	class Sensors

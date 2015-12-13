@@ -1,5 +1,6 @@
 if (hasInterface) then {
-	["ACO","ACO","FIRESTONE: TWO SIERRA, Message. BRAVO grid intel:<br/><br/>1. MOTHER is tracking 20+ ELVIS pax in BRAVO grid.<br/><br/>2. ACE is tracking 2 victors around BRAVO. Several CEASAR victors in the vicinity of BRAVO. Out."] call ADF_fnc_MessageParser;
+	["2S","TWO SIERRA","FIRESTONE we are closing on the BRAVO sector. How copy?"] call ADF_fnc_MessageParser; sleep 15;
+	["ACO","ACO","FIRESTONE: Understood TWO SIERRA. We have some additional BRAVO grid intel:<br/><br/>1. MOTHER is tracking 20+ ELVIS pax in BRAVO grid.<br/><br/>2. ACE is tracking 2 victors around BRAVO. Several CEASAR victors in the vicinity of BRAVO. Out."] call ADF_fnc_MessageParser;
 };
 
 if (!isServer) exitWith {};
@@ -43,7 +44,7 @@ for "_i" from 1 to 3 do {
 
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSentry")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
-	[_g, _spawnPos, 600, 4, "MOVE", "SAFE", "RED", "LIMITED", "", "", [0,0,0]] call CBA_fnc_taskPatrol;
+	[_g, _spawnPos, 600, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
 // Defence groups
@@ -56,9 +57,7 @@ for "_i" from 10 to 13 do {
 	{[_x] call ADF_fnc_redressPashtun} forEach units _g;
 	
 	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call CBA_fnc_taskDefend;
-	_g setVariable ["ADF_HC_garrison_CBA",true];
-	_g setVariable ["ADF_HC_garrisonArr",_defArr];
+	_defArr call ADF_fnc_defendArea;	
 };
 
 // Defence Oil Rigs
