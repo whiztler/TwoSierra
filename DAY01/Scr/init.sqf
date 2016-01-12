@@ -10,6 +10,14 @@ CSAThostile 			= false;
 xRayDestroyed 		= false;
 bearclawRescued 		= false;
 ADF_init_AO			= false;
+MotsActive			= false;
+ADF_AO_alpha			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Alpha AO activated";diag_log	"-----------------------------------------------------";};
+ADF_AO_bravo			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Bravo AO activated";diag_log	"-----------------------------------------------------";};
+ADF_AO_apt			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Airport AO activated";diag_log	"-----------------------------------------------------";};
+ADF_AO_base			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: CSAT Base AO activated";diag_log	"-----------------------------------------------------";};
+ADF_msg_cp			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: CP message";diag_log	"-----------------------------------------------------";};
+ADF_msg_xRay			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Xray message";diag_log	"-----------------------------------------------------";};
+ADF_msg_endMission	= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: End Mission activated";diag_log	"-----------------------------------------------------";};
 
 // Server Init
 if (isServer) then {

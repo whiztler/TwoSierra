@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: CAS request with 9-liner
 Author: Whiztler
@@ -27,17 +27,17 @@ if (isNil "INF_PC") then {INF_PC = objNull}; if (INF_PC == objNull) exitWith {};
 ADF_CAS_requester		= INF_PC; // the name of the unit that can request the CAS. Use a commander or JTAC.
 ADF_CAS_spawn			= getMarkerPos "mAirSupport"; // This is where the CAS aircraft will spawn. Place on edge of map.
 ADF_CAS_vector		= getMarkerPos "mAirSupportVector"; // Approach vector marker.
-ADF_CAS_delay			= round (40 + (random 60)); // Delay for the CAS to be created. Simulate that CAS aircraft needs to depart from a distant airbase.
-ADF_CAS_onSite		= round (60 + (random 60)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
+ADF_CAS_delay			= round (10 + (random 60)); // Delay for the CAS to be created. Simulate that CAS aircraft needs to depart from a distant airbase.
+ADF_CAS_onSite		= round (180 + (random 60)); // Time spend in the CAS area. After which the CAS aircraft returns to the spawn location and is deleted.
 ADF_CAS_vehClass		= "B_Heli_Attack_01_F"; // classname of CAS aircraft
-ADF_CAS_callSign		= "FREEBIRD"; // ingame Callsign of CAS aircraft
-ADF_CAS_pilotName		= "Lt. Russel (Cowboy) McDevon"; // ingame name of the CAS pilot
-ADF_CAS_station		= "NOVEMBER"; // ingame name of the CAS station call
-ADF_CAS_targetName	= "DOMINO"; // ingame name of OpFor. E.g. TANGO, CSAT, etc.
+ADF_CAS_callSign		= "FALCON"; // ingame Callsign of CAS aircraft
+ADF_CAS_pilotName		= "Lt. Jim (Beast) Kaplan"; // ingame name of the CAS pilot
+ADF_CAS_station		= "XRAY"; // ingame name of the CAS station call
+ADF_CAS_targetName	= "DEMON"; // ingame name of OpFor. E.g. TANGO, CSAT, etc.
 ADF_CAS_targetDesc	= "victors, small arms"; // Ingame decription of target (keep it short)
 ADF_CAS_result		= "interdict"; // CAS requirements (interdict, destroy, area security, laser target, etc
-ADF_CAS_apprVector	= "WEST"; // directrion of the apprach vector (from AO). Depends on ADF_CAS_vector marker placement
-ADF_ACO_callSign		= "FIRESTONE"; // Callsign of HQ / Command / Base
+ADF_CAS_apprVector	= "EAST"; // directrion of the apprach vector (from AO). Depends on ADF_CAS_vector marker placement
+ADF_ACO_callSign		= "VADER"; // Callsign of HQ / Command / Base
 ADF_CAS_aoTriggerRad	= 800; // Size of the CAS radius. Marker that shows the CAS ao.
 
 /////// DO NOT EDIT BELOW
@@ -154,9 +154,9 @@ ADF_fnc_destroyVars = {
 	ADF_CAS_active 		= nil;
 	ADF_CAS_marker		= nil;
 	ADF_CAS_bingoFuel 	= nil; 
-	ADF_CAS_spawn		= nil;
+	ADF_CAS_spawn			= nil;
 	ADF_CAS_vector		= nil;
-	ADF_CAS_delay		= nil;
+	ADF_CAS_delay			= nil;
 	ADF_CAS_onSite		= nil;
 	ADF_fnc_CAS_supportRq = nil;
 	ADF_fnc_CAS_Activated = nil;
@@ -218,7 +218,7 @@ tCAS setTriggerStatements ["{vehicle _x in thisList && ((getPosATL _x) select 2)
 waitUntil {ADF_CAS_active}; // wait till the 9-liners are finished and CAS-delay timer is 0. 
 
 // Create CAR aircraft
-_c = createGroup WEST;
+_c = createGroup west;
 _c setGroupIdGlobal [format ["%1",ADF_CAS_callSign]];
 _v = [ADF_CAS_spawn, 90, ADF_CAS_vehClass, _c] call BIS_fnc_spawnVehicle;
 vCAS = _v select 0; publicVariable "vCAS";
@@ -256,21 +256,17 @@ _wp setWaypointCombatMode "RED";
 
 waitUntil {triggerActivated tCAS}; // Let CAS aircraft reach the AO
 
-vCAS flyInHeight 100;
-
 if (vCASkia) exitWith {call ADF_fnc_destroyVars;};
 sleep ADF_CAS_onSite; // Limited time in AO
 if (vCASkia) exitWith {call ADF_fnc_destroyVars;};
 
 // RTB Bingo Fuel
 deleteMarker "mRaptorSAD";
-{_x disableAI "FSM"} forEach units _c; // v1.03
+{_x disableAI "AUTOTARGET"; _x disableAI "CHECKVISIBLE"; _x setBehaviour "CARELESS"} forEach units _c; // 1.04
 ADF_CAS_bingoFuel = true; publicVariable "ADF_CAS_bingoFuel";
 vCAS setFuel 0.3;
-{_x enableAI "FSM"} forEach units _c; // v1.03
-vCAS flyInHeight 800;
 _c setCombatMode "BLUE"; // v1.03
-_c setBehaviour "SAFE"; // v1.03
+_c setBehaviour "CARELESS"; // v1.04
 
 _wp = _c addWaypoint [ADF_CAS_vector, 0];
 _wp setWaypointType "MOVE";

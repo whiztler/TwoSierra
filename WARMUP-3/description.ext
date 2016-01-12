@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission config
 Author: Whiztler
@@ -30,8 +30,8 @@ respawnTemplatesWest[] = {"Counter"};
 
 /**********  Loading Screen **********/
 author = "Whiztler";
-overviewText = "Two Sierra WarmUp - v1.00";
-onLoadName = "TWO SIERRA WARMUP";
+overviewText = "Two Sierra WarmUp 3 - v1.02";
+onLoadName = "TWO SIERRA WARMUP 3";
 onLoadMission = "WarmUp, Testing &amp; Training";
 onLoadIntroTime = false;
 onLoadMissionTime = false;

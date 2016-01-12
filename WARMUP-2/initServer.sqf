@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission init
 Author: Whiztler
@@ -27,3 +27,8 @@ if (isDedicated) then {
 };
 
 //  Execute Core Third Party SERVER scripts: (comment out if not applicable)
+// Object markers
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
+_objArr = ["Land_HBarrierWall6_F","Land_HBarrier_5_F","Land_Radar","US_WarfareBBarracks_Base_EP1","Fort_Barracks_USMC","US_WarfareBFieldhHospital_Base_EP1"];
+[_objArr,uSpawn,150] call ADF_fnc_objectMarker;
+{[_x] call ADF_fnc_reMarker} forEach ["respawn_west","mVehRepair","mKav"];

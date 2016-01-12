@@ -1,6 +1,11 @@
 if (hasInterface) then {
-	["2S","","FIRESTONE. this is TWO SIERRA. AKIRA located. How copy?"] call ADF_fnc_MessageParser; sleep 9;
-	["ACO","ACO","FIRESTONE: Roger TWO SIERRA. Neutralize AKIRA. No prisoners. Out."] call ADF_fnc_MessageParser;
+	private ["_msg", "_p"];
+	["2S", "", "TWO SIERRA: FIRESTONE this is TWO SIERRA. Stand by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO", "ACO", "FIRESTONE: TWO SIERRA, this is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	_p = getMarkerPos ADF_bopLoc;
+	_msg = format ["FIRESTONE, this is TWO SIERRA. AKIRA located at grid PAPPA VICTOR %1.%2. How copy?", round (_p select 0), round (_p select 1)];
+	["2S", "",_msg] call ADF_fnc_MessageParser; sleep 12;
+	["ACO", "ACO", "FIRESTONE: Solid copy TWO SIERRA. Neutralize AKIRA. No prisoners. Out."] call ADF_fnc_MessageParser;
 };
 
 if (isServer) then {
@@ -9,10 +14,10 @@ if (isServer) then {
 	diag_log	"-----------------------------------------------------";
 
 	// Init
-	private ["_c","_wp","_v","_t"];
+	private ["_c", "_wp", "_v", "_t"];
 	
 	// enable the vehicles
-	{_x hideObject false; _x enableSimulationGlobal true;} forEach [vOpforAPC_1,vOpforAPC_2,vOpforAPC_3];
+	{_x hideObject false; _x enableSimulationGlobal true;} forEach [vOpforAPC_1, vOpforAPC_2, vOpforAPC_3];
 	
 	// Crew the vehicles and give them orders
 	for "_i" from 1 to 3 do {
@@ -20,7 +25,7 @@ if (isServer) then {
 		_v = call compile format ["%1",_t];	
 		_wpPos = getPos tBOPdetect;
 		
-		_c = CreateGroup INDEPENDENT; 
+		_c = createGroup independent; 
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "LIEUTENANT"]; _p moveInCommander _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "SERGEANT"]; _p moveInGunner _v;
 		_p = _c createUnit ["I_Crew_F", getMarkerPos "reEnfor", [], 0, "CORPORAL"]; _p moveInDriver _v;

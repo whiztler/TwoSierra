@@ -6,7 +6,7 @@ diag_log	"-----------------------------------------------------";
 
 // AA sites
 private "_g";
-_g = CreateGroup EAST; 
+_g = createGroup east; 
 _p = _g createUnit ["O_crew_F", getMarkerPos "mPat_1", [], 0, "SERGEANT"]; _p moveInGunner vAA_1;
 _p = _g createUnit ["O_crew_F", getMarkerPos "mPat_1", [], 0, "SERGEANT"]; _p moveInGunner vAA_2;
 if (alive vAA_3) then {_p = _g createUnit ["O_crew_F", getMarkerPos "mPat_1", [], 0, "SERGEANT"]; _p moveInGunner vAA_3};
@@ -16,30 +16,44 @@ ADF_ortegaCnt = 0;
 ADF_doloresCnt = 0;
 
 // OP
-private ["_g","_spawnPos","_defArr","_sqd"];
+private ["_g","_p","_spawnPos","_sqd"];
 _spawnPos = getPos oSpawn_2;
 
 _g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 {[_x] call ADF_fnc_redressCSAT3} forEach units _g;
 
-_defArr = [_g, _spawnPos, 30, 2, true];
-_defArr call ADF_fnc_defendArea;
+[_g, _spawnPos, 30, 2, true] call ADF_fnc_defendArea;
+
+// Mortar OP
+private ["_g","_p"];
+_g = createGroup east; 
+_p = _g createUnit ["O_soldier_F", getMarkerPos "mPat_1", [], 0, "SERGEANT"]; _p moveInGunner oStat_50;
+_p = _g createUnit ["O_soldier_F", getMarkerPos "mPat_1", [], 0, "SERGEANT"]; _p moveInGunner oStat_51;
+_p = _g createUnit ["O_soldier_F", getMarkerPos "mPat_1", [], 0, "SERGEANT"]; _p moveInGunner oStat_52;
+_p = _g createUnit ["O_soldier_F", getMarkerPos "mPat_1", [], 0, "SERGEANT"]; _p moveInGunner oStat_53;
+{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
+
+// UAV patrol
+private ["_c","_v"];
+_c = createGroup east; 
+_c setCombatMode "GREEN";
+_v = [getMarkerPos "mUAV", 0, "O_UAV_02_CAS_F", _c] call BIS_fnc_spawnVehicle;
+vUAV = _v select 0;
+[_c, getMarkerPos "mUAV", 1500, 650, 8, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 100] call ADF_fnc_airPatrol;
+vUAV removeMagazineTurret ["2Rnd_GBU12_LGB",[0]];
 
 // AO Defence Squad Ortego
 for "_i" from 1 to 10 do {
-	private ["_g","_spawnPos","_defArr","_sqd"];
+	private ["_g","_spawnPos","_sqd"];
 	_spawnPos = format ["mDef_%1",_i];
 	_spawnPos = getMarkerPos _spawnPos;
 	_sqd = "";
-	if ((random 1) < .33) then {_sqd = "OIA_InfSquad"} else {_sqd = "OIA_InfSquad_Weapons"};
+	if ((random 1) > .33) then {_sqd = "OIA_InfAssault"} else {_sqd = "OIA_InfSquad_Weapons"};
 	
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _sqd)] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
 	
-	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call ADF_fnc_defendArea;
-	//_g setVariable ["ADF_HC_garrison_ADF",true];
-	//_g setVariable ["ADF_HC_garrisonArr",_defArr];
+	[_g, _spawnPos, 150, 2, true] call ADF_fnc_defendArea;
 };
 	
 // Foot patrols Ortego
@@ -56,33 +70,63 @@ for "_i" from 1 to 10 do {
 	[_g, _spawnPos, _r, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
+ADF_fnc_DeleteVehicles = {
+	private ["_vehToDelete"];
+	_vehToDelete = _this select 0;	
+	{
+		{deleteVehicle _x} forEach crew (vehicle _x) + [(vehicle _x)];
+	} forEach _vehToDelete;
+	true
+};
+
+ADF_fnc_createConvoy = {
+	private ["_c","_v","_WP"];
+
+	_c = createGroup east;
+	_v = [getMarkerPos "mConvoy_Spawn", markerDir "mConvoy_Spawn", "O_Truck_03_covered_F", _c] call BIS_fnc_spawnVehicle; trptConvoy_1 = _v select 0; 
+	_v = [(trptConvoy_1 modelToWorld [0,-15,0]), getDir trptConvoy_1, "O_Truck_03_covered_F", _c] call BIS_fnc_spawnVehicle; trptConvoy_2 = _v select 0;
+	_v = [(trptConvoy_2 modelToWorld [0,-15,0]), getDir trptConvoy_1, "O_Truck_03_covered_F", _c] call BIS_fnc_spawnVehicle; trptConvoy_3 = _v select 0;
+	_v = [(trptConvoy_3 modelToWorld [0,-15,0]), getDir trptConvoy_1, "O_Truck_03_covered_F", _c] call BIS_fnc_spawnVehicle; trptConvoy_4 = _v select 0;
+	_c setCombatMode "GREEN";
+	_wp = _c addWaypoint [getMarkerPos "mConvoy_2",0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCompletionRadius 20;
+	_wp = _c addWaypoint [getMarkerPos "mConvoy_End",1]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL";
+	_wp setWaypointStatements ["true", "[[trptConvoy_1,trptConvoy_2,trptConvoy_3,trptConvoy_4]] call ADF_fnc_DeleteVehicles"];
+
+	while {!(isNil "trptConvoy_1")} do {
+		trptConvoy_1 limitSpeed 30;		
+		trptConvoy_2 limitSpeed (speed trptConvoy_1);
+		trptConvoy_3 limitSpeed (speed trptConvoy_1);
+		trptConvoy_4 limitSpeed (speed trptConvoy_1);	
+		sleep .5;
+	};
+};
+
 ADF_AO_dolores = {
+	[getMarkerPos "mBase_3", getMarkerPos "mDef_7", east, 2, 1250, 100, 3, "SAD", "SAFE", "RED", "FULL", "FILE", 250] call ADF_fnc_createAirPatrol;
+
+	[] spawn ADF_fnc_createConvoy;
 	// AO Defence Squad Dolores
 	for "_i" from 20 to 28 do {
-		private ["_g","_spawnPos","_defArr","_sqd"];
+		private ["_g","_spawnPos","_sqd"];
 		_spawnPos = format ["mDef_%1",_i];
 		_spawnPos = getMarkerPos _spawnPos;
 		_sqd = "";
-		if ((random 1) < .33) then {_sqd = "OIA_InfSquad"} else {_sqd = "OIA_InfSquad_Weapons"};
+		if ((random 1) < .33) then {_sqd = "OIA_InfAssault"} else {_sqd = "OIA_InfSquad_Weapons"};
 		
 		_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _sqd)] call BIS_fnc_spawnGroup;
 		{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
 		
-		_defArr = [_g, _spawnPos, 150, 2, true];
-		_defArr call ADF_fnc_defendArea;
-		//_g setVariable ["ADF_HC_garrison_ADF",true];
-		//_g setVariable ["ADF_HC_garrisonArr",_defArr];
+		[_g, _spawnPos, 150, 2, true] call ADF_fnc_defendArea;
 	};
 	
 	// CP
-	private ["_g","_spawnPos","_defArr","_sqd"];
+	private ["_g","_spawnPos","_sqd"];
 	_spawnPos = getPos oSpawn_1;
 	
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
 	
-	_defArr = [_g, _spawnPos, 30, 2, true];
-	_defArr call ADF_fnc_defendArea;
+	[_g, _spawnPos, 30, 2, true] call ADF_fnc_defendArea;
 	
 		
 	// Foot patrols ortego
@@ -121,11 +165,13 @@ ADF_AO_dolores = {
 	remoteExec ["ADF_msg_doloresClear", 0, true]; 
 };
 
+ADF_init_AO = true; publicVariable "ADF_init_AO";
+
 // Count spawned Opfor Ortego
 private ["_ADF_OpforCnt","_ADF_WestCnt"];
 
-_ADF_OpforCnt = {(side _x == EAST) && (alive _x)} count allUnits;
-_ADF_WestCnt = {(side _x == WEST) && (alive _x) && !isPlayer _x} count allUnits;
+_ADF_OpforCnt = {side _x == EAST} count allUnits;
+_ADF_WestCnt = {(side _x == WEST) && !isPlayer _x} count allUnits;
 _opforCntWin = _ADF_OpforCnt / 12;
 
 diag_log	"----------------------------------------------------------------------";

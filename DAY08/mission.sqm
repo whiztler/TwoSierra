@@ -1306,7 +1306,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;  this setVectorUp surfaceNormal position this; ";
+			init="this enableSimulationGlobal false;  this setVectorUp surfaceNormal position this; ";
 		};
 		class Item38
 		{
@@ -2028,7 +2028,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo40_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item107
 		{
@@ -2038,7 +2038,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item108
 		{
@@ -2048,7 +2048,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item109
 		{
@@ -2058,7 +2058,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item110
 		{
@@ -2068,7 +2068,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_sand_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item111
 		{
@@ -2078,7 +2078,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_sand_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item112
 		{
@@ -2091,7 +2091,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item113
 		{
@@ -2104,7 +2104,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item114
 		{
@@ -2117,7 +2117,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item115
 		{
@@ -2130,7 +2130,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item116
 		{
@@ -2253,7 +2253,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Communication_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item128
 		{
@@ -2553,7 +2553,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item157
 		{
@@ -2563,7 +2563,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item158
 		{
@@ -2576,7 +2576,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item159
 		{
@@ -2589,7 +2589,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item160
 		{
@@ -2599,7 +2599,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item161
 		{
@@ -2609,7 +2609,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo40_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item162
 		{
@@ -2620,7 +2620,7 @@ class Mission
 			vehicle="Land_Cargo40_military_green_F";
 			skill=0.60000002;
 			fuel=0.21783905;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item163
 		{
@@ -2630,7 +2630,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item164
 		{
@@ -2656,7 +2656,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item166
 		{
@@ -2786,7 +2786,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo40_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item179
 		{
@@ -2796,7 +2796,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo40_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item180
 		{
@@ -2807,7 +2807,7 @@ class Mission
 			vehicle="Land_Cargo40_military_green_F";
 			skill=0.60000002;
 			fuel=0.21783905;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item181
 		{
@@ -2817,7 +2817,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item182
 		{
@@ -2827,7 +2827,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_sand_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item183
 		{
@@ -2853,7 +2853,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item185
 		{
@@ -2874,7 +2874,7 @@ class Mission
 			vehicle="Land_HelipadCircle_F";
 			leader=1;
 			skill=0.33333331;
-			init="null = [this] execVM ""Core\ADF_helipadLights.sqf""; this setDamage 1; this setDamage 0; this setDamage 1; this enableSimulation false;";
+			init="null = [this] execVM ""Core\ADF_helipadLights.sqf""; this setDamage 1; this setDamage 0; this setDamage 1; this enableSimulationGlobal false;";
 		};
 		class Item187
 		{
@@ -2909,7 +2909,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item190
 		{
@@ -3008,7 +3008,7 @@ class Mission
 			vehicle="B_G_Offroad_01_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
-			init="this setVariable [""BIS_enableRandomization"", false];[this, ""ADF_rebelOffroad"", nil] call bis_fnc_initVehicle; this setDamage 1; this setDamage 0; this setDamage 1; this enableSimulation false;";
+			init="this setVariable [""BIS_enableRandomization"", false];[this, ""ADF_rebelOffroad"", nil] call bis_fnc_initVehicle; this setDamage 1; this setDamage 0; this setDamage 1; this enableSimulationGlobal false;";
 		};
 		class Item199
 		{
@@ -3088,7 +3088,7 @@ class Mission
 			vehicle="I_Truck_02_covered_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
-			init="this setObjectTextureGlobal [0, ""Img\cusTex_RebelCamo.jpg""]; this setObjectTextureGlobal [1, ""Img\cusTex_RebelCamo.jpg""]; this enableSimulation false;";
+			init="this setObjectTextureGlobal [0, ""Img\cusTex_RebelCamo.jpg""]; this setObjectTextureGlobal [1, ""Img\cusTex_RebelCamo.jpg""]; this enableSimulationGlobal false;";
 		};
 		class Item206
 		{

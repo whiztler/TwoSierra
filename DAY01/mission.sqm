@@ -1176,6 +1176,7 @@ class Mission
 			vehicle="O_Truck_02_transport_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item21
 		{
@@ -1303,6 +1304,7 @@ class Mission
 			vehicle="O_Heli_Light_02_unarmed_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item32
 		{
@@ -1431,6 +1433,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_DieselGroundPowerUnit_01_F";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item44
 		{
@@ -2025,7 +2028,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			description="Mission Developer";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item99
 		{
@@ -2139,7 +2142,6 @@ class Mission
 			vehicle="O_MRAP_02_hmg_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false;";
 		};
 		class Item110
 		{
@@ -2322,6 +2324,7 @@ class Mission
 			vehicle="O_Quadbike_01_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item127
 		{
@@ -2355,6 +2358,7 @@ class Mission
 			vehicle="Land_HBarrier_5_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item130
 		{
@@ -2365,6 +2369,7 @@ class Mission
 			vehicle="Land_HBarrier_5_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item131
 		{
@@ -2627,6 +2632,7 @@ class Mission
 			leader=1;
 			lock="LOCKED";
 			skill=0.33333331;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item156
 		{
@@ -2638,6 +2644,7 @@ class Mission
 			leader=1;
 			lock="LOCKED";
 			skill=0.33333331;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item157
 		{
@@ -4616,7 +4623,7 @@ class Mission
 			age="UNKNOWN";
 			name="tAlpha";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_ALPHA.sqf"";";
+			expActiv="0 = [] spawn ADF_AO_alpha;";
 			class Effects
 			{
 			};
@@ -4632,7 +4639,7 @@ class Mission
 			age="UNKNOWN";
 			name="tAirport";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_CSATapt.sqf"";";
+			expActiv="[] call ADF_AO_apt;";
 			class Effects
 			{
 			};
@@ -4664,7 +4671,7 @@ class Mission
 			age="UNKNOWN";
 			name="tBase";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_CSATbase.sqf"";";
+			expActiv="[] call ADF_AO_base;";
 			class Effects
 			{
 			};
@@ -4679,7 +4686,7 @@ class Mission
 			age="UNKNOWN";
 			name="tZebra";
 			expCond="BearclawRescued && xRayDestroyed && (alive objBearclaw) && ({vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0);";
-			expActiv="0 = execVM ""Scr\zebra_client.sqf"";";
+			expActiv="0 = [] spawn ADF_msg_endMission;";
 			class Effects
 			{
 			};
@@ -4724,7 +4731,7 @@ class Mission
 			age="UNKNOWN";
 			name="tCSAT_cp3";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_CSATcp.sqf"";";
+			expActiv="0 = [] spawn ADF_msg_cp;";
 			class Effects
 			{
 			};
@@ -4737,7 +4744,7 @@ class Mission
 			age="UNKNOWN";
 			name="tXray";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\xray_client.sqf"";";
+			expActiv="0 = [] spawn ADF_msg_xRay;";
 			class Effects
 			{
 			};

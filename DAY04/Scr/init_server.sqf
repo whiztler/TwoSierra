@@ -20,7 +20,7 @@ call compile preprocessFileLineNumbers "Scr\ADF_redress_Pashtun.sqf";
 ///// NRF JOHNSON
 
 // Static Defences & Ambient Vehicles
-NRF_grp_3 = CreateGroup WEST; 
+NRF_grp_3 = createGroup west; 
 _p = NRF_grp_3 createUnit ["B_Soldier_F", getPos uSpawn, [], 0, "SERGEANT"]; _p moveInGunner oStat_01;
 _p = NRF_grp_3 createUnit ["B_Soldier_F", getPos uSpawn, [], 0, "CORPORAL"]; _p moveInGunner oStat_02;
 NRF_grp_3 setGroupIdGlobal ["5-1 CHARLIE"];

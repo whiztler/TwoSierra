@@ -28,14 +28,17 @@ ADF_obj_Delta			= false;
 ADF_obj_Echo			= false;
 ADF_obj_Romeo			= false;
 
+MotsActive			= false;
+ADF_init_AO			= false;
+
 // Server Init
 if (isServer) then {
-	//#include "init_server.sqf"
+	#include "init_server.sqf"
 };
 
 // Client init
 if (hasInterface) then {
-	//#include "init_client.sqf"
+	#include "init_client.sqf"
 };
 
 // HC init
@@ -44,7 +47,7 @@ if (ADF_isHC) then {
 };
 
 // All clients
-//execVM "Scr\ADF_CAS.sqf";
+execVM "Scr\ADF_CAS.sqf";
 
 _diagTestEnd = diag_tickTime;
 diag_log format ["ADF RPT: Init - FINISHED Scr\init.sqf  [%1]",_diagTestStart - _diagTestEnd];

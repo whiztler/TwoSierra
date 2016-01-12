@@ -3,16 +3,18 @@
 
 diag_log "ADF RPT: Debug - Mission Objective Test Script (MOTS) started";
 
-if (MotsActive) exitWith {hint "MOTS has already been executed"};
-MotsActive 		= true;
-ADF_mots_uArray	= allPlayers;
+private "_a";
+if (!isMultiplayer) exitWith {hint parseText "<t color='#FE2E2E' align='left' size='1.5'>ERROR</t><br/><br/><t color='#FFFFFF' align='left' size='.9'>The Mission Objectibe Test Script (mots.sqf) only works on a dedicated server environment!</t><br/><br/>"};
+if (!isServer) exitWith {hint parseText "<t color='#FE2E2E' align='left' size='1.5'>ERROR</t><br/><br/><t color='#FFFFFF' align='left' size='.9'>The Mission Objectibe Test Script (mots.sqf) needs to be executed by the server!</t><br/><br/><t color='#FFFFFF' align='left' size='.9'>Click the </t><t color='#43c3ff' align='left' size='1'>SERVER EXEC </t><t color='#FFFFFF' align='left' size='.9'>button in the debug window. Do NOT use LOCAL EXEC or GLOBAL EXEC!</t><br/><br/>"};
+if (MotsActive) exitWith {"MOTS has already been executed!" remoteExec ["hint", -2];};
+MotsActive = true;
+_a = allPlayers - entities "HeadlessClient_F";
+remoteExec ["ADF_fnc_MOTS",_a,true];
 
-"Mission Objective Test Script started." remoteExec ["systemChat", -2]; sleep 2;
+"Mission Objective Test Script started. JIP is not supported!" remoteExec ["systemChat", -2]; sleep 2;
 
 if !(ADF_missionInit) then {"Waiting for mission init to finish..." remoteExec ["systemChat", -2];};
 waitUntil {ADF_missionInit};
-
-{_x allowDamage false} forEach ADF_mots_uArray;
 
 if (!ADF_init_AO) then {
 	waitUntil {

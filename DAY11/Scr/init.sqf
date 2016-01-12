@@ -6,6 +6,8 @@ diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/rem
 call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 
 // Vars init
+MotsActive			= false;
+ADF_init_AO			= false;
 ADF_ortegaClear		= false;
 ADF_doloresClear		= false;
 ADF_msg_endMission	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: End Mission activated";diag_log	"-----------------------------------------------------";};

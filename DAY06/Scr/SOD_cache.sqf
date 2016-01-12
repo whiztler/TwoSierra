@@ -6,40 +6,53 @@ if (hasInterface) then {
 		ADF_cacheCnt = ADF_cacheCnt + 1;
 		if (ADF_cacheCnt == 1) exitWith {
 			sleep random 5;
+			"2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO","ACO","FIRESTONE: This is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
 			["2S","","FAIRCHILD this is TWO SIERRA. Found and destroyed one BULLDOG. How copy?"] call ADF_fnc_MessageParser; sleep 13;
-			["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. One BULLDOG destroyed. Keep searching for other stray dogs. Out."] call ADF_fnc_MessageParser;		
+			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA. One BULLDOG destroyed. Continue with tasking. Out."] call ADF_fnc_MessageParser;		
 		};
 		if (ADF_cacheCnt == 2) exitWith {
 			sleep random 5;
+			["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO","ACO","FIRESTONE: This is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;			
 			["2S","","FAIRCHILD this is TWO SIERRA. Found and destroyed another BULLDOG. How copy?"] call ADF_fnc_MessageParser; sleep 13;
-			["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. Two BULLDOGS destroyed. Excellent job. Keep looking. Out."] call ADF_fnc_MessageParser;
+			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA. Two BULLDOGS destroyed. Continue with tasking. Out."] call ADF_fnc_MessageParser;
 		};
 		if (ADF_cacheCnt == 3) exitWith {
+			ADF_endMission = true;
 			sleep random 5;
+			["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO","ACO","FIRESTONE: This is FIRESTONE. Send message. Over."] call ADF_fnc_MessageParser; sleep 8;			
 			["2S","","FAIRCHILD this is TWO SIERRA. Destroyed BULLDOG number three. How copy?"] call ADF_fnc_MessageParser; sleep 13;
-			["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. Three BULLDOGS history.<br/><br/>If you're up for it you can keep searching for more BULLDOGS.<br/><br/>If not, you may head home. Either case, mission accomplished!"] call ADF_fnc_MessageParser; 
+			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA.<br/><br/>If you're up for it you can keep searching for more BULLDOGS.<br/><br/>If not, you may RTB. Either case, mission accomplished. Out."] call ADF_fnc_MessageParser; 
 		};
 		if (ADF_cacheCnt == 4) exitWith {
 			sleep random 5;
+			["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO","ACO","FIRESTONE: TWO SIERRA, this is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;			
 			["2S","","FAIRCHILD this is TWO SIERRA. We decided to keep looking. Just found and destroyed another BULLDOG. How copy?"] call ADF_fnc_MessageParser; sleep 13;
-			["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. BULLDOG number four is history. Out"] call ADF_fnc_MessageParser;	
+			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA. BULLDOG number four destroyed. Out."] call ADF_fnc_MessageParser;	
 		};
 		if (ADF_cacheCnt == 5) exitWith {
 			sleep random 5;
-			["2S","","FAIRCHILD this is TWO SIERRA. BULLDOG number 5 destroyed. How copy?"] call ADF_fnc_MessageParser; sleep 13;
-			["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. RTB. That's an order! Out"] call ADF_fnc_MessageParser; 	
+			["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO","ACO","FIRESTONE: This is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8			
+			["2S","","FAIRCHILD this is TWO SIERRA. BULLDOG number five destroyed. How copy?"] call ADF_fnc_MessageParser; sleep 13;
+			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA. RTB. That's an order! Out."] call ADF_fnc_MessageParser; 	
 		};		
 		if (ADF_cacheCnt == 6) exitWith {
 			sleep random 5;
-			["2S","","FAIRCHILD this is TWO SIERRA. BULLDOG number 6 destroyed. How copy?"] call ADF_fnc_MessageParser; sleep 13;
-			["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. Appreciate the additional effort. Time to come home.<br /><br />RTB TWO SIERRA. Now! Out."] call ADF_fnc_MessageParser; 	
+			["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO","ACO","FIRESTONE: This is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;					
+			["2S","","FAIRCHILD this is TWO SIERRA. Six BULLDOGS destroyed. How copy?"] call ADF_fnc_MessageParser; sleep 13;
+			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA. Appreciate the additional effort. Break.<br /><br />RTB TWO SIERRA. Out."] call ADF_fnc_MessageParser; 	
 		};		
 	};
 
 	ADF_endMissionMsg = {
 		if !(hasInterface) exitWith {};
 		sleep 10;	
-		["ACO","ACO","FAIRCHILD: Job well don TWO SIERRA.<br/><br/>MOTHER said we delivered quite a blow by destroying those weapons caches.<br/><br/>Hot coffee and cold ones waiting in the mess."] call ADF_fnc_MessageParser; 
+		["ACO","ACO","FAIRCHILD: Job well done TWO SIERRA.<br/><br/>MOTHER said we delivered quite a blow by destroying those weapons caches.<br/><br/>Hot coffee and cold ones waiting in the mess."] call ADF_fnc_MessageParser; 
 		sleep 20;
 
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
@@ -148,24 +161,22 @@ ADF_fnc_CacheExplosion = {
 	"Bo_GBU12_LGB" createVehicle _p;
 	ADF_cacheCount = ADF_cacheCount + 1;
 	publicVariable "ADF_cacheCount";
+	if (ADF_cacheCount == 3) then {ADF_endMission = true};
 };
 
 waitUntil {time > 120};
 
-// Extra AO Defence Team at actual cache locations
+// Additional AO Defence Team at actual cache locations
 for "_i" from 1 to 6 do {
-	private ["_g","_p","_spawnPos","_defArr"];
+	private ["_g","_p","_spawnPos"];
 	_p			= format ["cacheObj%1",_i];
 	_spawnPos	= call compile format ["%1",_p];
 	_spawnPos	= getPos _spawnPos;
 	
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressRebel} forEach units _g;
-	
-	_defArr = [_g, _spawnPos, 150, 2, true];
-	_defArr call ADF_fnc_defendArea;
-	//_g setVariable ["ADF_HC_garrison_ADF",true];
-	//_g setVariable ["ADF_HC_garrisonArr",_defArr];	
+
+	[_g, _spawnPos, 150, 2, true] call ADF_fnc_defendArea;
 };
 
 // Foot patrols cache locations
@@ -180,7 +191,3 @@ for "_i" from 1 to 5 do {
 
 	[_g, _spawnPos, 150, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
-
-// End mission
-waitUntil {sleep 30; ADF_cacheCount == 3};
-ADF_endMission = true; publicVariable "ADF_endMission";

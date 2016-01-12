@@ -47,8 +47,8 @@
   <article>
     <h1><img src="Core/I/ADF_logo.png" width="500" height="240" alt="ADF - Arma Mission Development Framework" /></h1>
     <h3 id="curver">Current version</h3>
-    <p>version: 1.42<br />
-      build: Beta 03</p>
+    <p>version: 1.43<br />
+      build: Final 02</p>
     <h2 id="features">New Features 1.39+</h2>
     <ul>
       <li><strong>Support for multiple Headless Clients with automatic Load Balancing</strong> - ADF 1.39 offers up to three HC's that should be named ADF_HC1, ADF_HC2, ADF_HC3. The mission maker can enable/disable load balancing. When enabled ADF transfers AI groups across available HC's (Round Robin method). See 'Core\ADF_HC.sqf' for more information.</li>
@@ -59,6 +59,18 @@
     </ul>
     <h3 id="chglog">Changelog</h3>
     <div id="logBox">
+	  <h4>1.42</h4>
+      <ul>
+		<li>ADDED: ADF_fnc_airPatrol.sqf - function to create random air patrols.</li>
+		<li>ADDED: ADF_fnc_defendArea.sqf - function to garrison a group, man turrets.</li>
+		<li>ADDED: ADF_fnc_seaPatrol.sqf - function to create boat patrols (water waypoints).</li>
+		<li>ADDED: Additional dubug/feedback RPT reporting.</li>
+		<li>UPDATED: ADF_fnc_HC_loadBalancing.sqf - Added a delayed start of 120 seconds so that AO's can init properly.</li>
+		<li>UPDATED: zbe_cache - Added a delayed start of 120 seconds so that AO's can init properly.</li>
+		<li>UPDATED: ADF_SimpleStats.sqf - Now displays stats for up to 3 HC's.</li>
+		<li>UPDATED: code base updated in line with new scripting commands 1.52. Most scripts updated.</li>
+		<li>UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml).</li>
+      </ul>	
       <h4>1.41</h4>
       <ul>
         <li>ADDED: Altitude Based Fatigue. Can be switched on/off in ADF_init_config.</li>
@@ -511,7 +523,7 @@ _g = [getMarkerPos "marker1",	EAST, (configFile >> "CfgGroups" >> "East" >> "OPF
     <li> TAW View Distance by Tonic (<a href="http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script">http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script</a>)</li>
     <li> ZBE_caching by Zorrobyte (<a href="http://forums.bistudio.com/showthread.php?179777-ZBE_Cache-AI-amp-Vehicle-caching-script-addon">http://forums.bistudio.com/showthread.php?179777-ZBE_Cache-AI-amp-Vehicle-caching-script-addon</a>)</li>
     <li> MAD Ambient Life by MAD T (<a href="http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)">http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)</a>)</li>
-    <li> Delete All by Anjan (<a href="http://www.thebutcherbay.org/showthread.php?tid=63">http://www.thebutcherbay.org/showthread.php?tid=63</a>)</li>
+    <li> Repetitive Cleanup by Aeroson (https://forums.bistudio.com/topic/153481-repetitive-cleanup/)</li>
     <li> Void Map Marker by Void (<a href="http://www.armaholic.com/forums.php?m=posts&q=25540">http://www.armaholic.com/forums.php?m=posts&amp;q=25540</a>)</li>
   </ul>
   <p> Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official add-on or tool. Use of the Software (in whole or in part) is entirely at your own risk.</p>

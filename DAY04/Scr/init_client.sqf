@@ -4,6 +4,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
+ADF_fnc_MOTS = {player allowDamage false; MotsActive = true};
+ADF_fnc_MOTS_captive = {params ["_c"]; player setCaptive _c};
+
 waitUntil {ADF_gearLoaded}; // Wait till the unit has their gear before continuing
 
 sleep 3; // Loadout finished > pri weapon loaded
@@ -62,14 +65,25 @@ if (!didJIP) then {
 		["FOB JOHNSON, KUSHAB","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 	] spawn ADF_fnc_typeWriter;
 
-	["2S","","FIRESTONE this is TWO SIERRA at JOHNSON. How copy?"] call ADF_fnc_MessageParser; sleep 12;
-	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. Head out North, North West and locate and neutralize AKIRA. Out."] call ADF_fnc_MessageParser; 
+	["2S","","FIRESTONE this is TWO SIERRA at JOHNSON. Over."] call ADF_fnc_MessageParser; sleep 12;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Roger. Proceed with tasking. Out."] call ADF_fnc_MessageParser; 
+};
+
+[] spawn {
+	waitUntil {sleep 30; time > 10800}; // 30 mins left before Fairlight
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. You have 30 mikes left before MOTHER activates FAIRLIGHT. Break. After that it is RTB and mission aborted. Over."] call ADF_fnc_MessageParser; sleep 16;
+	["2S","","FIRESTONE this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; 
 };
 
 [] spawn {
 	waitUntil {sleep 30; ADF_Fairlight};
-	["ACO","ACO","FIRESTONE: TWO SIERRA. Priority message: FAIRLIGHT activated. RTB. How copy?"] call ADF_fnc_MessageParser; sleep 20;
-	["2S","","Roger FIRESTONE. RTB. Out."] call ADF_fnc_MessageParser;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Priority message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. FAIRLIGHT activated. RTB. How copy?"] call ADF_fnc_MessageParser; sleep 20;
+	["2S","","FIRESTONE this is TWO SIERRA. Solid copy. TWO SIERRA is OSCAR MIKE. Over."] call ADF_fnc_MessageParser; sleep 9;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Roger. Out."] call ADF_fnc_MessageParser;
 	sleep 20;
 
 	_l = ["tLayer"] call BIS_fnc_rscLayer; 
@@ -82,10 +96,11 @@ if (!didJIP) then {
 // End Mission comms
 [] spawn {
 	waitUntil {sleep 7; ADF_endMission};
-
-	["2S","","FIRESTONE. this is TWO SIERRA. AKIRA neutralized. How copy?"] call ADF_fnc_MessageParser; sleep 8;
-	["ACO","ACO","FIRESTONE: Good job TWO SIERRA. Return to JOHNSON for debrief. Over."] call ADF_fnc_MessageParser; sleep 11;
-	["2S","","Copy FIRESTONE. TWO SIERRA oscar mike. Out."] call ADF_fnc_MessageParser;
+	["2S","","FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FIRESTONE this is TWO SIERRA. AKIRA neutralized. How copy?"] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Solid copy. Return to JOHNSON for debrief. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","FIRESTONE this is TWO SIERRA. Roger. We are OSCAR MIKE. Out."] call ADF_fnc_MessageParser;
 	
 	waitUntil {sleep 5; triggerActivated tEndMission};
 			

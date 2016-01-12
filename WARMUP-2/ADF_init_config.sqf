@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission Config
 Author: Whiztler
@@ -16,7 +16,7 @@ modules and scripts.
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_init_config.sqf";}; // Reporting. Do NOT edit/remove
 
 /********** GENERAL **********/
-ADF_mission_version = 1.01; // Mission version
+ADF_mission_version = 1.02; // Mission version
 _ADF_mission_init_time = 25; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
 _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)

@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Crate Cargo Script (BLUEFOR) - SpecOps items/weapons 
 Author: Whiztler
-Script version: 2.1
+Script version: 2.2
 
 Game type: n/a
 File: ADF_cCargo_B_SpecOps.sqf
@@ -23,16 +23,17 @@ if (!isServer) exitWith {};
 waitUntil {time > 0};
 
 // Init
-_crate = _this select 0;
+params ["_crate"];
+private ["_wpn","_spw","_lau","_mag","_dem","_mis","_itm","_uni","_gre"];
 _crate allowDamage false;
-_wpn = 12; 	// Regular Weapons
+_wpn = 2; 	// Regular Weapons
 _spw = 1; 	// Special Purpose Weapons
 _lau = 1;	// Launchers
 _mag = 50;	// Magazines
 _gre = 10;	// Grenades
-_dem = 20;	// Demo/Explosives
+_dem = 10;	// Demo/Explosives
 _mis = 2;	// Missiles/Rockets
-_itm = 5;	// Items
+_itm = 3;	// Items
 _uni = 5;	// Uniform/Vest/Backpack/etc
 
 // Settings 
@@ -151,8 +152,8 @@ _crate addMagazineCargoGlobal ["3Rnd_UGL_FlareGreen_F", _gre];
 _crate addMagazineCargoGlobal ["3Rnd_UGL_FlareRed_F", _gre];
 _crate addMagazineCargoGlobal ["3Rnd_UGL_FlareYellow_F", _gre];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_HuntIR_M203",10];
-	_crate addItemCargoGlobal ["ACE_HuntIR_monitor",2];
+	_crate addItemCargoGlobal ["ACE_HuntIR_M203",2];
+	_crate addItemCargoGlobal ["ACE_HuntIR_monitor",1];
 };
  
 // Grenades/Chemlights
@@ -250,7 +251,7 @@ _crate addItemCargoGlobal ["ItemCompass", _itm];
 _crate addItemCargoGlobal ["LaserBatteries", _itm];
 _crate addWeaponCargoGlobal ["B_UavTerminal", _uni];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_UAVBattery", 2];
+	_crate addItemCargoGlobal ["ACE_UAVBattery", 1];
 	_crate addItemCargoGlobal ["ACE_EarPlugs",15];
 	_crate addItemCargoGlobal ["ace_mapTools",_itm]
 };

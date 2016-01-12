@@ -5,7 +5,7 @@ diag_log	"-----------------------------------------------------";
 ///// RUSSIAN AA SITES
 
 // AA Sites crew
-_g = createGroup EAST;
+_g = createGroup east;
 _p = _g createUnit ["O_Soldier_F", getPos oSpawn, [], 0, "SERGEANT"]; _p moveInGunner vAA_1;
 _p = _g createUnit ["O_Soldier_F", getPos oSpawn, [], 0, "CORPORAL"]; _p moveInGunner vAA_2;
 {[_x] call ADF_fnc_redressRussian} forEach units _g;
@@ -49,13 +49,13 @@ for "_i" from 1 to 2 do {
 
 // Mortar crew
 private ["_g","_p"];
-_g = createGroup EAST;
+_g = createGroup east;
 _p = _g createUnit ["O_Soldier_F", getPos oStat_1, [], 0, "SERGEANT"]; _p moveInGunner oStat_1;
 _p = _g createUnit ["O_Soldier_F", getPos oStat_2, [], 0, "CORPORAL"]; _p moveInGunner oStat_2;
 {[_x] call ADF_fnc_redressRebel; [_x] call ADF_fnc_setTurretGunner} forEach units _g;
 
 // DIANA Static crews
-_g = createGroup EAST;
+_g = createGroup east;
 _p = _g createUnit ["O_Soldier_F", getPos oSpawn, [], 0, "SERGEANT"]; _p moveInGunner sDiana_1;
 _p = _g createUnit ["O_Soldier_F", getPos oSpawn, [], 0, "CORPORAL"]; _p moveInGunner sDiana_2;
 _p = _g createUnit ["O_Soldier_F", getPos oSpawn, [], 0, "PRIVATE"]; _p moveInGunner sDiana_3;
@@ -68,7 +68,7 @@ _p = _g createUnit ["O_Soldier_F", getPos oSpawn, [], 0, "PRIVATE"]; _p moveInGu
 {[_x] call ADF_fnc_redressRebel} forEach units _g;
 
 // ODIN Static crews
-_g = createGroup EAST;
+_g = createGroup east;
 _p = _g createUnit ["O_Soldier_F", getPos oSpawn, [], 0, "SERGEANT"]; _p moveInGunner sApt_1;
 _p = _g createUnit ["O_Soldier_F", getPos oSpawn, [], 0, "CORPORAL"]; _p moveInGunner sApt_2;
 _p = _g createUnit ["O_Soldier_F", getPos oSpawn, [], 0, "PRIVATE"]; _p moveInGunner sApt_3;
@@ -87,7 +87,7 @@ for "_i" from 1 to 5 do {
 	_spawnDir = markerDir _spawnPos;
 	_spawnPos = getMarkerPos _spawnPos;		
 
-	_c = createGroup EAST;
+	_c = createGroup east;
 	_v = [_spawnPos, _spawnDir, "O_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
 	{[_x] call ADF_fnc_redressRebel} forEach units _c;
 	
@@ -139,9 +139,9 @@ for "_i" from 1 to 6 do {
 };
 
 // Count spawned units
-_ADF_OpforCnt = {(side _x == EAST) && (alive _x)} count allUnits;
-_ADF_IndepCnt = {(side _x == INDEPENDENT) && (alive _x)} count allUnits;
-_ADF_WestCnt = {(side _x == WEST) && (alive _x) && !isPlayer _x} count allUnits;
+_ADF_OpforCnt = {side _x == EAST)} count allUnits;
+_ADF_IndepCnt = {side _x == INDEPENDENT} count allUnits;
+_ADF_WestCnt = {(side _x == WEST) && (!isPlayer _x)} count allUnits;
 
 diag_log	"----------------------------------------------------------------------";
 diag_log format ["TWO SIERRA: AO OpFor spawned, number of Opfor: %1",_ADF_OpforCnt];

@@ -979,7 +979,7 @@ class Mission
 			vehicle="Land_Radar";
 			leader=1;
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item13
 		{
@@ -1000,7 +1000,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item15
 		{
@@ -1011,7 +1011,7 @@ class Mission
 			vehicle="Land_Cargo40_military_green_F";
 			skill=0.60000002;
 			fuel=0.21783905;
-			init="this enableSimulation false;  this setVectorUp surfaceNormal position this; ";
+			init="this enableSimulationGlobal false;  this setVectorUp surfaceNormal position this; ";
 		};
 		class Item16
 		{
@@ -1181,7 +1181,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Cargo20_military_green_F";
 			skill=0.60000002;
-			init="this enableSimulation false;  this setVectorUp surfaceNormal position this; ";
+			init="this enableSimulationGlobal false;  this setVectorUp surfaceNormal position this; ";
 		};
 		class Item32
 		{
@@ -2617,7 +2617,7 @@ class Mission
 			age="UNKNOWN";
 			name="tMosque_1";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = [""nagara""] execVM ""Scr\SOD_Mosque.sqf"";";
+			expActiv="0 = [""nagara""] spawn ADF_AO_mosque;";
 			class Effects
 			{
 			};
@@ -2634,7 +2634,7 @@ class Mission
 			age="UNKNOWN";
 			name="tMosque_2";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = [""nur""] execVM ""Scr\SOD_Mosque.sqf"";";
+			expActiv="0 = [""nur""] spawn ADF_AO_mosque;";
 			class Effects
 			{
 			};

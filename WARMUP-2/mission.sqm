@@ -82,7 +82,7 @@ class Mission
 	class Intel
 	{
 		briefingName="CO37 - Two Sierra Tour 2 / WarmUp";
-		overviewText="WarmUp, Testing & Training";
+		overviewText="WarmUp, Testing and Training";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=5400;
