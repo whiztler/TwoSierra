@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Reload/Rearm/Repair Script
 Author: Xeno (Adapted for ADF by Whiztler)
-Script version: 2.71
+Script version: 2.72
 
 Game type: N/A
 File: ADF_RRR.sqf
@@ -67,7 +67,7 @@ _ADF_serviceStartTime = time;
 _ADF_object vehicleChat format ["%1 F.A.R.P.", ADF_clanName];
 _ADF_object vehicleChat format ["Servicing %1", _ADF_vehName];
 _ADF_object vehicleChat format ["%1, please switch off your engine and remain in the %2", _ADF_vehDriver, _ADF_vehCat];
-_ADF_object vehicleChat format ["F.A.R.P. Service can take up to %1 minutes.",_ADF_maxTime];
+_ADF_object vehicleChat format ["Service can take up to %1 minutes.",_ADF_maxTime];
 
 sleep 5;
 
@@ -185,8 +185,7 @@ _ADF_serviceTime = round ((time - _ADF_serviceStartTime) / 60);
 _ADF_serviceTimeType = "minutes";
 _ADF_dayType = "day";
 _ADF_dayTime = date select 3;
-if (_ADF_dayTime < 12) then {_ADF_dayType = "day"};
-if (_ADF_dayTime > 12) then {_ADF_dayType = "day"};
+if (_ADF_dayTime < 12) then {_ADF_dayType = "morning"};
 if (_ADF_dayTime > 18) then {_ADF_dayType = "evening"};
 if ((time - _ADF_serviceStartTime) < 90) then {_ADF_serviceTime = 1;_ADF_serviceTimeType = "minute"};
 _ADF_object vehicleChat format ["%1 was serviced in %2 %3. Enjoy your %4", _ADF_vehName,_ADF_serviceTime,_ADF_serviceTimeType,_ADF_dayType];

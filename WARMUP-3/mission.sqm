@@ -64,19 +64,22 @@ class Mission
 	randomSeed=14476792;
 	class Intel
 	{
-		briefingName="CO33 - Two Sierra Tour 1 / WarmUp";
-		overviewText="WarmUp, Testing & Training";
+		briefingName="CO33 - Two Sierra Tour 3 / WarmUp";
+		overviewText="WarmUp, Testing and Training";
 		resistanceWest=0;
 		resistanceEast=1;
-		timeOfChanges=2700;
+		timeOfChanges=5400;
 		startWeather=0.049999997;
 		startWind=0.51999998;
 		startWindDir=315;
-		startGust=0.049999997;
+		startRain=0.001;
+		startLightnings=0.001;
+		startWaves=0.5;
+		startGust=0.55000001;
 		forecastWeather=0.049999997;
 		forecastWind=0.31999999;
-		forecastWaves=0;
-		forecastGust=0.049999997;
+		forecastWaves=0.29999998;
+		forecastGust=0.25;
 		forecastWindDir=80;
 		rainForced=1;
 		lightningsForced=1;
@@ -243,13 +246,13 @@ class Mission
 				items=2;
 				class Item0
 				{
-					position[]={1801.7382,2.5505586,2381.6077};
-					azimut=-421.147;
+					position[]={1801.5532,2.4591961,2383.0696};
+					azimut=120.952;
 					special="NONE";
 					id=6;
 					side="WEST";
 					vehicle="B_officer_F";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					rank="LIEUTENANT";
 					skill=0.2;
@@ -259,8 +262,8 @@ class Mission
 				};
 				class Item1
 				{
-					position[]={1801.3304,2.486088,2382.4209};
-					azimut=-564.72498;
+					position[]={1801.0918,2.3940558,2383.8523};
+					azimut=-568.55688;
 					id=7;
 					side="WEST";
 					vehicle="B_Soldier_lite_F";
@@ -281,7 +284,7 @@ class Mission
 				items=2;
 				class Item0
 				{
-					position[]={1790.6212,2.2314591,2380.0488};
+					position[]={1791.2313,2.2851167,2379.0627};
 					azimut=-382.789;
 					id=8;
 					side="WEST";
@@ -296,7 +299,7 @@ class Mission
 				};
 				class Item1
 				{
-					position[]={1790.8396,2.2583263,2379.4731};
+					position[]={1791.4497,2.3108864,2378.4871};
 					azimut=-382.789;
 					id=9;
 					side="WEST";
@@ -444,7 +447,7 @@ class Mission
 				items=2;
 				class Item0
 				{
-					position[]={1806.4427,2.6019752,2385.8218};
+					position[]={1806.9192,2.6500125,2385.3628};
 					azimut=-382.789;
 					id=18;
 					side="WEST";
@@ -459,7 +462,7 @@ class Mission
 				};
 				class Item1
 				{
-					position[]={1806.6799,2.6335793,2385.2334};
+					position[]={1807.1564,2.6816046,2384.7744};
 					azimut=-382.789;
 					id=19;
 					side="WEST";
@@ -607,7 +610,7 @@ class Mission
 				items=2;
 				class Item0
 				{
-					position[]={1818.9923,2.95155,2392.9456};
+					position[]={1819.1514,3.0461721,2391.9573};
 					azimut=-378.961;
 					id=28;
 					side="WEST";
@@ -622,7 +625,7 @@ class Mission
 				};
 				class Item1
 				{
-					position[]={1819.2499,3.0155208,2392.3477};
+					position[]={1819.4089,3.1101432,2391.3594};
 					azimut=-378.961;
 					id=29;
 					side="WEST";
@@ -917,13 +920,12 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2602.4412,5.0293379,2353.5244};
+					position[]={1392.3511,6.3266931,2283.7532};
 					azimut=-421.147;
 					special="NONE";
 					id=40;
 					side="CIV";
 					vehicle="C_man_1";
-					player="PLAYER COMMANDER";
 					leader=1;
 					rank="LIEUTENANT";
 					skill=0.2;
@@ -1853,7 +1855,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=42;
+		items=47;
 		class Item0
 		{
 			position[]={2625.5554,5.0293379,2373.314};
@@ -2282,6 +2284,56 @@ class Mission
 			a=0.5;
 			b=0.5;
 			angle=-181.216;
+		};
+		class Item42
+		{
+			position[]={2567.8384,5.0293379,2243.0513};
+			name="mDef_13";
+			text="DEF";
+			type="Empty";
+			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
+		};
+		class Item43
+		{
+			position[]={2626.9285,5.0293379,2314.9509};
+			name="mDef_14";
+			text="DEF";
+			type="Empty";
+			colorName="ColorEAST";
+			a=0.5;
+			b=0.5;
+		};
+		class Item44
+		{
+			position[]={2070.2036,1.2612693,2139.4214};
+			name="mCtr_1";
+			text="CTR";
+			type="Empty";
+			colorName="ColorGUER";
+			a=0.69999999;
+			b=0.69999999;
+		};
+		class Item45
+		{
+			position[]={3245.55,0,2228.3025};
+			name="mCtr_2";
+			text="CTR";
+			type="Empty";
+			colorName="ColorGUER";
+			a=0.69999999;
+			b=0.69999999;
+		};
+		class Item46
+		{
+			position[]={3387.0007,5.1945229,2983.9075};
+			name="mCtr_3";
+			text="CTR";
+			type="Empty";
+			colorName="ColorGUER";
+			a=0.69999999;
+			b=0.69999999;
 		};
 	};
 	class Sensors

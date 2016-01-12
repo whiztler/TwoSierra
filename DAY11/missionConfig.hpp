@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Cfg entries
 Author: Whiztler
@@ -94,7 +94,7 @@ class CfgDebriefing
 	class End1
 	{
 		title = "Mission Completed";
-		subtitle = "Day 09 | Corazol";
+		subtitle = "Day 11 | Warlord";
 		description = "Cold showers and warm beer all around!";
 		//pictureBackground = "Img\loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
 		picture = "Img\logo_TwoSierra.paa"; // Marker icon
@@ -103,8 +103,8 @@ class CfgDebriefing
 	class End2
 	{
 		title = "Mission Failed";
-		subtitle = "Day 09 | Corazol";
-		description = "Corazol was a hard nut to crack. Too hard for TWO SIERRA";
+		subtitle = "Day 11 | Warlord";
+		description = "That secret base was very well defended. Too much for TWO SIERRA.";
 		//pictureBackground = "Img\loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
 		picture = "Img\logo_TwoSierra.paa"; // Marker icon
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
@@ -112,14 +112,14 @@ class CfgDebriefing
 	class Killed
 	{
 		title = "All players K.I.A.";
-		subtitle = "Day 09 | Corazol";
+		subtitle = "Day 11 | Warlord";
 		description = "TWO SIERRA R.I.P.";
 		//pictureBackground = "Img\loadScreen_TwoSierra.jpg"; // eg. "img\yourpicture.jpg" no picture? use "";
 		picture = "Img\logo_TwoSierra.paa"; // Marker icon
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 };
-
+/*
 // ACE3 settings v. 3.3.2.0
 
 class ACE_Settings {

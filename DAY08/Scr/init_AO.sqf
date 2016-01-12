@@ -171,7 +171,7 @@ if (ADF_debug) then {sleep 10} else {sleep 180};
 		_spawnDir = markerDir _spawnPos;
 		_spawnPos = getMarkerPos _spawnPos;		
 
-		_c = createGroup EAST;
+		_c = createGroup east;
 		_v = [_spawnPos, _spawnDir, "O_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
 		{[_x] call ADF_fnc_redressRebel} forEach units _c;
 		

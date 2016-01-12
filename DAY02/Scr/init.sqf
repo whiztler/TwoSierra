@@ -12,8 +12,9 @@ ADF_pashtunAOtriggered	= false;
 ADF_SatanClearUp			= false;
 ADF_SatanControl			= false;
 ADF_init_AO				= false;
+MotsActive				= false;
 ADF_redZoneOpforCnt		= 0;
-ADF_msg_tPrice 			= {diag_log "TWO SIERRA: tPrice message";};
+ADF_msg_tPrice 			= {diag_log "TWO SIERRA: Price message";};
 ADF_msg_tBaltimore 		= {diag_log "TWO SIERRA: Baltimore message";};
 
 // Server Init

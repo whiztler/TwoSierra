@@ -18,13 +18,13 @@ call compile preprocessFileLineNumbers "Scr\ADF_redress_CSAT3.sqf";
 [oMed] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf";
 
 private "_a";
-_a = ["mVeh_1","mVeh_2","mVeh_3","mVeh_4","mVeh_5","mVeh_6","mVeh_7","mVeh_8","mVeh_9","mVeh_10","mVeh_11","mVeh_12","mVeh_13","mVeh_14","mVeh_15","mVeh_16","mVeh_17","mVeh_18","mVeh_19","mVeh_20"];
+_a = ["mVeh_1", "mVeh_2", "mVeh_3", "mVeh_4", "mVeh_5", "mVeh_6", "mVeh_7", "mVeh_8", "mVeh_9", "mVeh_10", "mVeh_11", "mVeh_12", "mVeh_13", "mVeh_14", "mVeh_15", "mVeh_16", "mVeh_17", "mVeh_18", "mVeh_19", "mVeh_20"];
 
 // Random vehicle
 for "_i" from 1 to 3 do {
-	private ["_p","_idx","_va","_v"];
+	private ["_p", "_idx", "_va", "_v"];
 	_p = _a call BIS_fnc_selectRandom;
-	_va = ["O_MRAP_02_hmg_F","O_MRAP_02_F","O_MRAP_02_gmg_F"] call BIS_fnc_selectRandom;
+	_va = ["O_MRAP_02_hmg_F", "O_MRAP_02_F", "O_MRAP_02_gmg_F"] call BIS_fnc_selectRandom;
 	_idx =  _a find _p;
 	_a deleteAt _idx;
 	_v = createVehicle [_va, getMarkerPos _p, [], 0, "NONE"];
@@ -33,17 +33,30 @@ for "_i" from 1 to 3 do {
 };
 
 // Spawn static Marid
-private ["_mp","_v"];
-_mp = ["mMarid_1","mMarid_2","mMarid_3","mMarid_4","mMarid_5"] call BIS_fnc_selectRandom;
+private ["_mp", "_v"];
+_mp = ["mMarid_1", "mMarid_2", "mMarid_3", "mMarid_4", "mMarid_5"] call BIS_fnc_selectRandom;
 _v = createVehicle ["O_APC_Wheeled_02_rcws_F", getMarkerPos _mp, [], 0, "NONE"];
 _v setDir (markerDir _mp);
 _v lock 3;
 
+// AO Defence Squad
+for "_i" from 1 to 14 do {
+	private ["_g", "_spawnPos", "_sqd"];
+	_spawnPos = format ["mDef_%1",_i];
+	_spawnPos = getMarkerPos _spawnPos;
+	_sqd = if ((random 1) > .33) then {"OIA_InfAssault"} else {"OIA_InfSquad_Weapons"};
+	
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _sqd)] call BIS_fnc_spawnGroup;
+	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
+		
+	[_g, _spawnPos, 125, 2, true] call ADF_fnc_defendArea;
+};
+
 // foot patrols
-for "_i" from 2 to 9 do {
-	private ["_spawnPos","_g","_r","_w"];
+for "_i" from 2 to 12 do {
+	private ["_spawnPos", "_g", "_r", "_w"];
 	_spawnPos = getMarkerPos "mOpforSpawn";
-	_r = (random 200) + (random 200);
+	_r = (random 225) + (random 225);
 	_w = [3,4,5] call BIS_fnc_selectRandom;
 
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OI_reconSentry")] call BIS_fnc_spawnGroup;
@@ -52,28 +65,51 @@ for "_i" from 2 to 9 do {
 };
 
 // foot patrols LR
-for "_i" from 1 to 3 do {
-	private ["_spawnPos","_g","_r","_w"];
+for "_i" from 1 to 5 do {
+	private ["_spawnPos", "_g", "_r", "_w"];
 	_spawnPos = getMarkerPos "mOpforSpawn";
-	_r = 200 + ((random 200) + (random 200));
+	_r = 200 + ((random 300) + (random 300));
 	if (_r < 300) then {_r = 250 + (random 300)};
-	_w = [3,4,5] call BIS_fnc_selectRandom;
+	_w = [3,4,5,6] call BIS_fnc_selectRandom;
 
 	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OI_infTeam")] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
-	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
+	[_g, _spawnPos, _r, _w, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 25] call ADF_fnc_footPatrol;
 };
 
-// AO Defence Squad
-for "_i" from 1 to 12 do {
-	private ["_g","_spawnPos"];
-	_spawnPos = format ["mDef_%1",_i];
-	_g = [getMarkerPos _spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad")] call BIS_fnc_spawnGroup;
-	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
-	
-	_defArr = [_g, _spawnPos, 125, 2, true];
-	_defArr call ADF_fnc_defendArea;
+// Counter
+waitUntil {
+	sleep 60;
+	private "_cnt";
+	_cnt = {side _x == EAST} count allUnits;
+	if (ADF_debug) then {systemChat format ["TWO SIERRA debug: Opfor remaining: %1",_cnt];} else {diag_log format ["TWO SIERRA: Opfor remaining: %1",_cnt];};
+	_cnt == 20
 };
+
+// Counter spawn
+private "_n";
+_n = [2, 3, 4, 5] call BIS_fnc_selectRandom;
+for "_i" from 1 to _n do {
+	private ["_g", "_p", "_sqd", "_wp"];
+	_p = getMarkerPos (["mCtr_1", "mCtr_2", "mCtr_1"]);
+	_sqd = if ((random 1) > .33) then {"OIA_InfAssault"} else {"OIA_InfSquad_Weapons"};
+	
+	_g = [_spawnPos, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _sqd)] call BIS_fnc_spawnGroup;
+	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
+		
+	_g allowFleeing 0;
+	(leader _g) setSkill ['commanding', 1];
+	_wp = _g addWaypoint [getMarkerPos "mOpforSpawn", 0];
+	_wp setWaypointType "SAD";
+	_wp setWaypointBehaviour "SAFE";
+	_wp setWaypointSpeed "FULL";
+	_wp setWaypointCombatMode "RED";
+};
+
+diag_log	"-----------------------------------------------------";
+diag_log format ["TWO SIERRA: Counter assault spawned: Nr of squads: %1 -- Opfor counter nr: %2", _n, _n * 8];
+diag_log	"-----------------------------------------------------";
+
 
 private ["_opforCntWin"];
 _opforCntWin = 5;
@@ -82,7 +118,7 @@ _opforCntWin = 5;
 waitUntil {
 	sleep 60;
 	private "_cnt";
-	_cnt = {(side _x == EAST) && (alive _x)} count allUnits;
+	_cnt = {side _x == EAST} count allUnits;
 	if (ADF_debug) then {systemChat format ["TWO SIERRA debug: Opfor remaining: %1",_cnt];} else {diag_log format ["TWO SIERRA: Opfor remaining: %1",_cnt];};
 	_cnt <= _opforCntWin
 };
@@ -94,4 +130,4 @@ diag_log	"-----------------------------------------------------";
 private "_l";
 _l = ["tLayer"] call BIS_fnc_rscLayer;
 _l cutText ["", "BLACK IN", 5];
-["<t size='5' color='#FFFFFF'>VICTORY</t>",0,0,3,12] spawn BIS_fnc_dynamicText;
+["<t size='5' color='#FFFFFF'>V I C T O R Y</t>",0,0,3,12] spawn BIS_fnc_dynamicText;

@@ -33,7 +33,7 @@ NRF_grp_3 = [getPos bSpawn3, WEST, (configFile >> "CfgGroups" >> "WEST" >> "BLU_
 NRF_grp_3 setGroupIdGlobal ["5-2 ALPHA"];
 
 // Static Defences & Gunners
-NRF_grp_4 = CreateGroup WEST; 
+NRF_grp_4 = createGroup west; 
 _p = NRF_grp_4 createUnit ["B_Soldier_F", getPos bSpawn3, [], 0, "SERGEANT"]; _p moveInGunner sApt_1;
 _p = NRF_grp_4 createUnit ["B_Soldier_F", getPos bSpawn3, [], 0, "CORPORAL"]; _p moveInGunner sApt_2;
 _p = NRF_grp_4 createUnit ["B_Soldier_F", getPos bSpawn3, [], 0, "PRIVATE"]; _p moveInGunner sApt_3;
@@ -68,11 +68,12 @@ vAirbus1TO = false;
 	private ["_c","_p","_wp"];
 	sleep ((random 150) + (random 150));
 	vAirbus1TO = true;
-	_c = createGroup WEST;
+	_c = createGroup west;
 	_p = _c createUnit ["B_Helipilot_F", getPos bSpawn3, [], 0, "SERGEANT"]; _p moveInDriver vAirbus1;
 	_wp = _c addWaypoint [getMarkerPos "mFargo", 0];
 	_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "GREEN";
 	vAirbus1 flyInHeight 20;
+	{_x disableAI "AUTOTARGET"; _x disableAI "CHECKVISIBLE"; _x setBehaviour "CARELESS"} forEach units _c;
 	waitUntil {(currentWaypoint (_wp select 0)) > (_wp select 1)};
 	sleep 2;
 	if !(isNil "vAirbus1") then {{deleteVehicle _x} forEach (crew vAirbus1); deleteVehicle vAirbus1; vAirbus1 = nil};
@@ -82,11 +83,12 @@ vAirbus1TO = false;
 	private ["_c","_p","_wp"];
 	waitUntil {sleep 5; vAirbus1TO};
 	sleep 5;
-	_c = createGroup WEST;
+	_c = createGroup west;
 	_p = _c createUnit ["B_Helipilot_F", getPos bSpawn3, [], 0, "SERGEANT"]; _p moveInDriver vAirbus2;
 	_wp = _c addWaypoint [getMarkerPos "mFargo", 0];
 	_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "GREEN";
 	vAirbus2 flyInHeight 20;
+	{_x disableAI "AUTOTARGET"; _x disableAI "CHECKVISIBLE"; _x setBehaviour "CARELESS"} forEach units _c;
 	waitUntil {(currentWaypoint (_wp select 0)) > (_wp select 1)};
 	sleep 2;
 	if !(isNil "vAirbus2") then {{deleteVehicle _x} forEach (crew vAirbus2); deleteVehicle vAirbus2; vAirbus2 = nil};

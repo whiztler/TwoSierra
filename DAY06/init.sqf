@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission init
 Author: Whiztler
@@ -19,6 +19,7 @@ if (!isDedicated && (isNull player)) then {waitUntil {!(isNull player)}; waitUnt
 if (hasInterface) then {execVM "Scr\ADF_briefing.sqf"}; // Mission Briefing
 #include "Core\ADF_init_pre.sqf"
 #include "ADF_init_config.sqf"
+call compile preprocessFileLineNumbers "Core\f\ADF_fnc_core.sqf";
 
 // HC init. Init before caching. Is HC is active then caching is disabled
 if (_ADF_HC_init) then {_ADF_run_HC = [_ADF_HCLB_enable] execVM "Core\ADF_HC.sqf"; waitUntil {scriptDone _ADF_run_HC}}; // Headless Client. Only executed when a HC is physically present (configured in server.cfg). See 'Core\ADF_HC.sqf' for more info.

@@ -13,7 +13,7 @@ ADF_wpPosRdm = {
 		_exitPos = call ADF_wpPosRdm;
 		if (_startPos == _exitPos) then {_exitPos = call ADF_wpPosRdm;};
 		_heli = "B_Heli_Transport_03_F";
-		_c = createGroup WEST;
+		_c = createGroup west;
 		_c setCombatMode "GREEN";
 		_v = [getMarkerPos _startPos, 0, _heli, _c] call BIS_fnc_spawnVehicle;
 		_c setGroupIdGlobal ["6-1 AIRBUS"];
@@ -26,6 +26,7 @@ ADF_wpPosRdm = {
 		_wp = _c addWaypoint [getPos _wpPad, 0];
 		_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "GREEN";
 		_wp setWaypointStatements ["true", "vAirbus land 'LAND';"];
+		{_x disableAI "AUTOTARGET"; _x disableAI "CHECKVISIBLE"; _x setBehaviour "CARELESS"} forEach units _c;
 		waitUntil {(currentWaypoint (_wp select 0)) > (_wp select 1)};
 		vAirbus flyInHeight 0;
 		waitUntil {isTouchingGround vAirbus};
@@ -67,7 +68,7 @@ for "_i" from 1 to 24 do {
 
 // Mortar crew
 private ["_g","_p"];
-_g = createGroup EAST;
+_g = createGroup east;
 _p = _g createUnit ["O_Soldier_F", getPos oStat_1, [], 0, "SERGEANT"]; _p moveInGunner oStat_1;
 _p = _g createUnit ["O_Soldier_F", getPos oStat_2, [], 0, "CORPORAL"]; _p moveInGunner oStat_2;
 _p = _g createUnit ["O_Soldier_F", getPos oStat_3, [], 0, "CORPORAL"]; _p moveInGunner oStat_3;
@@ -81,7 +82,7 @@ for "_i" from 1 to 7 do {
 	_spawnDir = markerDir _spawnPos;
 	_spawnPos = getMarkerPos _spawnPos;		
 
-	_c = createGroup EAST;
+	_c = createGroup east;
 	_v = [_spawnPos, _spawnDir, "O_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
 	{[_x] call ADF_fnc_redressRebel} forEach units _c;
 	
@@ -139,7 +140,7 @@ ADF_t_Lapotino = {
 	private ["_g","_spawnPos"];
 	_spawnPos = getMarkerPos "mLapotino";
 	
-	_c = createGroup EAST;
+	_c = createGroup east;
 	_p = _c createUnit ["O_Pilot_F", _spawnPos, [], 0, "MAJOR"]; _p moveInDriver oRusAttackHeli;
 	_p = _c createUnit ["O_Pilot_F", _spawnPos, [], 0, "CORPORAL"]; _p moveInGunner oRusAttackHeli;
 	{[_x] call ADF_fnc_redressRussian} forEach units _c;

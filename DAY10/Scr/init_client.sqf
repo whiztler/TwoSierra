@@ -4,6 +4,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
+ADF_fnc_MOTS = {player allowDamage false; MotsActive = true};
+ADF_fnc_MOTS_captive = {params ["_c"]; player setCaptive _c};
+
 waitUntil {ADF_gearLoaded}; // Wait till the unit has their gear before continuing
 
 sleep 3; // Loadout finished > pri weapon loaded
@@ -57,20 +60,23 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 
 if (!didJIP) then {
 	[
-		["02 SEP 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
+		["03 SEP 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
 		["UNITED SAHRANI","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"],
-		["OP CRIMSHAW, EVERON","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
+		["FOB BRONSON, CORAZOL","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 	] spawn ADF_fnc_typeWriter;
 
-	["2S","","VADER this is TWO SIERRA at CRIMSHAW. How copy?"] call ADF_fnc_MessageParser; sleep 12;
-	["ACO","ACO","VADER: Copy TWO SIERRA. Proceed with your mission. Good luck. Out."] call ADF_fnc_MessageParser; 
+	["2S","","VADER this is TWO SIERRA at BRONSON. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","VADER: TWO SIERRA this is VADER. Solid copy. Proceed with tasking. Over."] call ADF_fnc_MessageParser; sleep 12;
+	["2S","","VADER this is TWO SIERRA. Roger. TWO SIERRA is OSCAR MIKE. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_doloresBase	= {
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. We're at the Dolores Military Base. There's a lot of hardware here.0 How copy?"] call ADF_fnc_MessageParser; sleep 14;
-	["ACO","ACO","VADER: Copy TWO SIERRA. Wait one."] call ADF_fnc_MessageParser; sleep 25;
-	["ACO","ACO","VADER: TWO SIERRA, your orders are to destroy the assets at the Delores Base. Out"] call ADF_fnc_MessageParser;
-
+	["2S","","TWO SIERRA: VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["ACO","ACO","VADER: TWO SIERRA this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 9;
+	["2S","","TWO SIERRA: VADER this is TWO SIERRA. We're at the Dolores Military Base. There's a lot of CSAT hardware here. Break. Interrogative tasking. Over."] call ADF_fnc_MessageParser; sleep 14;
+	["ACO","ACO","VADER: TWO SIERRA this is VADER. Solid copy. Wait. Over."] call ADF_fnc_MessageParser; sleep 25 + (random 20);
+	["ACO","ACO","VADER: TWO SIERRA this is VADER. Your orders are to destroy the assets at the Delores Base. How copy?"] call ADF_fnc_MessageParser; sleep 17;
+	["2S","","TWO SIERRA: VADER this is TWO SIERRA. Solid copy. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_ortegaClear	= {

@@ -4,6 +4,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
+ADF_fnc_MOTS = {player allowDamage false; MotsActive = true};
+ADF_fnc_MOTS_captive = {params ["_c"]; player setCaptive _c};
+
 waitUntil {ADF_gearLoaded}; // Wait till the unit has their gear before continuing
 
 sleep 3; // Loadout finished > pri weapon loaded
@@ -62,46 +65,45 @@ if (!didJIP) then {
 		["OP CRIMSHAW, EVERON","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 	] spawn ADF_fnc_typeWriter;
 
-	["2S","","VADER this is TWO SIERRA at CRIMSHAW. How copy?"] call ADF_fnc_MessageParser; sleep 12;
-	["ACO","ACO","VADER: Copy TWO SIERRA. Proceed with your mission. Good luck. Out."] call ADF_fnc_MessageParser; 
+	["2S","","VADER this is TWO SIERRA at LIMA. We are OSCAR MIKE. Over."] call ADF_fnc_MessageParser; sleep 12;
+	["ACO","ACO","VADER: TWO SIERRA this is VADER. Solid copy. No FRAGO. Over."] call ADF_fnc_MessageParser; 
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; sleep 12;
 };
 
-ADF_msg_doloresBase	= {
+ADF_msg_intel1 = {
 	["2S","","TWO SIERRA: VADER this is TWO SIERRA. We're at the Dolores Military Base. There's a lot of hardware here.0 How copy?"] call ADF_fnc_MessageParser; sleep 14;
 	["ACO","ACO","VADER: Copy TWO SIERRA. Wait one."] call ADF_fnc_MessageParser; sleep 25;
 	["ACO","ACO","VADER: TWO SIERRA, your orders are to destroy the assets at the Delores Base. Out"] call ADF_fnc_MessageParser;
-
 };
 
-ADF_msg_ortegaClear	= {
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. I think we got most of them. Calling Ortega clear. How copy?"] call ADF_fnc_MessageParser; sleep 14;	
-	if (ADF_endMission) then {
-		["ACO","ACO","VADER: Excellent job TWO SIERRA.<br/><br/>	The inability to supply their troops via the sea is a big blow for CSAT. MOTHER already has a new op for you. Head out to the Dolores base as we'll be setting up a FOB there.<br/><br/>You'll move out again tomorrow morning. Get some rest and organise your kit.<br/><br/>Great job gentlemen!"] call ADF_fnc_MessageParser;
-		sleep 10;
-		_l = ["tLayer"] call BIS_fnc_rscLayer; 
-		_l cutText ["", "BLACK", 20];
-		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 10 | Corazol</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
-		['END2',true,22] call BIS_fnc_endMission;
+
+ADF_msg_pasteurClear	= {
+	params ["_t"];
+	if (_t) then {
+		["ACO","ACO","VADER: TWO SIERRA this is VADER. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+		["2S","","TWO SIERRA: VADER this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 9;
+		["ACO","ACO","VADER: TWO SIERRA we are pulling you out. ACE reported an armored squadron heading your way. ETA four mikes. RTB. How copy?"] call ADF_fnc_MessageParser; sleep 7;
+		["2S","","TWO SIERRA: Solid copy Vader. TWO SIERRA is OSCAR MIKE to LIMA. Over."] call ADF_fnc_MessageParser; sleep 9;
+		["ACO","ACO","VADER: TWO SIERRA this is VADER. SPG will deal the the Tigers. RTB now! Out."] call ADF_fnc_MessageParser;		
 	} else {
-		["ACO","ACO","VADER: Copy TWO SIERRA, good job. Head out to Dolores. Out."] call ADF_fnc_MessageParser;
+		["2S","","TWO SIERRA: VADER this is TWO SIERRA. Message over."] call ADF_fnc_MessageParser; sleep 14;
+		["ACO","ACO","VADER: TWO SIERRA this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 7;
+		["2S","","TWO SIERRA: VADER this is TWO SIERRA. PASTEUR is clear. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+		["ACO","ACO","VADER: Stand by TWO SIERRA"] call ADF_fnc_MessageParser; sleep 12;
+		["ACO","ACO","VADER: TWO SIERRA this is VADER. ACE is tracking an armored squadron heading your way. ETA four mikes. RTB. How copy?"] call ADF_fnc_MessageParser; sleep 17;
+		["2S","","TWO SIERRA: Solid copy Vader. TWO SIERRA is OSCAR MIKE to LIMA. Over."] call ADF_fnc_MessageParser; sleep 9;
+		["ACO","ACO","VADER: TWO SIERRA this is VADER. SPG will deal the the Tigers. RTB now! Out."] call ADF_fnc_MessageParser;
 	};
 };
 
-ADF_msg_doloresClear	= {
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. Message over."] call ADF_fnc_MessageParser; sleep 14;
-	["ACO","ACO","VADER: Go ahead TWO SIERRA"] call ADF_fnc_MessageParser; sleep 7;
-	["2S","","TWO SIERRA: Dolores is clear. Body count two hundred plus. How copy?"] call ADF_fnc_MessageParser; sleep 14;
-	["ACO","ACO","VADER: Stand by TWO SIERRA"] call ADF_fnc_MessageParser; sleep 12;
-	if (ADF_endMission) then {
-		["ACO","ACO","VADER: Excellent job TWO SIERRA.<br/><br/>	The inability to supply their troops via the sea is a big blow for CSAT. MOTHER already has a new op for you. Head out to the Dolores base as we'll be setting up a FOB there.<br/><br/>You'll move out again tomorrow morning. Get some rest and organise your kit.<br/><br/>Great job gentlemen!"] call ADF_fnc_MessageParser;
-		sleep 10;
-		_l = ["tLayer"] call BIS_fnc_rscLayer; 
-		_l cutText ["", "BLACK", 20];
-		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 10 | Corazol</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
-		['END2',true,22] call BIS_fnc_endMission;
-	} else {
-		["ACO","ACO","VADER: Copy TWO SIERRA, good job. Head out to Ortega. Out."] call ADF_fnc_MessageParser;
-	};
+ADF_msg_endMission = {			
+	sleep 25;
+	["ACO","ACO","Capt. James O'Conner:. Welcome back TWO SIERRA<br/><br/>It seems we haven PASTEUR by surprice. SPG is dealing with the armored squadron. MOTHER wants you back at BRONSON. Tomorrow morning we start our assault on Paraiso. Get some rest and chow. See you in a few hours for brieding."] call ADF_fnc_MessageParser;
+	sleep 20;
+	_l = ["tLayer"] call BIS_fnc_rscLayer; 
+	_l cutText ["", "BLACK", 20];
+	["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 11 | Warlord</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
+	['END1',true,22] call BIS_fnc_endMission;
 };
 
 	

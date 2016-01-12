@@ -6,10 +6,13 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_defendArea.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_footPatrol.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_seaPatrol.sqf";
-//call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_airPatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createIED.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_CSAT3.sqf";
+
+#include "ADF_SOD_comp.sqf"
 
 // Load vehicle Supplies
 [MRAP_2PC] execVM "Core\C\ADF_vCargo_B_Car.sqf";
@@ -23,5 +26,14 @@ tFoxtrotBase enableSimulation false;
 tFoxtrotAmmo enableSimulation false;
 tHotelSupply enableSimulation false;
 tGolfFuel enableSimulation false;
+
+_p = ["mCarBomb_1","mCarBomb_2","mCarBomb_3"] call BIS_fnc_selectRandom;
+[_p,	75, west, "C_Van_01_fuel_F"] call ADF_fnc_createCarBomb;
+
+vTiger addEventHandler ["killed", {
+	[getMarkerPos "mBase_3", getMarkerPos "mPat_1", east, 3, 700, 30, 4, "MOVE", "SAFE", "RED", "NORMAL", "FILE", 150] call ADF_fnc_createAirPatrol;
+	[getMarkerPos "mMSR_8", getMarkerPos "mOp", 30, "FULL", "O_Plane_CAS_02_F", EAST] call BIS_fnc_ambientFlyby;
+	[getMarkerPos "mMSR_16", getMarkerPos "mBase_9", random 40, "FULL", "O_Plane_CAS_02_F", EAST] call BIS_fnc_ambientFlyby;
+}];
 
 #include "init_ao.sqf"

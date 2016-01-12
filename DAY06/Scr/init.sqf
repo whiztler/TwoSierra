@@ -8,6 +8,7 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 // Vars init
 ADF_endMission			= false;
 ADF_init_AO				= false;
+MotsActive				= false;
 ADF_cacheCount			= 0;
 ADF_cacheCnt				= 0;
 ADF_endMissionMsg			= {diag_log "TWO SIERRA: ADF_endMissionMsg";};

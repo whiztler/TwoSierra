@@ -4,6 +4,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
+ADF_fnc_MOTS = {player allowDamage false; MotsActive = true};
+ADF_fnc_MOTS_captive = {params ["_c"]; player setCaptive _c};
+
 waitUntil {ADF_gearLoaded}; // Wait till the unit has their gear before continuing
 
 sleep 3; // Loadout finished > pri weapon loaded
@@ -62,92 +65,131 @@ if (!didJIP) then {
 		["OP CRIMSHAW, EVERON","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 	] spawn ADF_fnc_typeWriter;
 
-	["2S","","VADER this is TWO SIERRA at CRIMSHAW. How copy?"] call ADF_fnc_MessageParser; sleep 12;
-	["ACO","ACO","VADER: Copy TWO SIERRA. Proceed with your mission. Good luck. Out."] call ADF_fnc_MessageParser; 
+	["2S","","VADER this is TWO SIERRA at CRIMSHAW. Ready for tasking. How copy?"] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is VADEr. Solid copy. Execute KEYHOLE. Over."] call ADF_fnc_MessageParser; sleep 11; 
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; sleep 8;
 };
 
 ADF_msg_corazolBlue	= {
 	ADF_obj_corazol = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. Corazol is blue. How copy"] call ADF_fnc_MessageParser; sleep 12;
+	["2S","","VADER this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA his is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","VADER this is TWO SIERRA. KEYHOLE secured. How copy?"] call ADF_fnc_MessageParser; sleep 12;
 	if (ADF_obj_calvin) then {		
-		["ACO","ACO","VADER: Excellent TWO SIERRA. Wait one."] call ADF_fnc_MessageParser; sleep 20;
+		["ACO","ACO","TWO SIERRA this is VADER: Solid copy. Wait. Over."] call ADF_fnc_MessageParser; sleep 20;
 		[] spawn ADF_msg_endMission;
 	} else {
-		["ACO","ACO","VADER: Copy TWO SIERRA. Head over to CALVIN and clear that the base. Out"] call ADF_fnc_MessageParser;
+		["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Break. Clear and secure CALVIN. How copy?"] call ADF_fnc_MessageParser; sleep 12;
+		["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser; 
 	};
 };
 ADF_msg_calvinBlue	= {
 	ADF_obj_calvin = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. CALVIN is blue. How copy"] call ADF_fnc_MessageParser; sleep 12;
+	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","VADER this is TWO SIERRA. CALVIN is blue. How copy?"] call ADF_fnc_MessageParser; sleep 12;
 	if (ADF_obj_corazol) then {
-		["ACO","ACO","VADER: Excellent TWO SIERRA. Wait one."] call ADF_fnc_MessageParser; sleep 20;
+		["ACO","ACO","TWO this is VADER. Solid copy. Wait. Out."] call ADF_fnc_MessageParser; sleep 20;
 		[] spawn ADF_msg_endMission;
 	} else {
-		["ACO","ACO","VADER: Good job TWO SIERRA. Clear the city. MOTHER wants all Opfor detroyed. Out"] call ADF_fnc_MessageParser;	
+		["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Break. Clear and secure KEYHOLE. Over."] call ADF_fnc_MessageParser; sleep 12;
+		["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser; 
 	};
 };
 
 ADF_msg_foxtrotBlue	= {
 	ADF_obj_foxtrot = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. FOXTROT is blue. How copy?"] call ADF_fnc_MessageParser; sleep 11;
-	["ACO","ACO","VADER: Copy TWO SIERRA. FOXTROT cleared. Out."] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;	
+	["2S","","VADER this is TWO SIERRA. FOXTROT is blue. How copy?"] call ADF_fnc_MessageParser; sleep 9;
+	["ACO","ACO","Solid copy TWO SIERRA. FOXTROT cleared. Proceed with tasking. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 };
+
 ADF_msg_golfBlue		= {
 	ADF_obj_golf = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. We have secured GOLF. How copy?"] call ADF_fnc_MessageParser; sleep 13;
-	["ACO","ACO","VADER: Copy TWO SIERRA. GOLF secured. Out."] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;	
+	["2S","","VADER this is TWO SIERRA. We have secured GOLF. How copy?"] call ADF_fnc_MessageParser; sleep 13;
+	["ACO","ACO","TWO SIERRA this is VADER. Roger. Proceed with tasking. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
 };
+
 ADF_msg_hotelBlue		= {
 	ADF_obj_hotel = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. HOTEL is clear. How copy?"] call ADF_fnc_MessageParser; sleep 14;
-	["ACO","ACO","VADER: Copy TWO SIERRA. HOTEL secured. Out."] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;	
+	["2S","","VADER this is TWO SIERRA. HOTEL is clear. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+	["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Continue on mission. Over."] call ADF_fnc_MessageParser; sleep 12;
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 };
+
 ADF_msg_DeltaBlue		= {
 	ADF_obj_hotel = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. DELTA is intact and secured. How copy?"] call ADF_fnc_MessageParser; sleep 10;
-	["ACO","ACO","VADER: Good job TWO SIERRA. We need that bridge. Out"] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;	
+	["2S","","VADER this is TWO SIERRA. DELTA is intact and secured. How copy?"] call ADF_fnc_MessageParser; sleep 10;
+	["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Proceed with tasking. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
 };
+
 ADF_msg_EchoBlue		= {
 	ADF_obj_hotel = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. ECHO secured in one piece. How copy?"] call ADF_fnc_MessageParser; sleep 12;
-	["ACO","ACO","VADER: Copy TWO SIERRA. Echo cleared and secured. Out"] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","VADER this is TWO SIERRA. ECHO secured in one piece. How copy?"] call ADF_fnc_MessageParser; sleep 12;
+	["ACO","ACO","TWO SIERRA this is VADER. Good copy. Proceed with mission. Over"] call ADF_fnc_MessageParser; sleep 10;
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 };
+
 ADF_msg_RomeoBlue		= {
 	ADF_obj_hotel = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. ROMEO is open. How copy?"] call ADF_fnc_MessageParser; sleep 9;
-	["ACO","ACO","VADER: Copy TWO SIERRA. MSR is open. Out"] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","VADER this is TWO SIERRA. ROMEO is blue. How copy?"] call ADF_fnc_MessageParser; sleep 9;
+	["ACO","ACO","TWO SIERRA this is VADER. Roger. ROMEO secured. Proceed with tasking. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","VADER this is TWO SIERRA. Solid copy. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_foxtrotAmmo	= {
-	ADF_obj_foxtrot = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. The south hangar at Foxtrot houses a large ammo cache. Enough to blow up this city twice over. How copy?"] call ADF_fnc_MessageParser; sleep 11;
-	["ACO","ACO","VADER: Copy TWO SIERRA. Stay clear of the ammo cache. We'll dispatch engineers to deal with it. Out."] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","VADER this is TWO SIERRA. The south hangar at FOXTROT houses a large ammo cache. Interrogative tasking. How copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["ACO","ACO","TWO SIERRA, this is VADER. Solid copy. Stay clear of the ammo cache. EOU will deal with it later. Over."] call ADF_fnc_MessageParser; sleep 16;
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_foxtrotBase	= {
-	ADF_obj_foxtrot = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. We are at FOXTROT. There is a lot of hardware here, including two APC's How copy?"] call ADF_fnc_MessageParser; sleep 11;
-	["ACO","ACO","VADER: Copy TWO SIERRA. We'll send some engineers to deal with the CSAT assets. Out."] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;	
+	["2S","","VADER this is TWO SIERRA. We are at FOXTROT. There are ten plus CSAT vehicles here, including two APC's How copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["ACO","ACO","TWO SIERRA, this is VADER. Good copy. SPG Engineers will deal with the CSAT assets later. Over."] call ADF_fnc_MessageParser; sleep 12;
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_hotelSupply	= {
-	ADF_obj_foxtrot = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. We found a CSAT supply warehouse at HOTEL. How copy?"] call ADF_fnc_MessageParser; sleep 11;
-	["ACO","ACO","VADER: Copy TWO SIERRA. Supply warehouse at HOTEL. Ignore the warehouse and continue with the mission. Out."] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;	
+	["2S","","VADER this is TWO SIERRA. We found a CSAT supply warehouse at HOTEL. How copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["ACO","ACO","TWO SIERRA, this is VADER. Solid copy. Searc for intel and continue wuth tasking. Over."] call ADF_fnc_MessageParser; sleep 10;
+	["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_golfFuel	= {
-	ADF_obj_foxtrot = true;
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. There's a large fuel dump at Golf. How copy?"] call ADF_fnc_MessageParser; sleep 11;
-	["ACO","ACO","VADER: Copy TWO SIERRA. Fuel dump at GOLF. MOTHER wants to salvage the fuel dump. Proceed with mission. Out."] call ADF_fnc_MessageParser;
+	["2S","","VADER this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;	
+	["2S","","VADER this is TWO SIERRA. There's a large fuel dump at Golf. How copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["ACO","ACO","TWO SIERRA, this is VADER. Wait. Over."] call ADF_fnc_MessageParser; sleep 19;
+	["ACO","ACO","TWO SIERRA, this is VADER. MOTHER wants to salvage the fuel dump. Ignore the fuel dump and Proceed with tasking. Over."] call ADF_fnc_MessageParser; sleep 14;
+	["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_endMission	= {
-	["ACO","ACO","VADER: Excellent job TWO SIERRA. MOTHER wasn't sure we could take Corazol in one go. Glad we proved them wrong.<br/><br/>MOTHER is dispatching 22nd, 1ST and 3RD to set-up security. Head over to FOXTROT. 22nd will bring the mess truck with some cold ones.<br/><br/>Splendid adchievement boys!"] call ADF_fnc_MessageParser;
+	["ACO","ACO","TWO SIERRA, this is VADER. MOTHER send his congratulations. Break. We are dispatching SPG, 1ST and 3RD to set-up security. Break. Head over to FOXTROT. 22nd will bring the mess truck with some cold ones.<br/><br/>Splendid adchievement boys! Out."] call ADF_fnc_MessageParser;
 	sleep 10;
 	_l = ["tLayer"] call BIS_fnc_rscLayer; 
 	_l cutText ["", "BLACK", 20];
-	["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 09 | Corazol</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
+	["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 09 | Keyhole</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 	['END2',true,22] call BIS_fnc_endMission;
 };
 	

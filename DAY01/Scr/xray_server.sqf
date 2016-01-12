@@ -55,6 +55,7 @@ vXray addEventHandler ["killed", {remoteExec ["ADF_fnc_xRayDestroyed",0,true];}]
 
 ADF_fnc_xRayDestroyed = {
 	xRayDestroyed = true; publicVariable "xRayDestroyed";
+	diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Xray destroyed";diag_log	"-----------------------------------------------------";
 	deleteMarker "mXray";
 };
 

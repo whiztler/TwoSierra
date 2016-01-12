@@ -9,6 +9,7 @@ call compile preprocessFileLineNumbers "scr\everest.sqf";
 // Vars init
 ADF_endMission	= false;
 ADF_init_AO		= false;
+MotsActive		= false;
 
 // Server Init
 if (isServer) then {

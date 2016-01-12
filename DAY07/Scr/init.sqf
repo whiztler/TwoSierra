@@ -9,6 +9,7 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 ADF_endMission			= false;
 ADF_CAS_activate			= false;
 ADF_init_AO				= false;
+MotsActive				= false;
 Obj_1					= false;
 Obj_2					= false;
 ADF_cacheCount			= 0;

@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Headless Client init
 Author: whiztler (based on concept by eulerfoiler)
-Script version: 2.09
+Script version: 2.11
 
 Game type: N/A
 File: ADF_HC_loadBalancing.sqf
@@ -18,21 +18,6 @@ See Core\ADF_HC.sqf for information
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_HC_loadBalancing.sqf"}; // Reporting. Do NOT edit/remove
 
 if (!ADF_HC_connected) exitWith {if (ADF_Debug) then {["ADF DEBUG: HC - loadBalancing - NO HC detected",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC Load Balancing - No HC detected. Terminating ADF_fnc_HC_loadbalancing.sqf"}};
-
-ADF_fnc_HCLB_taskDefend = {
-	params ["_g","_a"];
-	_g setVariable ["ADF_HC_owner",true];
-	_g setVariable ["ADF_hc_garrison_CBA",true];
-	_g setVariable ["ADF_hc_garrisonArr",_a];	
-	if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC -  ADF_fnc_HCLB_taskDefend re-applying for group: %1", _g]};
-	_a call CBA_fnc_taskDefend;	
-};
-
-ADF_fnc_HCLB_DefendArea = {
-	params ["_g","_a"];
-	if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC -  ADF_fnc_HCLB_DefendArea re-applying for group: %1", _g]};
-	[_a] call ADF_fnc_defendArea_HC;
-};	
 
 if (isServer) then {
 	waitUntil {time > 60};
@@ -121,13 +106,9 @@ if (isServer) then {
 				{if (isPlayer _x) then {_ADF_HCLB_trfr = false}} forEach units _x; 
 				// Set transfer to false if the group is blacklisted
 				if (_x getVariable ["ADF_noHC_transfer", false]) then {_ADF_HCLB_trfr = false};				
-				// Store directives arrays
-				if (_x getVariable "ADF_HC_garrison_CBA") then {
-					ADF_HCLB_storedArr = _x getVariable ["ADF_HC_garrisonArr",[_x, getPos (leader _x), 150, 2, true]];					
-					if (ADF_Debug) then {	diag_log format ["ADF DEBUG: HC LB CBA - ADF_HC_garrisonArr for group: %1 -- array: %1",_x, ADF_HCLB_storedArr]};
-				};
-				if (_x getVariable "ADF_HC_garrison_ADF") then {
-					ADF_HCLB_storedArr = _x getVariable "ADF_HC_garrisonArr";					
+				// Store group directives
+				if (_x getVariable ["ADF_HC_garrison_ADF", false]) then {
+					ADF_HCLB_storedArr = _x getVariable ["ADF_HC_garrisonArr", []];					
 					if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC LB ADF - ADF_HC_garrisonArr for group: %1 -- array: %1", _x, ADF_HCLB_storedArr]};
 				};
 
@@ -149,22 +130,13 @@ if (isServer) then {
 							default {_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - No Valid HC to pass to. ** _ADF_HCLB_currentHC = %1 **", _ADF_HCLB_currentHC]; if (isServer) then {[_ADF_HCLB_compileMsg1,true] call ADF_fnc_log;};};
 						};
 					};
-				
-					// reApply group directives
-					if (_x getVariable "ADF_HC_garrison_CBA") then {					
-						[_x, _ADF_HCLB_HCID] spawn {
-							params ["_g","_ADF_HCLB_HCID"];
-							sleep 3;
-							if (ADF_debug) then {diag_log format ["ADF DEBUG: HC LB - ADF_fnc_HCLB_taskDefend remoteExec for group: %1 to HC with ID %2", _g, _ADF_HCLB_HCID];};
-							[_g, ADF_HCLB_storedArr] remoteExec ["ADF_fnc_HCLB_taskDefend", _ADF_HCLB_HCID, false];	
-							_g setVariable ["ADF_noHC_transfer", true];
-						};
-					};					
 					
-					if (_x getVariable "ADF_HC_garrison_ADF") then {
-						if (ADF_debug) then {diag_log format ["ADF DEBUG: HC LB - ADF_fnc_HCLB_DefendArea remoteExec for group: %1 to HC with ID %2", _x, _ADF_HCLB_HCID];};
-						[_x, ADF_HCLB_storedArr] remoteExec ["ADF_fnc_HCLB_DefendArea", _ADF_HCLB_HCID, false];
+					// reApply group directives
+					if (_x getVariable ["ADF_HC_garrison_ADF", false]) then {
+						if (ADF_debug) then {diag_log format ["ADF DEBUG: HC LB - ADF_fnc_defendArea_HC remoteExec for group: %1 to HC with ID %2", _x, _ADF_HCLB_HCID];};
+						[_x, ADF_HCLB_storedArr] remoteExec ["ADF_fnc_defendArea_HC", _ADF_HCLB_HCID, false];
 						_x setVariable ["ADF_noHC_transfer", true];
+						ADF_HCLB_storedArr = nil;
 					};
 		
 					// Add to the group to the 'transferred counter'
@@ -173,7 +145,7 @@ if (isServer) then {
 			} forEach allGroups;
 			
 			// Set the group count so that only new groups are processed on next run
-			_ADF_HCLB_GrpCnt = _ADF_HCLB_GrpCnt_New;
+			_ADF_HCLB_GrpCnt = _ADF_HCLB_GrpCnt_New;			
 		};
 	 
 		///// Extended debug reporting

@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: CAS request with 9-liner
 Author: Whiztler
@@ -154,9 +154,9 @@ ADF_fnc_destroyVars = {
 	ADF_CAS_active 		= nil;
 	ADF_CAS_marker		= nil;
 	ADF_CAS_bingoFuel 	= nil; 
-	ADF_CAS_spawn		= nil;
+	ADF_CAS_spawn			= nil;
 	ADF_CAS_vector		= nil;
-	ADF_CAS_delay		= nil;
+	ADF_CAS_delay			= nil;
 	ADF_CAS_onSite		= nil;
 	ADF_fnc_CAS_supportRq = nil;
 	ADF_fnc_CAS_Activated = nil;
@@ -219,7 +219,7 @@ tCAS setTriggerStatements ["{vehicle _x in thisList && ((getPosATL _x) select 2)
 waitUntil {ADF_CAS_active}; // wait till the 9-liners are finished and CAS-delay timer is 0. 
 
 // Create CAR aircraft
-_c = createGroup WEST;
+_c = createGroup west;
 _c setGroupIdGlobal [format ["%1",ADF_CAS_callSign]];
 _v = [ADF_CAS_spawn, 90, ADF_CAS_vehClass, _c] call BIS_fnc_spawnVehicle;
 vCAS = _v select 0; publicVariable "vCAS";
@@ -257,21 +257,17 @@ _wp setWaypointCombatMode "RED";
 
 waitUntil {triggerActivated tCAS}; // Let CAS aircraft reach the AO
 
-vCAS flyInHeight 100;
-
 if (vCASkia) exitWith {call ADF_fnc_destroyVars;};
 sleep ADF_CAS_onSite; // Limited time in AO
 if (vCASkia) exitWith {call ADF_fnc_destroyVars;};
 
 // RTB Bingo Fuel
 deleteMarker "mRaptorSAD";
-{_x disableAI "FSM"} forEach units _c; // v1.03
+{_x disableAI "AUTOTARGET"; _x disableAI "CHECKVISIBLE"; _x setBehaviour "CARELESS"} forEach units _c; // 1.04
 ADF_CAS_bingoFuel = true; publicVariable "ADF_CAS_bingoFuel";
 vCAS setFuel 0.3;
-{_x enableAI "FSM"} forEach units _c; // v1.03
-vCAS flyInHeight 800;
 _c setCombatMode "BLUE"; // v1.03
-_c setBehaviour "SAFE"; // v1.03
+_c setBehaviour "CARELESS"; // v1.04
 
 _wp = _c addWaypoint [ADF_CAS_vector, 0];
 _wp setWaypointType "MOVE";

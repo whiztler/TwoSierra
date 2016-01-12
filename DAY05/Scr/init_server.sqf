@@ -13,12 +13,6 @@ call compile preprocessFileLineNumbers "Scr\ADF_redress_Rebels.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Russians.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_Cherno.sqf";
 
-// Medical vehicles EVEREST
-vObj1 addEventHandler ["killed", {remoteExec ["ADF_Everest1", 0, true]}];
-vObj2 addEventHandler ["killed", {remoteExec ["ADF_Everest2", 0, true]}];
-[vObj1] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf"; vObj1 addItemCargoGlobal ["FirstAidKit",300]; vObj1 addItemCargoGlobal ["Medikit",45];
-[vObj2] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf"; vObj2 addItemCargoGlobal ["FirstAidKit",300]; vObj2 addItemCargoGlobal ["Medikit",45];
-
 // Load vehicle Supplies
 [MRAP_2PC] execVM "Core\C\ADF_vCargo_B_Car.sqf";
 {[_x] execVM "Core\C\ADF_vCargo_B_CarSQD.sqf"} forEach [MRAP_2_1_SQUAD,MRAP_2_2_SQUAD];
@@ -36,7 +30,7 @@ NRF_grp_2 = [getPos oAirbusPad_1, WEST, (configFile >> "CfgGroups" >> "WEST" >> 
 NRF_grp_2 setGroupIdGlobal ["5-1 BRAVO"];
 
 // Static Defences & Ambient Vehicles
-NRF_grp_3 = CreateGroup WEST; 
+NRF_grp_3 = createGroup west; 
 _p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "SERGEANT"]; _p moveInGunner oStat_01;
 _p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "CORPORAL"]; _p moveInGunner oStat_02;
 _p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "PRIVATE"]; _p moveInGunner oStat_03;
@@ -56,14 +50,13 @@ sleep .5;
 {{_x setObjectTextureGlobal [0, "\a3\characters_f\BLUFOR\Data\clothing_sage_co.paa"];} forEach units _x} forEach [NRF_grp_1,NRF_grp_2,NRF_grp_3];
 
 // Create random IED's
-private ["_iedMarkerArr"];
-_iedMarkerArr = ["mIED_1","mIED_2","mIED_3","mIED_4","mIED_5","mIED_6","mIED_7","mIED_8","mIED_9","mIED_10","mIED_11","mIED_12","mIED_13","mIED_14","mIED_15","mIED_16","mIED_17","mIED_18","mIED_19"];
+private ["_a", "_i"];
+_a = ["mIED_1", "mIED_2", "mIED_3", "mIED_4", "mIED_5", "mIED_6", "mIED_7", "mIED_8", "mIED_9", "mIED_10", "mIED_11", "mIED_12", "mIED_13", "mIED_14", "mIED_15", "mIED_16", "mIED_17", "mIED_18", "mIED_19"];
 for "_i" from 1 to 10 do {
-	private ["_iedMarkerPos","_idx"];
-	_iedMarkerPos = _iedMarkerArr call BIS_fnc_selectRandom;
-	_idx =  _iedMarkerArr find _iedMarkerPos;
-	_iedMarkerArr deleteAt _idx;
-	[_iedMarkerPos,100,250,4.5] call ADF_fnc_createRandomIEDs;
+	private ["_p", "_idx"];
+	_p = _a call BIS_fnc_selectRandom;
+	_a = _a - [_p];
+	[_p, 100, 250, 4.5] call ADF_fnc_createRandomIEDs;
 };
 
 // Cache CAF CP's
@@ -71,6 +64,19 @@ indep_cp1 = [CP_1a,CP_1b,CP_1c,CP_1d]; {_x enableSimulationGlobal false; _x hide
 indep_cp2 = [CP_2a,CP_2b,CP_2c,CP_2d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp2;
 indep_cp3 = [CP_3a,CP_3b,CP_3c,CP_3d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp3;
 indep_cp4 = [CP_4a,CP_4b,CP_4c,CP_4d]; {_x enableSimulationGlobal false; _x hideObjectGlobal true;} forEach indep_cp4;
+
+// Medical vehicles EVEREST
+vObj1 addEventHandler ["killed", {[1] remoteExec ["ADF_fnc_Everest", 0, true]}];
+vObj2 addEventHandler ["killed", {[2] remoteExec ["ADF_fnc_Everest", 0, true]}];
+[vObj1] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf"; vObj1 addItemCargoGlobal ["FirstAidKit",300]; vObj1 addItemCargoGlobal ["Medikit",45];
+[vObj2] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf"; vObj2 addItemCargoGlobal ["FirstAidKit",300]; vObj2 addItemCargoGlobal ["Medikit",45];
+
+ADF_fnc_Everest = {
+	params ["_o"];
+	diag_log	"-----------------------------------------------------";
+	diag_log format ["TWO SIERRA: Everest%1 destroyed", _o];
+	diag_log	"-----------------------------------------------------";	
+};
 
 #include "SOD_mary.sqf"
 #include "init_AO.sqf"

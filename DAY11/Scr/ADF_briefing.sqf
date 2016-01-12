@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission Briefing
 Author: Whiztler
@@ -47,7 +47,7 @@ The Two Sierra campaign uses the following tooling/scripts (with thanks to the a
 - TAW View Distance by Tonic.<br/>
 - ZBE_caching by Zorrobyte.<br/>
 - MAD Ambient Life by MAD T.<br/>
-- Delete All by Anjan.<br/><br/>
+- Repetitive Cleanup by Aeroson.<br/><br/>
 The Two Sierra campaign is powered by ADF.
 </font><br/><br/>
 
@@ -65,31 +65,26 @@ player createDiaryRecord ["2SOPORD",["Call Signs","<br/><br/>
 <font size='18'>CALL SINGS</font><br/><br/>
 
 <font color='#9DA698'>
-ACO	- FIRESTONE<br/>
-CAS	- FREEBIRD<br/>
+ACO	- VADER<br/>
 SatNav AJR - ACE<br/>
 VJTF 5 BAT TOC - MOTHER<br/>
-NRF 2 SPT GRP - UNCLE<br/><br/>
+NRF 2 SPT GRP - UNCLE<br/>
+Sahr. Armed Forces - TOMMY<br/><br/>
 
-FOB JOHNSON - JOHNSON<br/>
-FOB KELSEY - KELSEY<br/>
-CP ELMO - ELMO<br/>
-CP DESI - DESI<br/><br/>
-
-Pashtun forces - DOMINO<br/>
-Pashtun BOP - AKIRA<br/>
-Pashtun MSR - SYDNEY
+Research facility - PASTEUR<br/><br/>
+	
+CSAT Quds -WOLF
 
 </font><br/><br/><font size='14' color='#d7dbd5'>NOTAF</font><br/>
 
 <font color='#9DA698'>
-MIAMI - Main MSR
+NICE - Primary MSR
 
 <br/><br/></font><font size='14' color='#d7dbd5'>CHALLENGES</font><br/>
 
 <font color='#9DA698'>
-Challenge: CRYFORD<br/>
-Password: KING KONG
+Challenge: SWORDFISH<br/>
+Password: JAGGER
 </font><br/><br/>
 "]];
 
@@ -97,10 +92,9 @@ Password: KING KONG
 player createDiaryRecord ["2SOPORD",["Notes","<br/><br/>
 <font size='18'>NOTES</font><br/><br/>
 <font color='#9DA698'>
-MOTHER thinks the Pashtun base of operations is somewhere in the North, North West. The Pashtun are using SYDNEY as their MSR.<br/><br/>
-2SPT has set up two FOB's, JOHNSON and KELSEY, and two checkpoints (ELMO and DESI). TWO SIERRA is to head out to JOHNSON. From JOHNSON TWO SIERRA will depart north and search and destroy the Pashtun base of operations.<br/><br/>
-Once the Pashtun base of operations has been neutralized elements of 5TH BAT will head north and secure the oil production sites.<br/><br/>
-MOTHER has initiated Berlin Protocol. If the Pashtun manage to get past the green zone, MOTHER will activate Fairlight Protocol and order all BluFor to evac.
+MIS learned that CSAT did not invade Sahrani for its mineral resources. According to local intel, the AEGIS assignment that was supposedly tasked with securing the oil facilities at Cayo, was actually tasked with securing a secret research facility. Code-named PASTEUR, the facility is located on the old training grounds south-west of Paraiso. MIS suspects that the AEGIS detail is KIA. So far it is unknown what was being researched and by who’s orders. AEGIS HQ in London maintains the assignment was securing the oil facilities.<br/><br/>
+According to ACE, CSAT has started moving equipment and other material to their M.O.B. It is vital that we capture PASTEUR and much of its research as soon as possible. This means that we cannot wait for the cover of night. CSAT has setup minefields along the entire southern flank. Fortunately SPG prevented CSAT from putting in minefields along the eastern flank.<br/><br/>
+3RD Platoon and SPG are launching an assault north of MSR TAMPA. This distraction provides a window of opportunity for Two Sierra to strike and secure PASTEUR. Get in, collect as much research as possible and get out. 
 </font><br/><br/>
 "]];
 
@@ -132,8 +126,8 @@ player createDiaryRecord ["2SOPORD",["Service & Support","<br/><br/>
 <font size='14' color='#d7dbd5'>SUPPLY</font><br/>
 
 <font color='#9DA698'>
-SOPs in effect for sustainment operations. CCPs to be established on-site. MediVac available at JOHNSON.<br/><br/>
-Rations: ammo and material supply in vehicles, NRF SOP<br/>
+SOPs in effect for sustainment operations. CCPs to be established on-site.<br/><br/>
+Rations: Rations: ammo and material supply in vehicles, NRF SOP. 2SPG has 1 Ammo truck and medical supplies at LIMA.<br/>
 Uniforms: NRF VJTF 2 PLT SOP<br/>
 Arms and ammunitions: NRF VJTF 2 PLT SOP
 
@@ -149,7 +143,7 @@ Captured material: SOP
 <font size='14' color='#d7dbd5'>SUPPORT</font><br/>
 
 <font color='#9DA698'>
-CAS: FREEBIRD, AH-99 ex LMAB. Station: NOVEMBER
+CAS: SPARROW, AH-99 ex CVN-78. Station: YANKEE.
 </font><br/><br/>
 "]];
 
@@ -160,19 +154,18 @@ player createDiaryRecord ["2SOPORD",["Execution","<br/><br/>
 <font size='14' color='#d7dbd5'>CONCEPT OF OPERATIONS</font><br/>
 
 <font color='#9DA698'>
-1. 2PLT to move out ex LEO and drive via Chak Chak, Sar-e Sang Pass to JOHNSON.<br/>
-2. 2PLT to RV at JOHNSON NLT 10:30Z.<br/>
-3. 2PLT to convoy past the green zone and search for AKIRA.<br/>
-4. 2PLT to assault and neutralize AKIRA.<br/>
+1. 2PLT to move out ex LIMA and drive WEST towards PASTEUR.<br/>
+2. 2PLT to search and secure PASTEUR.<br/>
+3. 2PLT to search for research intel at PASTEUR.<br/>
+4. 2PLT to return to Lima.<br/>
 5. ORP’s to be established prior to departure.<br/>
 6. Execution of mission objectives to be briefed on site by PC.
-
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>COMMANDERS INTENT</font><br/>
 
 <font color='#9DA698'>
-2PLT will travel in SOP convoy formation to JOHNSON. 2PLT will travel in SOP convoy and search in the NORTH and NORTH WESTERN grids of the green zone. 2PLT will locate AKIRA. 2PLT will assault and neutralize the objective according to SOP. 2PLT will travel in SOP convoy to JOHNSON. 
+2PLT will travel in SOP convoy to PASTEUR. 2PLT will divide the AO into sectors and secure PASTEUR. 2PLT will search and collect research intel. 2PLT will return to LIMA.
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>SUB UNIT MISSIONS</font><br/>
@@ -186,8 +179,8 @@ None.<br/><br/>
 <font color='#9DA698'>
 1. Order of movement, formations: On-site commanders intent, SOP<br/>
 2. Actions at halts (short/long): SOP<br/>
-3. Routes (primary/alternate): MSR TOKYO, MSR MIAMI / MSR SYDNEY.<br/>
-4. IRP: MSR TOKYO, JOHNSON, MIAMI.<br/>
+3. Routes (primary/alternate): MSR NICE.<br/>
+4. IRP: MSR NICE.<br/>
 5. Actions at danger areas: SOP<br/>
 6. Actions on enemy contact: SOP<br/>
 7. Reorganization and consolidation: SOP<br/>
@@ -203,7 +196,7 @@ None.<br/><br/>
 player createDiaryRecord ["2SOPORD",["Mission","<br/><br/>
 <font size='18'>MISSION</font><br/><br/>
 <font color='#9DA698'>
-Search and destroy AKIRA. 
+Assault and secure Pasteur. Retrieve research intel.
 </font><br/><br/>
 "]];
 
@@ -212,21 +205,20 @@ player createDiaryRecord ["2SOPORD",["Situation","<br/><br/>
 <font size='18'>SITUATION</font><br/><br/>
 
 <font color='#9DA698'>
-OpFor: Pashtun forces (DOMINO).<br/>
-DOMINO has been building up a large presence in the North of Feruz Abad province.<br/>DOMINO uses MSR SYDNEY to supply their Base of Operations (AKIRA).
+OpFor: CSAT 3rd Quds (WOLF).
 <br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>ENEMY FORCES</font><br/>
 
 <font color='#9DA698'>
-1. DOMINO has a moderate presence in most urban areas in the green zone.<br/>
-2. Small arms and IFV’s patrol MSR’s SYDNEY, ROME and MIAMI.<br/>
-3. Strength: unknown.<br/>
-4. MPCOA: AKIRA is located in the North or North West of the green zone. Expect a heavy DOMINO presence at AKIRA.<br/>
-5. DOMINO arms: various small arms, Russian, Iranian and US origin. Confirmed APC reports by 4TH PLT.<br/>
-   AT capability: RPG, MPRL.<br/>
-6. DOMINO CR: mostly casual clothing + light body armor + improvised vests. Most DOMINO carry backpacks with explosives, IED’s and supplies.
+1. WOLF M.O.B. is at Paraiso AB.<br/>
+2. WOLF assets at secret research facility (PASTEUR): 2 x SF coy, 2 x mech sqdr plus plus various support elements.<br/>
+3. AP and AT mine field grid: 0872.1374 – 0803.1271.<br/>
+4. MPCOA: Increased patrols in and around the AO.<br/>
+5. WOLF arms: Superior CSAT arms incl. LRR sniper, thermal capability.<br/>
+   AT capability: MPRL.<br/>
+6. WOLF CR: Superior CR. CSAT Special forces outfit with customized body armor.
 <br/><br/>
 </font>
 
@@ -234,7 +226,9 @@ DOMINO has been building up a large presence in the North of Feruz Abad province
 
 <font color='#9DA698'>
 1. VJTF 5 BAT, 2nd Platoon. OUS: ANNEX A.<br/>
-2. NRF 2 SPT GRP at FOB JOHNSON.
+2. 2SPT, 1st Section on hold at Masbete.<br/>
+3. CVN-78 Carrier Support Group.<br/>
+
 <br/><br/>
 </font>
 
@@ -247,46 +241,44 @@ DOMINO has been building up a large presence in the North of Feruz Abad province
 <font size='14' color='#d7dbd5'>CIVILIANS</font><br/>
 
 <font color='#9DA698'>
-1. Civilians in the AO are generally neutral towards coalition forces.<br/>
-2. Religious sites are to be avoided.<br/><br/>
-</font>
+1. Civilians in the AO are generally indifferent towards coalition forces.
+<br/><br/></font>
 
 <font size='14' color='#d7dbd5'>ATTACHMENTS AND DETACHMENTS</font><br/>
 
 <font color='#9DA698'>
-Attachments: 1 x AH-99, 6 CAVBAT, 6TH SQDR, ex LMAB.<br/>
-Detachments: none.
-</font><br/><br/>
+1. Attachments: 1 x AH-99, 6 CAVBAT, 6TH SQDR, ex CVN-78.<br/>
+2. Detachments: none.
+<br/><br/></font>
 "]];
 
 // terrain & weather
 player createDiaryRecord ["2SOPORD",["Terrain & weather","<br/><br/>
 <font size='18'>TERRAIN AND WEATHER</font><br/><br/>
 
-<font size='14' color='#d7dbd5'>TERRAIN</font><br/>
+<font size='14' color='#d7dbd5'>TERRAIN SOUTH ISLAND</font><br/>
 
 <font color='#9DA698'>
-1. Mountainous, arid with sparse vegetation in the South.<br/>
-2. Desert and arid in the North and North East.<br/>
-3. MSL ranging from 5.1 m to 732.45 m.<br/>
-4. Four MSR’s running from North to South and North to West.<br/>
-5. Road located in saddle and ridges. MSR Roads are off good quality. Dirt roads off-side MSR’s.<br/>
-6. Various mountain prominences provide good OW positions.<br/>
-7. Various petro-chemical installations in the North and East.<br/>
-8. Immediate area surrounding the airfield provides good FOV.<br/>
-9. Effects on enemy: usage of mountains and urban areas for cover and ambush.<br/>
-10. Effects on friendly: none. MSR road allow for fast attack and retreat strategy.<br/>
-11. Key terrain: Arid, Mountain, sparse vegetation, very limited cover outside of urban and commercial areas.
+1. 112 Km2 semi-arid and mountainous with sandy coastlines.<br/>
+2. MSL ranging from 0.1 m to 397 m.<br/>
+3. Two MSR’s running from North to South and East to West.<br/>
+4. MSR tarmac roads are off good quality.<br/>
+5. Largest cities are concentrated in the East, South East and North of the Island. Various industrial installations in proximity of large cities.<br/>
+6. Smaller village’s around the coast south and west of the Island.<br/>
+7. Effects on enemy: usage of urban areas and mountainous areas for cover and operating bases.<br/>
+8. Effects on friendly: None.<br/>
+9. Key terrain: Semi-arid, sparse vegetation in lower areas.
 <br/><br/>
 </font>
 
 <font size='14' color='#d7dbd5'>WEATHER</font><br/>
 
 <font color='#9DA698'>
-1.	Temperature High: 33C.<br/>
-2.	Temperature Low: 9C, Dew point: 18C.<br/>
-3.	Wind: Moderate to strong, 11-29 Knots.
-</font><br/><br/>
+1. Temperature High: 28C.<br/>
+2. Temperature Low: 20C, Dew point: 18C.<br/>
+3. Wind: Moderate, 12-15 Knots.<br/>
+4. Clear, dry.
+<br/><br/></font>
 "]];
 
 ///// CAMPAIGN
@@ -314,12 +306,9 @@ Game Masters/Commanders, please note the following:<br/><br/>
     mission).<br/>
 06. All player roles are equipped with pre-defined role loadout.<br/>
     Additional gear and supplies can be found in the vehicles.<br/>
-07. If you play with ACE3 enabled, please note that Two Sierra<br/>
-    missions have advanced ballistics and advanced medical<br/>
-    settings enabled by default.<br/>
-08. Most missions offer CAS support. CAS can be called in by the<br/>
+07. Most missions offer CAS support. CAS can be called in by the<br/>
     platoon commander using the action menu.<br/>
-09. Two Sierra has a pre-configured platoon radio net.<br/>
+08. Two Sierra has a pre-configured platoon radio net.<br/>
     Settings/frequencies can be found under 'Two Sierra Roster'<br/>
     in the map screen menu	
 <br/><br/>
@@ -353,7 +342,7 @@ player createDiaryRecord ["2SCPGN",["Server information","<br/><br/>
 <font color='#9DA698'>
 The server requires the following add-ons:<br/><br/>
 - Community Based Addons ARMA 3 (CBA_A3)<br/>
-- All in ARMA Terrain Pack (AIATP)<br/><br/>
+- All in ARMA Terrain Pack (AIATP) or CUP Terrains<br/><br/>
 
 Two Sierra missions have been tested (to work with) with the optional AI behaviour add-on ASR AI.
 </font><br/><br/>
@@ -374,7 +363,7 @@ player createDiaryRecord ["2SCPGN",["Client Information","<br/><br/>
 <font color='#9DA698'>
 The Two Sierra campaign requires the following Add-Ons:<br/><br/>
 - Community Based Addons ARMA 3 (CBA_A3)<br/>
-- All in ARMA Terrain Pack (AIATP)<br/><br/>
+- All in ARMA Terrain Pack (AIATP) or CUP Terrains<br/><br/>
 <font size='14' color='#d7dbd5'>RECOMMENDED ADD-ONS</font><br/>
 To enhance game play, the following client add-ons are recommended:<br/><br/>
 - Advanced Combat Radio Environment (ACRE 2) -or-<br/>
@@ -403,18 +392,18 @@ player createDiaryRecord ["2SCPGN",["Background","<br/><br/>
 <font size='18'>BACKGROUND</font><br/><br/>
 
 <font color='#9DA698'>
-Two Sierra Tour 1 | Takistan, May 2019. On 11 February 2019 the Taliban ceased to exist after a coalition forces UAV successfully targeted and killed the entire Taliban leadership council. The majority of Taliban fighters joined The Pashtun within the following weeks.
+Two Sierra Tour 3 | Sahrani, September 2019.  On 19 August 2019, elements of CSAT’s elite 3rd Quds Brigade invaded the South Island of the United Republic of Sahrani (URS). The Sahrani Armed Forces (SAF) were taken by surprise. After a short and decisive operation, the SAF were forced to retreat to the north island. CSAT quickly took control of the South Island, including the Republic’s capital Corazol.<br/><br/>
+It is unclear why CSAT has taken such an interest in Sahrani. Besides the Oil facilities at Cayo, Sahrani offers little of value in terms of minerals, industry or military assets. An Aegis detail was tasked with the security of the oil facilities at Cayo. At this point the current status of the Aegis detail is unknown. <br/><br/>
+The URS is a member of NATO. All diplomatic avenues have seized as CSAT has denied any involvement and refuses to commit to any form of dialogue.<br/><br/>
+Elements of 4th VJTF Recon carried out an operation to assess CSAT’s forces on the South Island. It seems that CSAT 3RD Quds has quickly established themselves at all major strategic POI’s.<br/><br/>
+Two NATO recon UAV’s were shot down as soon as they entered the air space of the South Island. ACE has been unable to obtain quality intelligence on CSAT movements and activity due to bad weather. 
 <br/><br/></font>
 
-<font size='14' color='#d7dbd5'>THE PASHTUN</font><br/>
+<font size='14' color='#d7dbd5'>CSAT 3RD QUDS</font><br/>
 
 <font color='#9DA698'>
-The Pashtun are a race of warriors who originate from Afghanistan, Takistan and Pakistan. The Pashtun consists of about sixty tribes, each with its own territory.<br/><br/>
-
-The Pashtun has rapidly been expanding its foothold in Asia and the Middle East after the fall of the Taliban, and previously the fall of IS and other factions. The Pashtun are well funded, moderately well organized and very ambitious. Little is known about their goals as they keep a low public relations profile. Intelligence agencies are busy mapping the Pashtun organization. So far reliable intelligence is scares at best.<br/><br/>
-
-CSAT has on several occasions tried to open diplomatic channels. Up till now the Pashtun and CSAT are maintaining neutral relations. Allied Command Operations (ACO) is monitoring the CSAT/Pashtun situation closely.<br/><br/>
-Currently The Pashtun are moderately armed with mostly small arms and 2nd generation RPG’s. The BBC reported last week that The Pashtun are in progress of purchasing Iranian-made APC’s and M-ATV’s.  
+CSAT Quds is a Special Forces unit of Iran's Revolutionary Guards responsible for their extraterritorial operations. Little is known about the secretive CSAT Quds. It was formed during the Iran – Iraq war. It has since then provided support for insurgent forces around the Middle East and Asia. NATO believes CSAT Quds is responsible for training and arming The Pashtun. NATO MIS believes there are 5 brigades with 800-2500 operators and support units each. CSAT Quds recruit the best of the best from all elements of the CSAT Armed Forces across formally Iran, Iraq, Russia, China and United Korea. Members are chosen both for their skill and ‘allegiance to the doctrine of the Islamic Revolution’.<br/><br/>
+3rd Quds is a joint operations unit consisting of special forces, elements of the 112 special operations air division and elements of the elite 5th armored republican brigade. This joint operations rapid expeditionary force is believed to be responsible for recent operational successes in Afghanistan, Takistan and India. 
 
 </font><br/><br/>
 "]];

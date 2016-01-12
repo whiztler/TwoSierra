@@ -17,4 +17,8 @@ call compile preprocessFileLineNumbers "Scr\ADF_redress_CSAT3.sqf";
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIFT.sqf"} forEach [MRAP_2_1_ALPHA,MRAP_2_1_BRAVO,MRAP_2_2_ALPHA,MRAP_2_2_BRAVO];
 {[_x] execVM "Core\C\ADF_vCargo_B_CarIWT.sqf"} forEach [MRAP_2_3_WT1,MRAP_2_3_WT2];
 {[_x] execVM "Core\C\ADF_vCargo_B_TruckMedi.sqf"} forEach [MEDITRUCK_XO,MedFacil];
+
+tEndMission enableSimulation false;
+{_x enableSimulationGlobal false; _x hideObject true; _x lock 3} forEach [vReinf_1, vReinf_2, vReinf_3, vReinf_4, vReinf_5, vReinf_6];
+
 #include "init_ao.sqf"

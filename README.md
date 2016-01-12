@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/whiztler/ADF/raw/master/Core/I/ADF_logo.png" height="240"></p>
 <p align="center">
    <a href="https://github.com/whiztler/ADF/releases">
-        <img src="http://img.shields.io/badge/Version-1.41-blue.svg?style=flat" alt="ADF version">
+        <img src="http://img.shields.io/badge/Version-1.43-blue.svg?style=flat" alt="ADF version">
     </a>
     <a href="https://github.com/whiztler/ADF/archive/master.zip">
         <img src="http://img.shields.io/badge/Download-2.4_MB-green.svg?style=flat" alt="ADF download">
@@ -37,7 +37,7 @@
 
 ## Current version
 
-version: 1.42 | build: Beta 03
+version: 1.43 | build: Final 02
 
 <a name="New-Features"></a>
 ## New Features 1.39+
@@ -50,6 +50,19 @@ version: 1.42 | build: Beta 03
 
 <a name="Changelog"></a>
 ## Changelog
+
+### 1.42
+```
+-	ADDED: ADF_fnc_airPatrol.sqf - function to create random air patrols.
+-	ADDED: ADF_fnc_defendArea.sqf - function to garrison a group, man turrets.
+-	ADDED: ADF_fnc_seaPatrol.sqf - function to create boat patrols (water waypoints).
+-	ADDED: Additional dubug/feedback RPT reporting.
+-	UPDATED: ADF_fnc_HC_loadBalancing.sqf - Added a delayed start of 120 seconds so that AO's can init properly.
+-	UPDATED: zbe_cache - Added a delayed start of 120 seconds so that AO's can init properly.
+-	UPDATED: ADF_SimpleStats.sqf - Now displays stats for up to 3 HC's.
+-	UPDATED: code base updated in line with new scripting commands 1.52. Most scripts updated.
+-	UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml).
+```
 
 ### 1.41
 ```
@@ -478,7 +491,7 @@ ADF uses the following third party scripts:
 -   [TAW View Distance](http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script) by Tonic 
 -   [ZBE_caching](http://forums.bistudio.com/showthread.php?179777-ZBE\_Cache-AI-amp-Vehicle-caching-script-addon) by Zorrobyte 
 -   [MAD Ambient Life](http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)) by MAD T
--   [Delete All](http://www.thebutcherbay.org/showthread.php?tid=63) by Anjan 
+-   [Repetitive Cleanup](https://forums.bistudio.com/topic/153481-repetitive-cleanup/) by Aeroson 
 -   [Void Map Marker](http://www.armaholic.com/forums.php?m=posts&q=25540) by Void 
 
 Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official addon or tool. Use of the Software (in whole or in part) is entirely at your own risk.

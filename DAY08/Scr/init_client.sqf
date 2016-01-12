@@ -4,6 +4,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
+ADF_fnc_MOTS = {player allowDamage false; MotsActive = true};
+ADF_fnc_MOTS_captive = {params ["_c"]; player setCaptive _c};
+
 waitUntil {ADF_gearLoaded}; // Wait till the unit has their gear before continuing
 
 sleep 3; // Loadout finished > pri weapon loaded
@@ -66,36 +69,38 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 ["ACO","ACO","FAIRCHILD: TWO SIERRA, get your defences in order as soon as possible. ACE expects VLAD to commence its assault within the next 30 minutes.<br/><br/>DONALD is securing DIANA and JANE<br/><br/>Good luck TWO SIERRA. Out."] call ADF_fnc_MessageParser; 
 
 ADF_msg_MBT = {
-	["ACO","ACO","FAIRCHILD: TWO SIERRA, urgent message. Over."] call ADF_fnc_MessageParser; sleep 8;
-	["2S","TWO SIERRA","Go ahead FAIRCHILD"] call ADF_fnc_MessageParser; sleep 9;
-	["ACO","ACO","FAIRCHILD: ACE is tracking 2 kings and several victors and APC's. ETA 6 mikes. Get your AT specialists ready! Out."] call ADF_fnc_MessageParser;
+	["ACO","ACO","FAIRCHILD: TWO SIERRA this is FAIRCHILD. Priority message. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","FAIRCHILD: TWO SIERRA this is FAIRCHILD. ACE is tracking 2 kings and several victors and APC's. Break. ETA 6 mikes. Get your AT specialists ready! Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_INF = {
-	["ACO","ACO","FAIRCHILD: TWO SIERRA, message. Over."] call ADF_fnc_MessageParser; sleep 8;
-	["2S","TWO SIERRA","Ready to copy FAIRCHILD"] call ADF_fnc_MessageParser; sleep 9;
-	["ACO","ACO","FAIRCHILD: TWO SIERRA, ACE is tracking more than 10 squads heading your way. Get ready! Out."] call ADF_fnc_MessageParser;
+	["ACO","ACO","FAIRCHILD: TWO SIERRA this is FAIRCHILD. Message. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","FAIRCHILD: TWO SIERRA, ACE is tracking 10 to 12 squads heading your way. Get ready! Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_sweep = {
-	["ACO","ACO","FAIRCHILD: TWO SIERRA, ACE reports the last remaining OPFOR are scattered around NOLA. Do not let them retreat. Mount up in your vehicles and clean and secure the area. How copy?"] call ADF_fnc_MessageParser; sleep 16;
-	["2S","TWO SIERRA","Understood FAIRCHILD. Clear and secure the area. Out."] call ADF_fnc_MessageParser; sleep 9;
+	["ACO","ACO","FIRESTONE: TWO SIERRA this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","FAIRCHILD: TWO SIERRA, ACE reports the last remaining OPFOR are scattered around NOLA. Do not let them retreat. Break. Mount up in your vehicles and clear and secure the area. How copy?"] call ADF_fnc_MessageParser; sleep 22;
+	["2S","TWO SIERRA","FAIRCHILD this is TWO SIERRA. Solid copy on all. Out."] call ADF_fnc_MessageParser; sleep 9;
 };
 
 ADF_msg_endMission = {
 	if (time > 9000) then {
-		["ACO","ACO","FAIRCHILD: TWO SIERRA, message. Over."] call ADF_fnc_MessageParser; sleep 20;
-		["2S","TWO SIERRA","Go ahead FAIRCHILD"] call ADF_fnc_MessageParser; sleep 12;
-		["ACO","ACO","FAIRCHILD: MOTHER is pulling you out. 4TH will finish up at NOLA.<br/><br/>Head back to FARGO and pack up you gear. You're moving out to another hot zone tomorrow morning.<br/><br/>Good job TWO SIERRA. Out."] call ADF_fnc_MessageParser; sleep 25;
+		["ACO","ACO","FAIRCHILD: TWO SIERRA this is FAIRCHILD. Message. Over."] call ADF_fnc_MessageParser; sleep 11;
+		["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+		["ACO","ACO","FAIRCHILD: MOTHER is pulling you out. 4TH will finish up at NOLA. Break.<br/><br/>Head back to FARGO and pack up you gear. You're moving out to another hot zone tomorrow morning.<br/><br/>Good job TWO SIERRA. Out."] call ADF_fnc_MessageParser; sleep 25;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
 		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 08 | Novi Disha</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 		['END1',true,22] call BIS_fnc_endMission;
 	} else {
-		["2S","TWO SIERRA","FAIRCHILD this is TWO SIERRA, message. Over."] call ADF_fnc_MessageParser; sleep 15;
-		["ACO","ACO","Go ahead TWO SIERRA"] call ADF_fnc_MessageParser; sleep 12;
+		["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+		["ACO","ACO","FIRESTONE: This is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
 		["2S","TWO SIERRA","NOLA is blue and secured. How copy?"] call ADF_fnc_MessageParser; sleep 14;
-		["ACO","ACO","Excellent TWO SIERRA. Job well done.<br/><br/>MOTHER is pulling you out. 4TH will take care of NOLA security.<br/><br/>Head back to FARGO and pack up you gear. You're moving out to another hot zone tomorrow morning. Out."] call ADF_fnc_MessageParser; sleep 15;
+		["ACO","ACO","FIRESTONE: Solid copy TWO SIERRA. Job well done. Break.<br/><br/>MOTHER is pulling you out. 4TH will take care of NOLA security. Break.<br/><br/>Head back to FARGO and pack up you gear. You're moving out to another hot zone tomorrow morning. Out."] call ADF_fnc_MessageParser; sleep 15;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
 		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 08 | Novi Disha</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
