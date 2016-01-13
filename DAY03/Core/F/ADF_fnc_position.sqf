@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Position functions
 Author: Whiztler
-Script version: 1.06
+Script version: 1.07
 
 Game type: N/A
 File: ADF_fnc_position.sqf
@@ -39,6 +39,39 @@ ADF_fnc_checkPosition = {
 
 
 /***************************************************************
+Name: ADF_fnc_randomPosMax
+
+Creates random positions on the far end of the radius
+
+Parameters required:
+0. center position
+1. radius in meters
+2. direction
+
+Optional parameters:
+n/a
+
+Returns:
+Array (position x,y,z)
+***************************************************************/
+
+ADF_fnc_randomPosMax = {
+	// Init
+	params ["_p", ["_r", 0, [0]], ["_d", 15, [0]]];
+	private ["_pX", "_pY"];
+	if (typeName _p != "ARRAY") then {_p = [_p] call ADF_fnc_checkPosition};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_randomPos - pre-position: %1",_p]};
+	
+	// Create random position from centre & radius
+	_pX = (_p select 0) + (_r * sin _d);
+	_pY = (_p select 1) + (_r * cos _d);
+	
+	// Return position
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_randomPos - post-position: [%1,%2,0]",_pX, _pY]};
+	[_pX, _pY, 0]
+};
+
+/***************************************************************
 Name: ADF_fnc_randomPos
 
 Parameters required:
@@ -55,14 +88,14 @@ Array (position x,y,z)
 
 ADF_fnc_randomPos = {
 	// Init
-	params ["_p","_r","_d"];
-	private ["_pX","_pY"];
+	params ["_p", ["_r", 0, [0]], ["_d", 15, [0]]];
+	private ["_pX", "_pY"];
 	if (typeName _p != "ARRAY") then {_p = [_p] call ADF_fnc_checkPosition};
 	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_randomPos - pre-position: %1",_p]};
 	
 	// Create random position from centre & radius
-	_pX = (_p select 0) + (_r * sin _d);
-	_pY = (_p select 1) + (_r * cos _d);
+	_pX = (_p select 0) + (_r - (random (1.5 *_r)));
+	_pY = (_p select 1) + (_r - (random (1.5 *_r)));
 	
 	// Return position
 	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_randomPos - post-position: [%1,%2,0]",_pX, _pY]};
@@ -86,8 +119,8 @@ Array (position x,y,z)
 
 ADF_fnc_roadPos = {
 	// Init
-	params ["_p","_r"];
-	private ["_rd","_c","_return","_rd"];
+	params ["_p",["_r",0,[0]]];
+	private ["_rd", "_c", "_return", "_rd"];
 	
 	if (typeName _p != "ARRAY") then {_p = [_p] call ADF_fnc_checkPosition};
 	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_roadPos - pre-position: %1",_p]};
@@ -122,7 +155,7 @@ Array (position x,y,z)
 
 ADF_fnc_randomPosInArea = {
 	params ["_t"];
-	private ["_p","_m","_s","_r","_d","_return"];
+	private ["_p", "_m", "_s", "_r", "_d", "_return"];
 	
 	_p 		= _t;
 	_m 		= if (typeName _t == "STRING") then {true} else {false};
@@ -133,4 +166,73 @@ ADF_fnc_randomPosInArea = {
 
 	_return = if (_r > 0) then {[_p,_r,_d] call ADF_fnc_randomPos} else {_p};
 	_return
+};
+
+ADF_fnc_getRelPos = {
+	// init
+	params [
+		"_p",
+		["_d",15,[0]],
+		["_r",0,[0]],
+		["_z",-1,[0]]
+	];
+	private "_a";
+
+	_a = [(_p select 0) + sin _d * _r, (_p select 1) + cos _d * _r, _z];
+
+	// return position
+	_a
+};
+
+/***************************************************************
+Name: ADF_fnc_positionArraySort
+
+sorts an array of positions
+Original script by Ruebe. Adapted for ADF by whiztler
+
+params:
+
+0: array of positions
+1: sort condition
+
+example:
+
+
+
+Returns:
+Sorted Array
+***************************************************************/
+
+ADF_fnc_positionArraySort = {
+	// Init
+	params ["_a", "_f"];
+	private ["_i", "_k", "_j"];
+
+	if ((count _a) == 0) exitWith {if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_positionArraySort - array seems to be empty: %1",_a]}};
+	
+	for "_i" from 1 to ((count _a) - 1) do {
+		_k = _a select _i;
+		_j = 0;
+	
+		for [{_j = _i}, {_j > 0}, {_j = _j - 1}] do {
+			if (((_a select (_j - 1)) call _f) < (_k call _f)) exitWith {};
+			_a set [_j, (_a select (_j - 1))];
+		};
+	
+		_a set [_j, _k];
+	};
+
+	_a
+};
+
+ADF_fnc_altitudeDescending = {
+	private "_r"; 
+	_r = -1 * (_this select 2);
+	_r
+};
+
+ADF_fnc_altitudeAcending = {
+	private "_r"; 
+	_r = (_this select 2);
+	_r
 };

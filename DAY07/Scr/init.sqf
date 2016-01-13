@@ -7,10 +7,18 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 
 // Vars init
 ADF_endMission			= false;
+ADF_CAS_activate			= false;
+ADF_init_AO				= false;
+MotsActive				= false;
+Obj_1					= false;
+Obj_2					= false;
 ADF_cacheCount			= 0;
 ADF_cacheCnt				= 0;
 ADF_endMissionMsg			= {};
-ADF_fnc_CacheDestroye		= {};
+ADF_fnc_AAdestroyed		= {};
+ADF_msg_AA1 				= {};
+ADF_msg_AA2 				= {};
+
 
 // Server Init
 if (isServer) then {
@@ -19,11 +27,16 @@ if (isServer) then {
 
 // Client init
 if (hasInterface) then {
-	//#include "init_client.sqf"
+	#include "init_client.sqf"
 };
 
-// All clients
-//execVM "Scr\ADF_CAS.sqf";
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
+};
 
 _diagTestEnd = diag_tickTime;
 diag_log format ["ADF RPT: Init - FINISHED Scr\init.sqf  [%1]",_diagTestStart - _diagTestEnd];
+
+// All clients
+

@@ -10,8 +10,8 @@ zbe_cache = {
 	_toCache = (units _group) - [(_leader)];
 	{
 		if (!(isPlayer _x) && {!("driver" in assignedVehicleRole _x)}) then {
-			_x enableSimulationglobal false;
-			_x hideObjectglobal true;
+			_x enableSimulationGlobal false;
+			_x hideObjectGlobal true;
 			_x disableAI "FSM"; // ADF 1.42
 		};
 	} forEach _toCache;
@@ -20,17 +20,16 @@ zbe_cache = {
 zbe_unCache = {
 	{
 		if (!(isPlayer _x) && {!("driver" in assignedVehicleRole _x)}) then {
-			_x enableSimulationglobal true;
-			_x hideObjectglobal false;
+			_x enableSimulationGlobal true;
+			_x hideObjectGlobal false;
 			_x enableAI "FSM";  // ADF 1.42
 		};
 	} forEach _toCache;
 };
 
 zbe_closestUnit = {
-	private["_units", "_unit", "_dist", "_udist"];
-	_units = _this select 0;
-	_unit = _this select 1;
+	params ["_units" ,"_unit"];
+	private["_dist", "_udist"];
 	_dist = 10^5;
 	{
 		_udist = _x distance2D _unit; // ADF 1.42

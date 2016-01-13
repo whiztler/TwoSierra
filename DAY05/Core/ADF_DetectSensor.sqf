@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Detection Sensor
 Author: Whiztler

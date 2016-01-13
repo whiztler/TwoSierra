@@ -111,6 +111,7 @@ ADF_fnc_redressRebel = {
 	
 	// Add default items
 	_unit linkItem "ItemMap"; _unit linkItem "ItemCompass"; _unit linkItem "ItemWatch"; _unit linkItem "ItemRadio";
+	if ((random 1) > 0.5) then {_unit linkItem "NVGoggles_OPFOR"};
 	for "_i" from 1 to 2 do {_unit addMagazine "HandGrenade"; _unit addMagazine "SmokeShell"; _unit addMagazine "16Rnd_9x21_Mag"; _unit addMagazine "Chemlight_red"; _unit addItem "FirstAidKit";};
 	_unit addWeapon "hgun_Rook40_F";
 	

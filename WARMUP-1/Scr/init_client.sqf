@@ -38,3 +38,7 @@ hint parseText"<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br
 <t color='#6C7169'>Teleport to Leader<br/>at Flagpole</t><br/><br/>
 <t color='#6C7169'>Vanilla loadout. Supplies<br/>in vehicles</t><br/><br/>	
 ";
+
+ADF_msg_clearedAO = {
+	["ACO","ACO","Area of Operations Cleared."] call ADF_fnc_MessageParser;
+};

@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Distance functions
 Author: Whiztler
-Script version: 1.00
+Script version: 1.01
 
 Game type: N/A
 File: ADF_fnc_distance.sqf

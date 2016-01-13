@@ -2,8 +2,8 @@ if (!isServer) exitWith {};
 diag_log "ADF RPT: Init - executing bearclaw_server.sqf"; // Reporting. Do NOT edit/remove
 
 // Init
-private ["_bearclawLoc","_bearclawDir"];
-_bearclawLoc = ["mBearclawLoc_1","mBearclawLoc_2","mBearclawLoc_3","mBearclawLoc_4","mBearclawLoc_5","mBearclawLoc_6","mBearclawLoc_7","mBearclawLoc_8","mBearclawLoc_9"] call BIS_fnc_selectRandom;
+private ["_bearclawLoc", "_bearclawDir"];
+_bearclawLoc = ["mBearclawLoc_1", "mBearclawLoc_2", "mBearclawLoc_3", "mBearclawLoc_4", "mBearclawLoc_5", "mBearclawLoc_6", "mBearclawLoc_7", "mBearclawLoc_8", "mBearclawLoc_9"] call BIS_fnc_selectRandom;
 //_bearclawLoc = "mBearclawLoc_9"; // debug
 _bearclawDir = markerDir _bearclawLoc;
 
@@ -25,12 +25,12 @@ gBearclaw setBehaviour "CARELESS";
 objBearclaw allowDamage false;
 objBearclaw setPos (getMarkerPos _bearclawLoc);
 objBearclaw setDir _bearclawDir;
-objBearclaw enableSimulationGlobal false;
+objBearclaw disableAI "MOVE";
 
 // Move Obj trigger to captive position
 tObjBearclaw setPos (getPos objBearclaw);
 
-objBearclaw addEventHandler ["killed", {remoteExec ["ADF_TS_bearclawKilled",0,true];}];
+objBearclaw addEventHandler ["killed", {remoteExec ["ADF_TS_bearclawKilled", 0, true];diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Bearclaw Killed";diag_log	"-----------------------------------------------------";}];
 
 if (ADF_debug) then {
 	_m = createMarker ["mBearClawPos", getPos objBearclaw];
@@ -47,21 +47,24 @@ diag_log "TWO SIERRA: BEARCLAW spawned and set";
 diag_log	"-----------------------------------------------------";
 
 waitUntil {sleep 3; BearclawRescued};
-objBearclaw enableSimulationGlobal true;
-objBearclaw SetUnitPos "up";
+objBearclaw enableAI "MOVE";
 objBearclaw disableAI "FSM";
+objBearclaw disableAI "AUTOTARGET";	
+objBearclaw disableAI "TARGET";
+objBearclaw setUnitPos "UP";
 objBearclaw allowDamage true;
+objBearclaw allowFleeing 0;
 
-{deleteMarker _x} forEach ["mSector_Alpha","mSector_AlphaTxt","mSector_Bravo","mSector_bravoTxt"];
+{deleteMarker _x} forEach ["mSector_Alpha", "mSector_AlphaTxt", "mSector_Bravo", "mSector_bravoTxt"];
 
-// Enable Zebra reception party
+// Enable Zebra RV
 {
 	_x enableSimulationGlobal true;
 	_x hideObjectGlobal false;
 	_x allowDammage false;
-} forEach [vZebra_1,vZebra_2,vZebra_3,vZebra_4,vZebra_5,vZebra_6,vZebra_7,vZebra_8,vZebra_9];
+} forEach [vZebra_1, vZebra_2, vZebra_3, vZebra_4, vZebra_5, vZebra_6, vZebra_7, vZebra_8, vZebra_9];
 
-_g = CreateGroup WEST; 
+_g = createGroup west; 
 _p = _g createUnit ["B_crew_F",getPos tZebra,[],0,"CAPTAIN"]; _p moveInCommander vZebra_1;
 _p = _g createUnit ["B_crew_F",getPos tZebra,[],0,"CORPORAL"]; _p moveInGunner vZebra_1;
 _p = _g createUnit ["B_crew_F",getPos tZebra,[],0,"LIEUTENANT"]; _p moveInCommander vZebra_2;
@@ -70,15 +73,16 @@ _p = _g createUnit ["B_Soldier_F",getPos tZebra,[],0,"PRIVATE"]; _p moveInGunner
 
 // Create retaliation
 for "_i" from 1 to 2 do {
-	private ["_spawnPos","_spawnDir","_v","_cX","_vX"];
-	_spawnPos = "mGuerVeh_2";
-	_spawnDir = markerDir _spawnPos;
+	private ["_p", "_d", "_v"];
+	_p = "mGuerVeh_2";
+	_d = markerDir _p;
 
-	_c = createGroup EAST;
-	_v = [getMarkerPos _spawnPos, _spawnDir, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
-	_cX = units _c; {[_x] call ADF_fnc_redressPashtun} forEach _cX;
-	_vX = _v select 0;
-	[_vX, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
+	_c = createGroup east;
+	_v = [getMarkerPos _p, _d, "I_G_Offroad_01_armed_F", _c] call BIS_fnc_spawnVehicle;
+	{[_x] call ADF_fnc_redressPashtun} forEach units _c;
+	_v = _v select 0;
+	[_v, "ADF_opforOffroad", nil] call bis_fnc_initVehicle;
+	
 	_wp = _c addWaypoint [getPos objBearclaw, 0];
 	_wp setWaypointType "MOVE"; _wp setWaypointBehaviour "SAFE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCompletionRadius 30;
 	_wp = _c addWaypoint [getPos objBearclaw, 0];

@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Headless Client init
 Author: whiztler (based on concept by eulerfoiler)
-Script version: 2.05
+Script version: 2.11
 
 Game type: N/A
 File: ADF_HC_loadBalancing.sqf
@@ -19,14 +19,6 @@ if (isServer) then {diag_log "ADF RPT: Init - executing ADF_HC_loadBalancing.sqf
 
 if (!ADF_HC_connected) exitWith {if (ADF_Debug) then {["ADF DEBUG: HC - loadBalancing - NO HC detected",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC Load Balancing - No HC detected. Terminating ADF_fnc_HC_loadbalancing.sqf"}};
 
-ADF_fnc_HCLB_taskDefend = {
-	params ["_g","_a"];
-	if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC -  ADF_HC_garrison_CBA re-applied for group: %1", _g]; diag_log format ["ADF DEBUG: HC -  ADF_HC_garrisonArr: %1", _a];};
-	_a call CBA_fnc_taskDefend;	
-	if (ADF_Debug) then {diag_log "ADF DEBUG: HC - CBA_fnc_taskDefend reapplied";};
-};
-
-
 if (isServer) then {
 	waitUntil {time > 60};
 
@@ -34,13 +26,14 @@ if (isServer) then {
 	_ADF_HCLB_HC2_ID		= -1; // Will become the Client ID of HC2
 	_ADF_HCLB_HC3_ID		= -1; // Will become the Client ID of HC3
 	_ADF_HCLB_GrpCnt		= 0; // init group count
-	ADF_HCLB_passTimer	= 60;  // Pass through sleep
+	ADF_HCLB_passTimer	= 60;  // Pass through sleep	
 
 	if (ADF_Debug) then {_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - loadBalancing pass through starting in %1 seconds", ADF_HCLB_passTimer];[_ADF_HCLB_compileMsg,false] call ADF_fnc_log};
 
 	while {ADF_HC_connected} do {
 		// Init. Let server initialize and pass through every 60 seconds
 		sleep ADF_HCLB_passTimer;
+		_ADF_HCLB_StartTimer = diag_tickTime;
 		_ADF_HCLB_loadBalance = false;
 		
 		///// Let's see which ADF_HC slot is populated with a HC client. If the slot is not populated the HC variable (e.g. ADF_HC2) will be ObjNull
@@ -89,10 +82,10 @@ if (isServer) then {
 		
 		///// Let's check if 1 or more HC's is/are still populated with a client and check for 2 or more HC's
 
-		if ((isNull ADF_HC1) && (isNull ADF_HC2) && (isNull ADF_HC3)) then {waitUntil {!isNull ADF_HC1 || !isNull ADF_HC2 || !isNull ADF_HC3}};		
+		if ((isNull ADF_HC1) && (isNull ADF_HC2) && (isNull ADF_HC3)) then {waitUntil {sleep 1; !isNull ADF_HC1 || !isNull ADF_HC2 || !isNull ADF_HC3}};		
 		if (	(!isNull ADF_HC1 && !isNull ADF_HC2) || (!isNull ADF_HC1 && !isNull ADF_HC3) || (!isNull ADF_HC2 && !isNull ADF_HC3)) then {_ADF_HCLB_loadBalance = true;}; 
 		// Debug
-		if (_ADF_HCLB_loadBalance) then {if (ADF_Debug) then {["ADF DEBUG: HC - starting loadBalancing to multiple HC's",false] call ADF_fnc_log}} else {if (ADF_Debug) then {["ADF DEBUG: HC - starting loadBalancing to a single HC",false] call ADF_fnc_log}};
+		if (_ADF_HCLB_loadBalance) then {if (ADF_Debug) then {["HC - starting loadBalancing to multiple HC's",false] call ADF_fnc_log}} else {if (ADF_Debug) then {["HC - starting loadBalancing to a single HC",false] call ADF_fnc_log}};
 		
 		// Determine first HC to start with
 		_ADF_HCLB_currentHC		= 0;
@@ -107,23 +100,26 @@ if (isServer) then {
 		
 		if (_ADF_HCLB_GrpCnt_New > _ADF_HCLB_GrpCnt) then {
 			{
-				_ADF_HCLB_trfr = true;
+				_ADF_HCLB_trfr 		= true;
 				
 				// Set transfer to false if the group is a player group
 				{if (isPlayer _x) then {_ADF_HCLB_trfr = false}} forEach units _x; 
 				// Set transfer to false if the group is blacklisted
 				if (_x getVariable ["ADF_noHC_transfer", false]) then {_ADF_HCLB_trfr = false};				
-				// Store directives arrays
-				if (_x getVariable "ADF_HC_garrison_CBA") then {ADF_HCLB_storedArr = _x getVariable ["ADF_HC_garrisonArr",[_x, getPos (leader _x), 250, 2, true]]};
+				// Store group directives
+				if (_x getVariable ["ADF_HC_garrison_ADF", false]) then {
+					ADF_HCLB_storedArr = _x getVariable ["ADF_HC_garrisonArr", []];					
+					if (ADF_Debug) then {diag_log format ["ADF DEBUG: HC LB ADF - ADF_HC_garrisonArr for group: %1 -- array: %1", _x, ADF_HCLB_storedArr]};
+				};
 
 				// If load balance enabled, round robin between the multiple HC's - else pass all to a single HC
 				if (_ADF_HCLB_trfr) then {
 					_ADF_HCLB_rr = false;
 					if (_ADF_HCLB_loadBalance) then {
 						switch (_ADF_HCLB_currentHC) do {
-							case 1: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC1_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC1_ID; if (!isNull ADF_HC2) then {_ADF_HCLB_currentHC = 2;} else {_ADF_HCLB_currentHC = 3;};};
-							case 2: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC2_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC2_ID; if (!isNull ADF_HC3) then {_ADF_HCLB_currentHC = 3;} else {_ADF_HCLB_currentHC = 1;};};
-							case 3: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC3_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC3_ID; if (!isNull ADF_HC1) then {_ADF_HCLB_currentHC = 1;} else {_ADF_HCLB_currentHC = 2;};};
+							case 1: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC1_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC1_ID; if (!isNull ADF_HC2) then {_ADF_HCLB_currentHC = 2;} else {_ADF_HCLB_currentHC = 3;}};
+							case 2: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC2_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC2_ID; if (!isNull ADF_HC3) then {_ADF_HCLB_currentHC = 3;} else {_ADF_HCLB_currentHC = 1;}};
+							case 3: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC3_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC3_ID; if (!isNull ADF_HC1) then {_ADF_HCLB_currentHC = 1;} else {_ADF_HCLB_currentHC = 2;}};
 							default {_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - No Valid HC to pass to. ** _ADF_HCLB_currentHC = %1 **", _ADF_HCLB_currentHC]; if (isServer) then {[_ADF_HCLB_compileMsg1,true] call ADF_fnc_log;};};
 						};
 					} else {
@@ -136,14 +132,20 @@ if (isServer) then {
 					};
 					
 					// reApply group directives
-					if (_x getVariable "ADF_HC_garrison_CBA") then {[_x,ADF_HCLB_storedArr] remoteExec ["ADF_fnc_HCLB_taskDefend",_ADF_HCLB_HCID,true]; _x setVariable ["ADF_noHC_transfer", true]};
-					
+					if (_x getVariable ["ADF_HC_garrison_ADF", false]) then {
+						if (ADF_debug) then {diag_log format ["ADF DEBUG: HC LB - ADF_fnc_defendArea_HC remoteExec for group: %1 to HC with ID %2", _x, _ADF_HCLB_HCID];};
+						[_x, ADF_HCLB_storedArr] remoteExec ["ADF_fnc_defendArea_HC", _ADF_HCLB_HCID, false];
+						_x setVariable ["ADF_noHC_transfer", true];
+						ADF_HCLB_storedArr = nil;
+					};
+		
+					// Add to the group to the 'transferred counter'
 					if (_ADF_HCLB_rr) then {_ADF_HCLB_numTransfered = _ADF_HCLB_numTransfered + 1;};
 				};
-			} forEach (allGroups);
+			} forEach allGroups;
 			
 			// Set the group count so that only new groups are processed on next run
-			_ADF_HCLB_GrpCnt = _ADF_HCLB_GrpCnt_New;
+			_ADF_HCLB_GrpCnt = _ADF_HCLB_GrpCnt_New;			
 		};
 	 
 		///// Extended debug reporting
@@ -197,6 +199,9 @@ if (isServer) then {
 				diag_log "ADF RPT: HC - No AI groups to transfer at the moment";
 			};
 		};
+		
+		_ADF_HCLB_EndTimer = diag_tickTime;
+		diag_log format ["ADF RPT: HC - Loadbalance (HCLB) run diag: %1 seconds", round (_ADF_HCLB_EndTimer - _ADF_HCLB_StartTimer)];
 	};
 
 	["ADF DEBUG: HC - <ERROR> Headless Client(s) disconnected",true] call ADF_fnc_log;

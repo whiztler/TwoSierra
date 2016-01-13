@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Cfg entries
 Author: Whiztler
@@ -12,22 +12,7 @@ File: missionConfig.hpp
 Config entry registration goes in here.
 ****************************************************************/
 
-class CfgRemoteExec {        
-   class Functions {
-		mode = 2;
-		jip = 1;
-		class ADF_fnc_fobDeploy {allowedTargets=0};
-		class ADF_fnc_fobPackUp {allowedTargets=0};
-		class ADF_fnc_fobDeleteObj {allowedTargets=0};
-		class ADF_fnc_MHQ_respawn {allowedTargets=0};
-		class ADF_fnc_MHQ_FinalSpawn {allowedTargets=0};
-		class ADF_fnc_MHQ_addEH {allowedTargets=0};
-		class ADF_fnc_MHQ_respawned {allowedTargets=0};
-		class ADF_fnc_HCLB_taskDefend {allowedTargets=0};
-		class ADF_fnc_CAS_SupportRq {allowedTargets=0};
-		class BIS_fnc_spawn {allowedTargets=0};
-	};
-};
+
 
 class CfgUnitInsignia {
 	class CLANPATCH {
@@ -45,6 +30,15 @@ class CfgRespawnTemplates { // F3 Spectator Script
     class Seagull { //Overwrite Vanilla Seagull
         onPlayerRespawn = "";
     };
+};
+
+class CfgSounds {
+	sounds[] = {};
+	class radioTransmit {
+		name = "Radio_Transmit_Sound";
+		sound[] = {"Core\S\in2c.ogg", 1, 1}; 		// filename, volume, pitch
+		titles[] = {};
+	};
 };
 
 class CfgVehicleTemplates {
@@ -139,7 +133,7 @@ class CfgDebriefing
 		pictureColor[] = {0.0,0.3,0.6,1}; // Overlay color
 	};
 };
-
+/*
 // ACE3 settings v. 3.3.2.0
 
 class ACE_Settings {

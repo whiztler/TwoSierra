@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission init
 Author: Whiztler
@@ -27,3 +27,4 @@ if (isDedicated) then {
 };
 
 //  Execute Core Third Party SERVER scripts: (comment out if not applicable)
+

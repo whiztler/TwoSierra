@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission Briefing
 Author: Whiztler
@@ -27,7 +27,7 @@ player createDiaryRecord ["Diary",["Credits","<br/>
 Concept and development: whiztler
 </font><br/><br/>
 
-<font size='14' color='#d7dbd5'>2SEIRRA.COM</font><font color='#9DA698'><br/>
+<font size='14' color='#d7dbd5'>2SIERRA.COM</font><font color='#9DA698'><br/>
 <font color='#9DA698'>
 More information and latest version of the Two Sierra campaign can be found at the official website: www.2sierra.com
 </font><br/><br/>
@@ -47,7 +47,7 @@ The Two Sierra campaign uses the following tooling/scripts (with thanks to the a
 - TAW View Distance by Tonic.<br/>
 - ZBE_caching by Zorrobyte.<br/>
 - MAD Ambient Life by MAD T.<br/>
-- Delete All by Anjan.<br/><br/>
+- Repetitive Cleanup by Aeroson.<br/><br/>
 The Two Sierra campaign is powered by ADF.
 </font><br/><br/>
 
@@ -314,12 +314,9 @@ Game Masters/Commanders, please note the following:<br/><br/>
     mission).<br/>
 06. All player roles are equipped with pre-defined role loadout.<br/>
     Additional gear and supplies can be found in the vehicles.<br/>
-07. If you play with ACE3 enabled, please note that Two Sierra<br/>
-    missions have advanced ballistics and advanced medical<br/>
-    settings enabled by default.<br/>
-08. Most missions offer CAS support. CAS can be called in by the<br/>
+07. Most missions offer CAS support. CAS can be called in by the<br/>
     platoon commander using the action menu.<br/>
-09. Two Sierra has a pre-configured platoon radio net.<br/>
+08. Two Sierra has a pre-configured platoon radio net.<br/>
     Settings/frequencies can be found under 'Two Sierra Roster'<br/>
     in the map screen menu	
 <br/><br/>
@@ -353,7 +350,7 @@ player createDiaryRecord ["2SCPGN",["Server information","<br/><br/>
 <font color='#9DA698'>
 The server requires the following add-ons:<br/><br/>
 - Community Based Addons ARMA 3 (CBA_A3)<br/>
-- All in ARMA Terrain Pack (AIATP)<br/><br/>
+- All in ARMA Terrain Pack (AIATP) or CUP Terrains<br/><br/>
 
 Two Sierra missions have been tested (to work with) with the optional AI behaviour add-on ASR AI.
 </font><br/><br/>
@@ -374,7 +371,7 @@ player createDiaryRecord ["2SCPGN",["Client Information","<br/><br/>
 <font color='#9DA698'>
 The Two Sierra campaign requires the following Add-Ons:<br/><br/>
 - Community Based Addons ARMA 3 (CBA_A3)<br/>
-- All in ARMA Terrain Pack (AIATP)<br/><br/>
+- All in ARMA Terrain Pack (AIATP) or CUP Terrains<br/><br/>
 <font size='14' color='#d7dbd5'>RECOMMENDED ADD-ONS</font><br/>
 To enhance game play, the following client add-ons are recommended:<br/><br/>
 - Advanced Combat Radio Environment (ACRE 2) -or-<br/>

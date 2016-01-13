@@ -6,13 +6,16 @@ diag_log "ADF RPT: Init - executing Scr\init.sqf"; // Reporting. Do NOT edit/rem
 call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 
 // Vars init
+MotsActive				= false;
 ADF_pashtunWaveClear 		= false;
 ADF_pashtunAOtriggered	= false;
 ADF_SatanClearUp			= false;
 ADF_SatanControl			= false;
+ADF_init_AO				= false;
+MotsActive				= false;
 ADF_redZoneOpforCnt		= 0;
-ADF_msg_tPrice 			= {};
-ADF_msg_tBaltimore 		= {};
+ADF_msg_tPrice 			= {diag_log "TWO SIERRA: Price message";};
+ADF_msg_tBaltimore 		= {diag_log "TWO SIERRA: Baltimore message";};
 
 // Server Init
 if (isServer) then {
@@ -22,6 +25,11 @@ if (isServer) then {
 // Client init
 if (hasInterface) then {
 	#include "init_client.sqf"
+};
+
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
 };
 
 // All Clients

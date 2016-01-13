@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Game Master/Instructor/Zeus configuration
 Author: Whiztler
-Script version: 1.51
+Script version: 1.52
 
 Game type: n/a
 File: ADF_GM.sqf
@@ -23,7 +23,6 @@ Place a 'ZEUS Game Master' module for each unit:
 ****************************************************************/
 
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_GM.sqf"}; // Reporting. Do NOT edit/remove
-if (ADF_isHC) exitWith {}; // HC exits script
 
 // Init
 if ((isNil "GM_1") && (isNil "GM_2")) exitWith {// No Zeus playable slots detected
@@ -35,10 +34,12 @@ if ((isNil "GM_1") && (isNil "GM_2")) exitWith {// No Zeus playable slots detect
 }; 
 
 params ["_ADF_zeusEagle"];
+private ["_ADF_GM_gear"];
+
 showCuratorCompass true;
 
 // GM roles
-ADF_GM_gear = {
+_ADF_GM_gear = {
 	params ["_ADF_unit"];
 	removeBackpackGlobal _ADF_unit;
 	removeUniform _ADF_unit;
@@ -77,7 +78,7 @@ ADF_GM_gear = {
 if !(isNil "GM_1") then {
 	if !(player == GM_1) exitWith {};
 	GM_1 addAction ["<t align='left' color='#FBF4DF'>GM - Teleport</t>",{openMap true;hintSilent format ["%1, click on a location on the map to teleport...", name vehicle player];onMapSingleClick "vehicle player setPos _pos; onMapSingleClick ' '; true; openMap false; hint format ['%1, you are now at: %2', name vehicle player, getPosATL player];";},[],-85,true,true,"",""];	
-	[GM_1] call ADF_GM_gear;
+	[GM_1] call _ADF_GM_gear;
 	ADF_GM_init = true;
 	if (ADF_debug) then {["ZEUS: GM-1 active",false] call ADF_fnc_log};	
 };
@@ -85,7 +86,7 @@ if !(isNil "GM_1") then {
 if !(isNil "GM_2") then {
 	if !(player == GM_2) exitWith {};
 	GM_2 addAction ["<t align='left' color='#FBF4DF'>GM - Teleport</t>",{openMap true;hintSilent format ["%1, click on a location on the map to teleport...", name vehicle player];onMapSingleClick "vehicle player setPos _pos; onMapSingleClick ' '; true; openMap false; hint format ['%1, you are now at: %2', name vehicle player, getPosATL player];";},[],-85,true,true,"",""];	
-	[GM_2] call ADF_GM_gear;
+	[GM_2] call _ADF_GM_gear;
 	ADF_GM_init = true;
 	if (ADF_debug) then {["ZEUS: GM-2 active",false] call ADF_fnc_log};	
 };
@@ -151,7 +152,8 @@ if (ADF_mod_Ares) exitWith { // Use ARES instead of ADF Zeus functions > V1.39 B
 
 // ADV_zeus by Belbo. Edited by Whiz
 
-_addCivilians = true;
+private "_civ";
+_civ = true;
 
 { //adds objects placed in editor:
 	_x addCuratorEditableObjects [vehicles,true];
@@ -164,9 +166,9 @@ _addCivilians = true;
 //makes all units continuously available to Zeus (for respawning players and AI that's being spawned by a script.)
 if (ADF_debug) then {["ZEUS - ADV Zeus function Initialized",false] call ADF_fnc_log};
 while {true} do {
-	_toAdd = if (!_addCivilians && {(side _x) == civilian}) then {false} else {true};
+	_add = if (!_civ && {(side _x) == civilian}) then {false} else {true};
 	{
-		if (_toAdd) then {
+		if (_add) then {
 			if !(isNil "GMmod_1") then {GMmod_1 addCuratorEditableObjects [[_x], true]};
 			if !(isNil "GMmod_2") then {GMmod_2 addCuratorEditableObjects [[_x], true]};
 		};
@@ -176,6 +178,6 @@ while {true} do {
 	if !(isNil "GMmod_2") then {GMmod_2 addCuratorEditableObjects [vehicles, true]};
 	
 	sleep 10;
-	if (ADF_debug) then {["ZEUS - Objects transferred to Curator(s) ",false] call ADF_fnc_log};
+	//if (ADF_debug) then {["ZEUS - Objects transferred to Curator(s) ",false] call ADF_fnc_log};
 };
 

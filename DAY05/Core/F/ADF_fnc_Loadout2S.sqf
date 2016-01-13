@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Loadout Gear 2 SIERRA campaign
 Author: Whiztler
-Script version: 1.04
+Script version: 1.05
 
 Game type: n/a
 File: ADF_fnc_loadout2S.sqf
@@ -73,8 +73,7 @@ if (ADF_mod_ACE3) then {
 
 // Default ACE3 kit
 _ADF_INF_ACE3_default 		= ["ACE_EarPlugs","ace_mapTools","ACE_CableTie","ACE_IR_Strobe_Item","ACE_morphine","ACE_HandFlare_White","ACE_HandFlare_White","ACE_M84","ACE_M84"];
-_ADF_INF_ACE3_defaultMed		= ["ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing",
-								"ACE_elasticBandage","ACE_quikclot"];
+_ADF_INF_ACE3_defaultMed		= ["ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot"];
 								
 // Strip the unit
 removeAllWeapons _ADF_unit; removeAllItems _ADF_unit; removeAllAssignedItems _ADF_unit; removeVest _ADF_unit; removeBackpack _ADF_unit; removeHeadgear _ADF_unit; removeGoggles _ADF_unit; 
@@ -125,7 +124,7 @@ ADF_loadout_platoon = {
 	if (ADF_mod_CTAB) then {_ADF_unit addItemToUniform "ItemcTabHCam"};	
 
 	// Personal Radios all units
-	if (ADF_mod_ACRE) then {_ADF_unit linkItem "ACRE_PRC343"}; // ACRE
+	if (ADF_mod_ACRE) then {_ADF_unit addItem "ACRE_PRC343"}; // ACRE
 	if (ADF_mod_TFAR) then {_ADF_unit linkItem _ADF_TFAR_PersonalRadio; _ADF_unit addItem "tf_microdagr";}; // TFAR
 	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_ADF_unit linkItem "ItemRadio"}; // Vanilla
 	
@@ -160,7 +159,7 @@ if (_r == "pc") exitWith {
 	_ADF_unit addItem "Laserbatteries";	
 	
 	// Mod Items
-	if (ADF_mod_ACRE) then {_ADF_unit addBackpack "B_AssaultPack_cbr"; _ADF_unit addItemToBackpack "ACRE_PRC148";};
+	if (ADF_mod_ACRE) then {_ADF_unit addBackpack "B_AssaultPack_cbr"; _ADF_unit addItem "ACRE_PRC148"; _ADF_unit addItemToBackpack "ACRE_PRC117F";};
 	if (ADF_mod_TFAR) then {_ADF_unit addBackpack _ADF_TFAR_LRRadio} else {_ADF_unit addBackpack "B_AssaultPack_cbr"};	
 	if (ADF_mod_ACE3) then {_ADF_unit addItem "ace_dagr";};
 	if (ADF_mod_CTAB) then {_ADF_unit addItem "ItemcTab";};
@@ -179,8 +178,9 @@ if (_r == "rto") exitWith {
 	_ADF_unit addGoggles "G_Tactical_Clear";
 	
 	// Mod items
-	if (ADF_mod_ACRE) then {_ADF_unit addBackpack "B_AssaultPack_cbr"; _ADF_unit addItemToBackpack "ACRE_PRC148";};
-	if (ADF_mod_TFAR) then {_ADF_unit addBackpack _ADF_TFAR_LRRadio} else {_ADF_unit addBackpack "B_AssaultPack_cbr"};	
+	if (ADF_mod_ACRE) then {_ADF_unit addBackpack "B_AssaultPack_cbr"; _ADF_unit addItem "ACRE_PRC148"; _ADF_unit addItemToBackpack "ACRE_PRC117F";};
+	if (ADF_mod_TFAR) then {_ADF_unit addBackpack _ADF_TFAR_LRRadio};
+	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_ADF_unit addBackpack "B_AssaultPack_cbr";};
 	if (ADF_mod_ACE3) then {_ADF_unit addWeapon "ACE_Vector"; _ADF_unit addItem "ace_dagr";} else {_ADF_unit addWeapon "Rangefinder";};
 	if (ADF_mod_CTAB) then {_ADF_unit addItem "ItemAndroid";};	
 	
@@ -200,7 +200,8 @@ if (_r == "sql") exitWith {
 	
 	// Mod items
 	if (ADF_mod_ACRE) then {_ADF_unit addBackpack "B_Kitbag_cbr"; _ADF_unit addItemToBackpack "ACRE_PRC148";};
-	if (ADF_mod_TFAR) then {_ADF_unit addBackpack _ADF_TFAR_LRRadio} else {_ADF_unit addBackpack "B_Kitbag_cbr";};	
+	if (ADF_mod_TFAR) then {_ADF_unit addBackpack _ADF_TFAR_LRRadio};
+	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_ADF_unit addBackpack "B_Kitbag_cbr";};	
 	if (ADF_mod_ACE3) then {_ADF_unit addItem "ACE_HuntIR_M203"; _ADF_unit addItem "ACE_HuntIR_monitor"; _ADF_unit addWeapon "ACE_Vector"; 	_ADF_unit addItem "ace_dagr";	} else {_ADF_unit addWeapon "Rangefinder";};
 	if (ADF_mod_CTAB) then {_ADF_unit addItem "ItemAndroid";};
 	
@@ -218,7 +219,8 @@ if (_r == "ftl") exitWith {
 	
 	// Mod items
 	if (ADF_mod_ACRE) then {_ADF_unit addBackpack "B_Kitbag_cbr"; _ADF_unit addItemToBackpack "ACRE_PRC148";};
-	if (ADF_mod_TFAR) then {_ADF_unit addBackpack _ADF_TFAR_LRRadio} else {_ADF_unit addBackpack "B_Kitbag_cbr";};
+	if (ADF_mod_TFAR) then {_ADF_unit addBackpack _ADF_TFAR_LRRadio};
+	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_ADF_unit addBackpack "B_Kitbag_cbr";};	
 	if (ADF_mod_ACE3) then {_ADF_unit addItem "ACE_HuntIR_M203"; _ADF_unit addItem "ACE_HuntIR_monitor"; _ADF_unit addWeapon "ACE_Vector"; 	_ADF_unit addItem "ace_dagr";	} else {_ADF_unit addWeapon "Rangefinder";};
 	if (ADF_mod_CTAB) then {_ADF_unit addItem "ItemAndroid";};
 	
@@ -236,7 +238,8 @@ if (_r == "wtl") exitWith {
 	
 	// Mod items
 	if (ADF_mod_ACRE) then {_ADF_unit addBackpack "B_Kitbag_cbr"; _ADF_unit addItemToBackpack "ACRE_PRC148";};
-	if (ADF_mod_TFAR) then {_ADF_unit addBackpack _ADF_TFAR_LRRadio} else {_ADF_unit addBackpack "B_Kitbag_cbr";};	
+	if (ADF_mod_TFAR) then {_ADF_unit addBackpack _ADF_TFAR_LRRadio};
+	if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_ADF_unit addBackpack "B_Kitbag_cbr";};		
 	if (ADF_mod_ACE3) then {_ADF_unit addItem "ACE_HuntIR_M203"; _ADF_unit addItem "ACE_HuntIR_monitor"; _ADF_unit addWeapon "ACE_Vector"; 	_ADF_unit addItem "ace_dagr";	} else {_ADF_unit addWeapon "Rangefinder";};
 	if (ADF_mod_CTAB) then {_ADF_unit addItem "ItemAndroid";};
 	
@@ -400,7 +403,7 @@ if (_r == "ams") exitWith {
 
 // Weapons Team: HMG specialist
 if (_r == "hmg") exitWith {
-	_ADF_unit addBackpack "B_HMG_01_A_weapon_F";
+	_ADF_unit addBackpack "B_HMG_01_weapon_F";
 	_ADF_unit addGoggles "G_Combat";
 	
 	for "_i" from 1 to 5 do {_ADF_unit addMagazine _ADF_INF_priWpnMag;};
