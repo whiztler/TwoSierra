@@ -93,6 +93,14 @@ ADF_msg_sweep = {
 	["2S","TWO SIERRA","FAIRCHILD this is TWO SIERRA. Solid copy on all. Out."] call ADF_fnc_MessageParser;
 };
 
+[] spawn {
+	waitUntil {sleep 30; time > 7200}; // 30 mins left
+	["ACO","ACO","TWO SIERRA this is FAIRCHILD. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","FAIRCHILD this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FAIRCHILD. You have 30 mikes left before MOTHER pulls you out. Break. After that it is RTB and mission aborted. Over."] call ADF_fnc_MessageParser; sleep 16;
+	["2S","","FAIRCHILD this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; 
+};
+
 ADF_msg_endMission = {
 	if (time > 9000) then {
 		["ACO","ACO","TWO SIERRA this is FAIRCHILD . Message. Over."] call ADF_fnc_MessageParser; sleep 11;

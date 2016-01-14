@@ -46,7 +46,7 @@ vUAV removeMagazineTurret ["2Rnd_GBU12_LGB",[0]];
 private "_i";
 for "_i" from 1 to 10 do {
 	private ["_g", "_p", "_t"];
-	_p = format ["mDef_%1",_i];
+	_p = format ["mDef_%1", _i];
 	_p = getMarkerPos _p;
 	_t = "";
 	if ((random 1) > .33) then {_t = "OIA_InfAssault"} else {_t = "OIA_InfSquad_Weapons"};
@@ -60,7 +60,7 @@ for "_i" from 1 to 10 do {
 // Foot patrols Ortego
 for "_i" from 1 to 10 do {
 	private ["_g", "_p", "_r", "_t", "_p"];
-	_p	= format ["mPat_%1",_i];
+	_p	= format ["mPat_%1", _i];
 	_r	= floor ((random 400) + (random 400));
 	_t	= ["OI_reconSentry", "OIA_InfTeam"] call BIS_fnc_selectRandom;
 	_p	= getMarkerPos _p;
@@ -112,7 +112,7 @@ ADF_AO_dolores = {
 	// AO Defence Squad Dolores
 	for "_i" from 20 to 28 do {
 		private ["_g", "_p", "_t"];
-		_p	= format ["mDef_%1",_i];
+		_p	= format ["mDef_%1", _i];
 		_p	= getMarkerPos _p;
 		_t	= "";
 		if ((random 1) < .33) then {_t = "OIA_InfAssault"} else {_t = "OIA_InfSquad_Weapons"};
@@ -135,7 +135,7 @@ ADF_AO_dolores = {
 	// Foot patrols ortego
 	for "_i" from 20 to 30 do {
 		private ["_g", "_p", "_r", "_t", "_p"];
-		_p	= format ["mPat_%1",_i];
+		_p	= format ["mPat_%1", _i];
 		_r	= floor ((random 400) + (random 400));
 		_t	= ["OI_reconSentry", "OIA_InfTeam"] call BIS_fnc_selectRandom;
 		_p	= getMarkerPos _p;
@@ -147,55 +147,53 @@ ADF_AO_dolores = {
 	};
 	
 	// Count spawned Opfor Dolores
-	private ["_ADF_OpforCnt", "_q", "_opforCntWin"];
-	_q = nearestObjects [getPos tDolores, ["Man"], 500];
+	private ["_ADF_OpforCnt", "_q", "_doloresWin"];
+	_q = (getPos tDolores) nearEntities ["Man", 500];
 	_ADF_OpforCnt = {side _x == east} count _q;
-	_opforCntWin = _ADF_OpforCnt / 12;
+	_doloresWin = _ADF_OpforCnt / 12;
 
 	diag_log	"-----------------------------------------------------";
-	diag_log format ["TWO SIERRA: AO OpFor spawned @ Dolores, number of Opfor: %1 (Win condition: %2)",_ADF_OpforCnt,_opforCntWin];
+	diag_log format ["TWO SIERRA: Dolores AO spawned: number of Opfor: %1 (Win condition: %2)", _ADF_OpforCnt, _doloresWin];
 	diag_log	"-----------------------------------------------------";
 
 	waitUntil {
 		private ["_ADF_OpforCnt", "_q"];
 		sleep 30;
-		_q = nearestObjects [getPos tDolores, ["Man"], 500];
+		_q = (getPos tDolores) nearEntities ["Man", 500];
 		ADF_doloresCnt = {side _x == east} count _q;
-		((ADF_doloresCnt < _opforCntWin) || (time > 14400)); // 4 hours
+		((ADF_doloresCnt < _doloresWin) || (time > 14400)); // 4 hours
 	};
 	
 	ADF_doloresClear = true;
+	if (ADF_ortegaClear) then {ADF_endMission = true; publicVariable "ADF_endMission"};
 	remoteExec ["ADF_msg_doloresClear", 0, true]; 
 };
 
 ADF_init_AO = true; publicVariable "ADF_init_AO";
 
 // Count spawned Opfor Ortego
-private ["_ADF_OpforCnt", "_ADF_westCnt"];
+private ["_ADF_OpforCnt", "_ADF_westCnt", "_ortegoWin"];
 
 _ADF_OpforCnt = {side _x == east} count allUnits;
 _ADF_westCnt = {(side _x == west) && !isPlayer _x} count allUnits;
-_opforCntWin = _ADF_OpforCnt / 12;
+_ortegoWin = _ADF_OpforCnt / 12;
 
 diag_log	"----------------------------------------------------------------------";
-diag_log format ["TWO SIERRA: AO OpFor spawned @ Ortego, number of Opfor: %1 (Win condition: %2)",_ADF_OpforCnt,_opforCntWin];
-diag_log format ["TWO SIERRA: AO BluFor spawned, number of BluFor: %1",_ADF_westCnt];
+diag_log format ["TWO SIERRA: Ortego AO spawned: number of Opfor: %1 (Win condition: %2)", _ADF_OpforCnt, _ortegoWin];
+diag_log format ["TWO SIERRA: AO BluFor spawned, number of BluFor: %1", _ADF_westCnt];
 diag_log	"----------------------------------------------------------------------";
 
 // Track Opfor Ortego count
 waitUntil {
 	sleep 15;
 	private ["_q"];
-	_q = nearestObjects [getMarkerPos "mPat_11", ["Man"], 500];
+	_q = (getMarkerPos "mPat_11") nearEntities ["Man", 500];
 	ADF_ortegaCnt = {side _x == east} count _q;
 	if (triggerActivated tDolores) then {ADF_ortegaCnt = ADF_ortegaCnt - ADF_doloresCnt;};
-	((ADF_ortegaCnt < _opforCntWin) || (time > 7200));
+	((ADF_ortegaCnt < _ortegoWin) || (time > 10800)); // 3 hours
 };
 	
 // Ortego cleared
 ADF_ortegaClear = true;
-remoteExec ["ADF_msg_ortegaClear", 0, true]; 
-
-// End mission
-waitUntil {sleep 5; ADF_ortegaClear && ADF_doloresClear};
-ADF_endMission = true; publicVariable "ADF_endMission";
+if (ADF_doloresClear) then {ADF_endMission = true; publicVariable "ADF_endMission"};
+remoteExec ["ADF_msg_ortegaClear", 0, true];

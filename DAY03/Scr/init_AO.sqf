@@ -75,7 +75,7 @@ waitUntil {
 	sleep 30;
 	private "_c";
 	_c = {side _x == independent} count allUnits;
-	((_c < _opforCntWin) || (time > (ADF_missionStartTime + 7200))); // 2 hours + prep time
+	((_c < _opforCntWin) || (time > (ADF_missionStartTime + 10000))); // 3 hours + prep time
 };
 
 diag_log	"-----------------------------------------------------";

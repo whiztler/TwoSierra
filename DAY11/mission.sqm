@@ -7168,7 +7168,7 @@ class Mission
 		};
 		class Item71
 		{
-			position[]={8058.7422,174.97716,7802.7939};
+			position[]={8046.5029,174.29192,7801.5708};
 			name="mBpat_6";
 			text="BPAT";
 			type="Empty";

@@ -82,34 +82,55 @@ ADF_msg_doloresBase	= {
 ADF_msg_ortegaClear	= {
 	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
 	["ACO","ACO","TWO SIERRA this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 7;
-	["2S","","VADER this is TWO SIERRA. Ortega is blue. How copy?"] call ADF_fnc_MessageParser; sleep 14;	
+	["2S","","VADER this is TWO SIERRA. Ortega is blue. How copy?"] call ADF_fnc_MessageParser; sleep 14;
 	if (ADF_endMission) then {
 		["ACO","ACO","TWO SIERRA this is VADER. Roger.<br/><br/>	MOTHER already has a new op for you. Head out to the Dolores base as we'll be setting up a FOB there.<br/><br/>You'll move out again tomorrow morning. Get some rest and organise your kit.<br/><br/>Great job gentlemen!"] call ADF_fnc_MessageParser;
 		sleep 10;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
-		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 10 | Corazol</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
+		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 10 | Hell's Bells</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 		['END2',true,22] call BIS_fnc_endMission;
 	} else {
-		["ACO","ACO","VADER: Copy TWO SIERRA, good job. Head out to Dolores. Out."] call ADF_fnc_MessageParser;
+		["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Head out to Dolores. Over."] call ADF_fnc_MessageParser; sleep 14;
+		["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser; 
 	};
 };
 
 ADF_msg_doloresClear	= {
 	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 14;
-	["ACO","ACO","VADER: Go ahead TWO SIERRA"] call ADF_fnc_MessageParser; sleep 7;
-	["2S","","TWO SIERRA: Dolores is clear. Body count two hundred plus. How copy?"] call ADF_fnc_MessageParser; sleep 14;
-	["ACO","ACO","VADER: Stand by TWO SIERRA"] call ADF_fnc_MessageParser; sleep 12;
+	["ACO","ACO","TWO SIERRA this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","VADER this is TWO SIERRA. Dolores is clear. Body count two hundred plus. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+	["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Stand-by. Over"] call ADF_fnc_MessageParser; sleep 12;
 	if (ADF_endMission) then {
-		["ACO","ACO","VADER: Excellent job TWO SIERRA.<br/><br/>	The inability to supply their troops via the sea is a big blow for CSAT. MOTHER already has a new op for you. Head out to the Dolores base as we'll be setting up a FOB there.<br/><br/>You'll move out again tomorrow morning. Get some rest and organise your kit.<br/><br/>Great job gentlemen!"] call ADF_fnc_MessageParser;
+		["ACO","ACO","TWO SIERRA this is VADER. Roger.<br/><br/>	MOTHER already has a new op for you. Head out to the Dolores base as we'll be setting up a FOB there.<br/><br/>You'll move out again tomorrow morning. Get some rest and organise your kit.<br/><br/>Great job gentlemen!"] call ADF_fnc_MessageParser;
 		sleep 10;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
-		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 10 | Corazol</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
+		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 10 | Hell's Bells</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 		['END2',true,22] call BIS_fnc_endMission;
 	} else {
-		["ACO","ACO","VADER: Copy TWO SIERRA, good job. Head out to Ortega. Out."] call ADF_fnc_MessageParser;
+		["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Head out to Ortega. Over."] call ADF_fnc_MessageParser; sleep 14;
+		["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser; 
 	};
 };
 
+ADF_msg_sitrep = {
+	params ["_o", "_b", "_s"];
+	private ["_msg", "_p"];
+	_p = getPosASL (leader (group player));
+	["ACO","ACO","TWO SIERRA this is VADER. Interrogative sitrep. Over."] call ADF_fnc_MessageParser; sleep 9;
+	_msg = format ["TWO SIERRA: VADER this is TWO SIERRA. Position grid Whiskey Victor %1 . %2. Break. Pappa: %3. Break. Tango: %4. How copy?", round (_p select 0), round (_p select 1), _b, _o];
+	["2S","",_msg] call ADF_fnc_MessageParser; 
+	sleep _s;
+	["ACO","ACO","TWO SIERRA this is VADER. Good copy. Out."] call ADF_fnc_MessageParser;
+	sleep 8; hintSilent "";
+};
+
+[] spawn {
+	waitUntil {sleep 30; time > 9000}; // 30 mins left
+	["ACO","ACO","TWO SIERRA this is VADER. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","VADER this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is VADER. You have 30 mikes left before MOTHER pulls you out. Break. After that it is RTB and mission aborted. Over."] call ADF_fnc_MessageParser; sleep 16;
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; 
+};
 	

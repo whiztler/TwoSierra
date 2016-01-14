@@ -267,7 +267,7 @@ for "_i" from 1 to 6 do {
 
 // Count & track spawned units for win/loose scenario
 private ["_q", "_opforCntWinAO"];
-_q = nearestObjects [getMarkerPos "mJonahRadius", ["Man"], 750]; // 750m ex marker
+_q = (getMarkerPos "mJonahRadius") nearEntities ["Man", 750]; // 750m ex marker
 ADF_redZoneOpforCnt = {(side _x == independent) && (alive _x)} count _q;
 _opforCntWinAO = (ADF_redZoneOpforCnt / 10) + (random 10);
 
@@ -278,7 +278,7 @@ diag_log	"-----------------------------------------------------";
 
 waitUntil {
 	sleep 30;
-	_q = nearestObjects [getMarkerPos "mJonahRadius", ["Man"], 750]; // 750m ex marker
+	_q = (getMarkerPos "mJonahRadius") nearEntities ["Man", 750]; // 750m ex marker
 	ADF_redZoneOpforCnt = {(side _x == independent) && (alive _x)} count _q;
 	((ADF_redZoneOpforCnt <= _opforCntWinAO) || (time > 10800)); // 3 hours
 };

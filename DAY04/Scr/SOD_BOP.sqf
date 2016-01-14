@@ -83,7 +83,7 @@ _ADF_bopCreate = {
 	// (re)Apply Texture to trucks
 	private ["_a", "_q"];
 	_a = ["I_Truck_02_transport_F", "I_Truck_02_ammo_F", "I_Truck_02_box_F", "I_Truck_02_fuel_F", "I_Truck_02_Repair_F"];
-	_q = nearestObjects [tBOPspawn, ["Car"], 200];
+	_q = (getPos tBOPspawn) nearEntities ["Car", 200];
 
 	{
 		if ((_x in _q) && ((typeOf _x) in _a)) then {
@@ -141,7 +141,7 @@ if (ADF_Fairlight) exitWith {};
 waitUntil {
 	private ["_q", "_c"];
 	sleep 30;
-	_q = nearestObjects [tBOPspawnPos, ["MAN"], 200];
+	_q = (getPos tBOPspawnPos) nearEntities ["Man", 200];
 	_c = {(side _x == independent) && (_x in _q)} count allUnits;
 	if (ADF_debug) then {systemChat format ["TWO SIERRA debug: BOP opfor remaining: %1", _c];};
 	if (time > 10800) exitWith {ADF_Fairlight = true; publicVariable "ADF_Fairlight"};  // set fairlight to TRUE

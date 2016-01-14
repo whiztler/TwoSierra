@@ -106,8 +106,8 @@ ADF_fnc_createPara = {
 	
 	// Determine groupsize and put together classname for ACM
 	switch _gt do {
-		case 1		: {_gs = "_InfTeam"};
-		case 2		: {_gs = if ((random 1) < 0.75) then {if (_s == independent) then {"_InfSquad"} else {"_InfAssault"}} else {"_InfSquad_Weapons"}};
+		case 1	: {_gs = "_InfTeam"};
+		case 2	: {_gs = if ((random 1) < 0.75) then {if (_s == independent) then {"_InfSquad"} else {"_InfAssault"}} else {"_InfSquad_Weapons"}};
 	};
 	
 	_gs = format ["%1%2", _gft, _gs];

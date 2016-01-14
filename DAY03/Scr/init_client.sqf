@@ -74,6 +74,14 @@ if (!didJIP) then {
 	["ACO","ACO","Capt. James O'Conner: It is 04:45. TWO SIERRA, get moving. Now!"] call ADF_fnc_MessageParser;
 };
 
+[] spawn {
+	waitUntil {sleep 30; time > 9000}; // 30 mins left
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. You have 30 mikes left before MOTHER pulls you out. Break. After that it is RTB and mission aborted. Over."] call ADF_fnc_MessageParser; sleep 16;
+	["2S","","FIRESTONE this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; 
+};
+
 ADF_msg_start = {
 	waitUntil {sleep 1; time > 360};
 	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 8;
