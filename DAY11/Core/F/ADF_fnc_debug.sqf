@@ -35,9 +35,9 @@ if (isServer && !isDedicated) then {
 	player addAction ["<t align='left' color='#F7D358'>Set time -6 hours</t>",{skipTime -6;}];
 	player addAction ["<t align='left' color='#F7D358'>Spawn NATO Weapons Squad", {execVM "Core\D\ADF_snipSpawnBluefor.sqf";}];
 	player addAction ["<t align='left' color='#F7D358'>Spawn CSAT Weapons Squad", {execVM "Core\D\ADF_snipSpawnOpfor.sqf";}];
-	player addAction ["<t align='left' color='#F7D358'>Spawn Hummingbird", { _veh = createVehicle [ "B_Heli_Light_01_F", player modelToWorld [0,10,0], [], 0, "CAN_COLLIDE" ]; _veh setDir (direction player - 90); _veh setVectorUp surfaceNormal position _veh; _veh  setObjectTextureGlobal  [0, "A3\Air_F\Heli_Light_01\Data\Skins\heli_light_01_ext_furious_co.paa"];}];
-	player addAction ["<t align='left' color='#F7D358'>Spawn Hunter", { _veh = createVehicle [ "B_MRAP_01_F", player modelToWorld [0,10,0], [], 0, "CAN_COLLIDE" ]; _veh setDir (direction player - 90); _veh setVectorUp surfaceNormal position _veh; _veh  setObjectTextureGlobal [0, "#(rgb,8,8,3)color(0,0,0,1)"]; /*_veh  setObjectTextureGlobal  [1, "#(rgb,8,8,3)color(0.64,0.64,0.64,1)"];*/}];
-	player addAction ["<t align='left' color='#F7D358'>Spawn Speedboat", { _veh = createVehicle [ "C_Boat_Civil_01_rescue_F", player modelToWorld [0,10,0], [], 0, "CAN_COLLIDE" ]; _veh setDir (direction player - 90);}];
+	player addAction ["<t align='left' color='#F7D358'>Spawn Hummingbird", { _veh = createVehicle [ "B_Heli_Light_01_F", player modelToWorld [0, 10, 0], [], 0, "CAN_COLLIDE" ]; _veh setDir (direction player - 90); _veh setVectorUp surfaceNormal position _veh; _veh  setObjectTextureGlobal  [0, "A3\Air_F\Heli_Light_01\Data\Skins\heli_light_01_ext_furious_co.paa"];}];
+	player addAction ["<t align='left' color='#F7D358'>Spawn Hunter", { _veh = createVehicle [ "B_MRAP_01_F", player modelToWorld [0, 10, 0], [], 0, "CAN_COLLIDE" ]; _veh setDir (direction player - 90); _veh setVectorUp surfaceNormal position _veh; _veh  setObjectTextureGlobal [0, "#(rgb, 8, 8, 3)color(0, 0, 0, 1)"]; /*_veh  setObjectTextureGlobal  [1, "#(rgb, 8, 8, 3)color(0.64, 0.64, 0.64, 1)"];*/}];
+	player addAction ["<t align='left' color='#F7D358'>Spawn Speedboat", { _veh = createVehicle [ "C_Boat_Civil_01_rescue_F", player modelToWorld [0, 10, 0], [], 0, "CAN_COLLIDE" ]; _veh setDir (direction player - 90);}];
 };
 
 if (local player) then {
@@ -54,10 +54,10 @@ if (isNil "GM_1") then {GM_1 = objNull};
 if (isNil "GM_2") then {GM_2 = objNull}; 
 if !((player == GM_2) || (player == GM_1)) then {
 	[] spawn {
-		GMmod_1 addCuratorEditableObjects [vehicles,true];
-		GMmod_1 addCuratorEditableObjects [(allMissionObjects "Man"),false];
-		GMmod_1 addCuratorEditableObjects [(allMissionObjects "Air"),true];
-		GMmod_1 addCuratorEditableObjects [(allMissionObjects "Ammo"),false];
+		GMmod_1 addCuratorEditableObjects [vehicles, true];
+		GMmod_1 addCuratorEditableObjects [(allMissionObjects "Man"), false];
+		GMmod_1 addCuratorEditableObjects [(allMissionObjects "Air"), true];
+		GMmod_1 addCuratorEditableObjects [(allMissionObjects "Ammo"), false];
 		GMmod_1 allowCuratorLogicIgnoreAreas true;
 		{GMmod_1 addCuratorEditableObjects [[_x], true];} forEach allUnits;
 		GMmod_1 addCuratorEditableObjects [vehicles, true];

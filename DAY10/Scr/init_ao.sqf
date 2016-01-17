@@ -39,7 +39,7 @@ _c = createGroup east;
 _c setCombatMode "GREEN";
 _v = [getMarkerPos "mUAV", 0, "O_UAV_02_CAS_F", _c] call BIS_fnc_spawnVehicle;
 vUAV = _v select 0;
-[_c, getMarkerPos "mUAV", 1500, 650, 8, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 100] call ADF_fnc_airPatrol;
+[_c, getMarkerPos "mUAV", 1500, 650, 8, "MOVE", "COMBAT", "RED", "LIMITED", "FILE", 100] call ADF_fnc_airPatrol;
 vUAV removeMagazineTurret ["2Rnd_GBU12_LGB",[0]];
 
 // AO Defence Squad Ortego
@@ -147,21 +147,19 @@ ADF_AO_dolores = {
 	};
 	
 	// Count spawned Opfor Dolores
-	private ["_ADF_OpforCnt", "_q", "_doloresWin"];
-	_q = (getPos tDolores) nearEntities ["Man", 500];
-	_ADF_OpforCnt = {side _x == east} count _q;
-	_doloresWin = _ADF_OpforCnt / 12;
+	private ["_cnt_Obj", "_cnt_Win"];
+	_cnt_Obj = [tDolores, east, 500, "MAN"] call ADF_fnc_countRadius;
+	_cnt_Win = _cnt_Obj / 12;
 
 	diag_log	"-----------------------------------------------------";
-	diag_log format ["TWO SIERRA: Dolores AO spawned: number of Opfor: %1 (Win condition: %2)", _ADF_OpforCnt, _doloresWin];
+	diag_log format ["TWO SIERRA: Dolores Objective: number of Opfor: %1 (Win condition: %2)", _cnt_Obj, _cnt_Win];
 	diag_log	"-----------------------------------------------------";
 
 	waitUntil {
-		private ["_ADF_OpforCnt", "_q"];
+		private ["_cnt_Obj", "_q"];
 		sleep 30;
-		_q = (getPos tDolores) nearEntities ["Man", 500];
-		ADF_doloresCnt = {side _x == east} count _q;
-		((ADF_doloresCnt < _doloresWin) || (time > 14400)); // 4 hours
+		ADF_doloresCnt = [tDolores, east, 500, "MAN"] call ADF_fnc_countRadius;
+		((ADF_doloresCnt < _cnt_Win) || (time > 14400)); // 4 hours
 	};
 	
 	ADF_doloresClear = true;
@@ -172,25 +170,22 @@ ADF_AO_dolores = {
 ADF_init_AO = true; publicVariable "ADF_init_AO";
 
 // Count spawned Opfor Ortego
-private ["_ADF_OpforCnt", "_ADF_westCnt", "_ortegoWin"];
+private ["_cnt_Obj", "_cnt_Win"];
 
-_ADF_OpforCnt = {side _x == east} count allUnits;
-_ADF_westCnt = {(side _x == west) && !isPlayer _x} count allUnits;
-_ortegoWin = _ADF_OpforCnt / 12;
+_cnt_Obj	= ["mPat_11", east, 600, "MAN"] call ADF_fnc_countRadius;
+_cnt_Win = _cnt_Obj / 12;
 
 diag_log	"----------------------------------------------------------------------";
-diag_log format ["TWO SIERRA: Ortego AO spawned: number of Opfor: %1 (Win condition: %2)", _ADF_OpforCnt, _ortegoWin];
-diag_log format ["TWO SIERRA: AO BluFor spawned, number of BluFor: %1", _ADF_westCnt];
+diag_log format ["TWO SIERRA: Ortego AO spawned: number of Opfor: %1", {side _x == east} count allUnits];
+diag_log format ["TWO SIERRA: Ortego Objective: number of Opfor: %1 (Win condition: %2)", _cnt_Obj, _cnt_Win];
+diag_log format ["TWO SIERRA: AO BluFor spawned, number of BluFor: %1", {(side _x == west) && !isPlayer _x} count allUnits];
 diag_log	"----------------------------------------------------------------------";
 
 // Track Opfor Ortego count
 waitUntil {
 	sleep 15;
-	private ["_q"];
-	_q = (getMarkerPos "mPat_11") nearEntities ["Man", 500];
-	ADF_ortegaCnt = {side _x == east} count _q;
-	if (triggerActivated tDolores) then {ADF_ortegaCnt = ADF_ortegaCnt - ADF_doloresCnt;};
-	((ADF_ortegaCnt < _ortegoWin) || (time > 10800)); // 3 hours
+	ADF_ortegaCnt = ["mPat_11", east, 600, "MAN"] call ADF_fnc_countRadius;
+	((ADF_ortegaCnt < _cnt_Win) || (time > 10800)); // 3 hours
 };
 	
 // Ortego cleared

@@ -71,26 +71,26 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 ["2S","","FAIRCHILD this is TWO SIERRA. Solid copy on all. Out."] call ADF_fnc_MessageParser; 
 
 ADF_msg_AA1 = {
-	["2S","","FIRESTONE this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
-	["ACO","ACO","TWO SIERRA this is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FAIRCHILD this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA this is FAIRCHILD. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
 	["2S","","FAIRCHILD this is TWO SIERRA. AA battery at JANE neutralized. How copy?"] call ADF_fnc_MessageParser; sleep 7;
 	if (ADF_CAS_activate) then {
 		execVM "Scr\ADF_CAS.sqf";
 		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Solid copy. LANCER is on station ZULU. Over."] call ADF_fnc_MessageParser; sleep 14;
-		["2S","","FIRESTONE this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
+		["2S","","FAIRCHILD this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 	} else {
 		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Good copy. Out."] call ADF_fnc_MessageParser;
 	};
 };
 
 ADF_msg_AA2 = {
-	["2S","","FIRESTONE this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
-	["ACO","ACO","FIRESTONE: TWO SIERRA, this is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FAIRCHILD this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","FAIRCHILD: TWO SIERRA, this is FAIRCHILD. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
 	["2S","","FAIRCHILD this is TWO SIERRA. AA battery at PATTY destroyed. How copy?"] call ADF_fnc_MessageParser; sleep 7;
 	if (ADF_CAS_activate) then {
 		execVM "Scr\ADF_CAS.sqf";
 		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Solid copy. LANCER is on station ZULU. Over."] call ADF_fnc_MessageParser; sleep 14;
-		["2S","","FIRESTONE this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
+		["2S","","FAIRCHILD this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 	} else {
 		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Good copy. Out."] call ADF_fnc_MessageParser;
 	};

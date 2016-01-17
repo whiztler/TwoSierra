@@ -299,7 +299,7 @@ class Mission
 					id=7;
 					side="WEST";
 					vehicle="B_officer_F";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					rank="LIEUTENANT";
 					skill=0.2;
@@ -861,13 +861,12 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={13210.438,5.9636645,9195.7852};
-					azimut=-92.726509;
+					position[]={13963.535,18.535311,8364.9395};
+					azimut=-92.726501;
 					special="NONE";
 					id=41;
 					side="CIV";
 					vehicle="C_man_1";
-					player="PLAYER COMMANDER";
 					leader=1;
 					rank="LIEUTENANT";
 					skill=0.2;
@@ -1289,8 +1288,7 @@ class Mission
 			offsetY=17.9;
 			id=79;
 			side="EMPTY";
-			vehicle="B_HMG_01_A_F";
-			isUAV=1;
+			vehicle="B_HMG_01_high_F";
 			leader=1;
 			skill=0.33333331;
 			ammo=0.10306203;
@@ -3920,7 +3918,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=91;
+		items=94;
 		class Item0
 		{
 			position[]={9533.1387,44.975235,5799.9116};
@@ -4794,6 +4792,30 @@ class Mission
 			type="mil_arrow2";
 			colorName="ColorWEST";
 			angle=78.054672;
+		};
+		class Item91
+		{
+			position[]={11323.428,132.79289,10030.654};
+			name="mCasRun";
+			type="Empty";
+			angle=295;
+		};
+		class Item92
+		{
+			position[]={13379.22,15.14887,8976.3906};
+			name="mOpforScan";
+			text="x";
+			type="Empty";
+			colorName="ColorBlack";
+			a=0.80000001;
+			b=0.80000001;
+		};
+		class Item93
+		{
+			position[]={11667.32,243.85565,9057.8779};
+			name="mCasRun_2";
+			type="Empty";
+			angle=267;
 		};
 	};
 	class Sensors

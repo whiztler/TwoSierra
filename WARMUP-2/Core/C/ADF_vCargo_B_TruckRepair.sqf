@@ -27,9 +27,7 @@ waitUntil {time > 0};
 params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+[_v] call ADF_fnc_stripVehicle;
 
 // Magazines primary weapon
 if (ADF_mod_ACE3) then {
@@ -41,8 +39,8 @@ if (ADF_mod_ACE3) then {
 // Demo/Explosives
 _v addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", 1];
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_Clacker",2];
-	_v addItemCargoGlobal ["ACE_wirecutter",2];	
+	_v addItemCargoGlobal ["ACE_Clacker", 2];
+	_v addItemCargoGlobal ["ACE_wirecutter", 2];	
 };	
 
 // Grenades
@@ -62,21 +60,21 @@ if (ADF_mod_TFAR) then {
 if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_v addItemCargoGlobal ["ItemRadio", 2]};
 /*if (ADF_mod_CTAB) then {
 	_v addItemCargoGlobal ["ItemAndroid", 1];
-	_v addItemCargoGlobal ["ItemcTabHCam",2];
+	_v addItemCargoGlobal ["ItemcTabHCam", 2];
 };*/
 
 // ACE3 Specific	
-if (ADF_mod_ACE3) then {_v addItemCargoGlobal ["ACE_EarPlugs",5]};
-if (ADF_mod_ACE3) then {_v addItemCargoGlobal ["ace_mapTools",2]};	
-if (ADF_mod_ACE3) then {_v addItemCargoGlobal ["ACE_CableTie",5]}; // ACE3 094
+if (ADF_mod_ACE3) then {_v addItemCargoGlobal ["ACE_EarPlugs", 5]};
+if (ADF_mod_ACE3) then {_v addItemCargoGlobal ["ace_mapTools", 2]};	
+if (ADF_mod_ACE3) then {_v addItemCargoGlobal ["ACE_CableTie", 5]}; // ACE3 094
 
 // Medical Items
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_fieldDressing",5];	
-	_v addItemCargoGlobal ["ACE_morphine",1];
-	_v addItemCargoGlobal ["ACE_epinephrine",1];	
+	_v addItemCargoGlobal ["ACE_fieldDressing", 5];	
+	_v addItemCargoGlobal ["ACE_morphine", 1];
+	_v addItemCargoGlobal ["ACE_epinephrine", 1];	
 } else {
-	_v addItemCargoGlobal ["FirstAidKit",5];	
+	_v addItemCargoGlobal ["FirstAidKit", 5];	
 };
 
 // Misc items

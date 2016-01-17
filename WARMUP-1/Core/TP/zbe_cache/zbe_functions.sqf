@@ -39,7 +39,7 @@ zbe_closestUnit = {
 };
 
 /* = {
-	private ["_zbe_leader","_trigUnits"];
+	private ["_zbe_leader", "_trigUnits"];
 	_zbe_leader = _this select 0;
 	_trigUnits = [];
 		{if ((((side _x) getFriend (side _zbe_leader)) <= 0.6)) then {
@@ -77,7 +77,7 @@ zbe_removeDead = {
 		if !(alive _x) then {
 			_x enableSimulation true;
 			_x hideObject false;
-			if (zbe_debug) then {diag_log format ["ZBE_Cache %1 died while cached from group %2, uncaching and removing from cache loop",_x,_group];};
+			if (zbe_debug) then {diag_log format ["ZBE_Cache %1 died while cached from group %2, uncaching and removing from cache loop", _x, _group];};
 			_toCache = _toCache - [_x];
 		};
 	} forEach _toCache;

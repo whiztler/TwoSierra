@@ -53,8 +53,8 @@ for "_i" from 1 to 10 do {
 	[_g, _p, _r, 3, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
 };
 
-private "_ADF_OpforCntCity";
-_ADF_OpforCntCity = {side _x == east} count allUnits;
+private "_cnt_ObjCity";
+_cnt_ObjCity = {side _x == east} count allUnits;
 
 // Calvin Defence Squad
 private ["_g", "_p", "_sqd"];
@@ -82,56 +82,50 @@ for "_i" from 1 to 3 do {
 
 ADF_init_AO = true; publicVariable "ADF_init_AO";
 
-private ["_ADF_OpforCntTotal", "_ADF_OpforCntBase"];
-_ADF_OpforCntTotal = {side _x == east} count allUnits;
-_ADF_OpforCntBase = _ADF_OpforCntTotal - _ADF_OpforCntCity;
+private ["_cnt_ObjCalvin"];
+_cnt_ObjCalvin = ({side _x == east} count allUnits) - _cnt_ObjCity;
 
 diag_log	"-----------------------------------------------------";
-diag_log format ["TWO SIERRA: AO Corazol spawned. Number of OpFor: %1",_ADF_OpforCntCity];
-diag_log format ["TWO SIERRA: AO Calvin spawned. Number of OpFor: %1",_ADF_OpforCntBase];
-diag_log format ["TWO SIERRA: AO TOTAL spawned. Number of OpFor: %1",_ADF_OpforCntTotal];
+diag_log format ["TWO SIERRA: AO Corazol spawned. Number of OpFor: %1", _cnt_ObjCity];
+diag_log format ["TWO SIERRA: AO Calvin spawned. Number of OpFor: %1", _cnt_ObjCalvin];
+diag_log format ["TWO SIERRA: AO TOTAL spawned. Number of OpFor: %1", {side _x == east} count allUnits];
 diag_log	"-----------------------------------------------------";
 
 // Track CORAZOL sectors
 [] spawn {
 	// Foxtrot
 	waitUntil {
-		private ["_a"];
-		sleep 8 + (random 1);				
-		_a = (getMarkerPos "mFoxtrot") nearEntities ["Man", 90];
-		({side _x == west} count _a) > 0;	
+		sleep 8 + (random 1);
+		(["mFoxtrot", west, 90, "MAN"] call ADF_fnc_countRadius) > 0;	
 	};
 	diag_log "TWO SIERRA: Objective FOXTROT activated";
 	tFoxtrotBase enableSimulation true;
 	tFoxtrotAmmo enableSimulation true;
 	waitUntil {
-		private ["_a", "_o", "_b"];
+		private "_o";
 		sleep 5 + (random 1);			
-		_a = (getMarkerPos "mFoxtrot") nearEntities ["Man", 80];	
-		_o = {side _x == east} count _a;
-		diag_log format ["TWO SIERRA: Objective FOXTROT condition - Opfor: %1",_o];
+		_o = ["mFoxtrot", east, 80, "MAN"] call ADF_fnc_countRadius;
+		diag_log format ["TWO SIERRA: Objective FOXTROT condition - Opfor: %1", _o];
 		_o == 0;
 	};
 	ADF_obj_foxtrot = true;
 	remoteExec ["ADF_msg_foxtrotBlue", 0, true];
+	sleep 10;	
 };
 
 [] spawn {
 	// Golf
 	waitUntil {
-		private ["_a"];
-		sleep 8 + (random 1);			
-		_a = (getMarkerPos "mGolf") nearEntities ["Man", 55];		
-		({side _x == west} count _a) > 0;	
+		sleep 8 + (random 1);
+		(["mGolf", west, 55, "MAN"] call ADF_fnc_countRadius)) > 0
 	};
 	diag_log "TWO SIERRA: Objective GOLF activated";
 	tGolfFuel enableSimulation true;
 	waitUntil {
-		private ["_a", "_o", "_b"];
+		private "_o";
 		sleep 5 + (random 1);	
-		_a = (getMarkerPos "mGolf") nearEntities ["Man", 55];
-		_o = {side _x == east} count _a;
-		diag_log format ["TWO SIERRA: Objective GOLF condition - Opfor: %1",_o];
+		_o = ["mGolf", east, 55, "MAN"] call ADF_fnc_countRadius;
+		diag_log format ["TWO SIERRA: Objective GOLF condition - Opfor: %1", _o];
 		_o == 0;
 	};
 	remoteExec ["ADF_msg_golfBlue", 0, true];
@@ -140,19 +134,16 @@ diag_log	"-----------------------------------------------------";
 [] spawn {
 	// Hotel
 	waitUntil {
-		private ["_a"];
 		sleep 8 + (random 1);			
-		_a = (getMarkerPos "mHotel") nearEntities ["Man", 75];
-		({side _x == west} count _a) > 0;	
+		(["mHotel", west, 75, "MAN"] call ADF_fnc_countRadius)) > 0
 	};
 	diag_log "TWO SIERRA: Objective HOTEL activated";
 	tHotelSupply enableSimulation true;
 	waitUntil {
-		private ["_a", "_o", "_b"];
-		sleep 5 + (random 1);			
-		_a = (getMarkerPos "mHotel") nearEntities ["Man", 75];
-		_o = {side _x == east} count _a;
-		diag_log format ["TWO SIERRA: Objective HOTEL condition - Opfor: %1",_o];
+		private "_o";
+		sleep 5 + (random 1);	
+		_o = ["mHotel", east, 75, "MAN"] call ADF_fnc_countRadius;
+		diag_log format ["TWO SIERRA: Objective HOTEL condition - Opfor: %1", _o];
 		_o == 0;
 	};
 	remoteExec ["ADF_msg_hotelBlue", 0, true];
@@ -161,18 +152,15 @@ diag_log	"-----------------------------------------------------";
 [] spawn {
 	// Delta
 	waitUntil {
-		private ["_a"];
 		sleep 5 + (random 1);				
-		_a = (getMarkerPos "mDelta") nearEntities ["Man", 75];
-		({side _x == west} count _a) > 0;	
+		(["mDelta", west, 75, "MAN"] call ADF_fnc_countRadius)) > 0
 	};
 	diag_log "TWO SIERRA: Objective DELTA activated";
 	waitUntil {
-		private ["_a", "_o", "_b"];
-		sleep 5;	
-		_a = (getMarkerPos "mDelta") nearEntities ["Man", 75];
-		_o = {side _x == east} count _a;
-		diag_log format ["TWO SIERRA: Objective DELTA condition - Opfor: %1",_o];
+		private "_o";
+		sleep 5 + (random 1);	
+		_o = ["mDelta", east, 75, "MAN"] call ADF_fnc_countRadius;
+		diag_log format ["TWO SIERRA: Objective DELTA condition - Opfor: %1", _o];
 		_o == 0;
 	};
 	remoteExec ["ADF_msg_DeltaBlue", 0, true];
@@ -181,18 +169,15 @@ diag_log	"-----------------------------------------------------";
 [] spawn {
 	// Echo
 	waitUntil {
-		private ["_a"];
-		sleep 5 + (random 1);		;		
-		_a = (getMarkerPos "mEcho") nearEntities ["Man", 75];
-		({side _x == west} count _a) > 0;	
+		sleep 5 + (random 1);	
+		(["mEcho", west, 75, "MAN"] call ADF_fnc_countRadius)) > 0
 	};
 	diag_log "TWO SIERRA: Objective ECHO activated";
 	waitUntil {
-		private ["_a", "_o", "_b"];
+		private "_o";
 		sleep 5 + (random 1);	
-		_a = (getMarkerPos "mEcho") nearEntities ["Man", 50];
-		_o = {side _x == east} count _a;
-		diag_log format ["TWO SIERRA: Objective ECHO condition - Opfor: %1",_o];
+		_o = ["mEcho", east, 50, "MAN"] call ADF_fnc_countRadius;
+		diag_log format ["TWO SIERRA: Objective ECHO condition - Opfor: %1", _o];
 		_o == 0;
 	};
 	remoteExec ["ADF_msg_EchoBlue", 0, true];
@@ -201,45 +186,40 @@ diag_log	"-----------------------------------------------------";
 [] spawn {
 	// Romeo
 	waitUntil {
-		private ["_a"];
-		sleep 5;		
-		_a = (getMarkerPos "mRomeo") nearEntities ["Man", 75];
-		({side _x == west} count _a) > 0;	
+		sleep 5 + (random 1);		
+		(["mRomeo", west, 75, "MAN"] call ADF_fnc_countRadius)) > 0
 	};
 	diag_log "TWO SIERRA: Objective ECHO activated";
 	waitUntil {
-		private ["_a", "_o", "_b"];
-		sleep 5 + (random 1);		
-		_a = (getMarkerPos "mRomeo") nearEntities ["Man", 50];
-		_o = {(side _x == east) && (alive _x)} count _a;
-		diag_log format ["TWO SIERRA: Objective ECHO condition - Opfor: %1",_o];
+		private "_o";
+		sleep 5 + (random 1);
+		_o = ["mRomeo", east, 50, "MAN"] call ADF_fnc_countRadius;
+		diag_log format ["TWO SIERRA: Objective ECHO condition - Opfor: %1", _o];
 		_o < 3;
 	};
 	remoteExec ["ADF_msg_RomeoBlue", 0, true];
 };
 
-// Track city scenario win
+// Track Corazol scenario win
 [] spawn {
 	waitUntil {
 		private ["_a", "_o", "_b"];
-		sleep 60;		
-		_a = (getMarkerPos "mRad") nearEntities ["Man", 550];
-		_o = {(side _x == east) && (alive _x)} count _a;
+		sleep 60 + (random 2);
+		_o = ["mRad", east, 550, "MAN"] call ADF_fnc_countRadius;
 		_b = {alive _x} count allPlayers;
-		diag_log format ["TWO SIERRA: Mission win condition  (O < B) CORAZOL - Opfor: %1 | BluFor: %2 ",_o,_b];
+		diag_log format ["TWO SIERRA: Mission win condition  (O < B) CORAZOL - Opfor: %1 | BluFor: %2 ", _o, _b];
 		((_o < _b) || (time > 10800)); // 3 hours		
 	};
 	remoteExec ["ADF_msg_corazolBlue", 0, true];
 };
 
-// Track base scenario win
+// Track Calvin scenario win
 [] spawn {
 	waitUntil {
-		private ["_a", "_o", "_b"];
+		private "_o";
 		sleep 60 + (random 2);		
-		_a = (getMarkerPos "mCalvin") nearEntities ["Man", 150];
-		_o = {(side _x == east) && (alive _x)} count _a;
-		diag_log format ["TWO SIERRA: Mission win condition (O = 4) CALVIN - Opfor: %1",_o];
+		_o = ["mCalvin", east, 150, "MAN"] call ADF_fnc_countRadius;
+		diag_log format ["TWO SIERRA: Mission win condition (O = 4) CALVIN - Opfor: %1", _o];
 		(triggerActivated tCalvin && ((_o < 5) || (time > 12600))); // 3,5 hours		
 	};
 	remoteExec ["ADF_msg_calvinBlue", 0, true];

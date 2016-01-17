@@ -27,9 +27,7 @@ waitUntil {time > 0};
 params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+[_v] call ADF_fnc_stripVehicle;
 
 // Primary weapon
 _v addWeaponCargoGlobal ["arifle_MX_F", 1]; // R
@@ -76,11 +74,11 @@ _v addMagazineCargoGlobal ["1Rnd_Smoke_Grenade_shell", 10];
 // Demo/Explosives
 _v addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", 5];
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_Cellphone",1];
-	_v addItemCargoGlobal ["ACE_Clacker",2];
-	_v addItemCargoGlobal ["ACE_M26_Clacker",2]; 
-	_v addItemCargoGlobal ["ACE_DefusalKit",2];
-	_v addItemCargoGlobal ["ACE_wirecutter",2];
+	_v addItemCargoGlobal ["ACE_Cellphone", 1];
+	_v addItemCargoGlobal ["ACE_Clacker", 2];
+	_v addItemCargoGlobal ["ACE_M26_Clacker", 2]; 
+	_v addItemCargoGlobal ["ACE_DefusalKit", 2];
+	_v addItemCargoGlobal ["ACE_wirecutter", 2];
 };
 
 if (ADF_mod_ACE3) then {_v addItemCargoGlobal ["ACE_SpareBarrel", 2]};
@@ -120,21 +118,21 @@ _v addMagazineCargoGlobal ["SmokeShell", 5];
 _v addMagazineCargoGlobal ["SmokeShellGreen", 3]; 	 
 _v addMagazineCargoGlobal ["SmokeShellRed", 3]; 
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_HandFlare_White",10];
-	_v addItemCargoGlobal ["ACE_HandFlare_Red",3];
-	_v addItemCargoGlobal ["ACE_HandFlare_Green",3];
-	_v addItemCargoGlobal ["ACE_HandFlare_Yellow",3];
-	_v addItemCargoGlobal ["ACE_M84",5];
-	_v addItemCargoGlobal ["ACE_HuntIR_M203",3];
-	_v addItemCargoGlobal ["ACE_HuntIR_monitor",1];	
+	_v addItemCargoGlobal ["ACE_HandFlare_White", 10];
+	_v addItemCargoGlobal ["ACE_HandFlare_Red", 3];
+	_v addItemCargoGlobal ["ACE_HandFlare_Green", 3];
+	_v addItemCargoGlobal ["ACE_HandFlare_Yellow", 3];
+	_v addItemCargoGlobal ["ACE_M84", 5];
+	_v addItemCargoGlobal ["ACE_HuntIR_M203", 3];
+	_v addItemCargoGlobal ["ACE_HuntIR_monitor", 1];	
 };
 
 // Optical/Bino's/Goggles
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_Vector",3];		
-	_v addItemCargoGlobal ["ACE_Kestrel4500",1];		
-	_v addItemCargoGlobal ["ace_mx2a",1];		
-	_v addItemCargoGlobal ["ace_yardage450",1];		
+	_v addItemCargoGlobal ["ACE_Vector", 3];		
+	_v addItemCargoGlobal ["ACE_Kestrel4500", 1];		
+	_v addItemCargoGlobal ["ace_mx2a", 1];		
+	_v addItemCargoGlobal ["ace_yardage450", 1];		
 } else {		
 	_v addWeaponCargoGlobal ["Binocular", 3];
 };
@@ -153,43 +151,43 @@ if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_v addItemCargoGlobal ["ItemRadio", 5]
 if (ADF_mod_CTAB) then {
 	_v addItemCargoGlobal ["ItemAndroid", 1];
 	_v addItemCargoGlobal ["ItemcTab", 1];
-	_v addItemCargoGlobal ["ItemcTabHCam",5];
+	_v addItemCargoGlobal ["ItemcTabHCam", 5];
 };
 
 // ACE3 Specific	
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_EarPlugs",15];
-	_v addItemCargoGlobal ["ace_mapTools",10];
-	_v addItemCargoGlobal ["ACE_CableTie",15];
-	_v addItemCargoGlobal ["ACE_UAVBattery",3];
-	_v addItemCargoGlobal ["ACE_TacticalLadder_Pack",1];
+	_v addItemCargoGlobal ["ACE_EarPlugs", 15];
+	_v addItemCargoGlobal ["ace_mapTools", 10];
+	_v addItemCargoGlobal ["ACE_CableTie", 15];
+	_v addItemCargoGlobal ["ACE_UAVBattery", 3];
+	_v addItemCargoGlobal ["ACE_TacticalLadder_Pack", 1];
 }; 
 
 // Medical Items
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_fieldDressing",50];
-	_v addItemCargoGlobal ["ACE_packingBandage",30];
-	_v addItemCargoGlobal ["ACE_elasticBandage",30];
-	_v addItemCargoGlobal ["ACE_quikclot",30];
-	_v addItemCargoGlobal ["ACE_tourniquet",5];
-	_v addItemCargoGlobal ["ACE_surgicalKit",2];
-	_v addItemCargoGlobal ["ACE_personalAidKit",5];
-	_v addItemCargoGlobal ["ACE_morphine",35];
-	_v addItemCargoGlobal ["ACE_epinephrine",25];
-	_v addItemCargoGlobal ["ACE_atropine",25];
-	_v addItemCargoGlobal ["ACE_bloodIV",5];
-	_v addItemCargoGlobal ["ACE_bloodIV_500",10];
-	_v addItemCargoGlobal ["ACE_bloodIV_250",15];
-	_v addItemCargoGlobal ["ACE_plasmaIV",5];
-	_v addItemCargoGlobal ["ACE_plasmaIV_500",10];
-	_v addItemCargoGlobal ["ACE_plasmaIV_250",15];
-	_v addItemCargoGlobal ["ACE_salineIV",5];
-	_v addItemCargoGlobal ["ACE_salineIV_500",10];
-	_v addItemCargoGlobal ["ACE_salineIV_250",15];	
-	_v addItemCargoGlobal ["ACE_bodyBag",15];	
+	_v addItemCargoGlobal ["ACE_fieldDressing", 50];
+	_v addItemCargoGlobal ["ACE_packingBandage", 30];
+	_v addItemCargoGlobal ["ACE_elasticBandage", 30];
+	_v addItemCargoGlobal ["ACE_quikclot", 30];
+	_v addItemCargoGlobal ["ACE_tourniquet", 5];
+	_v addItemCargoGlobal ["ACE_surgicalKit", 2];
+	_v addItemCargoGlobal ["ACE_personalAidKit", 5];
+	_v addItemCargoGlobal ["ACE_morphine", 35];
+	_v addItemCargoGlobal ["ACE_epinephrine", 25];
+	_v addItemCargoGlobal ["ACE_atropine", 25];
+	_v addItemCargoGlobal ["ACE_bloodIV", 5];
+	_v addItemCargoGlobal ["ACE_bloodIV_500", 10];
+	_v addItemCargoGlobal ["ACE_bloodIV_250", 15];
+	_v addItemCargoGlobal ["ACE_plasmaIV", 5];
+	_v addItemCargoGlobal ["ACE_plasmaIV_500", 10];
+	_v addItemCargoGlobal ["ACE_plasmaIV_250", 15];
+	_v addItemCargoGlobal ["ACE_salineIV", 5];
+	_v addItemCargoGlobal ["ACE_salineIV_500", 10];
+	_v addItemCargoGlobal ["ACE_salineIV_250", 15];	
+	_v addItemCargoGlobal ["ACE_bodyBag", 15];	
 } else {
-	_v addItemCargoGlobal ["FirstAidKit",50];
-	_v addItemCargoGlobal ["Medikit",2];
+	_v addItemCargoGlobal ["FirstAidKit", 50];
+	_v addItemCargoGlobal ["Medikit", 2];
 };
 
 // Gear kit 

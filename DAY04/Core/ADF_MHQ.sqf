@@ -29,7 +29,7 @@ if (isServer) then {diag_log "ADF RPT: Init - executing ADF_MHQ.sqf"}; // Report
 
 // Exits
 if (ADF_isHC) exitWith {}; // HC exits script
-if (side player == EAST) exitWith {if (ADF_debug) then {["ADF RPT - MHQ: The MHQ can only be used by BluFor",true] call ADF_fnc_log;}}; // Blufor only!
+if (side player == east) exitWith {if (ADF_debug) then {["ADF RPT - MHQ: The MHQ can only be used by BluFor", true] call ADF_fnc_log;}}; // Blufor only!
 
 // Check if we should run the script at all
 if (isNil "MHQ") then {  // Let's see if there is an MHQ vehicle
@@ -45,7 +45,7 @@ if (isNil "MHQ") exitWith {};
 waitUntil {ADF_missionInit}; // wait for the mission to initialize
 
 // Init
-private ["_ADF_tickets","_ADF_MHQ_EH","_ADF_MHQ_timeType","_ADF_MHQ_playerRespawnTime"];
+private ["_ADF_tickets", "_ADF_MHQ_timeType", "_ADF_MHQ_playerRespawnTime"];
 ADF_MHQ_respawnTime		= round ((_this select 1) * 60); // Respawn time in seconds. Set the nr. of MINUTES in the ADF_init_config.sqf
 ADF_MHQ_respawnCount		= _this select 2; // Nr. of times the MHQ is allowed to respawn. Configure in ADF_init_config.sqf
 ADF_MHQ_vehicle			= _this select 3; // The classname of the MHQ vehicle. Configure in ADF_init_config.sqf
@@ -66,8 +66,8 @@ if (ADF_MHQ_respawnTime < 60) then {ADF_MHQ_respawnTime = 60;};
 if (ADF_mod_ACE3) then {MHQ setVariable ["ACE_Medical_isMedicalVehicle", true]}; // MHQ can act as medical vehicle // v1.39 a12
 
 // Add the MHQ eventhandler and the FOB deploy action menu item
-_ADF_MHQ_EH = MHQ addEventHandler ["killed", {remoteExec ["ADF_fnc_MHQ_respawnInit",0,true];}];
-ADF_MHQ_FOB_deployAction = MHQ addAction ["<t align='left' color='#c0d6b2'>Deploy the F.O.B.</t>",{remoteExec ["ADF_fnc_fobDeploy",0,true]},[],-95,false,true,"",""];
+MHQ addEventHandler ["killed", {remoteExec ["ADF_fnc_MHQ_respawnInit", 0, true];}];
+ADF_MHQ_FOB_deployAction = MHQ addAction ["<t align='left' color='#c0d6b2'>Deploy the F.O.B.</t>",{remoteExec ["ADF_fnc_fobDeploy", 0, true]},[],-95, false, true,"", ""];
 
 // MHQ info message
 if (hasInterface) then {
@@ -96,7 +96,7 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_MHQ.sqf";
 // from here on end run on the server only
 if (!isServer) exitWith {}; 
 
-// Setup initial WEST respawn markers
+// Setup initial west respawn markers
 if (!isNil "respawn_west") then {
 	// respawn_west marker exist, move it to the MHQ spawn location
 	"respawn_west" setMarkerPos ADF_MHQ_orgPos;

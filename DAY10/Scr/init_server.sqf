@@ -26,7 +26,7 @@ _p = ["mCarBomb_1", "mCarBomb_2", "mCarBomb_3"] call BIS_fnc_selectRandom;
 // Pascal heli port
 ADF_AO_ortega = {
 	private ["_c", "_p", "_wp"];
-	//sleep ((random 150) + (random 150));
+	if (!MotsActive) then {sleep ((random 150) + (random 150))};	
 	_c = createGroup east;
 	_c setVariable ["ADF_noHC_transfer", true];
 	_p = _c createUnit ["O_Helipilot_F", getPos mSpawn, [], 0, "SERGEANT"]; _p moveInDriver vAir_1;	

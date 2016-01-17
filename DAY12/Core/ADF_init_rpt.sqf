@@ -15,12 +15,11 @@ Executed on dedicated server only
 diag_log "ADF RPT: Init - executing ADF_init_rpt.sqf"; // Reporting. Do NOT edit/remove
 
 // Init
-private ["_ai","_p","_hc","_m","_msg"];
+private ["_ai", "_hc", "_m", "_msg"];
 
 _m	= "";
 _hc	= count (entities "HeadlessClient_F");
-_p	= {alive _x} count (allPlayers - entities "HeadlessClient_F");
-_ai	= count (allUnits - (_p + _hc));
+_ai	= count (allUnits - allPlayers);
 if (_ai < 0) then {_ai = 0};
 
 if (ADF_mod_CBA) then {_m = _m + "CBA A3";};
@@ -37,15 +36,15 @@ if (ADF_mod_RHS) then {_m = _m + ", RHS";};
 if (ADF_debug) then {
 	diag_log "--------------------------------------------------------------------------------------";
 	_msg = format ["Init - ADF version: %1",ADF_tpl_version];
-	[_msg,false] call ADF_fnc_log;
+	[_msg, false] call ADF_fnc_log;
 	_msg = format ["Init - Mission version: %1",ADF_mission_version];
-	[_msg,false] call ADF_fnc_log;
-	_msg = format ["Init - Number of players connected: %1", _p];
-	[_msg,false] call ADF_fnc_log;
+	[_msg, false] call ADF_fnc_log;
+	_msg = format ["Init - Number of players connected: %1", count allPlayers];
+	[_msg, false] call ADF_fnc_log;
 	_msg = format ["Init - Number of HC's connected: %1", _hc];
-	[_msg,false] call ADF_fnc_log;	
+	[_msg, false] call ADF_fnc_log;	
 	_msg = format ["Init - Number of AI's active: %1", _ai];
-	[_msg,false] call ADF_fnc_log;
+	[_msg, false] call ADF_fnc_log;
 	diag_log "--------------------------------------------------------------------------------------";
 } else { // Live mission logging
 	diag_log ""; diag_log "";
@@ -56,7 +55,7 @@ if (ADF_debug) then {
 	diag_log format ["ADF RPT: Init - Mission name: %1",(getText (missionConfigFile >> "overviewText"))];
 	diag_log format ["ADF RPT: Init - Mission developer: %1",(getText (missionConfigFile >> "author"))];
 	diag_log "--------------------------------------------------------------------------------------";
-	diag_log format ["ADF RPT: Init - Number of players connected: %1", _p];
+	diag_log format ["ADF RPT: Init - Number of players connected: %1", count allPlayers];
 	diag_log format ["ADF RPT: Init - Number of HC's connected: %1", _hc];
 	diag_log "--------------------------------------------------------------------------------------";
 	diag_log format ["ADF RPT: Init - Number of AI's active: %1", _ai];
@@ -70,4 +69,4 @@ if (ADF_debug) then {
 };
 
 // Server FPS reporting in RPT. The frequency of the reporting is based on server performance.
-if (ADF_Log_ServerPerfEnable) then {[60,"Server","Server"] spawn ADF_fnc_statsReporting};
+if (ADF_Log_ServerPerfEnable) then {[60,"Server", "Server"] spawn ADF_fnc_statsReporting};

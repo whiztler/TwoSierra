@@ -15,20 +15,22 @@ if (_f == 1) then {
 
 	if (hasInterface) then {		
 		if (Obj_2) then {
-			["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
-			["ACO","ACO","FIRESTONE: This is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;		
-			["2S","","FAIRCHILD this is TWO SIERRA. Secured DIANA. Both NOLA and DIANA are blue. How copy"] call ADF_fnc_MessageParser; sleep 14;
-			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA. Break.<br/><br/>22 Support and 4Th will RV at your current position. Break. Set up security and get the mess in working order.<br/><br/>MOTHER wants you to remain at NOLA. ACE is detecting a lot of movement at Lopatino. Break.<br/><br/>Get some chow and some rest. MOTHER suggests you get back into action soon..."] call ADF_fnc_MessageParser; sleep 12;
+			["2S","","FAIRCHILD this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO","ACO","TWO SIERRA this is FAIRCHILD. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;		
+			["2S","","FAIRCHILD this is TWO SIERRA. We secured DIANA. Both NOLA and DIANA are blue. How copy"] call ADF_fnc_MessageParser; sleep 14;
+			["ACO","ACO","TWO SIERRA this is FAIRCHILD. Solid copy. Break.<br/><br/>2SPG and 4Th will RV at your current position. Break. Set up security and get the mess in working order. Break.<br/><br/>MOTHER wants you to remain at NOLA. ACE is detecting a lot of movement at Lopatino. Break.<br/><br/>Get some chow and some rest. MOTHER suggests you get back into action soon..."] call ADF_fnc_MessageParser; sleep 20;
+			["2S","","FAIRCHILD this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 			sleep 20;
 			_l = ["tLayer"] call BIS_fnc_rscLayer; 
 			_l cutText ["", "BLACK", 20];
 			["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 07 | Nola</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 			['END1',true,22] call BIS_fnc_endMission;	
 		} else {
-			["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
-			["ACO","ACO","FIRESTONE: This is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;		
-			["2S","","FAIRCHILD this is TWO SIERRA. DIANA is blue. How copy"] call ADF_fnc_MessageParser; sleep 14;
-			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA. Push on to NOLA. Out."] call ADF_fnc_MessageParser;
+			["2S","","FAIRCHILD this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO","ACO","TWO SIERRA this is FAIRCHILD. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;		
+			["2S","","FAIRCHILD this is TWO SIERRA. DIANA is blue. How copy"] call ADF_fnc_MessageParser; sleep 11;
+			["ACO","ACO","TWO SIERRA this is FAIRCHILD. Good copy. Break. Push on to NOLA. Over."] call ADF_fnc_MessageParser; sleep 7;
+			["2S","","FAIRCHILD this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
 		};		
 	};
 };
@@ -46,20 +48,21 @@ if (_f == 2) then {
 
 	if (hasInterface) then {		
 		if (Obj_1) then {
-			["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
-			["ACO", "ACO","FIRESTONE: This is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
-			["2S","","FAIRCHILD this is TWO SIERRA. NOLA is clear. Both NOLA and DIANA are blue. How copy"] call ADF_fnc_MessageParser; sleep 14;
-			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA. Break.<br/><br/>22 Support and 4Th will RV at your current position. Break. Set up security and get the mess in working order.<br/><br/>MOTHER wants you to remain at NOLA. ACE is detecting a lot of movement at Lopatino. Break.<br/><br/>Get some chow and some rest. MOTHER suggests you get back into action soon..."] call ADF_fnc_MessageParser; sleep 12;
+			["2S","","FAIRCHILD this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO", "ACO","TWO SIERRA this is FAIRCHILD. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+			["ACO","ACO","TWO SIERRA this is FAIRCHILD. Solid copy. Break.<br/><br/>2SPG and 4Th will RV at your current position. Break. Set up security and get the mess in working order. Break.<br/><br/>MOTHER wants you to remain at NOLA. ACE is detecting a lot of movement at Lopatino. Break.<br/><br/>Get some chow and some rest. MOTHER suggests you get back into action soon..."] call ADF_fnc_MessageParser; sleep 20;
+			["2S","","FAIRCHILD this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 			sleep 20;
 			_l = ["tLayer"] call BIS_fnc_rscLayer; 
 			_l cutText ["", "BLACK", 20];
 			["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 07 | Nola</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 			['END1',true,22] call BIS_fnc_endMission;	
 		} else {
-			["2S","","TWO SIERRA: FIRESTONE this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
-			["ACO", "ACO","FIRESTONE: This is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;		
+			["2S","","FAIRCHILD this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+			["ACO", "ACO","TWO SIERRA this is FAIRCHILD. Send. Over."] call ADF_fnc_MessageParser; sleep 8;		
 			["2S","","FAIRCHILD this is TWO SIERRA. NOLA is blue. How copy"] call ADF_fnc_MessageParser; sleep 14;
-			["ACO","ACO","FAIRCHILD: Solid copy TWO SIERRA. Push on to DIANA. Out."] call ADF_fnc_MessageParser;
+			["ACO","ACO","TWO SIERRA this is FAIRCHILD. Good copy. Break. Push on to DIANA. Over."] call ADF_fnc_MessageParser; sleep 7;
+			["2S","","FAIRCHILD this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
 		};		
 	};
 };

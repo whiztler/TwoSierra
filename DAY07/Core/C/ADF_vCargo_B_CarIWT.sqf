@@ -27,9 +27,7 @@ waitUntil {time > 0};
 params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+[_v] call ADF_fnc_stripVehicle;
 
 // Primary weapon
 _v addWeaponCargoGlobal ["arifle_MX_GL_F", 1]; // GL
@@ -85,11 +83,11 @@ _v addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", 1];
 _v addMagazineCargoGlobal ["ATMine_Range_Mag", 2];
 _v addMagazineCargoGlobal ["APERSBoundingMine_Range_Mag", 2];
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_Cellphone",1];
-	_v addItemCargoGlobal ["ACE_Clacker",1];
-	_v addItemCargoGlobal ["ACE_M26_Clacker",1]; // ACE3 094	
-	_v addItemCargoGlobal ["ACE_DefusalKit",1];
-	_v addItemCargoGlobal ["ACE_wirecutter",1];
+	_v addItemCargoGlobal ["ACE_Cellphone", 1];
+	_v addItemCargoGlobal ["ACE_Clacker", 1];
+	_v addItemCargoGlobal ["ACE_M26_Clacker", 1]; // ACE3 094	
+	_v addItemCargoGlobal ["ACE_DefusalKit", 1];
+	_v addItemCargoGlobal ["ACE_wirecutter", 1];
 };	
 
 // Weapon mountings
@@ -119,7 +117,7 @@ _v addMagazineCargoGlobal ["3Rnd_Smoke_Grenade_shell", 4];
 _v addMagazineCargoGlobal ["3Rnd_UGL_FlareCIR_F", 1]; 
 if (ADF_mod_ACE3) then {
 	_v addItemCargoGlobal ["ACE_HuntIR_M203", 2];
-	_v addItemCargoGlobal ["ACE_HuntIR_monitor",1];
+	_v addItemCargoGlobal ["ACE_HuntIR_monitor", 1];
 };
 
 // Grenades
@@ -132,7 +130,7 @@ if (ADF_mod_ACE3) then {
 	_v addItemCargoGlobal ["ACE_HandFlare_Red", 1];
 	_v addItemCargoGlobal ["ACE_HandFlare_Green", 1];
 	_v addItemCargoGlobal ["ACE_HandFlare_Yellow", 1];
-	_v addItemCargoGlobal ["ACE_M84" ,5]; // ACE3 094	
+	_v addItemCargoGlobal ["ACE_M84" , 5]; // ACE3 094	
 };
 
 // ACRE / TFAR and cTAB
@@ -148,35 +146,35 @@ if (ADF_mod_TFAR) then {
 if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_v addItemCargoGlobal ["ItemRadio", 4]};
 /*if (ADF_mod_CTAB) then {
 	_v addItemCargoGlobal ["ItemAndroid", 1];
-	_v addItemCargoGlobal ["ItemcTabHCam",6];
+	_v addItemCargoGlobal ["ItemcTabHCam", 6];
 };*/
 
 // ACE3 Specific	
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_EarPlugs",4];
-	_v addItemCargoGlobal ["ace_mapTools",1];
-	_v addItemCargoGlobal ["ACE_CableTie",2];
+	_v addItemCargoGlobal ["ACE_EarPlugs", 4];
+	_v addItemCargoGlobal ["ace_mapTools", 1];
+	_v addItemCargoGlobal ["ACE_CableTie", 2];
 	_v addItemCargoGlobal ["ACE_UAVBattery", 1];
 	_v addItemCargoGlobal ["ACE_TacticalLadder_Pack", 1];
 }; 
 
 // Medical Items
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_fieldDressing",5];
-	_v addItemCargoGlobal ["ACE_personalAidKit",1];
-	_v addItemCargoGlobal ["ACE_morphine",3];
-	_v addItemCargoGlobal ["ACE_epinephrine",2];
-	_v addItemCargoGlobal ["ACE_bloodIV",1];
+	_v addItemCargoGlobal ["ACE_fieldDressing", 5];
+	_v addItemCargoGlobal ["ACE_personalAidKit", 1];
+	_v addItemCargoGlobal ["ACE_morphine", 3];
+	_v addItemCargoGlobal ["ACE_epinephrine", 2];
+	_v addItemCargoGlobal ["ACE_bloodIV", 1];
 } else {
-	_v addItemCargoGlobal ["FirstAidKit",5];
-	_v addItemCargoGlobal ["Medikit",1];
+	_v addItemCargoGlobal ["FirstAidKit", 5];
+	_v addItemCargoGlobal ["Medikit", 1];
 };
 
 // Optical/Bino's/Goggles
 _v addWeaponCargoGlobal ["Rangefinder", 1];
 _v addItemCargoGlobal ["NVGoggles", 1];
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_Vector" ,1];		
+	_v addItemCargoGlobal ["ACE_Vector" , 1];		
 };	
 
 // Gear kit 

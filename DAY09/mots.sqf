@@ -24,28 +24,26 @@ if (!ADF_init_AO) then {
 	"Done initializing the AO." remoteExec ["systemChat", -2]; uiSleep 2;
 };
 
-private "_t"
-_t = time
-
+/*
 tFoxtrotBase enableSimulation true;
 tFoxtrotAmmo enableSimulation true;
 tHotelSupply enableSimulation true;
 tGolfFuel enableSimulation true;
-
+*/
 "Starting MOTS process. Make sure you are NOT in a vehicle!" remoteExec ["systemChat", -2]; uiSleep 5;
 
 "Teleporting to the AO in 5 seconds..." remoteExec ["systemChat", -2]; uiSleep 5;
 {_x setPos (getMarkerPos "mMOTS_1")} forEach _a; sleep 3;
 
-waitUntil {sleep 10; "Waiting for AI's to settle in..." remoteExec ["systemChat", -2]; time = _t + 60};
+waitUntil {sleep 10; "Waiting for AI's to settle in..." remoteExec ["systemChat", -2]; time > 120};
 
 // FOXTROT
 "Teleporting to FOXTROT in 5 seconds" remoteExec ["systemChat", -2]; uiSleep 5;
 {_x setPos (getMarkerPos "mMOTS_2")} forEach _a;
 "Stay inside the hangar..." remoteExec ["systemChat", -2]; uiSleep 20;
-"Clearing FOXTROT" remoteExec ["systemChat", -2]; uiSleep 2;
+"Clearing FOXTROT" remoteExec ["systemChat", -2]; 
 {_x setDamage 1} forEach [vAA_1,vAA_2];
-{if (side _x == EAST) then {_x setDamage 1}} forEach nearestObjects [getMarkerPos "mFoxtrot", ["MAN","CAR","APC","TANK","StaticWeapon"], 100]; uiSleep 5;
+{if (side _x == EAST) then {_x setDamage 1}} forEach ((getMarkerPos "mFoxtrot") nearEntities [["MAN","CAR","APC","TANK","StaticWeapon"], 100]); uiSleep 5;
 "FOXTROT cleared" remoteExec ["systemChat", -2]; uiSleep 5;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
@@ -67,7 +65,7 @@ deleteMarker "mMotsAmmo";
 {_x setPos (getMarkerPos "mRomeo")} forEach _a;
 "Waiting for ROMEO conditions to trigger" remoteExec ["systemChat", -2]; uiSleep 10;
 "Clearing ROMEO" remoteExec ["systemChat", -2]; uiSleep 2;
-{if (side _x == EAST) then {_x setDamage 1}} forEach nearestObjects [getMarkerPos "mRomeo", ["MAN","CAR","APC","TANK","StaticWeapon"], 50]; uiSleep 5;
+{if (side _x == EAST) then {_x setDamage 1}} forEach ((getMarkerPos "mRomeo") nearEntities [["MAN","CAR","APC","TANK","StaticWeapon"], 100]); uiSleep 5;
 "ROMEO cleared" remoteExec ["systemChat", -2]; uiSleep 5;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
@@ -77,7 +75,7 @@ deleteMarker "mMotsAmmo";
 {_x setPos (getMarkerPos "mMOTS_3")} forEach _a;
 "Waiting for ECHO conditions to trigger" remoteExec ["systemChat", -2]; uiSleep 10;
 "Clearing ECHO" remoteExec ["systemChat", -2]; uiSleep 2;
-{if (side _x == EAST) then {_x setDamage 1}} forEach nearestObjects [getMarkerPos "mEcho", ["MAN","CAR","APC","TANK","StaticWeapon"], 50]; uiSleep 5;
+{if (side _x == EAST) then {_x setDamage 1}} forEach ((getMarkerPos "mEcho") nearEntities [["MAN","CAR","APC","TANK","StaticWeapon"], 100]); uiSleep 5;
 "ECHO cleared" remoteExec ["systemChat", -2]; uiSleep 10;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
@@ -87,7 +85,7 @@ deleteMarker "mMotsAmmo";
 {_x setPos (getMarkerPos "mMOTS_4")} forEach _a;
 "Stay inside the barn..." remoteExec ["systemChat", -2]; uiSleep 10;
 "Clearing GOLF" remoteExec ["systemChat", -2]; uiSleep 2;
-{if (side _x == EAST) then {_x setDamage 1}} forEach nearestObjects [getMarkerPos "mGOLF", ["MAN","CAR","APC","TANK","StaticWeapon"], 55]; uiSleep 5;
+{if (side _x == EAST) then {_x setDamage 1}} forEach ((getMarkerPos "mGOLF") nearEntities [["MAN","CAR","APC","TANK","StaticWeapon"], 100]); uiSleep 5;
 "GOLF cleared" remoteExec ["systemChat", -2]; uiSleep 5;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
@@ -104,17 +102,17 @@ deleteMarker "mMotsFuel";
 {_x setPos (getMarkerPos "mMOTS_5")} forEach _a;
 "Waiting for DELTA conditions to trigger" remoteExec ["systemChat", -2]; uiSleep 10;
 "Clearing DELTA" remoteExec ["systemChat", -2]; uiSleep 2;
-{if (side _x == EAST) then {_x setDamage 1}} forEach nearestObjects [getMarkerPos "mDELTA", ["MAN","CAR","APC","TANK","StaticWeapon"], 80]; uiSleep 5;
+{if (side _x == EAST) then {_x setDamage 1}} forEach ((getMarkerPos "mDELTA") nearEntities [["MAN","CAR","APC","TANK","StaticWeapon"], 100]); uiSleep 5;
 "DELTA cleared" remoteExec ["systemChat", -2]; uiSleep 10;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
 
 // HOTEL
 "Teleporting to HOTEL in 5 seconds" remoteExec ["systemChat", -2]; uiSleep 5;
-{_x setPos (getMarkerPos "mMOTS_4")} forEach _a;
+{_x setPos (getMarkerPos "mMOTS_6")} forEach _a;
 "Stay inside the barn..." remoteExec ["systemChat", -2]; uiSleep 10;
 "Clearing HOTEL" remoteExec ["systemChat", -2]; uiSleep 2;
-{if (side _x == EAST) then {_x setDamage 1}} forEach nearestObjects [getMarkerPos "mHOTEL", ["MAN","CAR","APC","TANK","StaticWeapon"], 75]; uiSleep 5;
+{if (side _x == EAST) then {_x setDamage 1}} forEach ((getMarkerPos "mHOTEL") nearEntities [["MAN","CAR","APC","TANK","StaticWeapon"], 100]); uiSleep 5;
 "HOTEL cleared" remoteExec ["systemChat", -2]; uiSleep 5;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
@@ -131,7 +129,7 @@ deleteMarker "mMotsSupply";
 "Teleporting to the starting AO position in 5 seconds..." remoteExec ["systemChat", -2]; uiSleep 5;
 {_x setPos (getMarkerPos "mMOTS_1")} forEach _a; sleep 6;
 "Clearing the Carazol AO" remoteExec ["systemChat", -2]; uiSleep 3;
-{if (side _x == EAST) then {_x setDamage 1}} forEach nearestObjects [getMarkerPos "mPat_3", ["MAN","CAR","APC","TANK","StaticWeapon"], 750]; uiSleep 5;
+{if (side _x == EAST) then {_x setDamage 1}} forEach ((getMarkerPos "mPat_3") nearEntities [["MAN","CAR","APC","TANK","StaticWeapon"], 800]); uiSleep 5;
 "Carazol cleared." remoteExec ["systemChat", -2]; uiSleep 3;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
 "Waiting for mission messages to finish" remoteExec ["systemChat", -2]; uiSleep 20;
@@ -142,9 +140,8 @@ deleteMarker "mMotsSupply";
 "Teleporting to the CALVIN base in 5 seconds..." remoteExec ["systemChat", -2]; uiSleep 5;
 {_x setPos (getMarkerPos "mMOTS_7")} forEach _a; sleep 6;
 "Clearing the CALVIN AO" remoteExec ["systemChat", -2]; uiSleep 3;
-{if (side _x == EAST) then {_x setDamage 1}} forEach nearestObjects [getMarkerPos "mCalvin",  ["MAN","CAR","APC","TANK","StaticWeapon"], 1500]; uiSleep 5;
+{if (side _x == EAST) then {_x setDamage 1}} forEach ((getMarkerPos "mCalvin") nearEntities [["MAN","CAR","APC","TANK","StaticWeapon"], 1500]); uiSleep 5;
 "CALVIN cleared." remoteExec ["systemChat", -2]; uiSleep 3;
-
 
 "Mission Objective Test Script completed" remoteExec ["systemChat", -2]; uiSleep 5;
 diag_log "ADF RPT: Debug - Mission Objective Test Script (MOTS) finished";

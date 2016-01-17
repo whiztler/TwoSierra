@@ -14,11 +14,11 @@ diag_log "ADF RPT: Init - executing ADF_fnc_Loadout2S.sqf"; // Reporting. Do NOT
 
 /********* INIT ********/
 
-private ["_ADF_unit","_ADF_unitString","_u","_r","_ADF_INF_headGear","_ADF_INF_priWpn","_ADF_INF_priWpn_lite","_ADF_INF_priWpn_GL",
-		"_ADF_INF_priWpn_LMG","_ADF_INF_priWpn_MG","_ADF_INF_handWpn","_ADF_INF_tube_Lite","_ADF_INF_tube_AT","_ADF_INF_tube_AA",
-		"_ADF_INF_priWpnScope_lite","_ADF_INF_priWpnMag","_ADF_INF_priWpnMag_LMG","_ADF_INF_priWpnMag_MG","_ADF_INF_handWpn_mag",
-		"_ADF_INF_tubeMag_Lite","_ADF_INF_tubeMag_AT","_ADF_INF_tubeMag_AA","_ADF_INF_40mike","_ADF_INF_handgrenade","_ADF_INF_ACE3_default",
-		"_ADF_INF_ACE3_defaultMed","_ADF_TFAR_PersonalRadio", "_ADF_TFAR_SWRadio", "_ADF_TFAR_LRRadio","_ADF_texture"];
+private ["_ADF_unit", "_ADF_unitString", "_u", "_r", "_ADF_INF_headGear", "_ADF_INF_priWpn", "_ADF_INF_priWpn_lite", "_ADF_INF_priWpn_GL",
+		"_ADF_INF_priWpn_LMG", "_ADF_INF_priWpn_MG", "_ADF_INF_handWpn", "_ADF_INF_tube_Lite", "_ADF_INF_tube_AT", "_ADF_INF_tube_AA",
+		"_ADF_INF_priWpnScope_lite", "_ADF_INF_priWpnMag", "_ADF_INF_priWpnMag_LMG", "_ADF_INF_priWpnMag_MG", "_ADF_INF_handWpn_mag",
+		"_ADF_INF_tubeMag_Lite", "_ADF_INF_tubeMag_AT", "_ADF_INF_tubeMag_AA", "_ADF_INF_40mike", "_ADF_INF_handgrenade", "_ADF_INF_ACE3_default",
+		"_ADF_INF_ACE3_defaultMed", "_ADF_TFAR_PersonalRadio", "_ADF_TFAR_SWRadio", "_ADF_TFAR_LRRadio", "_ADF_texture"];
 		
 tf_no_auto_long_range_radio 	= true;
 
@@ -29,7 +29,7 @@ _u 							= _ADF_unitString splitString "_";
 _r							= toLower (_u select 1);
 
 // Init gear
-_ADF_INF_headGear				= ["H_HelmetSpecB_paint2","H_HelmetB_sand","H_HelmetB_desert"] call BIS_fnc_selectRandom;
+_ADF_INF_headGear				= ["H_HelmetSpecB_paint2", "H_HelmetB_sand", "H_HelmetB_desert"] call BIS_fnc_selectRandom;
 
 // Init Weapon
 _ADF_INF_priWpn				= "arifle_MX_Black_Hamr_pointer_F";
@@ -72,8 +72,8 @@ if (ADF_mod_ACE3) then {
 };
 
 // Default ACE3 kit
-_ADF_INF_ACE3_default 		= ["ACE_EarPlugs","ace_mapTools","ACE_CableTie","ACE_IR_Strobe_Item","ACE_morphine","ACE_HandFlare_White","ACE_HandFlare_White","ACE_M84","ACE_M84"];
-_ADF_INF_ACE3_defaultMed		= ["ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot","ACE_fieldDressing","ACE_elasticBandage","ACE_quikclot"];
+_ADF_INF_ACE3_default 		= ["ACE_EarPlugs", "ace_mapTools", "ACE_CableTie", "ACE_IR_Strobe_Item", "ACE_morphine", "ACE_HandFlare_White", "ACE_HandFlare_White", "ACE_M84", "ACE_M84"];
+_ADF_INF_ACE3_defaultMed		= ["ACE_fieldDressing", "ACE_elasticBandage", "ACE_quikclot", "ACE_fieldDressing", "ACE_elasticBandage", "ACE_quikclot", "ACE_fieldDressing", "ACE_elasticBandage", "ACE_quikclot"];
 								
 // Strip the unit
 removeAllWeapons _ADF_unit; removeAllItems _ADF_unit; removeAllAssignedItems _ADF_unit; removeVest _ADF_unit; removeBackpack _ADF_unit; removeHeadgear _ADF_unit; removeGoggles _ADF_unit; 
@@ -83,7 +83,7 @@ removeAllWeapons _ADF_unit; removeAllItems _ADF_unit; removeAllAssignedItems _AD
 
 // Add Items/gear
 _ADF_unit forceAddUniform "U_B_CombatUniform_mcam";
-{_ADF_unit linkItem _x} forEach ["ItemWatch","ItemCompass","ItemMap"];
+{_ADF_unit linkItem _x} forEach ["ItemWatch", "ItemCompass", "ItemMap"];
 _ADF_unit addHeadgear _ADF_INF_headGear;
 _ADF_unit addVest "V_TacVest_khk";
 _ADF_unit addWeapon "NVGoggles";
@@ -96,7 +96,7 @@ if (!ADF_mod_ACE3 && ADF_mod_CTAB) then {_ADF_microDAGR = "itemMicroDagr"};
 
 // Closing arguments
 ADF_loadout_platoon = {
-	params ["_ADF_unit","_r"];
+	params ["_ADF_unit", "_r"];
 	_ADF_unit selectWeapon (primaryWeapon _ADF_unit);
 	if (isMultiplayer && ADF_mod_ACE3) then {_ADF_unit setSpeaker "ACE_NoVoice";};
 	if (ADF_mod_ACE3) then {[_ADF_unit, currentWeapon _ADF_unit, currentMuzzle _ADF_unit] call ACE_SafeMode_fnc_lockSafety;};

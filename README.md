@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/whiztler/ADF/raw/master/Core/I/ADF_logo.png" height="240"></p>
 <p align="center">
    <a href="https://github.com/whiztler/ADF/releases">
-        <img src="http://img.shields.io/badge/Version-1.41-blue.svg?style=flat" alt="ADF version">
+        <img src="http://img.shields.io/badge/Version-1.43-blue.svg?style=flat" alt="ADF version">
     </a>
     <a href="https://github.com/whiztler/ADF/archive/master.zip">
         <img src="http://img.shields.io/badge/Download-2.4_MB-green.svg?style=flat" alt="ADF download">
@@ -37,7 +37,7 @@
 
 ## Current version
 
-version: 1.41 | build: Production
+version: 1.43 | build: Final 03
 
 <a name="New-Features"></a>
 ## New Features 1.39+
@@ -51,14 +51,37 @@ version: 1.41 | build: Production
 <a name="Changelog"></a>
 ## Changelog
 
+### 1.42
+```
+-	ADDED: ADF_fnc_airPatrol.sqf - function to create random air patrols.
+-	ADDED: ADF_fnc_defendArea.sqf - function to garrison a group, man turrets.
+-	ADDED: ADF_fnc_seaPatrol.sqf - function to create boat patrols (water waypoints).
+-	ADDED: Additional dubug/feedback RPT reporting.
+-	UPDATED: ADF_fnc_HC_loadBalancing.sqf - Added a delayed start of 120 seconds so that AO's can init properly.
+-	UPDATED: zbe_cache - Added a delayed start of 120 seconds so that AO's can init properly.
+-	UPDATED: ADF_SimpleStats.sqf - Now displays stats for up to 3 HC's.
+-	UPDATED: code base updated in line with new scripting commands 1.52. Most scripts updated.
+-	UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml).
+```
+
 ### 1.41
 ```
 -	ADDED: Altitude Based Fatigue. Can be switched on/off in ADF_init_config.
-- 	ADDED: Crew Check (ADF_crewCheck.sqf). Checks if player is authorized to operate specific vehicles
-- 	UPDATED: vehicle/crate supplies. Can be initialized from script (ADF_supplyInit) or item init 
-- 	UPDATED: code base updated in line with new scripting commands 1.48
-- 	UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml)
--	UPDATED: ADF_init_config.sqf for Supplies function, Altitude Based Fatique (ABF) and Crew Check
+-	ADDED: ADF_fnc_position.sqf - functions re position
+-	ADDED: ADF_fnc_distance.sqf - functions re distance
+-	ADDED: ADF_fnc_createIED.sqf - function to create random IED's
+-	ADDED: ADF_fnc_objectMarker.sqf - function to create object map markers (bounding box marers).
+-	ADDED: ADF_fnc_sensor.sqf - function to create detection sensors (like triggers) with custom check times (W.I.P.).
+-	ADDED: ADF_fnc_typeWriter.sqf - function to create typewriter effect for mission intro's
+-	ADDED: ADF_fnc_vehiclePatrol.sqf - function to create random vehicle patrols (waypoints on roads only).
+-	ADDED: ADF_CAS.sqf - script to add AI CAS functionality to missions.
+-	ADDED: ADF_crewCheck.sqf. Crew check script. Checks if player is authorized to operate specific vehicles.
+-	ADDED: Various functions to support the TWO SIERRA campaign.
+-	FIXED: ADF_HC.sqf. Fixed server init and optimized script for performance
+-	UPDATED: vehicle/crate supplies. Can be initialized from script (ADF_supplyInit) or item init.
+-	UPDATED: code base updated in line with new scripting commands 1.48 and 1.50.
+-	UPDATED: Notepad++ ARMA plugin (Core\I\SQF_whiz.xml).
+-	UPDATED: ADF_init_config.sqf for Supplies function, Altitude Based Fatique (ABF) and Crew Check.
 ```
 
 ### 1.40
@@ -354,8 +377,6 @@ By default ADF has implemented ACE3 Advanced settings such as Advanced Medical, 
 
 This section covers spawning of units/groups by scripts. Spawning using scripts we'll call Spawn on Demand (SOD). This enables mission makers to spawn units/groups/vehicles only when it is required/triggered and thus save server/HC performance. SOD can make your missions less linear and more dynamic.
 
-ADF offers a few well documented sample scripts for you to learn about SOD. You'll find them in the `Core\` folder (**ADF_DSG-Airborne.sqf**, **ADF_DSG-FootPatrols.sqf**, **ADF_DSG-Armored.sqf**)
-
 ### The basics
 
 To spawn a unit/group/vehicle ARMA3 requires some information that the script should provide:
@@ -450,7 +471,7 @@ Now you can create a Trigger in the editor with the following settings (I only m
 If you haven't already, create/place a marker on the map and name it "marker1". You may place the marker anywhere you want, inside or outside the trigger area. This is the position your enemy patrol group will spawn and start their patrol from.
 Save your mission and test by entering the trigger area as a Blufor unit. The enemy patrol should spawn immediately.
 
-You can spawn single units, groups, crewed vehicles, empty vehicles, etc. Have a look at the sample spawn scripts. You find then in the Core\\ folder (**ADF_DSG-Airborne.sqf**, **ADF_DSG-FootPatrols.sqf**, **ADF_DSG-Armored.sqf**). For further reading on spawning units and such, have a look at:
+You can spawn single units, groups, crewed vehicles, empty vehicles, etc. For further reading on spawning units and such, have a look at:
 
 -   [BIS spawn vehicle function](https://community.bistudio.com/wiki/BIS\_fnc\_spawnVehicle)
 -   [BIS function createGroup](https://community.bistudio.com/wiki/createGroup)
@@ -470,7 +491,7 @@ ADF uses the following third party scripts:
 -   [TAW View Distance](http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script) by Tonic 
 -   [ZBE_caching](http://forums.bistudio.com/showthread.php?179777-ZBE\_Cache-AI-amp-Vehicle-caching-script-addon) by Zorrobyte 
 -   [MAD Ambient Life](http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)) by MAD T
--   [Delete All](http://www.thebutcherbay.org/showthread.php?tid=63) by Anjan 
+-   [Repetitive Cleanup](https://forums.bistudio.com/topic/153481-repetitive-cleanup/) by Aeroson 
 -   [Void Map Marker](http://www.armaholic.com/forums.php?m=posts&q=25540) by Void 
 
 Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official addon or tool. Use of the Software (in whole or in part) is entirely at your own risk.

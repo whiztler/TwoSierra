@@ -2,7 +2,7 @@
 ARMA Mission Development Framework
 ADF version: 1.43 / JANUARY 2016
 
-Script: Loadouts INDEPENDENTS
+Script: Loadouts independentS
 Author: Saetheer
 Script version: 2.31
 

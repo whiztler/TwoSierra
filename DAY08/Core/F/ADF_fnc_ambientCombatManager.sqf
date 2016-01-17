@@ -4,7 +4,7 @@ ADF version: 1.43 / JANUARY 2016
 
 Script: Ambient Combat Manager
 Author: Whiztler
-Script version: 1.02
+Script version: 1.03
 
 Game type: N/A
 File: ADF_fnc_ambientCombatManager.sqf
@@ -51,10 +51,12 @@ Example around position player and 800 meter radius, 25 minutes:
 Notes
 this function requires the ADF_fnc_position.sqf:
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
+
+When using small ares, only one instance of ACM can be active at the time.
 ****************************************************************/
 
 ADF_ACM_vehicle = {
-	params [["_p", [0,0,0], [[]], [3]], ["_r", 750, [0]]];
+	params [["_p", [0, 0, 0], [[]], [3]], ["_r", 750, [0]]];
 	private ["_v", "_vc"];
 	
 	_p = [_p, _r] call ADF_fnc_roadPos;
@@ -64,9 +66,9 @@ ADF_ACM_vehicle = {
 	_v setDamage 1;
 	
 	if (ADF_debug) then {
-		private ["_mn", "_m"];
-		_mn = format ["p_%1%2", round (random 500), round (_p select 1)];
-		_m = createMarker [_mn, _p];
+		private ["_n", "_m"];
+		_n = format ["p_%1%2", round (random 500), round (_p select 1)];
+		_m = createMarker [_n, _p];
 		_m setMarkerSize [.7, .7];
 		_m setMarkerShape "ICON";
 		_m setMarkerType "hd_dot";
@@ -81,7 +83,7 @@ ADF_ACM_vehicle = {
 };
 
 ADF_ACM_explosion = {
-	params [["_p", [0,0,0], [[]], [3]]];
+	params [["_p", [0, 0, 0], [[]], [3]]];
 	private ["_b", "_bc"];
 	
 	sleep random 3;
@@ -89,9 +91,9 @@ ADF_ACM_explosion = {
 	_b = createVehicle [_bc, [_p select 0, _p select 1, (_p select 2) + 3], [], 0, "NONE"];
 	
 	if (ADF_debug) then {
-		private ["_mn", "_m"];
-		_mn = format ["p_%1%2", round (random 500), round (_p select 1)];
-		_m = createMarker [_mn, _p];
+		private ["_n", "_m"];
+		_n = format ["p_%1%2", round (random 500), round (_p select 1)];
+		_m = createMarker [_n, _p];
 		_m setMarkerSize [.7, .7];
 		_m setMarkerShape "ICON";
 		_m setMarkerType "hd_dot";
@@ -104,21 +106,23 @@ ADF_ACM_explosion = {
 
 ADF_ACM_createAgent = {
 	// init
-	params [["_s", east, [east]]];
+	params ["_s"];
 	private ["_a", "_uc", "_w", "_l", "_g"];
 	_a	= "";
 	_uc	= "";
+	
+	if !(isNil "ACM_agt") exitWith {["ADF error: Only one instance of ACM small arms fire can be active.", true] call ADF_fnc_log};
 	
 	// Check side
 	switch _s do {
 		case east		: {_a = "200Rnd_65x39_belt_Tracer_Green"; _uc = "o_soldier_f"};
 		case west		: {_a = "200Rnd_65x39_belt_Tracer_Red"; _uc = "b_soldier_f"};
 		case independent	: {_a = "200Rnd_65x39_belt_Tracer_Yellow"; _uc = "i_soldier_f"};
-		default {_a = "200Rnd_65x39_belt_Tracer_Green"; _uc = "i_soldier_f"};
+		default {_a = "200Rnd_65x39_belt_Tracer_Green"; _uc = "o_soldier_f"};
 	};
-
+	
 	// Create the agent
-	ACM_agt = createAgent [_uc, [0,0,0], [], 0, "NONE"];	
+	ACM_agt = createAgent [_uc, [0, 0, 0], [], 0, "NONE"];	
 	ACM_agt allowDamage false;
 	ACM_agt setCaptive true;
 	ACM_agt hideObject true;	
@@ -150,15 +154,15 @@ ADF_ACM_createAgent = {
 
 ADF_ACM_smallArms = {
 	// init
-	params [["_p", [0,0,0], [[]], [3]]];
+	params [["_p", [0, 0, 0], [[]], [3]]];
 	private ["_s", "_d", "_a"];
 
 	ACM_agt setPosATL _p;
 	
 	if (ADF_debug) then {
-		private ["_mn", "_m"];
-		_mn = format ["p_%1%2", round (random 500), round (_p select 1)];
-		_m = createMarker [_mn, _p];
+		private ["_n", "_m"];
+		_n = format ["p_%1%2", round (random 500), round (_p select 1)];
+		_m = createMarker [_n, _p];
 		_m setMarkerSize [.7, .7];
 		_m setMarkerShape "ICON";
 		_m setMarkerType "hd_dot";
@@ -215,14 +219,22 @@ ADF_fnc_ACM = {
 		["_y", 2, [0]],
 		["_d", 150, [0]]
 	];
-	private ["_i", "_e"];
+	private ["_i", "_e", "_w"];
 	ADF_cancel_ACM = false;
+	_w = 2;
 	diag_log format ["ADF RPT: Starting ADF_fnc_ACM. Params: %1, %2, %3, %4, %5, %6, %7, %8, %9", _p, _r, _t, _b, _v, _s, _f, _y, _d];
 	
 	// Check the position (marker, array, etc.)
 	_p	= [_p] call ADF_fnc_checkPosition;	
 	// convert minutes to seconds
 	_t = _t * 60;
+	
+	// Cycle time
+	if (_t < 6) then {
+		_w = (_y / 10) + 1.3;		
+	} else {
+		_w = (_y / 10) + 2;
+	};	
 	
 	// Intensity	
 	_y = 1 - (_y / 10);
@@ -233,9 +245,9 @@ ADF_fnc_ACM = {
 	if (_s) then {[_f] call ADF_ACM_createAgent};
 	
 	if (ADF_debug) then {
-		private ["_mn", "_m"];
-		_mn = format ["m_%1%2", round (random 999), round (random 999)];
-		_m = createMarker [_mn, _p];
+		private ["_n", "_m"];
+		_n = format ["m_%1%2", round (random 999), round (random 999)];
+		_m = createMarker [_n, _p];
 		_m setMarkerSize [_r, _r];
 		_m setMarkerShape "ELLIPSE";
 		_m setMarkerBrush "Solid";
@@ -243,16 +255,15 @@ ADF_fnc_ACM = {
 	};	
 	
 	for "_i" from _t to 0 step -1 do {
-		private ["_a", "_c", "_n", "_w", "_fps"];
+		private ["_a", "_c", "_n", "_fps"];
 		_c		= random 1;
 		_n		= diag_tickTime;
-		_w		= 1;
 		_fps		= 0;
 	
 		// Select a random position within the pre-defined radius
 		_a	= [_p, _r, random 360] call ADF_fnc_randomPos;
 		
-		// Check FPS on multiplayer
+		// Check FPS in multiplayer
 		if (isMultiplayer) then {_fps = diag_fps} else {_fps = 25};
 		
 		// No effects when FPS drops below 20
@@ -260,7 +271,7 @@ ADF_fnc_ACM = {
 			// Check if no players are near
 			if ({alive _x && _a distance _x < _d} count allPlayers == 0) then {
 				// Select a random effect
-				if (_b && _c > 0.5 && ((random 1) > _y)) then {[_a] call ADF_ACM_explosion};
+				if (_b && _c > 0.5 && (random 1) > _y) then {[_a] call ADF_ACM_explosion};
 				if (_v && _c < 0.5 && ((random 1) > (_y + 0.1))) then {[_a, _r] spawn ADF_ACM_vehicle};
 				if (_s && ((random 1) > (_y - 0.1))) then {[_a] call ADF_ACM_smallArms};
 			};
@@ -280,7 +291,7 @@ ADF_fnc_ACM = {
 	};
 	
 	// Delete the small arms agent if small arms was activated.
-	if (_s) then {if !(isNil "ACM_agt") then {deleteVehicle ACM_agt}};
+	if (_s) then {if !(isNil "ACM_agt") then {deleteVehicle ACM_agt; ACM_agt = nil}};
 	diag_log "ADF RPT: Finished ADF_fnc_ACM.";
 	
 	true

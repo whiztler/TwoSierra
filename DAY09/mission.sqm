@@ -112,14 +112,14 @@ class Mission
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=9000;
-		startWeather=0.76999998;
+		startWeather=0.44999999;
 		startFog=0.001;
 		startWind=0.25;
 		startWindDir=80;
 		startRain=0.001;
 		startLightnings=0.001;
 		startGust=0.049999997;
-		forecastWeather=0.69999999;
+		forecastWeather=0.32999998;
 		forecastFog=0.001;
 		forecastWind=0.14;
 		forecastWaves=0;
@@ -876,7 +876,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=768;
+		items=769;
 		class Item0
 		{
 			position[]={16271.057,12.385297,9153.2363};
@@ -7536,14 +7536,13 @@ class Mission
 		};
 		class Item653
 		{
-			position[]={13381.945,19.485001,8856.3799};
+			position[]={13381.989,19.485001,8857.25};
 			azimut=-90.3153;
 			id=694;
 			side="EMPTY";
 			vehicle="O_MRAP_02_hmg_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false;";
 		};
 		class Item654
 		{
@@ -8659,10 +8658,22 @@ class Mission
 			leader=1;
 			skill=0.60000002;
 		};
+		class Item768
+		{
+			position[]={13239.107,6.48,9088.167};
+			azimut=539.745;
+			offsetY=0.000106812;
+			id=809;
+			side="EMPTY";
+			vehicle="Land_Pod_Heli_Transport_04_ammo_F";
+			lock="LOCKEDPLAYER";
+			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
+		};
 	};
 	class Markers
 	{
-		items=71;
+		items=72;
 		class Item0
 		{
 			position[]={9533.1387,44.975235,5799.9116};
@@ -8840,7 +8851,7 @@ class Mission
 		class Item17
 		{
 			position[]={17773.861,-0.0023645665,20322.582};
-			name="mAirSupport";
+			name="mFrod";
 			text=" USS Gerald R. Ford";
 			type="b_naval";
 			colorName="ColorWEST";
@@ -9083,7 +9094,7 @@ class Mission
 		class Item42
 		{
 			position[]={19142.875,11.595445,14130.626};
-			name="mBase_3_1";
+			name="mAirSupport";
 			type="n_air";
 			colorName="ColorGUER";
 		};
@@ -9229,7 +9240,7 @@ class Mission
 		};
 		class Item58
 		{
-			position[]={13996.388,81.542259,8907.1211};
+			position[]={14223.517,48.465,9323.5381};
 			name="mMOTS_1";
 			text="M";
 			type="Empty";
@@ -9357,6 +9368,15 @@ class Mission
 			b=0.5;
 			angle=25.3629;
 		};
+		class Item71
+		{
+			position[]={18036.045,0,8499.2305};
+			name="mAirSupportVector";
+			type="Empty";
+			colorName="ColorBlue";
+			a=0.80000001;
+			b=0.80000001;
+		};
 	};
 	class Sensors
 	{
@@ -9401,7 +9421,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			name="tFoxtrotBase";
-			expActiv="0 = [] spawn ADF_msg_foxtrotBase; if (isServer) then {deleteVehicle thisTrigger};";
+			expActiv="0 = [] spawn ADF_msg_foxtrotBase; ";
 			class Effects
 			{
 			};
@@ -9416,7 +9436,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			name="tFoxtrotAmmo";
-			expActiv="0 = [] spawn ADF_msg_foxtrotAmmo; if (isServer) then {deleteVehicle thisTrigger};";
+			expActiv="0 = [] spawn ADF_msg_foxtrotAmmo; ";
 			class Effects
 			{
 			};
@@ -9431,7 +9451,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			name="tHotelSupply";
-			expActiv="0 = [] spawn ADF_msg_hotelSupply; if (isServer) then {deleteVehicle thisTrigger};";
+			expActiv="0 = [] spawn ADF_msg_hotelSupply; ";
 			class Effects
 			{
 			};
@@ -9446,7 +9466,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			name="tGolfFuel";
-			expActiv="0 = [] spawn ADF_msg_golfFuel; if (isServer) then {deleteVehicle thisTrigger};";
+			expActiv="0 = [] spawn ADF_msg_golfFuel;";
 			class Effects
 			{
 			};

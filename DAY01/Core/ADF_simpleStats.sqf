@@ -28,7 +28,7 @@ while {(_c != 20)} do {
 	_c = _c + 1;
 	
 	ADF_fnc_SimpleStatsCheck = {
-		params ["_c","_n","_m"];
+		params ["_c", "_n", "_m"];
 		private ["_ADF_FPS"];
 		
 		if (isMultiplayer) then {_ADF_FPS = round (diag_fps)} else {_ADF_FPS = "N/A";};
@@ -39,19 +39,19 @@ while {(_c != 20)} do {
 			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>FPS:</t>
 			<t color='#FFFFFF' align='right' font='PuristaMedium' size='.9'>%2</t><br/>
 			
-			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units West:</t>
+			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units west:</t>
 			<t color='#799cff' align='right' font='PuristaBold' size='.9'>%3</t><br/>
-			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units East:</t>
+			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units east:</t>
 			<t color='#ff8989' align='right' font='PuristaBold' size='.9'>%4</t><br/>
-			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units Independent:</t>
+			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units independent:</t>
 			<t color='#d8ff5f' align='right' font='PuristaBold' size='.9'>%5</t><br/>
 			<t color='#A1A4AD' align='left' font='PuristaMedium' size='.9'>Units Civilian:</t>
 			<t color='#eebffd' align='right' font='PuristaBold' size='.9'>%6</t><br/><br/>",
 			_n,																	// 1
 			_ADF_FPS, 															// 2			
-			{(local _x) && (side _x == WEST)} count allUnits, 			// 3
-			{(local _x) && (side _x == EAST)} count allUnits, 			// 4
-			{(local _x) && (side _x == INDEPENDENT)} count allUnits, 	// 5
+			{(local _x) && (side _x == west)} count allUnits, 			// 3
+			{(local _x) && (side _x == east)} count allUnits, 			// 4
+			{(local _x) && (side _x == independent)} count allUnits, 	// 5
 			{(local _x) && (side _x == CIVILIAN)} count allUnits 		// 6
 		];
 

@@ -10,6 +10,7 @@ MotsActive			= false;
 ADF_init_AO			= false;
 ADF_ortegaClear		= false;
 ADF_doloresClear		= false;
+ADF_endMission		= false;
 ADF_msg_endMission	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: End Mission activated";diag_log	"-----------------------------------------------------";};
 ADF_msg_doloresBase	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Dolores base trigger activated";diag_log	"-----------------------------------------------------";};
 ADF_msg_ortegaClear	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Ortega Clear message";diag_log	"-----------------------------------------------------";};

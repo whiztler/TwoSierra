@@ -40,5 +40,17 @@ hint parseText"<img size= '5' shadow='false' image='Img\logo_TwoSierra.paa'/><br
 ";
 
 ADF_msg_clearedAO = {
+	params ["_c"];
 	["ACO","ACO","Area of Operations Cleared."] call ADF_fnc_MessageParser;
+	if (_c == 5) then {
+		sleep 5;
+		private "_l";
+		_l = ["tLayer"] call BIS_fnc_rscLayer;
+		_l cutText ["", "BLACK IN", 5];
+		["<t size='5' color='#FFFFFF'>V I C T O R Y</t>",0,0,3,12] spawn BIS_fnc_dynamicText;
+		sleep 5;
+		_l = ["tLayer"] call BIS_fnc_rscLayer; 
+		_l cutText ["", "BLACK", 20];
+		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Two Sierra - WarmUp</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
+		['END1',true,22] call BIS_fnc_endMission;	};
 };

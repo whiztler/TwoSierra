@@ -1,5 +1,5 @@
 /* DEBUG *************************
-0 = execVM "Scr\NRF.sqf"; [player] call ADF_fnc_redressAegis;
+0 = execVM "Scr\NRF.sqf"; [player] call ADF_fnc_redressNRF;
 *********************************/
 
 diag_log "ADF RPT: Init - executing ADF_redress_NRF.sqf"; // Reporting. Do NOT edit/remove
@@ -21,6 +21,12 @@ ADF_fnc_redressNRF = {
 	// init
 	params ["_unit"];
 	private ["_headGear"];
+	
+	// Strip
+	[_unit, false] call ADF_fnc_stripUnit;
+	
+	// Add uniform
+	_unit forceAddUniform "U_B_CombatUniform_mcam";
 	
 	// Add NV
 	_unit addWeapon "NVGoggles";
@@ -48,4 +54,5 @@ ADF_fnc_redressNRF = {
 	_unit selectWeapon (primaryWeapon _unit);
 	
 	[_unit] call ADF_fnc_redressNRF_skill;
+	true
 };

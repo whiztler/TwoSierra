@@ -27,9 +27,7 @@ waitUntil {time > 0};
 params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _v; // Empty vehicle CargoGlobal contents on init
+[_v] call ADF_fnc_stripVehicle;
 
 // Magazines primary weapon
 _v addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag", 5];
@@ -37,8 +35,8 @@ _v addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag", 5];
 // Demo/Explosives
 _v addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", 1];
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_Clacker",2];
-	_v addItemCargoGlobal ["ACE_wirecutter",1];
+	_v addItemCargoGlobal ["ACE_Clacker", 2];
+	_v addItemCargoGlobal ["ACE_wirecutter", 1];
 };	
 
 // Grenades
@@ -46,10 +44,10 @@ _v addMagazineCargoGlobal ["HandGrenade", 5];
 _v addMagazineCargoGlobal ["SmokeShell", 5]; 	 
 _v addMagazineCargoGlobal ["SmokeShellGreen", 5]; 	 
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_HandFlare_White",3];
-	_v addItemCargoGlobal ["ACE_HandFlare_Red",1];
-	_v addItemCargoGlobal ["ACE_HandFlare_Green",1];
-	_v addItemCargoGlobal ["ACE_HandFlare_Yellow",1];
+	_v addItemCargoGlobal ["ACE_HandFlare_White", 3];
+	_v addItemCargoGlobal ["ACE_HandFlare_Red", 1];
+	_v addItemCargoGlobal ["ACE_HandFlare_Green", 1];
+	_v addItemCargoGlobal ["ACE_HandFlare_Yellow", 1];
 };
 
 // ACRE / TFAR and cTAB
@@ -65,23 +63,23 @@ if (ADF_mod_TFAR) then {
 if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_v addItemCargoGlobal ["ItemRadio", 3]};
 if (ADF_mod_CTAB) then {
 	_v addItemCargoGlobal ["ItemAndroid", 1];
-	_v addItemCargoGlobal ["ItemcTabHCam",3];
+	_v addItemCargoGlobal ["ItemcTabHCam", 3];
 };
 
 // ACE3 Specific	
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_EarPlugs",5];
-	_v addItemCargoGlobal ["ace_mapTools",1];
+	_v addItemCargoGlobal ["ACE_EarPlugs", 5];
+	_v addItemCargoGlobal ["ace_mapTools", 1];
 };
 
 // Medical Items
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_fieldDressing",5];
-	_v addItemCargoGlobal ["ACE_personalAidKit",1];
-	_v addItemCargoGlobal ["ACE_morphine",5];
+	_v addItemCargoGlobal ["ACE_fieldDressing", 5];
+	_v addItemCargoGlobal ["ACE_personalAidKit", 1];
+	_v addItemCargoGlobal ["ACE_morphine", 5];
 } else {
-	_v addItemCargoGlobal ["FirstAidKit",5];
-	_v addItemCargoGlobal ["Medikit",1];
+	_v addItemCargoGlobal ["FirstAidKit", 5];
+	_v addItemCargoGlobal ["Medikit", 1];
 };
 
 // Gear kit 

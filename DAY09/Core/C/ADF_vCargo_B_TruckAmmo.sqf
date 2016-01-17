@@ -27,9 +27,7 @@ waitUntil {time > 0};
 params ["_v"];
 
 // Settings 
-clearWeaponCargoGlobal _v; // Empty vehicle Cargo contents on init
-clearMagazineCargoGlobal _v; // Empty vehicle Cargo contents on init
-clearItemCargoGlobal _v; // Empty vehicle Cargo contents on init
+[_v] call ADF_fnc_stripVehicle;
 
 // Primary weapon
 _v addWeaponCargoGlobal ["arifle_MX_GL_F", 2]; // GL
@@ -73,10 +71,10 @@ _v addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", 10];
 _v addMagazineCargoGlobal ["ATMine_Range_Mag", 15];
 _v addMagazineCargoGlobal ["APERSBoundingMine_Range_Mag", 15];
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_Clacker",10];
-	_v addItemCargoGlobal ["ACE_DefusalKit",5];
-	_v addItemCargoGlobal ["ACE_M26_Clacker",5]; 
-	_v addItemCargoGlobal ["ACE_wirecutter",3];
+	_v addItemCargoGlobal ["ACE_Clacker", 10];
+	_v addItemCargoGlobal ["ACE_DefusalKit", 5];
+	_v addItemCargoGlobal ["ACE_M26_Clacker", 5]; 
+	_v addItemCargoGlobal ["ACE_wirecutter", 3];
 };	
 
 // Weapon mountings
@@ -113,8 +111,8 @@ _v addMagazineCargoGlobal ["3Rnd_HE_Grenade_shell", 25];
 _v addMagazineCargoGlobal ["3Rnd_Smoke_Grenade_shell", 25];
 _v addMagazineCargoGlobal ["3Rnd_UGL_FlareCIR_F", 25];
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_HuntIR_M203",10];
-	_v addItemCargoGlobal ["ACE_HuntIR_monitor",2];
+	_v addItemCargoGlobal ["ACE_HuntIR_M203", 10];
+	_v addItemCargoGlobal ["ACE_HuntIR_monitor", 2];
 };
 
 // Grenades
@@ -123,11 +121,11 @@ _v addMagazineCargoGlobal ["SmokeShell", 50];
 _v addMagazineCargoGlobal ["SmokeShellGreen", 25]; 	 
 _v addMagazineCargoGlobal ["SmokeShellRed", 25];
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_HandFlare_White",25];
-	_v addItemCargoGlobal ["ACE_HandFlare_Red",15];
-	_v addItemCargoGlobal ["ACE_HandFlare_Green",15];
-	_v addItemCargoGlobal ["ACE_HandFlare_Yellow",15];
-	_v addItemCargoGlobal ["ACE_M84",15];
+	_v addItemCargoGlobal ["ACE_HandFlare_White", 25];
+	_v addItemCargoGlobal ["ACE_HandFlare_Red", 15];
+	_v addItemCargoGlobal ["ACE_HandFlare_Green", 15];
+	_v addItemCargoGlobal ["ACE_HandFlare_Yellow", 15];
+	_v addItemCargoGlobal ["ACE_M84", 15];
 }; 
 
 // ACRE / TFAR and cTAB
@@ -144,38 +142,38 @@ if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_v addItemCargoGlobal ["ItemRadio", 25
 if (ADF_mod_CTAB) then {
 	//_v addItemCargoGlobal ["ItemAndroid", 5];
 	//_v addItemCargoGlobal ["ItemcTab", 1];
-	_v addItemCargoGlobal ["ItemcTabHCam",25];
+	_v addItemCargoGlobal ["ItemcTabHCam", 25];
 };
 
 // ACE3 Specific	
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_EarPlugs",50];
-	_v addItemCargoGlobal ["ace_mapTools",10];
-	_v addItemCargoGlobal ["ACE_CableTie",50];
-	_v addItemCargoGlobal ["ACE_UAVBattery",5];
-	_v addItemCargoGlobal ["ACE_TacticalLadder_Pack",3];
+	_v addItemCargoGlobal ["ACE_EarPlugs", 50];
+	_v addItemCargoGlobal ["ace_mapTools", 10];
+	_v addItemCargoGlobal ["ACE_CableTie", 50];
+	_v addItemCargoGlobal ["ACE_UAVBattery", 5];
+	_v addItemCargoGlobal ["ACE_TacticalLadder_Pack", 3];
 };
 
 // Medical Items
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_fieldDressing",30];
-	_v addItemCargoGlobal ["ACE_personalAidKit",1];
-	_v addItemCargoGlobal ["ACE_morphine",15];
-	_v addItemCargoGlobal ["ACE_epinephrine",10];
-	_v addItemCargoGlobal ["ACE_bloodIV",5];
+	_v addItemCargoGlobal ["ACE_fieldDressing", 30];
+	_v addItemCargoGlobal ["ACE_personalAidKit", 1];
+	_v addItemCargoGlobal ["ACE_morphine", 15];
+	_v addItemCargoGlobal ["ACE_epinephrine", 10];
+	_v addItemCargoGlobal ["ACE_bloodIV", 5];
 } else {
-	_v addItemCargoGlobal ["FirstAidKit",30];
-	_v addItemCargoGlobal ["Medikit",1];
+	_v addItemCargoGlobal ["FirstAidKit", 30];
+	_v addItemCargoGlobal ["Medikit", 1];
 };
 
 // Optical/Bino's/Goggles
 _v addWeaponCargoGlobal ["Rangefinder", 2];
 _v addWeaponCargoGlobal ["Binocular", 10];
 _v addItemCargoGlobal ["G_Tatical_Clear", 5];
-_v addItemCargoGlobal ["G_Shades_Black" ,5];
+_v addItemCargoGlobal ["G_Shades_Black" , 5];
 _v addItemCargoGlobal ["NVGoggles", 10];
 if (ADF_mod_ACE3) then {
-	_v addItemCargoGlobal ["ACE_Vector",5];		
+	_v addItemCargoGlobal ["ACE_Vector", 5];		
 };
 
 // Gear kit (not working from crates/veh)

@@ -7,6 +7,7 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_defendArea.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_footPatrol.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_seaPatrol.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_airPatrol.sqf";
+call compile preprocessFileLineNumbers "Core\F\ADF_fnc_airSupport.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_createPara.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_ambientCombatManager.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
@@ -42,6 +43,15 @@ NRF_grp_3 setGroupIdGlobal ["5-1 CHARLIE"];
 };
 
 // ACM
-["mZulu", 1200, 120, true, true, true, east, 2, 150] spawn ADF_fnc_ACM;
+["mZulu", 1200, 120, true, true, true, east, 3, 150] spawn ADF_fnc_ACM;
+["mZulu", 1200, 40, true, true, false, west, 5, 150] spawn ADF_fnc_ACM;
+
+// CAS run
+[] spawn {
+	waitUntil {sleep 1; time > 140};
+	[west, "mCasRun", -1, 2] call ADF_fnc_airSupport;
+	sleep 15;
+	[west, "mCasRun_2", -1, 2] call ADF_fnc_airSupport;
+};
 
 #include "init_ao.sqf"

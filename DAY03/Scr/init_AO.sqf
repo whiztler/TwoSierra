@@ -59,14 +59,14 @@ for "_i" from 1 to 6 do {
 
 if (!isNil "tStart") then {deleteVehicle tStart};
 
-private ["_opforCntWin", "_ADF_OpforCnt"];
+private ["_cnt_Win", "_cnt_Obj"];
 // Count units/track time for win/loose scenario
-_ADF_OpforCnt = {side _x == independent} count allUnits;
-_opforCntWin = round ((_ADF_OpforCnt / 7) + (random 10));
+_cnt_Obj = {side _x == independent} count allUnits;
+_cnt_Win = round ((_cnt_Obj / 7) + (random 10));
 
 diag_log	"-----------------------------------------------------";
-diag_log format ["TWO SIERRA: AO spawned. Number of OpFor: %1", _ADF_OpforCnt];
-diag_log format ["TWO SIERRA: Success mission OpFor count: %1", _opforCntWin];
+diag_log format ["TWO SIERRA: AO spawned. Number of OpFor: %1", _cnt_Obj];
+diag_log format ["TWO SIERRA: Success mission OpFor count: %1", _cnt_Win];
 diag_log	"-----------------------------------------------------";
 
 ADF_init_AO = true; publicVariable "ADF_init_AO";
@@ -75,7 +75,7 @@ waitUntil {
 	sleep 30;
 	private "_c";
 	_c = {side _x == independent} count allUnits;
-	((_c < _opforCntWin) || (time > (ADF_missionStartTime + 10000))); // 3 hours + prep time
+	((_c < _cnt_Win) || (time > (ADF_missionStartTime + 10000))); // 3 hours + prep time
 };
 
 diag_log	"-----------------------------------------------------";

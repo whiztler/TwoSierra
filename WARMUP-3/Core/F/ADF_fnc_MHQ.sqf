@@ -63,7 +63,7 @@ ADF_fnc_MHQ_respawn = {
 	sleep ADF_MHQ_respawnTime; 
 	
 	if (isServer) then {
-		private ["_m","_ADF_MHQ_EH"];
+		private ["_m"];
 		
 		// Create a new MHQ
 		MHQ = createVehicle [ADF_MHQ_vehicle,ADF_MHQ_orgPos, [], 0, "none"]; publicVariable "MHQ"; 
@@ -77,7 +77,7 @@ ADF_fnc_MHQ_respawn = {
 		_m setMarkerSize [.8, .8];
 		
 		// re-add the EH and AddAction (new spawned MHQ)
-		_ADF_MHQ_EH = MHQ addEventHandler ["killed", {[] spawn ADF_fnc_MHQ_respawnInit;}];
+		MHQ addEventHandler ["killed", {[] spawn ADF_fnc_MHQ_respawnInit;}];
 		 // Load the supplies
 		[MHQ] execVM "Core\C\ADF_vCargo_B_MHQ.sqf";
 			
@@ -86,11 +86,9 @@ ADF_fnc_MHQ_respawn = {
 	};
 	
 	if (hasInterface) then {
-		private "_ADF_MHQ_EH";
-		
 		// re-add the EH and AddAction (new spawned MHQ)
-		_ADF_MHQ_EH = MHQ addEventHandler ["killed", {[] spawn ADF_fnc_MHQ_respawnInit;}];
-		ADF_MHQ_FOB_deployAction = MHQ addAction ["<t align='left' color='#c0d6b2'>Deploy the F.O.B.</t>",{remoteExec ["ADF_fnc_fobDeploy",0,true];},[],-98,false,true,"",""];
+		MHQ addEventHandler ["killed", {[] spawn ADF_fnc_MHQ_respawnInit;}];
+		ADF_MHQ_FOB_deployAction = MHQ addAction ["<t align='left' color='#c0d6b2'>Deploy the F.O.B.</t>",{remoteExec ["ADF_fnc_fobDeploy", 0, true];},[],-98, false, true,"", ""];
 		
 		// Display a hint that the MHQ has respawned
 		hintSilent parseText format ["<img size= '6' shadow='false' image='%1'/><br/><br/><t color='#6C7169' size='1.5'>%2 MHQ</t><br/><br/><t color='#A1A4AD'>Mobile HQ respawned at grid:</t><br/><t color='#FFFFFF'>%3 %4</t><br/><br/>", ADF_clanLogo, ADF_clanName, round (ADF_MHQ_orgPos select 0), round (ADF_MHQ_orgPos select 1)];
@@ -100,14 +98,14 @@ ADF_fnc_MHQ_respawn = {
 };
 
 ADF_fnc_MHQ_FinalSpawn = {
-	private ["_m","_v"];
+	private ["_m", "_v"];
 	
 	// All MHQ's destroyed. Create marker to show final player respawn location
 	_m = createMarker ["mFinalSpawn",getMarkerPos "respawn_west"];
 	_m setMarkerShape "ICON"; 
 	_m setMarkerSize [0.8, 0.8]; 
 	_m setMarkerType "respawn_inf";	
-	_m setMarkerColor "ColorWEST";
+	_m setMarkerColor "Colorwest";
 	
 	// Create the flagPole
 	if (ADF_clanFlag != "") then {
@@ -155,25 +153,25 @@ ADF_fnc_fobDeploy = {
 	
 	// Create the FOB
 	if (isServer) then {
-		private ["_f", "_ADF_MHQ_FOB_objects"];
+		private ["_f", "_o"];
 		
-		_ADF_MHQ_FOB_objects = [
-			[["Flag_NATO_F",[-5.23633,0.240234,0],70,1,0,[],"","if (ADF_clanFlag != '') then {_this setFlagTexture '" + ADF_clanFlag + "';};",true,false]], 
-			[["Land_Pallet_MilBoxes_F",[5.23633,2.33203,0],90,1,0,[],"","",true,false]], 
-			[["CamoNet_BLUFOR_F",[6.56055,-0.185547,1],90,1,0,[],"","",true,false]], 
-			[["B_supplyCrate_F",[6.91406,-0.630859,0],0,1,0,[],"","",true,false]], 
-			[["Land_Pallet_MilBoxes_F",[7.19336,2.43555,0],70,1,0,[],"","",true,false]], 
-			[["Land_PaperBox_open_full_F",[6.25,4.49609,0],10,1,0,[],"","",true,false]], 
-			[["Land_Cargo20_military_green_F",[-7.71875,-0.671875,0],90,1,0,[],"","_this allowDamage false;",true,false]], 
-			[["Land_HBarrierBig_F",[-0.175781,-8.28125,0],0,1,0,[],"","_this allowDamage false;",true,false]], 
-			[["Land_HBarrier_3_F",[-7.64063,5.05859,0],90,1,0,[],"","_this allowDamage false;",true,false]], 
-			[["Land_HBarrierBig_F",[-0.0683594,9.27734,0],0,1,0,[],"","_this allowDamage false;",true,false]], 
-			[["Land_HBarrier_3_F",[-7.67578,-4.50586,0],90,1,0,[],"","_this allowDamage false;",true,false]], 
-			[["Land_HBarrierBig_F",[11.9688,3.82813,0],70,1,0,[],"","_this allowDamage false;",true,false]], 
-			[["Land_HBarrierBig_F",[12.0762,-4.19727,0],110,1,0,[],"","_this allowDamage false;",true,false]]
+		_o = [
+			[["Flag_NATO_F",[-5.23633, 0.240234, 0], 70, 1, 0,[],"", "if (ADF_clanFlag != '') then {_this setFlagTexture '" + ADF_clanFlag + "';};", true, false]], 
+			[["Land_Pallet_MilBoxes_F",[5.23633, 2.33203, 0], 90, 1, 0,[],"", "", true, false]], 
+			[["CamoNet_BLUFOR_F",[6.56055,-0.185547, 1], 90, 1, 0,[],"", "", true, false]], 
+			[["B_supplyCrate_F",[6.91406,-0.630859, 0], 0, 1, 0,[],"", "", true, false]], 
+			[["Land_Pallet_MilBoxes_F",[7.19336, 2.43555, 0], 70, 1, 0,[],"", "", true, false]], 
+			[["Land_PaperBox_open_full_F",[6.25, 4.49609, 0], 10, 1, 0,[],"", "", true, false]], 
+			[["Land_Cargo20_military_green_F",[-7.71875,-0.671875, 0], 90, 1, 0,[],"", "_this allowDamage false;", true, false]], 
+			[["Land_HBarrierBig_F",[-0.175781,-8.28125, 0], 0, 1, 0,[],"", "_this allowDamage false;", true, false]], 
+			[["Land_HBarrier_3_F",[-7.64063, 5.05859, 0], 90, 1, 0,[],"", "_this allowDamage false;", true, false]], 
+			[["Land_HBarrierBig_F",[-0.0683594, 9.27734, 0], 0, 1, 0,[],"", "_this allowDamage false;", true, false]], 
+			[["Land_HBarrier_3_F",[-7.67578,-4.50586, 0], 90, 1, 0,[],"", "_this allowDamage false;", true, false]], 
+			[["Land_HBarrierBig_F",[11.9688, 3.82813, 0], 70, 1, 0,[],"", "_this allowDamage false;", true, false]], 
+			[["Land_HBarrierBig_F",[12.0762,-4.19727, 0], 110, 1, 0,[],"", "_this allowDamage false;", true, false]]
 		];
 		
-		{[getPosATL MHQ, getDir MHQ, _x] call BIS_fnc_ObjectsMapper; sleep (ADF_MHQ_BuildTime / 10);} forEach _ADF_MHQ_FOB_objects;
+		{[getPosATL MHQ, getDir MHQ, _x] call BIS_fnc_ObjectsMapper; sleep (ADF_MHQ_BuildTime / 10);} forEach _o;
 		
 		ADF_MHQ_deployed = true; publicVariable "ADF_MHQ_deployed"; // Announce that the FOB has been deployed
 		
@@ -195,7 +193,7 @@ ADF_fnc_fobDeploy = {
 	};
 	
 	// Add the FOB packUp action menu item
-	ADF_MHQ_FOB_PackupAction = MHQ addAction ["<t align='left' color='#c0d6b2'>Pack up the F.O.B.</t>",{remoteExec ["ADF_fnc_fobPackUp",0,true]},[],-98,false,true,"",""];
+	ADF_MHQ_FOB_PackupAction = MHQ addAction ["<t align='left' color='#c0d6b2'>Pack up the F.O.B.</t>",{remoteExec ["ADF_fnc_fobPackUp", 0, true]},[],-98, false, true,"", ""];
 	fobDeleted = false;	
 };
 
@@ -209,7 +207,7 @@ ADF_fnc_fobPackUp = {
 		sleep 5;
 		hintSilent "";
 		sleep (ADF_MHQ_PackUpTime - 5);
-		if (alive MHQ) then {ADF_MHQ_FOB_deployAction = MHQ addAction ["<t align='left' color='#c0d6b2'>Deploy the FOB</t>",{remoteExec ["ADF_fnc_fobDeploy",0,true]},[],-98,false,true,"",""]};
+		if (alive MHQ) then {ADF_MHQ_FOB_deployAction = MHQ addAction ["<t align='left' color='#c0d6b2'>Deploy the FOB</t>",{remoteExec ["ADF_fnc_fobDeploy", 0, true]},[],-98, false, true,"", ""]};
 		
 		waitUntil {sleep 1; fobDeleted};
 		
@@ -232,13 +230,13 @@ ADF_fnc_fobPackUp = {
 // Delete FOB objects
 ADF_fnc_fobRemove = {
 	params ["_s"];
-	private ["_delArray","_del"];
+	private ["_q", "_o"];
 
-	_delArray = ["Flag_NATO_F","Land_Pallet_MilBoxes_F","CamoNet_BLUFOR_F","B_supplyCrate_F","Land_PaperBox_open_full_F","Land_Cargo20_military_green_F","Land_HBarrierBig_F","Land_HBarrier_3_F"];
-	_del = nearestObjects [getPos MHQ,_delArray,14];
-	_delTime = 0;	
-	if (_s == 0) then {_delTime = 0.01} else {_delTime = ADF_MHQ_PackUpTime / _s};
+	_q = ["Flag_NATO_F", "Land_Pallet_MilBoxes_F", "CamoNet_BLUFOR_F", "B_supplyCrate_F", "Land_PaperBox_open_full_F", "Land_Cargo20_military_green_F", "Land_HBarrierBig_F", "Land_HBarrier_3_F"];
+	_o = nearestObjects [getPos MHQ, _q, 14];
+	_t = 0;	
+	if (_s == 0) then {_t = 0.01} else {_t = ADF_MHQ_PackUpTime / _s};
 
-	{deleteVehicle _x; sleep _delTime;} forEach _del;
+	{deleteVehicle _x; sleep _t;} forEach _o;
 	fobDeleted = true; publicVariable "fobDeleted";
 };

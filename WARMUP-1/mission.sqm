@@ -1791,8 +1791,8 @@ class Mission
 			type="Empty";
 			colorName="ColorRed";
 			fillName="BDiagonal";
-			a=750;
-			b=750;
+			a=800;
+			b=800;
 		};
 		class Item5
 		{
@@ -3026,8 +3026,8 @@ class Mission
 		class Item3
 		{
 			position[]={888.55249,216.1534,3560.9004};
-			a=1000;
-			b=1000;
+			a=1200;
+			b=1200;
 			activationBy="WEST";
 			interruptable=1;
 			age="UNKNOWN";
@@ -3040,8 +3040,8 @@ class Mission
 		class Item4
 		{
 			position[]={2954.199,244.52052,4108.3164};
-			a=1000;
-			b=1000;
+			a=1200;
+			b=1200;
 			activationBy="WEST";
 			interruptable=1;
 			age="UNKNOWN";

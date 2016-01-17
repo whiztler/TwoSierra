@@ -38,3 +38,8 @@ vTiger addEventHandler ["killed", {
 }];
 
 #include "init_ao.sqf"
+
+ADF_msg_foxtrotBase	= {sleep 40; deleteVehicle tFoxtrotBase; diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: message FOXTROT base";diag_log "-----------------------------------------------------";};
+ADF_msg_foxtrotAmmo	= {sleep 40; deleteVehicle tFoxtrotAmmo; diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: message FOXTROT ammo cache";diag_log "-----------------------------------------------------";};
+ADF_msg_golfFuel		= {sleep 40; deleteVehicle tGolfFuel; diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: message GOLF fuel";diag_log "-----------------------------------------------------";};
+ADF_msg_hotelSupply	= {sleep 40; deleteVehicle tHotelSupply; diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Objective HOTEL completed";diag_log "-----------------------------------------------------";};

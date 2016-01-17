@@ -78,7 +78,7 @@ ADF_fnc_redressRebel = {
 	_fiftyFifty		= if ((random 1) < 0.5) then {1} else {0};
 
 	// strip the unit
-	removeAllWeapons _unit; removeAllItems _unit; removeAllAssignedItems _unit; removeUniform _unit; removeVest _unit; removeBackpack _unit; removeHeadgear _unit; removeGoggles _unit;
+	[_unit, true] call ADF_fnc_stripUnit;
 
 	// Add Uniform container
 	_unit forceAddUniform _uniform;

@@ -155,7 +155,7 @@ ADF_msg_foxtrotAmmo	= {
 	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
 	["ACO","ACO","TWO SIERRA this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
 	["2S","","VADER this is TWO SIERRA. The south hangar at FOXTROT houses a large ammo cache. Interrogative tasking. How copy?"] call ADF_fnc_MessageParser; sleep 11;
-	["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Stay clear of the ammo cache. EOU will deal with it later. Over."] call ADF_fnc_MessageParser; sleep 16;
+	["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Stay on mission. EOU will deal with with the ammo cache later. Over."] call ADF_fnc_MessageParser; sleep 16;
 	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 };
 
@@ -163,7 +163,7 @@ ADF_msg_foxtrotBase	= {
 	["2S","","VADER this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
 	["ACO","ACO","TWO SIERRA this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;	
 	["2S","","VADER this is TWO SIERRA. We are at FOXTROT. There are ten plus CSAT vehicles here, including two APC's How copy?"] call ADF_fnc_MessageParser; sleep 11;
-	["ACO","ACO","TWO SIERRA this is VADER. Good copy. SPG Engineers will deal with the CSAT assets later. Over."] call ADF_fnc_MessageParser; sleep 12;
+	["ACO","ACO","TWO SIERRA this is VADER. Good copy. SPG Engineers will deal with the CSAT assets. Over."] call ADF_fnc_MessageParser; sleep 12;
 	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 };
 
@@ -171,7 +171,7 @@ ADF_msg_hotelSupply	= {
 	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
 	["ACO","ACO","TWO SIERRA this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;	
 	["2S","","VADER this is TWO SIERRA. We found a CSAT supply warehouse at HOTEL. How copy?"] call ADF_fnc_MessageParser; sleep 11;
-	["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Searc for intel and continue wuth tasking. Over."] call ADF_fnc_MessageParser; sleep 10;
+	["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Search for intel and continue wuth tasking. Over."] call ADF_fnc_MessageParser; sleep 10;
 	["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
 };
 

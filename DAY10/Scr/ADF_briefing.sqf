@@ -209,8 +209,7 @@ player createDiaryRecord ["2SOPORD",["Situation","<br/><br/>
 
 <font color='#9DA698'>
 OpFor: CSAT 3rd Quds (DEMON).
-<br/><br/>
-</font>
+<br/><br/></font>
 
 <font size='14' color='#d7dbd5'>ENEMY FORCES</font><br/>
 
@@ -223,25 +222,21 @@ OpFor: CSAT 3rd Quds (DEMON).
 6. DEMON arms: Superior CSAT arms incl. LRR sniper, thermal capability.<br/>
    AT capability: MPRL.<br/>
 7. DEMON CR: Superior CR. CSAT Special forces outfit with customized body armor.
-
-<br/><br/>
-</font>
+<br/><br/></font>
 
 <font size='14' color='#d7dbd5'>FRIENDLY FORCES</font><br/>
 
 <font color='#9DA698'>
 1. VJTF 5 BAT, 2nd Platoon. OUS: ANNEX A.<br/>
 2. 2SPT, 1st Section on hold at Masbete.<br/>
-3. CVN-78 Carrier Support Group.<br/>
-
-<br/><br/>
-</font>
+3. CVN-78 Carrier Support Group.
+<br/><br/></font>
 
 <font size='14' color='#d7dbd5'>NEUTRAL</font><br/>
 
 <font color='#9DA698'>
-1. None<br/><br/>
-</font>
+1. None
+<br/><br/></font>
 
 <font size='14' color='#d7dbd5'>CIVILIANS</font><br/>
 

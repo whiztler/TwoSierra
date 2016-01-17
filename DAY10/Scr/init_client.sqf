@@ -73,10 +73,10 @@ if (!didJIP) then {
 ADF_msg_doloresBase	= {
 	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
 	["ACO","ACO","TWO SIERRA this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 9;
-	["2S","","VADER this is TWO SIERRA. We're at the Dolores Military Base. Multiple CSAT assets. Break. Interrogative tasking. Over."] call ADF_fnc_MessageParser; sleep 14;
+	["2S","","VADER this is TWO SIERRA. We're at FAHRENHEIT. Multiple CSAT assets. Break. Interrogative tasking. Over."] call ADF_fnc_MessageParser; sleep 14;
 	["ACO","ACO","TWO SIERRA this is VADER. Good copy. Wait. Over."] call ADF_fnc_MessageParser; sleep 25 + (random 20);
-	["ACO","ACO","TWO SIERRA this is VADER. Your orders are to destroy the assets at the Delores Base. How copy?"] call ADF_fnc_MessageParser; sleep 17;
-	["2S","","VADER this is TWO SIERRA. Solid copy. Out."] call ADF_fnc_MessageParser;
+	["ACO","ACO","TWO SIERRA this is VADER. Your orders are to destroy any strategic assets at FAHRENHEIT. How copy?"] call ADF_fnc_MessageParser; sleep 17;
+	["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_ortegaClear	= {
@@ -89,7 +89,7 @@ ADF_msg_ortegaClear	= {
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
 		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 10 | Hell's Bells</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
-		['END2',true,22] call BIS_fnc_endMission;
+		['END1',true,22] call BIS_fnc_endMission;
 	} else {
 		["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Head out to Dolores. Over."] call ADF_fnc_MessageParser; sleep 14;
 		["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser; 
@@ -107,7 +107,7 @@ ADF_msg_doloresClear	= {
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
 		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 10 | Hell's Bells</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
-		['END2',true,22] call BIS_fnc_endMission;
+		['END1',true,22] call BIS_fnc_endMission;
 	} else {
 		["ACO","ACO","TWO SIERRA this is VADER. Solid copy. Head out to Ortega. Over."] call ADF_fnc_MessageParser; sleep 14;
 		["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser; 

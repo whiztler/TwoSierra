@@ -8,12 +8,12 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 // Vars init
 MotsActive			= false;
 ADF_init_AO			= false;
-ADF_ortegaClear		= false;
-ADF_doloresClear		= false;
+ADF_endMission		= false;
 ADF_msg_endMission	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: End Mission activated";diag_log	"-----------------------------------------------------";};
-ADF_msg_doloresBase	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Dolores base trigger activated";diag_log	"-----------------------------------------------------";};
-ADF_msg_ortegaClear	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Ortega Clear message";diag_log	"-----------------------------------------------------";};
-ADF_msg_doloresClear	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Dolores Clear message";diag_log	"-----------------------------------------------------";};
+ADF_msg_pasteurEvac 	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Pasteur evacs message";diag_log	"-----------------------------------------------------";};
+ADF_msg_intel		 	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Pasteur Intel message";diag_log	"-----------------------------------------------------";};
+ADF_msg_pasteurClear 	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Pasteur Clear message";diag_log	"-----------------------------------------------------";};
+ADF_msg_distraction 	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: 3RD PLT distraction message";diag_log	"-----------------------------------------------------";};
 
 // Server Init
 if (isServer) then {
@@ -22,16 +22,16 @@ if (isServer) then {
 
 // Client init
 if (hasInterface) then {
-	//#include "init_client.sqf"
+	#include "init_client.sqf"
 };
 
 // HC init
 if (ADF_isHC) then {
-	//#include "init_hc.sqf"
+	#include "init_hc.sqf"
 };
 
 // All clients
-//execVM "Scr\ADF_CAS.sqf";
+execVM "Scr\ADF_CAS.sqf";
 
 _diagTestEnd = diag_tickTime;
 diag_log format ["ADF RPT: Init - FINISHED Scr\init.sqf  [%1]",_diagTestStart - _diagTestEnd];

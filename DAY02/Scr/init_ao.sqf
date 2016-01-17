@@ -11,13 +11,13 @@ ADF_fnc_TargetRandom = {
 };
 
 [] spawn {
-	private ["_t", "_opforCnt", "_opforCntWin", "_at"];
+	private ["_t", "_cnt_AO", "_cnt_Win", "_at"];
 	// Init
 	_assaultTimer			= [600,700,800,900,1000,1100,1200] call BIS_fnc_selectRandom;
 	_assaultTimer 		= _assaultTimer - (random floor 300);
 	_assaultTimer			= round _assaultTimer;
-	_opforCnt			= 0;
-	_opforCntWin			= 0;
+	_cnt_AO			= 0;
+	_cnt_Win			= 0;
 	ADF_vehSpawnCnt		= 0;	
 	ADF_assaultLine1		= false;
 	ADF_assaultLine2		= false;
@@ -171,22 +171,22 @@ ADF_fnc_TargetRandom = {
 	[2,vOpforAPC_3] call ADF_fnc_PashtunArmVehAssault;
 	
 	// Count spawned Opfor
-	private ["_opforCnt", "_opforCntWin", "_assaultEndTime"];
-	_opforCnt = {side _x == independent} count allUnits;
-	if (ADF_pashtunAOtriggered) then {_opforCnt = _opforCnt - ADF_redZoneOpforCnt;}; // Redzone was triggered, Deduct units from assault force
-	_opforCntWin = (_opforCnt / 9) + (random 15);
+	private ["_cnt_AO", "_cnt_Win", "_assaultEndTime"];
+	_cnt_AO = {side _x == independent} count allUnits;
+	if (ADF_pashtunAOtriggered) then {_cnt_AO = _cnt_AO - ADF_redZoneOpforCnt;}; // Redzone was triggered, Deduct units from assault force
+	_cnt_Win = (_cnt_AO / 9) + (random 15);
 	
 	diag_log	"-----------------------------------------------------";
-	diag_log format ["TWO SIERRA: Pashtun spawned: %1",_opforCnt];
-	diag_log format ["TWO SIERRA: Opfor Win count: %1",_opforCntWin];
+	diag_log format ["TWO SIERRA: Pashtun spawned: %1",_cnt_AO];
+	diag_log format ["TWO SIERRA: Opfor Win condition: < %1",_cnt_Win];
 	diag_log	"-----------------------------------------------------";
 	
 	// Track Opfor count for win scenario
 	waitUntil {
 		sleep 15;
-		_opforCnt = {side _x == independent} count allUnits;
-		if (ADF_pashtunAOtriggered) then {_opforCnt = _opforCnt - ADF_redZoneOpforCnt;};
-		((_opforCnt < _opforCntWin) || (time > 7200));
+		_cnt_AO = {side _x == independent} count allUnits;
+		if (ADF_pashtunAOtriggered) then {_cnt_AO = _cnt_AO - ADF_redZoneOpforCnt;};
+		((_cnt_AO < _cnt_Win) || (time > 7200));
 	};
 	
 	_assaultEndTime = time;
@@ -195,7 +195,7 @@ ADF_fnc_TargetRandom = {
 	
 	// Reporting
 	diag_log			"-----------------------------------------------------";
-	diag_log format ["TWO SIERRA: Assault waved cleared, %1 pax left",round _opforCntWin];
+	diag_log format ["TWO SIERRA: Assault waved cleared, %1 pax left",round _cnt_Win];
 	diag_log format ["TWO SIERRA: Time needed to defeat the assault: %1 mins",round ((_assaultStartTime - _assaultEndTime)/60)];
 	diag_log			"-----------------------------------------------------";
 }; // close spawn
@@ -266,24 +266,23 @@ for "_i" from 1 to 6 do {
 };
 
 // Count & track spawned units for win/loose scenario
-private ["_q", "_opforCntWinAO"];
-_q = (getMarkerPos "mJonahRadius") nearEntities ["Man", 750]; // 750m ex marker
-ADF_redZoneOpforCnt = {(side _x == independent) && (alive _x)} count _q;
-_opforCntWinAO = (ADF_redZoneOpforCnt / 10) + (random 10);
+private "_cnt_Win";
+ADF_redZoneOpforCnt = ["mJonahRadius", independent, 750, "MAN"] call ADF_fnc_countRadius;
+_cnt_Win = (ADF_redZoneOpforCnt / 10) + (random 10);
 
 diag_log	"-----------------------------------------------------";
 diag_log format ["TWO SIERRA: AO OpFor spawned, number of Opfor: %1",ADF_redZoneOpforCnt];
-diag_log format ["TWO SIERRA: AO OpFor success mission count: %1",_opforCntWinAO];
+diag_log format ["TWO SIERRA: AO OpFor success mission count: %1",_cnt_Win];
 diag_log	"-----------------------------------------------------";
 
 waitUntil {
 	sleep 30;
-	_q = (getMarkerPos "mJonahRadius") nearEntities ["Man", 750]; // 750m ex marker
-	ADF_redZoneOpforCnt = {(side _x == independent) && (alive _x)} count _q;
-	((ADF_redZoneOpforCnt <= _opforCntWinAO) || (time > 10800)); // 3 hours
+	private "_c";
+	_c = ["mJonahRadius", independent, 750, "MAN"] call ADF_fnc_countRadius;
+	((_c <= _cnt_Win) || (time > 10800)); // 3 hours
 };
 
 // End mission
-if (ADF_redZoneOpforCnt < _opforCntWinAO) then {ADF_SatanControl = true; publicVariable "ADF_SatanControl";};
+if (ADF_redZoneOpforCnt < _cnt_Win) then {ADF_SatanControl = true; publicVariable "ADF_SatanControl";};
 ADF_SatanClearUp = true; publicVariable "ADF_SatanClearUp";
 

@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.43 / NOVEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Para drop script
 Author: Whiztler
@@ -35,7 +35,7 @@ Config:
 [
 	Spawn position,		// E.g. getMarkerPos "Spawn". This is where both the heli and the group is created
 	Para drop position,		// E.g. getMarkerPos "drop". The para drop starts 350 m from the drop position
-	side,				// WEST, EAST or INDEPENDENT
+	side,				// west, east or independent
 	group size,			// Number:
 						// 1 - Fire team
 						// 2 - Squad
@@ -44,7 +44,7 @@ Config:
 ] call ADF_fnc_createAirPatrol;
 
 Example for scripted groups:
-[getMarkerPos "paraSpawn", getMarkerPos "paraDrop", east, 2, "My_fnc_loadoutEast", "My_fnc_paraAssault"] spawn ADF_fnc_createPara;
+[getMarkerPos "paraSpawn", getMarkerPos "paraDrop", east, 2, "My_fnc_loadouteast", "My_fnc_paraAssault"] spawn ADF_fnc_createPara;
 [getMarkerPos "paraSpawn", getMarkerPos "paraDrop", east, 2, "", ""] spawn ADF_fnc_createPara;
 [_ps, _pd, east, 2, "", "my_fnc_killThemAll"] spawn ADF_fnc_createPara;
 
@@ -58,7 +58,7 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 ADF_fnc_createPara = {
 	// init
 	params ["_ps", "_pd", ["_s", east, [east]], ["_gt", 2, [0]], ["_f1", "", [""]], ["_f2", "", [""]]];
-	private ["_vc", "_c", "_g" ,"_gf","_gfs", "_gft","_u","_wp","_sbi","_sb","_ub","_t"];
+	private ["_vc", "_c", "_g" ,"_gf", "_gfs", "_gft", "_u", "_wp", "_sbi", "_sb", "_ub", "_t"];
 	_vc		= "";
 	_gs		= "";
 	_gf		= "";
@@ -111,7 +111,7 @@ ADF_fnc_createPara = {
 	};
 	
 	_gs = format ["%1%2", _gft, _gs];
-	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_createPara - group ACM class: %1",_gs]};
+	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_createPara - group ACM class: %1", _gs]};
 	
 	// Create the para group and assign them into the cargo of the helicopter
 	_g = createGroup _s;
@@ -122,11 +122,11 @@ ADF_fnc_createPara = {
 	
 	// Run the units function on the para group units
 	if (_f1 != "") then {
-		{[_x] call (call compile format ["%1",_f1])} forEach _u;
+		{[_x] call (call compile format ["%1", _f1])} forEach _u;
 		if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_createPara - call %1 for units of group: %2", _f1, _g]};
 	};
 	if (_f2 != "") then {
-		[_g] spawn (call compile format ["%1",_f2]);
+		[_g] spawn (call compile format ["%1", _f2]);
 		if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_createPara - spawn %1 for group: %2", _f2, _g]};
 	};
 

@@ -38,7 +38,7 @@ ADF_fnc_redressRussian = {
 	_clipCount		= 3;
 
 	// strip the unit
-	removeAllWeapons _unit; removeAllItems _unit; removeAllAssignedItems _unit; removeUniform _unit; removeVest _unit; removeBackpack _unit; removeHeadgear _unit; removeGoggles _unit;
+	[_unit, true] call ADF_fnc_stripUnit;
 
 	// Add generic containers
 	_unit forceAddUniform "U_O_CombatUniform_ocamo";

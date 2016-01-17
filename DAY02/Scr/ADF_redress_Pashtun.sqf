@@ -57,16 +57,16 @@ ADF_fnc_redressPashtun = {
 	params ["_unit"];
 	private ["_uniform","_priWeaponArr","_priWeapon","_backpack","_face","_voice","_priWeaponMag","_priWeaponMagAm","_enable_AT"];
 	_uniform 		= call ADF_fnc_redressPashtun_uniforms;
-	_priWeaponArr	= call ADF_fnc_redressPashtun_priWpn;
+	_priWeaponArr		= call ADF_fnc_redressPashtun_priWpn;
 	_priWeapon		= _priWeaponArr select 0;	
-	_priWeaponMag	= _priWeaponArr select 1;
+	_priWeaponMag		= _priWeaponArr select 1;
 	_priWeaponMagAm	= _priWeaponArr select 2;
 	_face			= call ADF_fnc_redressPashtun_face;
 	_voice			= call ADF_fnc_redressPashtun_voice;
 	_enable_AT		= [true,false,true,true,true,false,false] call Bis_fnc_SelectRandom;
 
 	// strip the unit
-	removeAllWeapons _unit; removeAllItems _unit; removeAllAssignedItems _unit; removeUniform _unit; removeVest _unit; removeBackpack _unit; removeHeadgear _unit; removeGoggles _unit;
+	[_unit, true] call ADF_fnc_stripUnit;
 
 	// Add Uniform container
 	_unit forceAddUniform _uniform;

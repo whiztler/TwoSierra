@@ -16,9 +16,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 Edit and copy the following in your init.sqf
 
 [
-	["19 MAY 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
-	["Your fantastic tagline here","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"],
-	["Another tagline here","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
+	["19 MAY 2019", "<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
+	["Your fantastic tagline here", "<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"],
+	["Another tagline here", "<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
 ****************************************************************/
@@ -26,7 +26,7 @@ Edit and copy the following in your init.sqf
 
 ADF_fnc_typeWriter = {
 	// Init
-	private["_blocks","_block","_blockCount","_blockNr","_blockArray","_blockText","_blockTextF","_blockTextF_","_blockFormat","_formats","_inputData","_processedTextF","_char","_cursorBlinks","_cursorInvis"];
+	private["_blocks", "_block", "_blockCount", "_blockNr", "_blockArray", "_blockText", "_blockTextF", "_blockTextF_", "_blockFormat", "_formats", "_inputData", "_processedTextF", "_char", "_cursorBlinks", "_cursorInvis"];
 
 	_blockCount = count _this;
 

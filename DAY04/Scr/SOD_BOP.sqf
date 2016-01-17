@@ -139,10 +139,9 @@ if (ADF_Fairlight) exitWith {};
 
 // Count and track alive OpFor
 waitUntil {
-	private ["_q", "_c"];
-	sleep 30;
-	_q = (getPos tBOPspawnPos) nearEntities ["Man", 200];
-	_c = {(side _x == independent) && (_x in _q)} count allUnits;
+	private "_c";
+	sleep 25 + (random 5);
+	_c = [tBOPspawnPos, independent, 200, "MAN"] call ADF_fnc_countRadius;
 	if (ADF_debug) then {systemChat format ["TWO SIERRA debug: BOP opfor remaining: %1", _c];};
 	if (time > 10800) exitWith {ADF_Fairlight = true; publicVariable "ADF_Fairlight"};  // set fairlight to TRUE
 	_c < 10

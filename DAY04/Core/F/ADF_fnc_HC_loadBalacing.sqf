@@ -17,7 +17,7 @@ See Core\ADF_HC.sqf for information
 
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_HC_loadBalancing.sqf"}; // Reporting. Do NOT edit/remove
 
-if (!ADF_HC_connected) exitWith {if (ADF_Debug) then {["ADF DEBUG: HC - loadBalancing - NO HC detected",false] call ADF_fnc_log} else {diag_log "ADF RPT: HC Load Balancing - No HC detected. Terminating ADF_fnc_HC_loadbalancing.sqf"}};
+if (!ADF_HC_connected) exitWith {if (ADF_Debug) then {["ADF DEBUG: HC - loadBalancing - NO HC detected", false] call ADF_fnc_log} else {diag_log "ADF RPT: HC Load Balancing - No HC detected. Terminating ADF_fnc_HC_loadbalancing.sqf"}};
 
 if (isServer) then {
 	waitUntil {time > 60};
@@ -28,7 +28,7 @@ if (isServer) then {
 	_ADF_HCLB_GrpCnt		= 0; // init group count
 	ADF_HCLB_passTimer	= 60;  // Pass through sleep	
 
-	if (ADF_Debug) then {_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - loadBalancing pass through starting in %1 seconds", ADF_HCLB_passTimer];[_ADF_HCLB_compileMsg,false] call ADF_fnc_log};
+	if (ADF_Debug) then {_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - loadBalancing pass through starting in %1 seconds", ADF_HCLB_passTimer];[_ADF_HCLB_compileMsg, false] call ADF_fnc_log};
 
 	while {ADF_HC_connected} do {
 		// Init. Let server initialize and pass through every 60 seconds
@@ -44,12 +44,12 @@ if (isServer) then {
 			if (_ADF_HCLB_HC1_ID > 2) then {
 				if (ADF_Debug) then {
 					_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - HC1 with clientID %1 detected", _ADF_HCLB_HC1_ID];
-					[_ADF_HCLB_compileMsg,false] call ADF_fnc_log
+					[_ADF_HCLB_compileMsg, false] call ADF_fnc_log
 				};
 			};			
 		} else {	 // NO ADF_HC1 connected
 			ADF_HC1 = objNull; _ADF_HCLB_HC1_ID = -1;
-			if (ADF_Debug) then {["ADF DEBUG: HC - ADF_HC1 is NOT connected",false] call ADF_fnc_log};			
+			if (ADF_Debug) then {["ADF DEBUG: HC - ADF_HC1 is NOT connected", false] call ADF_fnc_log};			
 		};
 		
 		// Get ADF_HC2 Client ID else set variables to null // v1.40B01 
@@ -58,12 +58,12 @@ if (isServer) then {
 			if (_ADF_HCLB_HC2_ID > 2) then {
 				if (ADF_Debug) then {
 					_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - HC2 with clientID %1 detected", _ADF_HCLB_HC2_ID];
-					[_ADF_HCLB_compileMsg,false] call ADF_fnc_log
+					[_ADF_HCLB_compileMsg, false] call ADF_fnc_log
 				};
 			};			
 		} else {	 // NO ADF_HC2 connected
 			ADF_HC2 = objNull; _ADF_HCLB_HC2_ID = -1;
-			if (ADF_Debug) then {["ADF DEBUG: HC - ADF_HC2 is NOT connected",false] call ADF_fnc_log};			
+			if (ADF_Debug) then {["ADF DEBUG: HC - ADF_HC2 is NOT connected", false] call ADF_fnc_log};			
 		};
 
 		// Get ADF_HC3 Client ID else set variables to null // v1.40B01
@@ -72,12 +72,12 @@ if (isServer) then {
 			if (_ADF_HCLB_HC3_ID > 2) then {
 				if (ADF_Debug) then {
 					_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - HC3 with clientID %1 detected", _ADF_HCLB_HC3_ID];
-					[_ADF_HCLB_compileMsg,false] call ADF_fnc_log
+					[_ADF_HCLB_compileMsg, false] call ADF_fnc_log
 				};
 			};			
 		} else {	 // NO ADF_HC3 connected
 			ADF_HC3 = objNull; _ADF_HCLB_HC3_ID = -1;
-			if (ADF_Debug) then {["ADF DEBUG: HC - ADF_HC3 is NOT connected",false] call ADF_fnc_log};			
+			if (ADF_Debug) then {["ADF DEBUG: HC - ADF_HC3 is NOT connected", false] call ADF_fnc_log};			
 		};
 		
 		///// Let's check if 1 or more HC's is/are still populated with a client and check for 2 or more HC's
@@ -85,7 +85,7 @@ if (isServer) then {
 		if ((isNull ADF_HC1) && (isNull ADF_HC2) && (isNull ADF_HC3)) then {waitUntil {sleep 1; !isNull ADF_HC1 || !isNull ADF_HC2 || !isNull ADF_HC3}};		
 		if (	(!isNull ADF_HC1 && !isNull ADF_HC2) || (!isNull ADF_HC1 && !isNull ADF_HC3) || (!isNull ADF_HC2 && !isNull ADF_HC3)) then {_ADF_HCLB_loadBalance = true;}; 
 		// Debug
-		if (_ADF_HCLB_loadBalance) then {if (ADF_Debug) then {["HC - starting loadBalancing to multiple HC's",false] call ADF_fnc_log}} else {if (ADF_Debug) then {["HC - starting loadBalancing to a single HC",false] call ADF_fnc_log}};
+		if (_ADF_HCLB_loadBalance) then {if (ADF_Debug) then {["HC - starting loadBalancing to multiple HC's", false] call ADF_fnc_log}} else {if (ADF_Debug) then {["HC - starting loadBalancing to a single HC", false] call ADF_fnc_log}};
 		
 		// Determine first HC to start with
 		_ADF_HCLB_currentHC		= 0;
@@ -120,14 +120,14 @@ if (isServer) then {
 							case 1: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC1_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC1_ID; if (!isNull ADF_HC2) then {_ADF_HCLB_currentHC = 2;} else {_ADF_HCLB_currentHC = 3;}};
 							case 2: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC2_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC2_ID; if (!isNull ADF_HC3) then {_ADF_HCLB_currentHC = 3;} else {_ADF_HCLB_currentHC = 1;}};
 							case 3: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC3_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC3_ID; if (!isNull ADF_HC1) then {_ADF_HCLB_currentHC = 1;} else {_ADF_HCLB_currentHC = 2;}};
-							default {_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - No Valid HC to pass to. ** _ADF_HCLB_currentHC = %1 **", _ADF_HCLB_currentHC]; if (isServer) then {[_ADF_HCLB_compileMsg1,true] call ADF_fnc_log;};};
+							default {_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - No Valid HC to pass to. ** _ADF_HCLB_currentHC = %1 **", _ADF_HCLB_currentHC]; if (isServer) then {[_ADF_HCLB_compileMsg1, true] call ADF_fnc_log;};};
 						};
 					} else {
 						switch (_ADF_HCLB_currentHC) do {
 							case 1: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC1_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC1_ID;};
 							case 2: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC2_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC2_ID;};
 							case 3: {_ADF_HCLB_rr = _x setGroupOwner _ADF_HCLB_HC3_ID; _ADF_HCLB_HCID = _ADF_HCLB_HC3_ID;};
-							default {_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - No Valid HC to pass to. ** _ADF_HCLB_currentHC = %1 **", _ADF_HCLB_currentHC]; if (isServer) then {[_ADF_HCLB_compileMsg1,true] call ADF_fnc_log;};};
+							default {_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - No Valid HC to pass to. ** _ADF_HCLB_currentHC = %1 **", _ADF_HCLB_currentHC]; if (isServer) then {[_ADF_HCLB_compileMsg1, true] call ADF_fnc_log;};};
 						};
 					};
 					
@@ -152,8 +152,8 @@ if (isServer) then {
 		
 		if (ADF_Debug) then {
 			if (_ADF_HCLB_numTransfered > 0) then {
-				_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - Transferred %1 AI groups to HC(s)",_ADF_HCLB_numTransfered];
-				[_ADF_HCLB_compileMsg,false] call ADF_fnc_log;			
+				_ADF_HCLB_compileMsg = format ["ADF DEBUG: HC - Transferred %1 AI groups to HC(s)", _ADF_HCLB_numTransfered];
+				[_ADF_HCLB_compileMsg, false] call ADF_fnc_log;			
 				_ADF_HCLB_numHC1 = 0; _ADF_HCLB_numHC2 = 0; _ADF_HCLB_numHC3 = 0;
 
 				{
@@ -168,18 +168,18 @@ if (isServer) then {
 			   _ADF_HCLB_compileMsg2 = format ["ADF DEBUG: HC - %1 AI groups currently on HC2", _ADF_HCLB_numHC2];
 			   _ADF_HCLB_compileMsg3 = format ["ADF DEBUG: HC - %1 AI groups currently on HC3", _ADF_HCLB_numHC3];
 
-				if (_ADF_HCLB_numHC1 > 0) then {[_ADF_HCLB_compileMsg1,false] call ADF_fnc_log;};
-				if (_ADF_HCLB_numHC2 > 0) then {[_ADF_HCLB_compileMsg2,false] call ADF_fnc_log;};
-				if (_ADF_HCLB_numHC3 > 0) then {[_ADF_HCLB_compileMsg3,false] call ADF_fnc_log;};
+				if (_ADF_HCLB_numHC1 > 0) then {[_ADF_HCLB_compileMsg1, false] call ADF_fnc_log;};
+				if (_ADF_HCLB_numHC2 > 0) then {[_ADF_HCLB_compileMsg2, false] call ADF_fnc_log;};
+				if (_ADF_HCLB_numHC3 > 0) then {[_ADF_HCLB_compileMsg3, false] call ADF_fnc_log;};
 
 				_ADF_HCLB_compileMsg4 = format ["ADF DEBUG: HC - Transferred: Total %1 AI groups across all HC('s)", (_ADF_HCLB_numHC1 + _ADF_HCLB_numHC2 + _ADF_HCLB_numHC3)];
-				[_ADF_HCLB_compileMsg4,false] call ADF_fnc_log;
+				[_ADF_HCLB_compileMsg4, false] call ADF_fnc_log;
 			} else {
-				["ADF DEBUG: HC - No AI groups to transfer at the moment",false] call ADF_fnc_log;
+				["ADF DEBUG: HC - No AI groups to transfer at the moment", false] call ADF_fnc_log;
 			};
 		} else {
 			if (_ADF_HCLB_numTransfered > 0) then {			
-				diag_log format ["ADF RPT: HC - Transferred %1 AI groups to HC(s)",_ADF_HCLB_numTransfered];					
+				diag_log format ["ADF RPT: HC - Transferred %1 AI groups to HC(s)", _ADF_HCLB_numTransfered];					
 				_ADF_HCLB_numHC1 = 0; _ADF_HCLB_numHC2 = 0; _ADF_HCLB_numHC3 = 0;
 
 				{
@@ -204,5 +204,5 @@ if (isServer) then {
 		diag_log format ["ADF RPT: HC - Loadbalance (HCLB) run diag: %1 seconds", round (_ADF_HCLB_EndTimer - _ADF_HCLB_StartTimer)];
 	};
 
-	["ADF DEBUG: HC - <ERROR> Headless Client(s) disconnected",true] call ADF_fnc_log;
+	["ADF DEBUG: HC - <ERROR> Headless Client(s) disconnected", true] call ADF_fnc_log;
 };

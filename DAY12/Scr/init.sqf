@@ -13,15 +13,12 @@ ADF_init_AO 			= false;
 ADF_endLoc			= false;
 ADF_endLocPlayer		= false;
 ADF_sweepMsg			= false;
+ADF_motsSpawned		= false;
 ADF_msg_sitrep		= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Sitrep message";diag_log	"-----------------------------------------------------";};
 ADF_msg_endMission	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: End Mission activated";diag_log	"-----------------------------------------------------";};
 ADF_msg_doloresBase	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Dolores base trigger activated";diag_log	"-----------------------------------------------------";};
 ADF_msg_ortegaClear	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Ortega Clear message";diag_log	"-----------------------------------------------------";};
 ADF_msg_doloresClear	= {diag_log "-----------------------------------------------------";diag_log "TWO SIERRA: Dolores Clear message";diag_log	"-----------------------------------------------------";};
-
-
-//#include "tmp_client.sqf"
-//#include "ADF_comp_end.sqf"
 
 
 // Server Init

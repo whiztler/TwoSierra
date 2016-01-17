@@ -24,7 +24,7 @@ waitUntil {time > 0};
 
 // Init
 params ["_crate"];
-private ["_wpn","_spw","_lau","_mag","_dem","_mis","_itm","_uni"];
+private ["_wpn", "_spw", "_lau", "_mag", "_dem", "_mis", "_itm", "_uni"];
 _crate allowDamage false;
 _wpn = 1; 	// Regular Weapons
 _spw = 1; 	// Special Purpose Weapons
@@ -36,9 +36,7 @@ _itm = 1;	// Items
 _uni = 4;	// Uniform/Vest/Backpack/etc
 
 // Settings 
-clearWeaponCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
+_crate call ADF_fnc_stripVehicle;
 
 // Primary weapon
 _crate addWeaponCargoGlobal ["arifle_MX_F", _wpn];
@@ -115,8 +113,8 @@ _crate addMagazineCargoGlobal ["UGL_FlareWhite_F", 3];
 _crate addMagazineCargoGlobal ["UGL_FlareGreen_F", 3];
 _crate addMagazineCargoGlobal ["UGL_FlareRed_F", 3];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_HuntIR_M203",2];
-	_crate addItemCargoGlobal ["ACE_HuntIR_monitor",1];
+	_crate addItemCargoGlobal ["ACE_HuntIR_M203", 2];
+	_crate addItemCargoGlobal ["ACE_HuntIR_monitor", 1];
 };
 
 // Grenades/Chemlights
@@ -129,20 +127,20 @@ _crate addMagazineCargoGlobal ["Chemlight_green", _mag];
 _crate addMagazineCargoGlobal ["Chemlight_red", _mag]; 
 _crate addMagazineCargoGlobal ["B_IR_Grenade", 5]; 
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_HandFlare_White",10];
-	_crate addItemCargoGlobal ["ACE_HandFlare_Red",3];
-	_crate addItemCargoGlobal ["ACE_HandFlare_Green",3];
-	_crate addItemCargoGlobal ["ACE_HandFlare_Yellow",3];
+	_crate addItemCargoGlobal ["ACE_HandFlare_White", 10];
+	_crate addItemCargoGlobal ["ACE_HandFlare_Red", 3];
+	_crate addItemCargoGlobal ["ACE_HandFlare_Green", 3];
+	_crate addItemCargoGlobal ["ACE_HandFlare_Yellow", 3];
 };
 
 // Medical Items
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_fieldDressing",_mag];
+	_crate addItemCargoGlobal ["ACE_fieldDressing", _mag];
 	_crate addItemCargoGlobal ["ACE_personalAidKit", _itm];
-	_crate addItemCargoGlobal ["ACE_morphine",15];
-	_crate addItemCargoGlobal ["ACE_epinephrine",5];
+	_crate addItemCargoGlobal ["ACE_morphine", 15];
+	_crate addItemCargoGlobal ["ACE_epinephrine", 5];
 } else {
-	_crate addItemCargoGlobal ["FirstAidKit",_mag];
+	_crate addItemCargoGlobal ["FirstAidKit", _mag];
 	_crate addItemCargoGlobal ["Medikit", _itm];
 };
 
@@ -170,7 +168,7 @@ if (ADF_mod_TFAR) then {
 if (!ADF_mod_ACRE && !ADF_mod_TFAR) then {_crate addItemCargoGlobal ["ItemRadio", 5]};
 if (ADF_mod_CTAB) then {
 	_crate addItemCargoGlobal ["ItemAndroid", _itm];
-	_crate addItemCargoGlobal ["ItemcTabHCam",5];
+	_crate addItemCargoGlobal ["ItemcTabHCam", 5];
 };
 
 // Gear kit (not working from crates/veh)
@@ -184,6 +182,6 @@ _crate addItemCargoGlobal ["ItemWatch", _itm];
 _crate addItemCargoGlobal ["ItemCompass", _itm];	
 if (ADF_mod_ACE3) then {
 	_crate addItemCargoGlobal ["ACE_UAVBattery", 1];
-	_crate addItemCargoGlobal ["ACE_EarPlugs",5];
+	_crate addItemCargoGlobal ["ACE_EarPlugs", 5];
 	_crate addItemCargoGlobal ["ace_mapTools", _itm];
 };

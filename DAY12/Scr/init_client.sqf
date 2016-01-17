@@ -65,11 +65,12 @@ if (!didJIP) then {
 		["FOB BRONSON, CORAZOL","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 	] spawn ADF_fnc_typeWriter;
 	
-	waitUntil {sleep 1; !isNil "ADF_assaultTimer"};
+	//waitUntil {sleep 1; !isNil "ADF_assaultTimer"};
 	
 	["2S","","VADER this is TWO SIERRA at BRONSON. Ready for tasking. Over"] call ADF_fnc_MessageParser; sleep 10;
-	["ACO","ACO","TWO SIERRA this is VADER. Stand-by. Over."] call ADF_fnc_MessageParser;
-	sleep 70;
+	["ACO","ACO","TWO SIERRA this is VADER. Stand-by. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","VADER this is TWO SIERRA. Standing-by. Over."] call ADF_fnc_MessageParser; sleep 8;
+	sleep 6;
 	["ACO","ACO","TWO SIERRA this is VADER. Message. Over."] call ADF_fnc_MessageParser; sleep 10;
 	["2S","","VADER this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
 	["ACO","ACO","TWO SIERRA this is VADER. Stand-by for FRAGO. Over."] call ADF_fnc_MessageParser; sleep 8;
@@ -83,7 +84,7 @@ if (!didJIP) then {
 	waitUntil {sleep 1; ADF_assaultStart}; // 208 sec
 	["ACO","ACO","TWO SIERRA this is VADER. <t color='#FF5B5B'>Priority message</t>. Over."] call ADF_fnc_MessageParser; sleep 8;
 	["2S","","VADER this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
-	["ACO","ACO","TWO SIERRA this is VADER. RV compromised. Break. Standby for further intel. How copy?"] call ADF_fnc_MessageParser; sleep 10;
+	["ACO","ACO","TWO SIERRA this is VADER. RV compromised. Break. Hold your position. Break. Standby for further intel. How copy?"] call ADF_fnc_MessageParser; sleep 10;
 	["2S","","VADER this is TWO SIERRA. Solid copy. Standing by. Over."] call ADF_fnc_MessageParser; sleep 8;
 	["ACO","ACO","TWO SIERRA this is VADER. We lost all comms with THIRD and FOURTH platoon. Stand by. Over."] call ADF_fnc_MessageParser; sleep 10; // 44 sec
 	["2S","","VADER this is TWO SIERRA. Roger. Over."] call ADF_fnc_MessageParser; sleep 60;
@@ -110,38 +111,37 @@ ADF_msg_sitrep = {
 	sleep 8; hintSilent "";
 };
 
-[] spawn {
-	waitUntil {sleep 30; time > 7200}; // 30 mins left
-	["ACO","ACO","TWO SIERRA this is VADER. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
-	["2S","","VADER this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
-	["ACO","ACO","TWO SIERRA this is VADER. You have 30 mikes left before MOTHER pulls you out. Break. After that it is RTB and mission aborted. Over."] call ADF_fnc_MessageParser; sleep 16;
-	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; 
-};
-
-ADF_msg_endMission	= {
+ADF_msg_endMission = {
 	["2S","","VADER this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
 	["ACO","ACO","TWO SIERRA this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
 	["2S","","VADER this is TWO SIERRA. BRONSON secured. Corazol cleared. How copy?"] call ADF_fnc_MessageParser; sleep 12;
-	["ACO","ACO","Solid copy. Splendid achievemnt TWO SIERRA. Another crown on your track record. Out."] call ADF_fnc_MessageParser;
+	["ACO","ACO","Solid copy. Splendid achievemnt TWO SIERRA. Another crown on your track record. Out."] call ADF_fnc_MessageParser; sleep 20;
+	hintSilent "";
 	
 	player allowDamage false;
-	waitUntil {sleep 0.5; ADF_endLoc};
-	["BIS_blackStart", true] call BIS_fnc_blackOut;
-	sleep 2;
-	["<t size='5' color='#FFFFFF'>Finally... Time for some R&R</t>",0,0,3,12] spawn BIS_fnc_dynamicText;    
-	player setPos (getMarkerPos "mEndPos");
+	player setCaptive true;	
+
+	sleep 5;
+	["<t size='.8' color='#FFFFFF'>TWO SIERRA this is VADER. RTB. Over.</t>",0,0.5,5,-1] spawn BIS_fnc_dynamicText;
+	["b_in", true, 5] call BIS_fnc_blackOut;
+	sleep 5;
 	
 	// Change into beach gear
 	removeAllWeapons player; removeAllItems player; removeAllAssignedItems player; removeVest player; removeBackpack player; removeHeadgear player; removeGoggles player; removeUniform player;
 	player forceAddUniform (["U_C_Poloshirt_blue", "U_C_Poloshirt_burgundy", "U_C_Poloshirt_stripped", "U_C_Poloshirt_tricolour", "U_C_Poloshirt_salmon", "U_C_Poloshirt_redwhite"] call BIS_fnc_selectRandom);
 	if ((random 1) > .75) then {player addHeadgear (["H_Cap_red", "H_Cap_blu", "H_Cap_grn", "H_Cap_surfer"] call BIS_fnc_selectRandom)};
 	if ((random 1) > .60) then {player addGoggles (["G_Aviator", "G_Shades_Blue", "G_Shades_Green", "G_Shades_Red", "G_Sport_Red", "G_Sport_Blackyellow", "G_Sport_BlackWhite", "G_Sport_Checkered", "G_Sport_Blackred", "G_Sport_Greenblack"] call BIS_fnc_selectRandom)};
-	{player linkItem _x} forEach ["ItemWatch","ItemCompass","ItemMap"];
+	{player linkItem _x} forEach ["ItemWatch","ItemCompass"];
+	player setPos (getMarkerPos "mEndPos");
 	
-	["BIS_blackStart", true] call BIS_fnc_blackIn;
+	sleep 5;
+	["b_in", true, 5] call BIS_fnc_blackIn;
+	["<t size='.8' color='#FFFFFF'>24 SEPTEMBER 2019<br/><br/>R&amp;R at somewhere tropical...</t>",0,0.5,7,-1] spawn BIS_fnc_dynamicText; 
+	sleep 3;
+	
 	ADF_endLocPlayer = true; publicVariableServer "ADF_endLocPlayer";
-	sleep 20;
-
+	sleep 5;
+	
 	enableRadio false;
 	clearRadio; 
 
@@ -149,21 +149,22 @@ ADF_msg_endMission	= {
 
 	sleep 10;
 
-	["<img size= '15' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/>",0,-.3,103,1,0,1001] spawn BIS_fnc_dynamicText; sleep 3;
-	["<t size='1' color='#FFFFFF' shadow='false'>Campaign Completed</t>",0.02,0.8,7,-1,0,1002] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 01 | Operation Bearclaw</t>",0.02,0.8,7,-1,0,1003] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 02 | Operation Satan's Fire</t>",0.02,0.8,7,-1,0,1004] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 03 | Operation Dolphin</t>",0.02,0.8,7,-1,0,1005] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 04 | Operation Hannibal</t>",0.02,0.8,7,-1,0,1006] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 05 | Operation St. Mary</t>",0.02,0.8,7,-1,0,1007] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 06 | Operation Bulldogs</t>",0.02,0.8,7,-1,0,1008] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 07 | Operation Nola</t>",0.02,0.8,7,-1,0,1009] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 08 | Operation Novy Disha</t>",0.02,0.8,7,-1,0,1010] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 09 | Operation Keyhole</t>",0.02,0.8,7,-1,0,1011] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 10 | Operation Hell's Bells</t>",0.02,0.8,7,-1,0,1012] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 10 | Operation Warlord</t>",0.02,0.8,7,-1,0,1012] spawn BIS_fnc_dynamicText; sleep 7;
-	["<t size='1' color='#FFFFFF' shadow='false'>Day 10 | Operation Fash Forward</t>",0.02,0.8,7,-1,0,1012] spawn BIS_fnc_dynamicText; sleep 10;
-	["<t size='1' color='#FFFFFF' shadow='false'>Concept &amp; Development</t><br/><br/><t size='.9' color='#FFFFFF' shadow='false'>whiztler</t>",0.02,0.8,15,-10,0,1013] spawn BIS_fnc_dynamicText; sleep 8;
+	//["<img size= '7' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/>",0,-.3,103,1,0,1001] spawn BIS_fnc_dynamicText; sleep 3;
+	["<img size= '7' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/>",0,0,112,1,0,1001] spawn BIS_fnc_dynamicText; sleep 3;
+	["<t size='1' color='#FFFFFF' shadow='false'>Campaign Completed</t>",0,0.5,7,-1,0,1002] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 01 | Operation Bearclaw</t>",0,0.5,7,-1,0,1003] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 02 | Operation Satan's Fire</t>",0,0.5,7,-1,0,1004] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 03 | Operation Dolphin</t>",0,0.5,7,-1,0,1005] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 04 | Operation Hannibal</t>",0,0.5,7,-1,0,1006] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 05 | Operation St. Mary</t>",0,0.5,7,-1,0,1007] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 06 | Operation Bulldogs</t>",0,0.5,7,-1,0,1008] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 07 | Operation Nola</t>",0,0.5,7,-1,0,1009] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 08 | Operation Novy Disha</t>",0,0.5,7,-1,0,1010] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 09 | Operation Keyhole</t>",0,0.5,7,-1,0,1011] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 10 | Operation Hell's Bells</t>",0,0.5,7,-1,0,1012] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 11 | Operation Warlord</t>",0,0.5,7,-1,0,1013] spawn BIS_fnc_dynamicText; sleep 7;
+	["<t size='1' color='#FFFFFF' shadow='false'>Day 12 | Operation Fash Forward</t>",0,0.5,7,-1,0,1014] spawn BIS_fnc_dynamicText; sleep 10;
+	["<t size='1' color='#FFFFFF' shadow='false'>Concept &amp; Development</t><br/><br/><t size='.9' color='#FFFFFF' shadow='false'>whiztler</t>",0,0.5,15,-10,0,1015] spawn BIS_fnc_dynamicText; sleep 8;
 
 	sleep 1;
 	15 fadeMusic 0;
@@ -171,7 +172,7 @@ ADF_msg_endMission	= {
 
 	sleep 20;
 
-	["END1",true,12] call BIS_fnc_endMission;
+	["END1",true,20] call BIS_fnc_endMission;
 };
 
 GRAD_Fireworks = { // Edited by whiztler

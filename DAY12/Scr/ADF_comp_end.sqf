@@ -487,25 +487,15 @@ _v enableSimulationGlobal false;
 _v = createVehicle ['Land_RattanChair_01_F', [12604.3,10810.3,-0.0250063], [], 0, 'CAN_COLLIDE'];
 _v setPosASL [12604.3,10810.3,11.0531];
 _v setVectorDirAndUp [[-0.952628,-0.304139,8.09317e-005], [9.11429e-005,-1.93775e-005,1]];
-// Ammo crates
-fw_crate1 = createVehicle ['Box_NATO_AmmoOrd_F', [12683.8,10794.3,0.00433517], [], 0, 'CAN_COLLIDE'];
-fw_crate1 setPosASL [12683.8,10794.3,1.14218];
-fw_crate1 setVectorDirAndUp [[0.750046,-0.649472,-0.124965], [0.100674,-0.07463,0.992117]];
-fw_crate1 enableSimulationGlobal false;
-fw_crate2 = createVehicle ['Box_NATO_AmmoOrd_F', [12687.8,10799.2,0.00423932], [], 0, 'CAN_COLLIDE'];
-fw_crate2 setPosASL [12687.8,10799.2,1.28414];
-fw_crate2 setVectorDirAndUp [[0.752828,-0.646771,-0.12222], [0.0747678,-0.100453,0.992128]];
-fw_crate2 enableSimulationGlobal false;
-fw_crate3 = createVehicle ['Box_NATO_AmmoOrd_F', [12690.9,10804.3,0.00159609], [], 0, 'CAN_COLLIDE'];
-fw_crate3 setPosASL [12690.9,10804.3,1.13515];
-fw_crate3 setVectorDirAndUp [[0.758434,-0.649104,-0.0586682], [0.075303,-0.00214016,0.997158]];
-fw_crate3 enableSimulationGlobal false;
+_v enableSimulationGlobal false;
 
-// Announce location ready
+// Clean up the map and Announce location ready
+{if (side _x == east) then {deleteVehicle _x}} forEach allUnits;
 ADF_endLoc = true; publicVariable "ADF_endLoc";
 
+waitUntil {sleep 1; ADF_endLocPlayer};
 // Set the date (full moon)
-if (isMultiplayer) then {[2019, 9, 24, 19, 30] remoteExec ["setDate", 0, false];} else {setDate [2019, 9, 24, 19, 30]};
+//if (isMultiplayer) then {[2019, 9, 24, 19, 30] remoteExec ["setDate", 0, false];} else {setDate [2019, 9, 24, 19, 30]};
 
 // Start the show. FIREWORKS SCRIPT by nomisum for Gruppe Adler
 ADF_fnc_fw = {
@@ -514,7 +504,7 @@ ADF_fnc_fw = {
 	_explosion_power = 50; // 30-70 seems reasonable
 	_glitter_count = 50; // 30 is poor, 50 is ok, 100 might be overkill
 	_initial_velocity = [(random 10) -5,(random 10)-5, 300]; // firing not perfect but in a slight angle
-	_colorArray = [[0.42,0.81,0.1],[0.8,0.1,0.35],[0.2,0.73,0.85],[1,1,1]];
+	_colorArray = [[0.42, 0.81, 0.1], [0.8, 0.1, 0.35], [0.2, 0.73, 0.85], [1, 1, 1], [0.8, 0.1, 0.58], [0.37, 0.84, 0.84], [1, 0.92, 0.07], [0.95, 0.65, 0.19]];
 	_explosion_fragments_array = [];
 	_explosion_subfragments_array = [];
 	_randomLaunch = (random 4.5) - 2.3;
@@ -525,11 +515,11 @@ ADF_fnc_fw = {
 	// take color parameter and convert into color code
 	switch (_color) do {
 		case "random": 	{_color = _colorArray call BIS_fnc_selectRandom};
-		case "green": 	{_color = [0.42,0.81,0.1]};
-		case "red": 		{_color = [0.8,0.1,0.35]};
-		case "blue": 	{_color = [0.2,0.73,0.85]};
-		case "white": 	{_color = [1,1,1]};
-		default 			{_color = [1,1,1]};
+		case "green": 	{_color = [0.42, 0.81, 0.1]};
+		case "red": 		{_color = [0.8, 0.1, 0.35]};
+		case "blue": 	{_color = [0.2, 0.73, 0.85]};
+		case "white": 	{_color = [1, 1, 1]};
+		default 			{_color = [1, 1, 1]};
 	}; 
 
 	//launch sounds
@@ -548,11 +538,11 @@ ADF_fnc_fw = {
 	_groupFizz = ["fizz_group1", "fizz_group2", "fizz_group3", "fizz_group4"];
 
 	switch (_type) do {
-		case "random": 	{_type = ["fizzer", "normal", "rain"] call BIS_fnc_selectRandom;};
-		case "normal": 	{_type = "normal";};
-		case "fizzer": 	{_type = "fizzer";};
-		case "rain": 	{_type = "rain";};
-		default 			{_type = ["fizzer", "normal", "rain"] call BIS_fnc_selectRandom;};
+		case "random": 	{_type = ["fizzer", "normal", "rain"] call BIS_fnc_selectRandom};
+		case "normal": 	{_type = "normal"};
+		case "fizzer": 	{_type = "fizzer"};
+		case "rain": 	{_type = "rain"};
+		default 			{_type = ["fizzer", "normal", "rain"] call BIS_fnc_selectRandom};
 	}; 
 
 	if (_type == "normal") then {
@@ -621,19 +611,20 @@ ADF_fnc_fw = {
 	] remoteExec ["GRAD_Fireworks", 0, false];
 };
 
-sleep 10;
+sleep 5;
 
-for "_i" from 0 to 100 do {
+private "_i";
+for "_i" from 0 to 125 do {
 	private "_p";
 	_p = ["mFire1", "mFire2", "mFire3", "mFire4", "mFire5"] call BIS_fnc_selectRandom;
 	[getMarkerPos _p, 'random','random'] spawn ADF_fnc_fw;
-	sleep (random 2);
+	sleep 1;
 };
 
 for "_i" from 0 to 25 do {
 	private "_p";
 	_p = ["mFire1", "mFire2", "mFire3", "mFire4", "mFire5"] call BIS_fnc_selectRandom;
 	[getMarkerPos _p, 'random','random'] spawn ADF_fnc_fw;
-	sleep .15;
+	sleep .25;
 };
 

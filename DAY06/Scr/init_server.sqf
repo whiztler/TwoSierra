@@ -34,11 +34,6 @@ NRF_grp_3 = createGroup west;
 _p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "SERGEANT"]; _p moveInGunner oStat_01;
 _p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "CORPORAL"]; _p moveInGunner oStat_02;
 _p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "PRIVATE"]; _p moveInGunner oStat_03;
-//_p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "PRIVATE"]; _p moveInGunner oStat_04;
-//_p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "PRIVATE"]; _p moveInGunner oStat_05;
-//_p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "CORPORAL"]; _p moveInGunner oStat_06;
-//_p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "PRIVATE"]; _p moveInGunner oStat_07;
-//_p = NRF_grp_3 createUnit ["B_Soldier_F", getPos b_net, [], 0, "PRIVATE"]; _p moveInGunner oStat_08;
 NRF_grp_3 setGroupIdGlobal ["5-1 CHARLIE"];
 
 {_x enableSimulationGlobal false} forEach units NRF_grp_3;
@@ -70,11 +65,12 @@ indep_cp4 = [CP_4a,CP_4b,CP_4c,CP_4d]; {_x enableSimulationGlobal false; _x hide
 
 _ADF_debug_testALL = false;
 
-{_x addEventHandler ["killed", {remoteExec ["ADF_fnc_CacheDestroyed", 0, true];}]} forEach [cacheObj1, cacheObj2, cacheObj3, cacheObj4, cacheObj5, cacheObj6];
-
-{	
+{
 	_x allowDamage false;
-	_x addEventHandler ["Killed",{[_this select 0] spawn ADF_fnc_CacheExplosion}];
+	_x addEventHandler ["killed", {
+		[_this select 0] spawn ADF_fnc_CacheExplosion}];
+		remoteExec ["ADF_fnc_CacheDestroyed", 0, true];
+	}]
 } forEach [cacheObj1, cacheObj2, cacheObj3, cacheObj4, cacheObj5, cacheObj6];
 
 // Test all compositions
@@ -150,6 +146,8 @@ if (ADF_debug) then {
 
 ADF_fnc_CacheExplosion = {
 	params ["_p"];
+	private "_o";
+	_o = _p
 	_p = getPos _p;
 	"Bo_GBU12_LGB" createVehicle _p; sleep random 1;
 	"2Rnd_Mk82" createVehicle _p; sleep random 1;
@@ -163,6 +161,7 @@ ADF_fnc_CacheExplosion = {
 	"HelicopterExploSmall" createVehicle _p; sleep 1;
 	"Bo_GBU12_LGB" createVehicle _p; sleep 1;
 	"HelicopterExploBig" createVehicle _p;
+	deleteVehicle _o;
 	ADF_cacheCount = ADF_cacheCount + 1;
 	publicVariable "ADF_cacheCount";
 	if (ADF_cacheCount == 3) then {ADF_endMission = true};

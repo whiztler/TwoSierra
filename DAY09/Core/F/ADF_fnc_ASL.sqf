@@ -12,8 +12,8 @@ File: ADF_fnc_ASL.sqf
 W.I.P.
 ****************************************************************/
 
-params ["_ADF_supplyCargo","_ADF_supplyVehicle"];
-["AmmoboxInit",[_ADF_supplyCargo,false,{true}]] spawn BIS_fnc_arsenal;
+params ["_ADF_supplyCargo", "_ADF_supplyVehicle"];
+["AmmoboxInit",[_ADF_supplyCargo, false,{true}]] spawn BIS_fnc_arsenal;
  
  
 /*********** PRIMARY WEAPON & MAGAZINES ***********/

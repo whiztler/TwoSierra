@@ -34,11 +34,11 @@ ADF_fnc_redressRussian = {
 	_priWeapon		= _priWeaponArr select 0;	
 	_priWeaponMag		= _priWeaponArr select 1;
 	_priWeaponMagAm	= _priWeaponArr select 2;
-	_enable_AT		= [true,false,true,true,true,false,false] call Bis_fnc_SelectRandom;
+	_enable_AT		= if ((random 1) > 0.6) then {true} else {false};
 	_clipCount		= 3;
 
 	// strip the unit
-	removeAllWeapons _unit; removeAllItems _unit; removeAllAssignedItems _unit; removeUniform _unit; removeVest _unit; removeBackpack _unit; removeHeadgear _unit; removeGoggles _unit;
+	[_unit, true] call ADF_fnc_stripUnit;
 
 	// Add generic containers
 	_unit forceAddUniform "U_O_CombatUniform_ocamo";

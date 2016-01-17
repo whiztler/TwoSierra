@@ -8,6 +8,7 @@ diag_log	"-----------------------------------------------------";
 private ["_g", "_u"];
 _g = createGroup east; 
 _u = _g createUnit ["O_crew_F", getMarkerPos "mPat_1", [], 0, "SERGEANT"]; _u moveInGunner vAA_1;
+_u = _g createUnit ["O_crew_F", getMarkerPos "mPat_1", [], 0, "SERGEANT"]; _u moveInGunner vAA_2;
 {[_x] call ADF_fnc_redressCSAT3} forEach units _g;
 
 
@@ -84,33 +85,32 @@ for "_i" from 1 to 2 do {
 ADF_init_AO = true; publicVariable "ADF_init_AO";
 
 // Count spawned Opfor 
-private ["_ADF_OpforCnt", "_opforCntWin"];
+private ["_cnt_Obj", "_cnt_Win"];
 
-_ADF_OpforCnt = {side _x == EAST} count allUnits;
-_opforCntWin = _ADF_OpforCnt / 12;
+_cnt_Obj	= ["mOpforScan", east, 350, "MAN"] call ADF_fnc_countRadius;
+_cnt_Win	= _cnt_Obj / 12;
 
 diag_log	"----------------------------------------------------------------------";
-diag_log format ["TWO SIERRA: AO OpFor spawned: number of Opfor: %1 (Win condition: %2)", _ADF_OpforCnt, _opforCntWin];
+diag_log format ["TWO SIERRA: Total AO OpFor spawned: number of Opfor: %1", {side _x == east} count allUnits];
+diag_log format ["TWO SIERRA: Objective OpFor spawned: number of Opfor: %1 (Win condition: %2)", _cnt_Obj, _cnt_Win];
 diag_log format ["TWO SIERRA: AO BluFor spawned, number of BluFor: %1", {(side _x == WEST) && !isPlayer _x} count allUnits];
 diag_log	"----------------------------------------------------------------------";
 
 // Track Opfor  count
 waitUntil {
 	sleep 15;
-	private ["_a", "_o"];
-	_a = (getMarkerPos "mBase") nearEntities ["Man", 500];
-	_o = {side _x == EAST} count _a;
-	((_o < _opforCntWin) || (time > 9000));
+	private ["_o"];
+	_o = ["mBpat_6", east, 350, "MAN"] call ADF_fnc_countRadius;
+	((_o < _cnt_Win) || (time > 9000));
 };
 
 private "_t";
 _t = if (time > 9000) then {true} else {false};
+[_t] remoteExec ["ADF_msg_pasteurClear", -2, true];
 
 // End mission
 ADF_endMission = true; publicVariable "ADF_endMission";
 tEndMission enableSimulation true;
-
-[_t] remoteExec ["ADF_msg_endMission", 0, true];
 
 sleep 155;
 

@@ -20,7 +20,7 @@ ADF_fnc_createRandomIEDs = {
 	Instructions:
 	Execute on server:
 
-	// Create random IED's
+	// Create random IED"s
 	_iedMarkerArr = ["mIED_1", "mIED_2", "mIED_3", "mIED_4", "mIED_5", "mIED_6", "mIED_7", "mIED_8", "mIED_9", "mIED_10", "mIED_11", "mIED_12", "mIED_13", "mIED_14", "mIED_15", "mIED_16", "mIED_17", "mIED_18", "mIED_19"];
 	for "_i" from 1 to 10 do {
 		private ["_iedMarkerPos", "_v", "_mN", "_m", "_idx"];
@@ -51,7 +51,7 @@ ADF_fnc_createRandomIEDs = {
 
 	// Search for IED locations within the search radius. Try 3 times
 	for "_i" from 1 to 3 do { 
-		_a = [_p,_r,_d] call ADF_fnc_randomPos_IED;
+		_a = [_p, _r, _d] call ADF_fnc_randomPos_IED;
 		if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_createRandomIEDs -random position: %1", _a]};
 		_ap = _a select 0;
 		_ad = _a select 1;
@@ -68,22 +68,22 @@ ADF_fnc_createRandomIEDs = {
 		
 	// create the IED (random object)
 	if (ADF_debug) then {
-		_v = createVehicle ["Sign_Arrow_Cyan_F", [_apx,_apy,1], [], 0, "CAN_COLLIDE"];
+		_v = createVehicle ["Sign_Arrow_Cyan_F", [_apx, _apy, 1], [], 0, "CAN_COLLIDE"];
 		_v enableSimulationGlobal false;
 	};	
 	
-	_v = createVehicle [_o, [_apx,_apy,0], [], 0, "NONE"];
+	_v = createVehicle [_o, [_apx, _apy, 0], [], 0, "NONE"];
 	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_createRandomIEDs -IED object created: %1", _v]};
 	
 	if (ADF_debug) then {
 		private ["_mName", "_m"];
 		_mName = format ["IEDclass_%1",round (random 9999)];
-		_m = createMarker [_mName,[_apx,_apy,0]];
-		_m setMarkerSize [0,0];
+		_m = createMarker [_mName,[_apx, _apy, 0]];
+		_m setMarkerSize [0, 0];
 		_m setMarkerShape "ICON";
 		_m setMarkerType "mil_dot";
 		_m setMarkerColor "ColorBlack";
-		_m setMarkerText format ["%1",_o];
+		_m setMarkerText format ["%1", _o];
 	};
 	
 	// Disguise the IED
@@ -91,20 +91,20 @@ ADF_fnc_createRandomIEDs = {
 	_v setDir (random 360);	
 	
 	switch _o do {
-		case "Land_Wreck_Car3_F" : {_v setVectorUp [0.1,0,0]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.30];};
-		case	 "Land_CanisterPlastic_F" : {_v setVectorUp [0.08,0,0]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.05];};
-		case "Land_Sack_F" : {_v setVectorUp [0,0.1,0.01]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.05];};
+		case "Land_Wreck_Car3_F" : {_v setVectorUp [0.1, 0, 0]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.30];};
+		case	 "Land_CanisterPlastic_F" : {_v setVectorUp [0.08, 0, 0]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.05];};
+		case "Land_Sack_F" : {_v setVectorUp [0, 0.1, 0.01]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.05];};
 		case "Land_JunkPile_F";
 		case "Land_GarbagePallet_F" : { _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.20];};
-		case "Land_GarbageBarrel_01_F" : {_v setVectorUp [0.1,0,0]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.10];};
-		case "Land_BarrelTrash_F" : {_v setVectorUp [0.1,0,0]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.08];};
+		case "Land_GarbageBarrel_01_F" : {_v setVectorUp [0.1, 0, 0]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.10];};
+		case "Land_BarrelTrash_F" : {_v setVectorUp [0.1, 0, 0]; _v setPosATL [getPosATL _v select 0, getPosATL _v select 1, -.08];};
 	};
 	
 	// Create the trigger
 	_t = createTrigger ["EmptyDetector", _ap, false];
-	_t setTriggerActivation ["WEST", "PRESENT",false];
-	_t setTriggerArea [4,3,_ax,true];
-	_t setTriggerTimeout [0,0,0,false];
+	_t setTriggerActivation ["west", "PRESENT", false];
+	_t setTriggerArea [4, 3, _ax, true];
+	_t setTriggerTimeout [0, 0, 0, false];
 	_t setTriggerStatements [
 		"{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;",
 		"[thisTrigger] call ADF_fnc_carBombDetonate; deleteVehicle thisTrigger;",
@@ -114,7 +114,7 @@ ADF_fnc_createRandomIEDs = {
 	if (ADF_debug) then {
 		private ["_mName", "_m"];
 		_mName = format ["obj_t%1",round (random 9999)];
-		_m = createMarker [_mName,_ap];
+		_m = createMarker [_mName, _ap];
 		_m setMarkerSize [4, 3];
 		_m setMarkerShape "RECTANGLE";
 		_m setMarkerColor "ColorRED";
@@ -150,7 +150,7 @@ ADF_fnc_createCarBomb = {
 	****************************************************************/
 
 	// Init
-	params [	"_p", 	["_r", 50, [0]], ["_s", west, [east]], ["_vc", "C_Van_01_fuel_F", [""]]];
+	params [	"_p", ["_r", 50, [0]], ["_s", west, [east]], ["_vc", "C_Van_01_fuel_F", [""]]];
 	private ["_v", "_d", "_t"];
 	_d	= 0;
 	
@@ -187,7 +187,7 @@ ADF_fnc_createCarBomb = {
 	if (ADF_debug) then {
 		private ["_mName", "_m"];
 		_mName = format ["mCB%1",round (random 9999)];
-		_m = createMarker [_mName,_p];
+		_m = createMarker [_mName, _p];
 		_m setMarkerSize [_r, _r];
 		_m setMarkerShape "ELLIPSE";
 		_m setMarkerColor "ColorRED";
@@ -213,7 +213,7 @@ ADF_fnc_randomPos_IED = {
 		diag_log format ["ADF Debug: ADF_fnc_randomPos_IED -new position: %1", _p];
 		private ["_mName", "_m"];
 		_mName = format ["obj_%1",round (random 9999)];
-		_m = createMarker [_mName,_p];
+		_m = createMarker [_mName, _p];
 		_m setMarkerSize [.7, .7];
 		_m setMarkerShape "ICON";
 		_m setMarkerType "mil_dot";
@@ -249,7 +249,7 @@ ADF_fnc_randomPos_IED = {
 	if (ADF_debug) then {
 		private ["_mName", "_m"];
 		_mName = format ["obj_%1",round (random 9999)];
-		_m = createMarker [_mName,_rdp];
+		_m = createMarker [_mName, _rdp];
 		_m setMarkerSize [.7, .7];
 		_m setMarkerShape "ICON";
 		_m setMarkerType "mil_dot";
@@ -258,7 +258,7 @@ ADF_fnc_randomPos_IED = {
 	};
 
 	// return the position + dir
-	[_rdp,_rdd]
+	[_rdp, _rdd]
 };
 
 ADF_fnc_carBombDetonate = {
@@ -267,15 +267,15 @@ ADF_fnc_carBombDetonate = {
 	private ["_p", "_v", "_b"];
 	
 	_p = getPosATL _t;
-	_a = nearestObjects [_p, ['CAR'], 8];
+	_a = nearestObjects [_p, ["CAR"], 8];
 	if (count _a == 0) exitWith {if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_carBombDetonate - no vehicle found", _a]};};
 	
 	_v = _a select 0;
 	_v allowDamage false;
 	_v enableSimulationGlobal false;
 	
-	_b = createVehicle ['HelicopterExploBig', _p, [], 0, 'NONE'];
-	_b = createVehicle ['Bo_GBU12_LGB', [_p select 0, _p select 1, (_p select 2) + 3], [], 0, 'NONE'];		
+	_b = createVehicle ["HelicopterExploBig", _p, [], 0, "NONE"];
+	_b = createVehicle ["Bo_GBU12_LGB", [_p select 0, _p select 1, (_p select 2) + 3], [], 0, "NONE"];		
 	
 	enableCamShake true;
 	addCamShake [4, 3, 3];
@@ -294,12 +294,12 @@ ADF_fnc_iedDetonate = {
 	_tp = getPosATL _t;
 	if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_iedDetonate - trigger (%1) position: %2", _t, _tp]};
 	
-	_a = nearestObjects [_tp, ['Land_Wreck_Car3_F','Land_GarbagePallet_F','Land_CanisterPlastic_F','Land_Sack_F','Land_JunkPile_F','Land_BarrelTrash_F','Land_GarbageBarrel_01_F'], 8];
+	_a = nearestObjects [_tp, ["Land_Wreck_Car3_F", "Land_GarbagePallet_F", "Land_CanisterPlastic_F", "Land_Sack_F", "Land_JunkPile_F", "Land_BarrelTrash_F", "Land_GarbageBarrel_01_F"], 8];
 	if (count _a == 0) exitWith {if (ADF_debug) then {diag_log format ["ADF Debug: ADF_fnc_iedDetonate - no IED object found", _a]}};
 	_p = getPos (_a select 0);
 	{deleteVehicle _x} forEach _a;
 	
-	_b = createVehicle ['HelicopterExploSmall', _p, [], 0, 'NONE'];
+	_b = createVehicle ["HelicopterExploSmall", _p, [], 0, "NONE"];
 
 	true
 };

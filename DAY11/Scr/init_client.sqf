@@ -65,38 +65,56 @@ if (!didJIP) then {
 		["OP CRIMSHAW, EVERON","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 	] spawn ADF_fnc_typeWriter;
 
-	["2S","","VADER this is TWO SIERRA at LIMA. We are OSCAR MIKE. Over."] call ADF_fnc_MessageParser; sleep 12;
-	["ACO","ACO","VADER: TWO SIERRA this is VADER. Solid copy. No FRAGO. Over."] call ADF_fnc_MessageParser; 
-	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; sleep 12;
+	["2S","","VADER this is TWO SIERRA at LIMA. We are OSCAR MIKE. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is VADER. Solid copy. 3RD PLT is commencing the distraction op in 20 mikes. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 };
 
-ADF_msg_intel1 = {
-	["2S","","TWO SIERRA: VADER this is TWO SIERRA. We're at the Dolores Military Base. There's a lot of hardware here.0 How copy?"] call ADF_fnc_MessageParser; sleep 14;
-	["ACO","ACO","VADER: Copy TWO SIERRA. Wait one."] call ADF_fnc_MessageParser; sleep 25;
-	["ACO","ACO","VADER: TWO SIERRA, your orders are to destroy the assets at the Delores Base. Out"] call ADF_fnc_MessageParser;
+ADF_msg_intel = {
+	["2S","","VADER this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["ACO","ACO","TWO SIERRA this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","VADER this is TWO SIERRA. We're at the main research building at PASTEUR. No intel, no research material. Over."] call ADF_fnc_MessageParser; sleep 14;
+	["ACO","ACO","TWO SIERRA this is VADER. Roger. Wait. Over."] call ADF_fnc_MessageParser; sleep 25;
+	["ACO","ACO","TWO SIERRA this is VADER. Continue clearing PASTEUR and search for intel or research material. Over"] call ADF_fnc_MessageParser; sleep 14;
+	["2S","","VADER this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser; 
 };
 
+ADF_AO_evac = {
+	sleep 5;
+	["2S","","VADER this is TWO SIERRA. Stand by for traffic. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["ACO","ACO","TWO SIERRA this is VADER. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","VADER this is TWO SIERRA. We're closing in on PASTEUR. Break. Three helicopters and five trucks departed PASTEUR heading for Paraiso. Over."] call ADF_fnc_MessageParser; sleep 17;
+	["ACO","ACO","TWO SIERRA this is VADER. Roger. MOTHER thinks they are evacing strategic assets. Break. Secure and search pasteur for intel asap. How copy?"] call ADF_fnc_MessageParser; sleep 25;
+	["2S","","VADER this is TWO SIERRA. Solid copy. Out."] call ADF_fnc_MessageParser; sleep 7;
+};
+
+ADF_msg_distraction = {
+	["ACO","ACO","TWO SIERRA this is VADER. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","VADER this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 9;
+	["ACO","ACO","TWO SIERRA this is VADER. 3RD PLT in effect in 2 mikes. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","VADER this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
+};
 
 ADF_msg_pasteurClear	= {
 	params ["_t"];
 	if (_t) then {
-		["ACO","ACO","VADER: TWO SIERRA this is VADER. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
-		["2S","","TWO SIERRA: VADER this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 9;
-		["ACO","ACO","VADER: TWO SIERRA we are pulling you out. ACE reported an armored squadron heading your way. ETA four mikes. RTB. How copy?"] call ADF_fnc_MessageParser; sleep 17;
+		["ACO","ACO","TWO SIERRA this is VADER. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+		["2S","","VADER this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 9;
+		["ACO","ACO","TWO SIERRA this is VADER. We are pulling you out. Break. ACE reported an armored squadron heading your way. ETA four mikes. RTB. How copy?"] call ADF_fnc_MessageParser; sleep 17;
 	} else {
-		["2S","","TWO SIERRA: VADER this is TWO SIERRA. Message over."] call ADF_fnc_MessageParser; sleep 14;
-		["ACO","ACO","VADER: TWO SIERRA this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 7;
-		["2S","","TWO SIERRA: VADER this is TWO SIERRA. PASTEUR is clear. How copy?"] call ADF_fnc_MessageParser; sleep 14;
-		["ACO","ACO","VADER: Stand by TWO SIERRA"] call ADF_fnc_MessageParser; sleep 12;
-		["ACO","ACO","VADER: TWO SIERRA this is VADER. ACE is tracking an armored squadron heading your way. ETA four mikes. RTB. How copy?"] call ADF_fnc_MessageParser; sleep 17;
+		["2S","","VADER this is TWO SIERRA. Message over."] call ADF_fnc_MessageParser; sleep 11;
+		["ACO","ACO","TWO SIERRA this is VADER. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 7;
+		["2S","","VADER this is TWO SIERRA. PASTEUR is clear. No intel, No reasearch material. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+		["ACO","ACO","TWO SIERRA this is VADER. Stand by. Over."] call ADF_fnc_MessageParser; sleep 19;
+		["ACO","ACO","TWO SIERRA this is VADER. ACE is tracking an armored squadron heading your way. ETA four mikes. RTB. How copy?"] call ADF_fnc_MessageParser; sleep 17;
 	};
-	["2S","","TWO SIERRA: Solid copy Vader. TWO SIERRA is OSCAR MIKE to LIMA. Over."] call ADF_fnc_MessageParser; sleep 9;
-	["ACO","ACO","VADER: TWO SIERRA this is VADER. SPG will deal the the Tigers. RTB now! Out."] call ADF_fnc_MessageParser;	
+	["2S","","TWO SIERRA this is VADER. Solid copy. TWO SIERRA is OSCAR MIKE to LIMA. Over."] call ADF_fnc_MessageParser; sleep 9;
+	["ACO","ACO","TWO SIERRA this is VADER. Roger. SPG will deal the the Tigers. RTB now! Out."] call ADF_fnc_MessageParser;	
 };
 
 ADF_msg_endMission = {			
 	sleep 25;
-	["ACO","ACO","Capt. James O'Conner:. Welcome back TWO SIERRA<br/><br/>It seems we have taken PASTEUR by surprice. SPG is dealing with the armored squadron. MOTHER wants you back at BRONSON. Tomorrow morning we start our assault on Paraiso. Get some rest and chow. See you in a few hours for brieding."] call ADF_fnc_MessageParser;
+	["ACO","ACO","Capt. James O'Conner:. Welcome back TWO SIERRA<br/><br/>It seems we have taken PASTEUR by surprice. It is unfortunate CSAT was able to evac the research assets.<br/><br/>MOTHER wants you back at BRONSON. Tomorrow morning we start our assault on Paraiso.<br/><br/>Get some rest and chow. See you in a few hours for brieding."] call ADF_fnc_MessageParser;
 	sleep 20;
 	_l = ["tLayer"] call BIS_fnc_rscLayer; 
 	_l cutText ["", "BLACK", 20];

@@ -40,6 +40,8 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_position.sqf";
 
 diag_log "ADF RPT: Init - executing ADF_fnc_defendArea.sqf"; // Reporting. Do NOT edit/remove
 
+bPos_debug = false; // enable to test building positions (yellow sphere ingame and yellow dot on the map)
+
 ADF_fnc_buildingArr = {
 	/**********************************************************************
 	The gbuildingArr function is called by the defendArea function. It creates
@@ -47,7 +49,7 @@ ADF_fnc_buildingArr = {
 	The buildings are checked for being enterable and haaving garrison positions.
 	**********************************************************************/
 	// init	
-	params [["_p", [0,0,0], [[]], [3]],["_r",10,[0]]];
+	params [["_p", [0, 0, 0], [[]], [3]],["_r", 10,[0]]];
 	private ["_b", "_bp", "_be"];	
 
 	// Create the building array
@@ -64,7 +66,7 @@ ADF_fnc_buildingArr = {
 				_be = [_x] call BIS_fnc_isBuildingEnterable;
 				_bp = [_x] call BIS_fnc_buildingPositions;
 				
-				if (ADF_debug) then {
+				if (ADF_debug && bPos_debug) then {
 					{
 						_v = createVehicle ["Sign_Sphere100cm_F", [_x select 0, _x select 1, (_x select 2) + 1], [], 0, "NONE"];
 						_mName = format ["p_%1", _x];
@@ -97,7 +99,7 @@ ADF_fnc_getTurrets = {
 	then 'LOCK' the vehicle (not player lock!)
 	**********************************************************************/
 	// init
-	params [["_p", [0,0,0], [[]], [3]],["_r",10,[0]]];
+	params [["_p", [0, 0, 0], [[]], [3]],["_r", 10,[0]]];
 	private ["_t", "_a"];
 	_t = [];
 	_a = [];	
@@ -120,7 +122,7 @@ ADF_fnc_setGarrison = {
 	the unit will be disabled to move untill a thread has been detected.
 	**********************************************************************/
 	// init
-	params ["_u", ["_p", [0,0,0], [[]], [3]],"_b"];
+	params ["_u", ["_p", [0, 0, 0], [[]], [3]],"_b"];
 	private ["_t", "_d"];
 	
 	// Move the unit inside the predefined building position. Give the unit 60 secs to reach its position.	
@@ -142,7 +144,7 @@ ADF_fnc_setGarrison = {
 	_u disableAI "move";
 	doStop _u;
 	
-	//_u setVariable ["ADF_garrSetBuilding", [true,_p]];
+	//_u setVariable ["ADF_garrSetBuilding", [true, _p]];
 	
 	waitUntil {sleep 1 + (random 1); !(unitReady _u)};
 	_u enableAI "move";
@@ -203,7 +205,7 @@ ADF_fnc_defendAreaPatrol = {
 	
 	if (_r < 75) then {_r = 75};
 	[_gt, _p, _r, 4, "MOVE", "SAFE", "RED", "LIMITED", "FILE", 5] call ADF_fnc_footPatrol;
-	_gt setVariable ["ADF_hc_garrison_ADF",false];
+	_gt setVariable ["ADF_hc_garrison_ADF", false];
 	_gt enableAttack true;
 };
 
@@ -212,7 +214,7 @@ ADF_fnc_defendArea = {
 	This is the main function which is called by scripts.	
 	**********************************************************************/
 	// init
-	params ["_g", "_p", ["_r",10,[0]]];
+	params ["_g", "_p", ["_r", 10,[0]]];
 	private ["_a", "_b", "_bs", "_bp", "_t", "_u", "_c", "_ct", "_i", "_ADF_perfDiagStart", "_ADF_perfDiagStop"];
 	
 	// init
@@ -227,9 +229,9 @@ ADF_fnc_defendArea = {
 	// Check the position (marker, array, etc.)
 	_p	= [_p] call ADF_fnc_checkPosition;
 	// Populate an array with suitable garrison buildings
-	_bs	= [_p,_r] call ADF_fnc_buildingArr;
+	_bs	= [_p, _r] call ADF_fnc_buildingArr;
 	// Populate an array with turret positions (statics and empty vehicles)
-	_t	= [_p,_r] call ADF_fnc_getTurrets;
+	_t	= [_p, _r] call ADF_fnc_getTurrets;
 
 	if (ADF_debug) then {
 		diag_log format ["ADF Debug: ADF_fnc_defendArea - Group: %1 -- # units: %2", _g, _c];
@@ -339,7 +341,7 @@ ADF_fnc_defendArea_HC = {
 	re-applies garrison positions for each units within the group.
 	**********************************************************************/
 	// init
-	params ["_g","_a"];
+	params ["_g", "_a"];
 	private ["_i"];
 	
 	_c = count _a;
