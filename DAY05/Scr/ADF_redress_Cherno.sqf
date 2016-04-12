@@ -7,15 +7,16 @@ ADF_fnc_redressCherno_face = {
 };
 
 ADF_fnc_redressCherno_skill = {
-	params ["_unit"];
-	_unit setskill ['general',(0.5 + random 0.5)];
-	_unit setskill ['courage',1];
-	_unit setskill ['commanding', (0.5 + random 0.5)];
-	_unit setskill ['aimingAccuracy', (0.2 + random 0.5)];
-	_unit setskill ['aimingShake', (0.3 + random 0.5)];
-	_unit setskill ['aimingSpeed', (0.2 + random 0.5)];
-	_unit setskill ['spotDistance', (0.5 + random 0.3)];
-	_unit setskill ['spotTime', (0.5 + random 0.3)];
+	params ["_u"];
+	_u setskill ['general',(0.15 + random 0.15)];
+	_u setskill ['courage', (0.3 + random 0.3)];
+	_u setskill ['commanding', (0.3 + random 0.3)];
+	_u setskill ['aimingAccuracy', (0.2 + random 0.2)];
+	_u setskill ['aimingShake', (0.3 + random 0.2)];
+	_u setskill ['aimingSpeed', (0.15 + random 0.1)];
+	_u setskill ['endurance', (0.3 + random 0.2)];
+	_u setskill ['spotDistance', (0.2 + random 0.2)];
+	_u setskill ['spotTime', (0.2 + random 0.15)];
 	true
 };
 

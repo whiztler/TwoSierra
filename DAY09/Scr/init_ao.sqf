@@ -26,13 +26,15 @@ for "_i" from 1 to 2 do {
 	[_c, _p, 500, 4, "MOVE", "SAFE", "RED", "NORMAL", "FILE", 5] call ADF_fnc_seaPatrol;	
 };
 
-// AO Defence Squad
+// AO Defence units
 for "_i" from 1 to 14 do {
 	private ["_g", "_p", "_sqd"];
 	_p = format ["mDef_%1", _i];
 	_p = getMarkerPos _p;
 	_sqd = "";
-	if ((random 1) > .33) then {_sqd = "OIA_InfAssault"} else {_sqd = "OIA_InfSquad_Weapons"};
+	if ((random 1) > .50) then {_sqd = "OIA_InfTeam"} else {
+		if ((random 1) > .33) then {_sqd = "OIA_InfAssault"} else {_sqd = "OIA_InfSquad_Weapons"};
+	};
 	
 	_g = [_p, east, (configFile >> "CfgGroups" >> "east" >> "OPF_F" >> "Infantry" >> _sqd)] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
@@ -117,7 +119,7 @@ diag_log	"-----------------------------------------------------";
 	// Golf
 	waitUntil {
 		sleep 8 + (random 1);
-		(["mGolf", west, 55, "MAN"] call ADF_fnc_countRadius)) > 0
+		(["mGolf", west, 55, "MAN"] call ADF_fnc_countRadius) > 0
 	};
 	diag_log "TWO SIERRA: Objective GOLF activated";
 	tGolfFuel enableSimulation true;
@@ -135,7 +137,7 @@ diag_log	"-----------------------------------------------------";
 	// Hotel
 	waitUntil {
 		sleep 8 + (random 1);			
-		(["mHotel", west, 75, "MAN"] call ADF_fnc_countRadius)) > 0
+		(["mHotel", west, 75, "MAN"] call ADF_fnc_countRadius) > 0
 	};
 	diag_log "TWO SIERRA: Objective HOTEL activated";
 	tHotelSupply enableSimulation true;
@@ -153,7 +155,7 @@ diag_log	"-----------------------------------------------------";
 	// Delta
 	waitUntil {
 		sleep 5 + (random 1);				
-		(["mDelta", west, 75, "MAN"] call ADF_fnc_countRadius)) > 0
+		(["mDelta", west, 75, "MAN"] call ADF_fnc_countRadius) > 0
 	};
 	diag_log "TWO SIERRA: Objective DELTA activated";
 	waitUntil {
@@ -170,7 +172,7 @@ diag_log	"-----------------------------------------------------";
 	// Echo
 	waitUntil {
 		sleep 5 + (random 1);	
-		(["mEcho", west, 75, "MAN"] call ADF_fnc_countRadius)) > 0
+		(["mEcho", west, 75, "MAN"] call ADF_fnc_countRadius) > 0
 	};
 	diag_log "TWO SIERRA: Objective ECHO activated";
 	waitUntil {
@@ -187,7 +189,7 @@ diag_log	"-----------------------------------------------------";
 	// Romeo
 	waitUntil {
 		sleep 5 + (random 1);		
-		(["mRomeo", west, 75, "MAN"] call ADF_fnc_countRadius)) > 0
+		(["mRomeo", west, 75, "MAN"] call ADF_fnc_countRadius) > 0
 	};
 	diag_log "TWO SIERRA: Objective ECHO activated";
 	waitUntil {

@@ -64,8 +64,7 @@ class Mission
 		"A3_Modules_F",
 		"cba_main",
 		"A3_Characters_F",
-		"3DEN",
-		"a3_modules_f_curator_curator",
+		"A3_Modules_F_Curator_Curator",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_Mark",
 		"A3_Characters_F_Civil",
@@ -2003,6 +2002,7 @@ class Mission
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
 			text="vAir_2";
+			init="[this, [""black"",1], [""AddCargoHook_COver"",0]] call BIS_fnc_initVehicle;";
 		};
 		class Item108
 		{
@@ -4469,6 +4469,7 @@ class Mission
 			lock="LOCKEDPLAYER";
 			skill=0.80308741;
 			text="vAir_1";
+			init="[this, [""black"",1], [""Proxy"", 0, ""Missiles_revolving"", 0, ""AddCargoHook_COver"",0]] call BIS_fnc_initVehicle;";
 		};
 		class Item345
 		{
@@ -6456,6 +6457,7 @@ class Mission
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
 			text="vAir_3";
+			init="[this, [""black"",1], [""AddCargoHook_COver"",0]] call BIS_fnc_initVehicle;";
 		};
 		class Item526
 		{
@@ -6485,7 +6487,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=96;
+		items=95;
 		class Item0
 		{
 			position[]={9533.1387,44.975235,5799.9116};
@@ -7345,23 +7347,13 @@ class Mission
 		};
 		class Item86
 		{
-			position[]={12747.104,0.18374796,5549.0898};
-			name="mMOTS_1_2";
-			text="M";
-			type="Empty";
-			colorName="ColorBlue";
-			a=0.5;
-			b=0.5;
-		};
-		class Item87
-		{
 			position[]={6447.3179,57.410545,7511.5547};
 			name="mMines_1";
 			type="Minefield";
 			a=0.75;
 			b=0.75;
 		};
-		class Item88
+		class Item87
 		{
 			position[]={6624.585,73.237656,7300.3428};
 			name="mMines_2";
@@ -7369,7 +7361,7 @@ class Mission
 			a=0.75;
 			b=0.75;
 		};
-		class Item89
+		class Item88
 		{
 			position[]={6899.3408,96.064529,7092.4268};
 			name="mMines_3";
@@ -7377,7 +7369,7 @@ class Mission
 			a=0.75;
 			b=0.75;
 		};
-		class Item90
+		class Item89
 		{
 			position[]={7224.2773,90.265739,6978.4985};
 			name="mMines_4";
@@ -7385,7 +7377,7 @@ class Mission
 			a=0.75;
 			b=0.75;
 		};
-		class Item91
+		class Item90
 		{
 			position[]={7576.2949,92.779617,6876.6665};
 			name="mMines_5";
@@ -7393,7 +7385,7 @@ class Mission
 			a=0.75;
 			b=0.75;
 		};
-		class Item92
+		class Item91
 		{
 			position[]={8008.7769,77.720932,6759.7456};
 			name="mMines_6";
@@ -7401,7 +7393,7 @@ class Mission
 			a=0.75;
 			b=0.75;
 		};
-		class Item93
+		class Item92
 		{
 			position[]={8375.8848,73.493073,6660.4272};
 			name="mMines_7";
@@ -7409,7 +7401,7 @@ class Mission
 			a=0.75;
 			b=0.75;
 		};
-		class Item94
+		class Item93
 		{
 			position[]={8750.5342,50.633171,6583.7368};
 			name="mMines_8";
@@ -7417,7 +7409,7 @@ class Mission
 			a=0.75;
 			b=0.75;
 		};
-		class Item95
+		class Item94
 		{
 			position[]={9035.9746,163.98,8221.166};
 			name="cEnd";

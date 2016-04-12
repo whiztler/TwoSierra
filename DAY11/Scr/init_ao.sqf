@@ -31,7 +31,9 @@ for "_i" from 1 to 8 do {
 	_p = format ["mDef_%1", _i];
 	_p = getMarkerPos _p;
 	_t = "";
-	if ((random 1) < .33) then {_t = "OIA_InfAssault"} else {_t = "OIA_InfSquad_Weapons"};
+	if ((random 1) > .50) then {_t = "OIA_InfTeam"} else {
+		if ((random 1) > .33) then {_t = "OIA_InfAssault"} else {_t = "OIA_InfSquad_Weapons"};
+	};
 	
 	_g = [_p, EAST, (configFile >> "CfgGroups" >> "EAST" >> "OPF_F" >> "Infantry" >> _t)] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;

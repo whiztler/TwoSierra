@@ -3333,6 +3333,7 @@ class Mission
 			lock="LOCKEDPLAYER";
 			skill=0.80308741;
 			text="vAir_1";
+			init="[this, [""black"",1], [""AddCargoHook_COver"", 0]] call BIS_fnc_initVehicle;";
 		};
 		class Item225
 		{
@@ -4378,6 +4379,7 @@ class Mission
 			lock="LOCKEDPLAYER";
 			skill=0.80308741;
 			text="vAir_2";
+			init="[this, [""black"",1], [""AddCargoHook_COver"", 0]] call BIS_fnc_initVehicle;";
 		};
 		class Item317
 		{
@@ -4711,15 +4713,15 @@ class Mission
 		};
 		class Item31
 		{
-			position[]={12918.936,36.949837,8203.6729};
+			position[]={13091.024,45.118179,8005.7856};
 			name="bZone_2";
 			markerType="RECTANGLE";
 			type="Empty";
 			colorName="ColorBlue";
 			fillName="DiagGrid";
-			a=550;
+			a=680;
 			b=25;
-			angle=-23.381599;
+			angle=0.526407;
 		};
 		class Item32
 		{
@@ -5283,7 +5285,7 @@ class Mission
 		};
 		class Item89
 		{
-			position[]={14201.643,-19.530001,6802.2534};
+			position[]={17921.916,-0.16364241,6716.4385};
 			name="mAirSupportVector";
 			text="vector";
 			type="Empty";

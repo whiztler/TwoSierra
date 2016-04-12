@@ -2,14 +2,15 @@ diag_log "ADF RPT: Init - executing ADF_redress_CSAT.sqf"; // Reporting. Do NOT 
 
 ADF_fnc_redressCSAT_skill = {
 	params ["_u"];
-	_u setskill ['general',(0.5 + random 0.5)];
-	_u setskill ['courage',1];
-	_u setskill ['commanding', (0.5 + random 0.5)];
+	_u setskill ['general',(0.15 + random 0.15)];
+	_u setskill ['courage', (0.5 + random 0.4)];
+	_u setskill ['commanding', (0.5 + random 0.4)];
 	_u setskill ['aimingAccuracy', (0.2 + random 0.5)];
-	_u setskill ['aimingShake', (0.3 + random 0.5)];
-	_u setskill ['aimingSpeed', (0.2 + random 0.5)];
-	_u setskill ['spotDistance', (0.3 + random 0.5)];
-	_u setskill ['spotTime', (0.3 + random 0.5)];
+	_u setskill ['aimingShake', (0.4 + random 0.3)];
+	_u setskill ['aimingSpeed', (0.15 + random 0.15)];
+	_u setskill ['endurance', (0.4 + random 0.3)];
+	_u setskill ['spotDistance', (0.3 + random 0.3)];
+	_u setskill ['spotTime', (0.3 + random 0.2)];
 	true
 };
 
@@ -72,9 +73,9 @@ ADF_fnc_redressCSAT3 = {
 		_u addPrimaryWeaponItem "muzzle_snds_H";
 	};
 	if (_ut == "O_soldierU_AR_F") then {_u addPrimaryWeaponItem "optic_Arco"};
-	if (_ut == "O_HeavyGunner_F") then {_u addPrimaryWeaponItem "muzzle_snds_93mmg_tan"};
+	if (_ut == "O_HeavyGunner_F") then {_u addPrimaryWeaponItem "muzzle_snds_93mmg_tan"; _u removePrimaryWeaponItem "optic_Arco"; _u addPrimaryWeaponItem "optic_tws_mg"};
 	if (_ut == "O_soldier_M_F") then {_u addPrimaryWeaponItem "bipod_02_F_hex"; _u addPrimaryWeaponItem "muzzle_snds_B"};
-	if (_ut == "O_Sharpshooter_F") then {_u addPrimaryWeaponItem "muzzle_snds_93mmg"};
+	if (_ut == "O_Sharpshooter_F") then {_u addPrimaryWeaponItem "muzzle_snds_93mmg"; _u removePrimaryWeaponItem "optic_KHS_blk"; _u addPrimaryWeaponItem "optic_Nightstalker"};
 	
 	// Add stored items
 	{_u addItem _x} forEach _su;
@@ -82,7 +83,7 @@ ADF_fnc_redressCSAT3 = {
 	if (_uv) then {{_u addItemToVest _x} forEach _sv};
 
 	_u selectWeapon (primaryWeapon _u);
-	_u unassignItem "NVGoggles_OPFOR";
+	//_u unassignItem "NVGoggles_OPFOR";
 	
 	// Insignia
 	[_u,"CSAT3Patch"] call BIS_fnc_setUnitInsignia;	

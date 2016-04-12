@@ -6,7 +6,7 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_vehiclePatrol.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_defendArea.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_footPatrol.sqf";
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_seaPatrol.sqf";
-call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
+//call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 call compile preprocessFileLineNumbers "scr\ADF_redress_NRF.sqf";
 call compile preprocessFileLineNumbers "Scr\ADF_redress_CSAT3.sqf";
 

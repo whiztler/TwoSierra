@@ -279,7 +279,7 @@ waitUntil {
 	sleep 30;
 	private "_c";
 	_c = ["mJonahRadius", independent, 750, "MAN"] call ADF_fnc_countRadius;
-	((_c <= _cnt_Win) || (time > 10800)); // 3 hours
+	((_c <= _cnt_Win) || (time > 12800)); // 3,5 hours
 };
 
 // End mission

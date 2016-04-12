@@ -7,7 +7,7 @@ ADF_assaultTimer = [240, 300, 360, 420, 480] call BIS_fnc_selectRandom; publicVa
 diag_log	"-----------------------------------------------------";
 diag_log format ["TWO SIERRA: Pashtun assault timer: %1 min",round (ADF_assaultTimer/60)];
 diag_log	"-----------------------------------------------------";
-sleep ADF_assaultTimer;
+if (MotsActive) then {sleep 120} else {sleep ADF_assaultTimer};
 
 ADF_assaultStart = true; publicVariable "ADF_assaultStart";
 
@@ -42,7 +42,7 @@ for "_i" from 1 to 9 do {
 	sleep _s;
 };
 
-sleep ((random 75) + (random 75));
+if (!MotsActive) then {sleep ((random 75) + (random 75))} else {sleep 20};
 
 [getMarkerPos "mMSR_11", getMarkerPos "mMSR_5", 30, "FULL", "O_Plane_CAS_02_F", east] call BIS_fnc_ambientFlyby;
 
@@ -51,8 +51,7 @@ for "_i" from 1 to 9 step 2 do {
 	private ["_g", "_p", "_r", "_t"];
 	_p	= format ["mPd_%1", _i];
 	_p	= getMarkerPos _p;
-	_t	= "";
-	if ((random 1) < .33) then {_t = "OIA_InfAssault"} else {_t = "OIA_InfSquad_Weapons"};
+	_t	= ["OIA_InfSquad_Weapons", "OIA_InfTeam"] call BIS_fnc_selectRandom;
 	
 	_g = [_p, east, (configFile >> "CfgGroups" >> "east" >> "OPF_F" >> "Infantry" >> _t)] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
@@ -67,13 +66,14 @@ for "_i" from 1 to 9 step 2 do {
 };
 
 ADF_init_AO = true; publicVariable "ADF_init_AO";
+private "_wave1";
+_wave1 = ["mOpforScan", east, 800, "MAN"] call ADF_fnc_countRadius;
 diag_log	"-----------------------------------------------------";
-diag_log "TWO SIERRA: CSAT para assault - first wave finished";
+diag_log format ["TWO SIERRA: CSAT para assault - first wave finished. # of Opfor: %1", _wave1];
 diag_log	"-----------------------------------------------------";
 
 sleep 60;
-private "_wave1";
-_wave1 = {side _x == east} count allUnits;
+
 
 [getMarkerPos "mMSR_20", getMarkerPos "mBase_6", 30, "FULL", "O_Plane_CAS_02_F", east] call BIS_fnc_ambientFlyby;
 [getMarkerPos "mPS_5", getMarkerPos "mBase_9", 40, "FULL", "O_Plane_CAS_02_F", east] call BIS_fnc_ambientFlyby;
@@ -105,7 +105,7 @@ diag_log	"----------------------------------------------------------------------
 diag_log format ["TWO SIERRA: AO OpFor spawned, first wave: %1", _wave1];
 diag_log format ["TWO SIERRA: AO OpFor spawned, second wave: %1", _wave2];
 diag_log format ["TWO SIERRA: AO OpFor spawned, current total: %1", {side _x == east} count allUnits];
-diag_log format ["TWO SIERRA: AO Opfor in Objective area: %1 (mission success count: %2)", _cnt_Obj, _cnt_Win];
+diag_log format ["TWO SIERRA: AO Opfor in Objective area: %1 (mission condition: < %2)", _cnt_Obj, _cnt_Win];
 diag_log	"----------------------------------------------------------------------";
 
 ADF_motsSpawned = true;
@@ -120,6 +120,7 @@ waitUntil {
 };
 
 ADF_endMission = true; publicVariable "ADF_endMission";
+ADF_cancel_ACM = true;
 
 diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: End Mission process started";

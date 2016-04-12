@@ -49,7 +49,9 @@ for "_i" from 1 to 10 do {
 	_p = format ["mDef_%1", _i];
 	_p = getMarkerPos _p;
 	_t = "";
-	if ((random 1) > .33) then {_t = "OIA_InfAssault"} else {_t = "OIA_InfSquad_Weapons"};
+	if ((random 1) > .50) then {_t = "OIA_InfTeam"} else {
+		if ((random 1) > .33) then {_t = "OIA_InfAssault"} else {_t = "OIA_InfSquad_Weapons"};
+	};
 	
 	_g = [_p, east, (configFile >> "CfgGroups" >> "east" >> "OPF_F" >> "Infantry" >> _t)] call BIS_fnc_spawnGroup;
 	{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
@@ -62,7 +64,7 @@ for "_i" from 1 to 10 do {
 	private ["_g", "_p", "_r", "_t", "_p"];
 	_p	= format ["mPat_%1", _i];
 	_r	= floor ((random 400) + (random 400));
-	_t	= ["OI_reconSentry", "OIA_InfTeam"] call BIS_fnc_selectRandom;
+	_t	= selectRandom ["OI_reconSentry", "OIA_InfTeam"];
 	_p	= getMarkerPos _p;
 	
 	_g = [_p, east, (configFile >> "CfgGroups" >> "east" >> "OPF_F" >> "Infantry" >> _t)] call BIS_fnc_spawnGroup;
@@ -115,7 +117,9 @@ ADF_AO_dolores = {
 		_p	= format ["mDef_%1", _i];
 		_p	= getMarkerPos _p;
 		_t	= "";
-		if ((random 1) < .33) then {_t = "OIA_InfAssault"} else {_t = "OIA_InfSquad_Weapons"};
+		if ((random 1) > .50) then {_t = "OIA_InfTeam"} else {
+			if ((random 1) > .33) then {_t = "OIA_InfAssault"} else {_t = "OIA_InfSquad_Weapons"};
+		};
 		
 		_g = [_p, east, (configFile >> "CfgGroups" >> "east" >> "OPF_F" >> "Infantry" >> _t)] call BIS_fnc_spawnGroup;
 		{[_x] call ADF_fnc_redressCSAT3} forEach units _g;
@@ -137,7 +141,7 @@ ADF_AO_dolores = {
 		private ["_g", "_p", "_r", "_t", "_p"];
 		_p	= format ["mPat_%1", _i];
 		_r	= floor ((random 400) + (random 400));
-		_t	= ["OI_reconSentry", "OIA_InfTeam"] call BIS_fnc_selectRandom;
+		_t	= selectRandom ["OI_reconSentry", "OIA_InfTeam"];
 		_p	= getMarkerPos _p;
 		
 		_g = [_p, east, (configFile >> "CfgGroups" >> "east" >> "OPF_F" >> "Infantry" >> _t)] call BIS_fnc_spawnGroup;

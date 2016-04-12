@@ -84,6 +84,14 @@ if (!didJIP) then {
 	["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA. Good copy on all. Out."] call ADF_fnc_MessageParser; sleep 15;
 };
 
+[] spawn {
+	waitUntil {sleep 30; time > 11000}; // 30 mins left
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. You have 30 mikes left before MOTHER pulls you out. Break. After that it is RTB and mission aborted. Over."] call ADF_fnc_MessageParser; sleep 16;
+	["2S","","FIRESTONE this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; 
+};
+
 // Assault defeated msg
 [] spawn {
 	waitUntil {sleep 10; ADF_pashtunWaveClear};

@@ -35,7 +35,7 @@ More information and latest version of the Two Sierra campaign can be found at t
 <font size='14' color='#d7dbd5'>SPECIAL THANKS TO</font><font color='#9DA698'><br/>
 - Bohemia Interactive for creating the ultimate MilSim<br/>
   platform.<br/>
-- Nopryl Community (nopryl.no) for testing.<br/>
+- Nopryl, CSOR, 2CAV and PFD for testing/feedback.<br/>
 - CBA Team for creating and maintaining their CBA framework.<br/>
 - Kju/CUP team for keeping the ARMA2 maps alive.<br/>
 - ACE team for spicing up the ARMA3 MilSim experience.
@@ -166,7 +166,7 @@ player createDiaryRecord ["2SOPORD",["Execution","<br/><br/>
 1. 2PLT to move out ex CRIMSHAW and drive west towards KEYHOLE.<br/>
 2. 2PLT to enter KEYHOLE grid.<br/>
 3. 2PLT to search and secure KEYHOLE.<br/>
-4. 2PLT to assault and secure POI: DELTA, ECHO, FOXTROT, GOLG, HOTEL and ROMEO.<br/>
+4. 2PLT to assault and secure POI: DELTA, ECHO, FOXTROT, GOLF, HOTEL and ROMEO.<br/>
 5. 2PLT to search and secure CALVIN.<br/>
 6. 2PLT to establish OP at FOXTROT.<br/>
 7. ORP’s to be established prior to departure.<br/>

@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/whiztler/ADF/raw/master/Core/I/ADF_logo.png" height="240"></p>
 <p align="center">
    <a href="https://github.com/whiztler/ADF/releases">
-        <img src="http://img.shields.io/badge/Version-1.41-blue.svg?style=flat" alt="ADF version">
+        <img src="http://img.shields.io/badge/Version-1.43-blue.svg?style=flat" alt="ADF version">
     </a>
     <a href="https://github.com/whiztler/ADF/archive/master.zip">
         <img src="http://img.shields.io/badge/Download-2.4_MB-green.svg?style=flat" alt="ADF download">
@@ -37,7 +37,7 @@
 
 ## Current version
 
-version: 1.42 | build: Final 03
+version: 1.43 | build: Final 03
 
 <a name="New-Features"></a>
 ## New Features 1.39+
@@ -491,7 +491,7 @@ ADF uses the following third party scripts:
 -   [TAW View Distance](http://forums.bistudio.com/showthread.php?151669-TAW-View-Distance-Script) by Tonic 
 -   [ZBE_caching](http://forums.bistudio.com/showthread.php?179777-ZBE\_Cache-AI-amp-Vehicle-caching-script-addon) by Zorrobyte 
 -   [MAD Ambient Life](http://forums.bistudio.com/showthread.php?166896-MAD-Ambient-Life-(SP-MP)) by MAD T
--   [Delete All](http://www.thebutcherbay.org/showthread.php?tid=63) by Anjan 
+-   [Repetitive Cleanup](https://forums.bistudio.com/topic/153481-repetitive-cleanup/) by Aeroson 
 -   [Void Map Marker](http://www.armaholic.com/forums.php?m=posts&q=25540) by Void 
 
 Commercial exploitation of the Software without written permission from The Author(s) is expressly prohibited. ADF is distributed without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. The Software is not an official addon or tool. Use of the Software (in whole or in part) is entirely at your own risk.
