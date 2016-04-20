@@ -2929,6 +2929,7 @@ class Mission
 			id=237;
 			side="EMPTY";
 			vehicle="B_APC_Wheeled_01_cannon_F";
+			lock="UNLOCKED";
 			skill=0.60000002;
 			init="this setObjectTextureGlobal [0, ""Img\cusTex_NRFcamo.jpg""]; this setObjectTextureGlobal [2, ""Img\cusTex_NRFcamo.jpg""];";
 		};

@@ -36,7 +36,6 @@ class Mission
 		"a3_soft_f_offroad_01",
 		"A3_Structures_F_Heli_Ind_AirPort",
 		"A3_Supplies_F_Heli_Bladders",
-		"A3_Modules_F",
 		"cba_main",
 		"A3_Modules_F_Curator_Curator",
 		"A3_Modules_F_Curator_Effects",
@@ -63,8 +62,7 @@ class Mission
 	{
 		"cba_main",
 		"A3_Characters_F",
-		"3DEN",
-		"a3_modules_f_curator_curator",
+		"A3_Modules_F_Curator_Curator",
 		"A3_Modules_F_Curator_Effects",
 		"A3_Characters_F_INDEP",
 		"A3_Characters_F_Gamma",

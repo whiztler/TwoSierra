@@ -219,7 +219,6 @@ player createDiaryRecord ["2SOPORD",["Situation","<br/><br/>
 
 <font color='#9DA698'>
 OpFor: CSAT 3rd Quds (JANE).<br/>
-DOMINO has been building up a large presence in the North of Feruz Abad province.<br/>DOMINO uses MSR SYDNEY to supply their Base of Operations (AKIRA).
 <br/><br/></font>
 
 <font size='14' color='#d7dbd5'>ENEMY FORCES</font><br/>
