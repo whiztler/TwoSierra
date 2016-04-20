@@ -50,6 +50,8 @@ class Mission
 		"A3_Signs_F_AD",
 		"CAMisc_E_WF",
 		"A3_Characters_F_Mark",
+		"A3_Soft_F_Gamma_Offroad",
+		"a3_soft_f_offroad_01",
 		"3DEN"
 	};
 	addOnsAuto[]=
@@ -57,8 +59,7 @@ class Mission
 		"A3_Modules_F",
 		"cba_main",
 		"A3_Characters_F",
-		"3DEN",
-		"a3_modules_f_curator_curator",
+		"A3_Modules_F_Curator_Curator",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_EPC",
 		"A3_Characters_F_INDEP",
@@ -101,6 +102,8 @@ class Mission
 		"A3_Supplies_F_Heli_Slingload",
 		"A3_Signs_F_AD",
 		"CAMisc_E_WF",
+		"A3_Soft_F_Gamma_Offroad",
+		"a3_soft_f_offroad_01",
 		"aia_zargabad_config"
 	};
 	randomSeed=7556460;
@@ -927,7 +930,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=215;
+		items=229;
 		class Item0
 		{
 			position[]={5036.4712,31.190981,6258.1265};
@@ -1172,6 +1175,7 @@ class Mission
 			vehicle="O_Truck_02_transport_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item21
 		{
@@ -1299,6 +1303,7 @@ class Mission
 			vehicle="O_Heli_Light_02_unarmed_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item32
 		{
@@ -1427,6 +1432,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_DieselGroundPowerUnit_01_F";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item44
 		{
@@ -2021,7 +2027,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			description="Mission Developer";
+			init="this enableSimulationGlobal false;";
 		};
 		class Item99
 		{
@@ -2135,7 +2141,6 @@ class Mission
 			vehicle="O_MRAP_02_hmg_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
-			init="this enableSimulationGlobal false;";
 		};
 		class Item110
 		{
@@ -2318,6 +2323,7 @@ class Mission
 			vehicle="O_Quadbike_01_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item127
 		{
@@ -2351,6 +2357,7 @@ class Mission
 			vehicle="Land_HBarrier_5_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item130
 		{
@@ -2361,6 +2368,7 @@ class Mission
 			vehicle="Land_HBarrier_5_F";
 			lock="LOCKEDPLAYER";
 			skill=0.60000002;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item131
 		{
@@ -2623,6 +2631,7 @@ class Mission
 			leader=1;
 			lock="LOCKED";
 			skill=0.33333331;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item156
 		{
@@ -2634,6 +2643,7 @@ class Mission
 			leader=1;
 			lock="LOCKED";
 			skill=0.33333331;
+			init="this enableSimulationGlobal false;";
 		};
 		class Item157
 		{
@@ -3289,6 +3299,182 @@ class Mission
 			init="this setObjectTextureGlobal [0, ""Img\cusTex_MRAP_front.jpg""];  this setObjectTextureGlobal [1, ""Img\cusTex_MRAP_back.jpg""];  this setObjectTextureGlobal [2, ""Img\cusTex_MRAP_turret.jpg""];";
 			description="2-2 MRAP";
 		};
+		class Item215
+		{
+			position[]={3513.7854,19.545349,1948.9419};
+			azimut=238.76569;
+			offsetY=3.9000001;
+			special="NONE";
+			id=262;
+			side="EMPTY";
+			vehicle="I_HMG_01_F";
+			leader=1;
+			skill=0.2;
+		};
+		class Item216
+		{
+			position[]={3515.5054,19.193274,1957.4443};
+			azimut=954.31787;
+			special="NONE";
+			id=263;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item217
+		{
+			position[]={3593.4243,21.127384,1952.9736};
+			azimut=124.7671;
+			offsetY=3.9000001;
+			special="NONE";
+			id=264;
+			side="EMPTY";
+			vehicle="I_HMG_01_F";
+			leader=1;
+			skill=0.2;
+		};
+		class Item218
+		{
+			position[]={3934.7878,12.615579,2182.8884};
+			azimut=246.64857;
+			offsetY=3.9000001;
+			special="NONE";
+			id=265;
+			side="EMPTY";
+			vehicle="I_HMG_01_F";
+			leader=1;
+			skill=0.2;
+		};
+		class Item219
+		{
+			position[]={3972.5181,11.970886,2215.1709};
+			azimut=876.6441;
+			special="NONE";
+			id=266;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item220
+		{
+			position[]={4172.0015,28.983431,1951.5898};
+			azimut=960.49768;
+			special="NONE";
+			id=267;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item221
+		{
+			position[]={3907.5962,10.930118,2743.8098};
+			azimut=343.97342;
+			offsetY=3.9000001;
+			special="NONE";
+			id=268;
+			side="EMPTY";
+			vehicle="I_HMG_01_F";
+			leader=1;
+			skill=0.2;
+		};
+		class Item222
+		{
+			position[]={3726.2202,11.020728,2652.8525};
+			azimut=873.203;
+			special="NONE";
+			id=269;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item223
+		{
+			position[]={3966.8726,11.276723,2797.0181};
+			azimut=774.4325;
+			special="NONE";
+			id=270;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item224
+		{
+			position[]={3532.8577,12.136816,3026.1978};
+			azimut=887.3996;
+			special="NONE";
+			id=271;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item225
+		{
+			position[]={2896.686,29.80142,4992.0796};
+			azimut=406.39499;
+			offsetY=15.2;
+			special="NONE";
+			id=272;
+			side="EMPTY";
+			vehicle="I_HMG_01_F";
+			leader=1;
+			skill=0.2;
+		};
+		class Item226
+		{
+			position[]={2945.479,27.138811,4949.7603};
+			azimut=770.80713;
+			special="NONE";
+			id=273;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
+		class Item227
+		{
+			position[]={2796.0198,34.372723,5151.4653};
+			azimut=463.00101;
+			offsetY=3.6500001;
+			special="NONE";
+			id=274;
+			side="EMPTY";
+			vehicle="I_HMG_01_high_F";
+			leader=1;
+			skill=0.2;
+		};
+		class Item228
+		{
+			position[]={2686.9021,37.826206,5187.2417};
+			azimut=872.34485;
+			special="NONE";
+			id=275;
+			side="EMPTY";
+			vehicle="B_G_Offroad_01_armed_F";
+			leader=1;
+			lock="LOCKEDPLAYER";
+			skill=0.2;
+			init="this setVariable [""BIS_enableRandomization"", false]; [this, ""ADF_opforOffroad"", nil] call bis_fnc_initVehicle;";
+		};
 	};
 	class Markers
 	{
@@ -3793,7 +3979,7 @@ class Mission
 		};
 		class Item59
 		{
-			position[]={2705.262,36.89883,5272.127};
+			position[]={2949.072,28.840038,5062.3369};
 			name="mGuerVeh_22";
 			type="Empty";
 			colorName="ColorGreen";
@@ -4436,7 +4622,7 @@ class Mission
 			age="UNKNOWN";
 			name="tAlpha";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_ALPHA.sqf"";";
+			expActiv="0 = [] spawn ADF_AO_alpha;";
 			class Effects
 			{
 			};
@@ -4452,7 +4638,7 @@ class Mission
 			age="UNKNOWN";
 			name="tAirport";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_CSATapt.sqf"";";
+			expActiv="[] call ADF_AO_apt;";
 			class Effects
 			{
 			};
@@ -4484,7 +4670,7 @@ class Mission
 			age="UNKNOWN";
 			name="tBase";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_CSATbase.sqf"";";
+			expActiv="[] call ADF_AO_base;";
 			class Effects
 			{
 			};
@@ -4499,7 +4685,7 @@ class Mission
 			age="UNKNOWN";
 			name="tZebra";
 			expCond="BearclawRescued && xRayDestroyed && (alive objBearclaw) && ({vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0);";
-			expActiv="0 = execVM ""Scr\zebra_client.sqf"";";
+			expActiv="0 = [] spawn ADF_msg_endMission;";
 			class Effects
 			{
 			};
@@ -4544,7 +4730,7 @@ class Mission
 			age="UNKNOWN";
 			name="tCSAT_cp3";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_CSATcp.sqf"";";
+			expActiv="0 = [] spawn ADF_msg_cp;";
 			class Effects
 			{
 			};
@@ -4557,7 +4743,7 @@ class Mission
 			age="UNKNOWN";
 			name="tXray";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\xray_client.sqf"";";
+			expActiv="0 = [] spawn ADF_msg_xRay;";
 			class Effects
 			{
 			};

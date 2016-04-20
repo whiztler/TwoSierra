@@ -4,6 +4,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
+ADF_fnc_MOTS = {player allowDamage false; MotsActive = true};
+ADF_fnc_MOTS_captive = {params ["_c"]; player setCaptive _c};
+
 waitUntil {!isNil "foggyBottom"};
 0 setFog foggyBottom;
 _hdl = ppEffectCreate ["colorCorrections", 1501];
@@ -77,28 +80,49 @@ if (!didJIP) then {
 	] spawn ADF_fnc_typeWriter;
 
 	["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, at MSR PARIS, over."] call ADF_fnc_MessageParser; sleep 15;
-	["ACO","ACO","FIRESTONE: Copy TWO SIERRA.<br/>Drive to KENNEDY. Contact Aegis CO 'Patrick Logan' at Aegis HQ. Logan will brief re latest intel.<br/><br/>MOTHER suggests you stay clear of the red zone till we know what we are dealing with. Good luck TWO SIERRA. Out."] call ADF_fnc_MessageParser;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Roger.<br/>Drive to KENNEDY. Break. Contact Aegis CO 'Patrick Logan' at Aegis HQ. Logan will brief re latest intel. Break.<br/><br/>MOTHER suggests you stay clear of the red zone till we know what we are dealing with. How copy?"] call ADF_fnc_MessageParser; sleep 22;
+	["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA. Good copy on all. Out."] call ADF_fnc_MessageParser; sleep 15;
+};
+
+[] spawn {
+	waitUntil {sleep 30; time > 11000}; // 30 mins left
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. You have 30 mikes left before MOTHER pulls you out. Break. After that it is RTB and mission aborted. Over."] call ADF_fnc_MessageParser; sleep 16;
+	["2S","","FIRESTONE this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; 
 };
 
 // Assault defeated msg
 [] spawn {
 	waitUntil {sleep 10; ADF_pashtunWaveClear};
-	["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, JONAH assault defeated.  How about those reinforcements. How copy?"] call ADF_fnc_MessageParser; sleep 15;
-	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. Clear and secure the Blue Zone.<br/><br/>When the Blue Zone is secure MOTHER wants you to assault and clear SATAN. Drive JONAH out of SATAN. Out."] call ADF_fnc_MessageParser;
+	["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, Message. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 9;
+	["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA. JONAH assault defeated. Interrogative reinforcements. How copy?"] call ADF_fnc_MessageParser; sleep 15;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Solid Copy. Wait. Over."] call ADF_fnc_MessageParser; sleep 45;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA. Send. Over"] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Clear and secure Blue grid. Break<br/><br/>When Blue grid is secure, assault and clear SATAN. Break. Drive JONAH out of SATAN. How copy?"] call ADF_fnc_MessageParser; sleep 22;
+	["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA. Good copy on all. Out."] call ADF_fnc_MessageParser;
 };
 
 // End Mission
 [] spawn {
 	waitUntil {sleep 15; ADF_SatanClearUp};
 	if (ADF_SatanControl) then {
-		["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, SATAN has been cleared. JONAH body count of more than 170. How copy?"] call ADF_fnc_MessageParser; sleep 15;
-		["ACO","ACO","FIRESTONE: Copy TWO SIERRA.<br/><br/>Job well done. RTB. We got a bunch of cold ones waiting for you. Out."] call ADF_fnc_MessageParser; sleep 20;
+		["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, Message. Over."] call ADF_fnc_MessageParser; sleep 8;
+		["ACO","ACO","TWO SIERRA this is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 9;
+		["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, SATAN is clear. JONAH body count 1-7-0. How copy?"] call ADF_fnc_MessageParser; sleep 15;
+		["ACO","ACO","TWO SIERRA this is FIRESTONE. Solid copy.<br/><br/>Job well done. RTB. We got a bunch of cold ones waiting for you. Over."] call ADF_fnc_MessageParser; sleep 18;
+		["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA, Roger. TWO SIERRRA is OSCAR MIKE. Out."] call ADF_fnc_MessageParser; sleep 20;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
 		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 02 | Satan's Fire</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 		['END1',true,22] call BIS_fnc_endMission;	
 	} else {	
-		["ACO","ACO","FIRESTONE: TWO SIERRA, time to wrap it up.<br/><br/>4TH Platoon will finish and clean up SATAN. RTB TWO SIERRA. Out."] call ADF_fnc_MessageParser; sleep 20;
+		["ACO","ACO","TWO SIERRA this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+		["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+		["ACO","ACO","TWO SIERRA this is FIRESTONE. RTB. break.<br/><br/>4TH Platoon will finish and clean up SATAN. How copy?"] call ADF_fnc_MessageParser; sleep 16;
+		["2S","TWO SIERRA","FIRESTONE this is TWO SIERRA. Solid copy. TWO SIERRA is OSCAR MIKE. Out."] call ADF_fnc_MessageParser; sleep 20;
 		_l = ["tLayer"] call BIS_fnc_rscLayer; 
 		_l cutText ["", "BLACK", 20];
 		["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 02 | Satan's Fire</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		

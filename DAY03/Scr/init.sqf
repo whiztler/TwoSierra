@@ -8,13 +8,19 @@ call compile preprocessFileLineNumbers "Scr\ADF_messageParser.sqf";
 // Vars init
 ADF_missionStartTime		= 0;
 ADF_endMission			= false;
+ADF_init_AO				= false;
+MotsActive				= false;
 ADF_greenCnt				= 0;
-ADF_msg_greenZoneCross 	= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Green Zone Trigger activated";diag_log	"-----------------------------------------------------";};
+ADF_fnc_greenZone		 	= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Green Zone Trigger activated";diag_log	"-----------------------------------------------------";};
+ADF_msg_greenZone		 	= {diag_log "TWO SIERRA: Green Zone message";};
 ADF_msg_tDolphin 			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Dolphin Trigger activated";diag_log	"-----------------------------------------------------";};
 ADF_msg_endMission		= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: End Mission Trigger activated";diag_log	"-----------------------------------------------------";};
 ADF_msg_cache1			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Feruz Abad Cache Trigger activated";diag_log	"-----------------------------------------------------";};
 ADF_msg_apc1				= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Freuz Abad APC's Trigger activated";diag_log	"-----------------------------------------------------";};
 ADF_msg_base1				= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Jillavur opfor base Trigger activated";diag_log	"-----------------------------------------------------";};
+ADF_msg_start				= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Start trigger message";diag_log	"-----------------------------------------------------";};
+ADF_msg_dolphin			= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Dolphin trigger activated"; diag_log "-----------------------------------------------------";};
+ADF_AO_mosque				= {diag_log	"-----------------------------------------------------";diag_log "TWO SIERRA: Mosque trigger activated"; diag_log "-----------------------------------------------------";};
 
 // Server Init
 if (isServer) then {
@@ -24,6 +30,11 @@ if (isServer) then {
 // Client init
 if (hasInterface) then {
 	#include "init_client.sqf"
+};
+
+// HC init
+if (ADF_isHC) then {
+	#include "init_hc.sqf"
 };
 
 _diagTestEnd = diag_tickTime;

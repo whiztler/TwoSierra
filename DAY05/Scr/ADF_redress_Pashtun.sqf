@@ -66,7 +66,7 @@ ADF_fnc_redressPashtun = {
 	_enable_AT		= [true,false,true,true,true,false,false] call Bis_fnc_SelectRandom;
 
 	// strip the unit
-	removeAllWeapons _unit; removeAllItems _unit; removeAllAssignedItems _unit; removeUniform _unit; removeVest _unit; removeBackpack _unit; removeHeadgear _unit; removeGoggles _unit;
+	[_unit, true] call ADF_fnc_stripUnit;
 
 	// Add Uniform container
 	_unit forceAddUniform _uniform;

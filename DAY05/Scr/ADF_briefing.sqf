@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission Briefing
 Author: Whiztler
@@ -27,7 +27,7 @@ player createDiaryRecord ["Diary",["Credits","<br/>
 Concept and development: whiztler
 </font><br/><br/>
 
-<font size='14' color='#d7dbd5'>2SEIRRA.COM</font><font color='#9DA698'><br/>
+<font size='14' color='#d7dbd5'>2SIERRA.COM</font><font color='#9DA698'><br/>
 <font color='#9DA698'>
 More information and latest version of the Two Sierra campaign can be found at the official website: www.2sierra.com
 </font><br/><br/>
@@ -35,7 +35,7 @@ More information and latest version of the Two Sierra campaign can be found at t
 <font size='14' color='#d7dbd5'>SPECIAL THANKS TO</font><font color='#9DA698'><br/>
 - Bohemia Interactive for creating the ultimate MilSim<br/>
   platform.<br/>
-- Nopryl Community (nopryl.no) for testing.<br/>
+- Nopryl, CSOR, 2CAV and PFD for testing/feedback.<br/>
 - CBA Team for creating and maintaining their CBA framework.<br/>
 - Kju/CUP team for keeping the ARMA2 maps alive.<br/>
 - ACE team for spicing up the ARMA3 MilSim experience.
@@ -47,7 +47,7 @@ The Two Sierra campaign uses the following tooling/scripts (with thanks to the a
 - TAW View Distance by Tonic.<br/>
 - ZBE_caching by Zorrobyte.<br/>
 - MAD Ambient Life by MAD T.<br/>
-- Delete All by Anjan.<br/><br/>
+- Repetitive Cleanup by Aeroson.<br/><br/>
 The Two Sierra campaign is powered by ADF.
 </font><br/><br/>
 
@@ -203,7 +203,7 @@ None.<br/><br/>
 player createDiaryRecord ["2SOPORD",["Mission","<br/><br/>
 <font size='18'>MISSION</font><br/><br/>
 <font color='#9DA698'>
-Transport and deliver EVEREST1 and EVEREST2 to MARY.
+Transport and deliver two medical trucks, EVEREST1 and EVEREST2, to MARY.
 </font><br/><br/>
 "]];
 
@@ -307,7 +307,7 @@ Game Masters/Commanders, please note the following:<br/><br/>
     mission information. Check the log frequently.<br/>
 04. All missions have been play tested. If you discover a bug,<br/>
     please report the bug on the BIS forum or on GitHub. Contact<br/>
-    information can be found on 2sierra.com.<br/>
+    information can be found on www.2sierra.com.<br/>
 05. Usage of 1 or more headless clients is recommended for smooth<br/>
     game play. AI's are automatically distributed across multiple<br/>
     headless clients for optimal performance.<br/>
@@ -318,18 +318,15 @@ Game Masters/Commanders, please note the following:<br/><br/>
     mission).<br/>
 06. All player roles are equipped with pre-defined role loadout.<br/>
     Additional gear and supplies can be found in the vehicles.<br/>
-07. If you play with ACE3 enabled, please note that Two Sierra<br/>
-    missions have advanced ballistics and advanced medical<br/>
-    settings enabled by default.<br/>
-08. Most missions offer CAS support. CAS can be called in by the<br/>
+07. Most missions offer CAS support. CAS can be called in by the<br/>
     platoon commander using the action menu.<br/>
-09. Two Sierra has a pre-configured platoon radio net.<br/>
+08. Two Sierra has a pre-configured platoon radio net.<br/>
     Settings/frequencies can be found under 'Two Sierra Roster'<br/>
     in the map screen menu	
 <br/><br/>
 <font size='14' color='#d7dbd5'>FEEDBACK</font><br/>
-I would love to hear feedback about your game night. If you have a YouTube cam recording or screen shots, please let me know. I'll post them on the 2sierra.com website.<br/><br/>
-Contact details and links can be found on 2sierra.com.<br/><br/>
+I would love to hear feedback about your game night. If you have a YouTube cam recording or screen shots, please let me know. I'll post them on the www.2sierra.com website.<br/><br/>
+Contact details and links can be found on www.2sierra.com.<br/><br/>
 I hope your community/clan have as much fun playing the missions as I had making them!<br/><br/>
 -Whiz
 </font><br/><br/>"]];
@@ -357,7 +354,7 @@ player createDiaryRecord ["2SCPGN",["Server information","<br/><br/>
 <font color='#9DA698'>
 The server requires the following add-ons:<br/><br/>
 - Community Based Addons ARMA 3 (CBA_A3)<br/>
-- All in ARMA Terrain Pack (AIATP)<br/><br/>
+- All in ARMA Terrain Pack (AIATP) or CUP Terrains<br/><br/>
 
 Two Sierra missions have been tested (to work with) with the optional AI behaviour add-on ASR AI.
 </font><br/><br/>
@@ -378,7 +375,7 @@ player createDiaryRecord ["2SCPGN",["Client Information","<br/><br/>
 <font color='#9DA698'>
 The Two Sierra campaign requires the following Add-Ons:<br/><br/>
 - Community Based Addons ARMA 3 (CBA_A3)<br/>
-- All in ARMA Terrain Pack (AIATP)<br/><br/>
+- All in ARMA Terrain Pack (AIATP) or CUP Terrains<br/><br/>
 <font size='14' color='#d7dbd5'>RECOMMENDED ADD-ONS</font><br/>
 To enhance game play, the following client add-ons are recommended:<br/><br/>
 - Advanced Combat Radio Environment (ACRE 2) -or-<br/>
@@ -407,19 +404,16 @@ player createDiaryRecord ["2SCPGN",["Background","<br/><br/>
 <font size='18'>BACKGROUND</font><br/><br/>
 
 <font color='#9DA698'>
-Two Sierra Tour 1 | Takistan, May 2019. On 11 February 2019 the Taliban ceased to exist after a coalition forces UAV successfully targeted and killed the entire Taliban leadership council. The majority of Taliban fighters joined The Pashtun within the following weeks.
+Two Sierra Tour 2 | Chernarus, June 2019. Since CSAT Russia annexed the Lopatino district in 2014 a local insurgency faction emerged and declared the Sobor region as independent. Aptly naming it Soborisk. The Soborian Separatists quickly gained ground with the unofficial support of CSAT Russia. Over the years several attempts have been made to solve the crisis, but neither Chernarussian Government nor the Soborian separatists were willing to give in. Now, nearly 4 years later, CSAT Russia has issued an ultimatum to the Chernarussian Government: 'recognize Soborisk as an independent state'. All diplomatic solutions seem to have been exhausted.<br /><br /> 
+Two Sierra is relieving Third Platoon who has been training Chernarussian Armed Forces (CAF) and assisting with humanitarian operations. NRF forces are considered neutral. NATO does not have a mandate to get involved in the escalation between Soborian Separatists and CAF. That said, last week a patrol from Third Platoon got engaged by presumably Soborian Separatists. And two weeks ago a HEMTT from 2ND SPT GRP was taken out by an improvised explosive device. On both occasions, vehicles were clearly marked as NRF vehicles. Things are heating up and the world is watching. 
 <br/><br/></font>
 
-<font size='14' color='#d7dbd5'>THE PASHTUN</font><br/>
+<font size='14' color='#d7dbd5'>SOBORIAN SEPARATISTS</font><br/>
 
 <font color='#9DA698'>
-The Pashtun are a race of warriors who originate from Afghanistan, Takistan and Pakistan. The Pashtun consists of about sixty tribes, each with its own territory.<br/><br/>
-
-The Pashtun has rapidly been expanding its foothold in Asia and the Middle East after the fall of the Taliban, and previously the fall of IS and other factions. The Pashtun are well funded, moderately well organized and very ambitious. Little is known about their goals as they keep a low public relations profile. Intelligence agencies are busy mapping the Pashtun organization. So far reliable intelligence is scares at best.<br/><br/>
-
-CSAT has on several occasions tried to open diplomatic channels. Up till now the Pashtun and CSAT are maintaining neutral relations. Allied Command Operations (ACO) is monitoring the CSAT/Pashtun situation closely.<br/><br/>
-Currently The Pashtun are moderately armed with mostly small arms and 2nd generation RPG’s. The BBC reported last week that The Pashtun are in progress of purchasing Iranian-made APC’s and M-ATV’s.  
-
+In April 2014, pro-Russian activists seized control of government buildings in towns and cities across the Sobor region. The events were a repeat of what had happened in the Lopatino region. .<br /><br />
+Gunmen there seized government buildings in February 2014 and raised the Russian flag a week after elected President Boris Yanukotov, friendly to Moscow, fled during massive pro-EU street protests in Novigrad. An early attempt by nationalists to remove the status of Russian as a second language alarmed many Russian speakers, and officials in Moscow portrayed the new leaders in Novigrad as NATO-backed Chernarussian nationalists bent on violating minority rights. A flawed referendum on joining Russia was quickly held in Lopatino and within a month the region's annexation was complete. .<br /><br />
+There was little bloodshed in Lopatino, but Chernarus' fledgling revolutionary government was in no position to fight back, with only 6,000 troops reportedly ready for combat. However, when pro-Russian separatists made a move on Chernarus' industrial east and Russian forces appeared to be building up on the borders, the authorities in Novigrad ordered an 'anti-terrorist operation'. The start of a conflict that has dragged on for nearly 5 years.
 </font><br/><br/>
 "]];
 

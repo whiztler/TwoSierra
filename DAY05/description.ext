@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Mission config
 Author: Whiztler
@@ -32,7 +32,7 @@ respawnTemplatesCiv[] = {};
 
 /**********  Loading Screen **********/
 author = "Whiztler";
-overviewText = "Two Sierra Tour 2 / Day 05 - v1.00";
+overviewText = "Two Sierra Tour 2 / Day 05 - v1.02";
 onLoadName = "SAINT MARY";
 onLoadMission = "TWO SIERRA | Day 05";
 onLoadIntroTime = false;

@@ -4,6 +4,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
+ADF_fnc_MOTS = {player allowDamage false; MotsActive = true};
+ADF_fnc_MOTS_captive = {params ["_c"]; player setCaptive _c};
+
 waitUntil {ADF_gearLoaded}; // Wait till the unit has their gear before continuing
 
 sleep 3; // Loadout finished > pri weapon loaded
@@ -58,14 +61,40 @@ if (didJIP) exitWith {};
 waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 
 [
-	["19 JUN 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
+	["21 JUN 2019","<t align = 'center' shadow = '1' size = '0.7'>%1</t><br/>"],
 	["CHERNARUS","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"],
 	["FOB KEARNEY","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
-["2S","","FAIRCHILD this is TWO SIERRA. We're OSCAR MIKE."] call ADF_fnc_MessageParser; sleep 12;
-["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. MOTHER wants you to raise the NRF flag at both DIANA and NOLA. Approach the flag pole to raise the flag and make MOTHER proud.<br /><br />Good luck TWO Sierra. out."] call ADF_fnc_MessageParser; 
+["2S","","FAIRCHILD this is TWO SIERRA. We're OSCAR MIKE. Over."] call ADF_fnc_MessageParser; sleep 12;
+["ACO","ACO","TWO SIERRA this is FAIRCHILD. Roger.<br/><br/>Your orders are to seize and secure both DIANA and NOLA. Break.<br/>MOTHER wants you to raise the NRF flag at both DIANA and NOLA. Approach the flag pole to raise the flag and make MOTHER proud. Break.<br /><br />CAS will be available once both AA batteries have been taken out. How copy?"] call ADF_fnc_MessageParser; sleep 24;
+["2S","","FAIRCHILD this is TWO SIERRA. Solid copy on all. Out."] call ADF_fnc_MessageParser; 
 
+ADF_msg_AA1 = {
+	["2S","","FAIRCHILD this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA this is FAIRCHILD. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FAIRCHILD this is TWO SIERRA. AA battery at JANE neutralized. How copy?"] call ADF_fnc_MessageParser; sleep 7;
+	if (ADF_CAS_activate) then {
+		execVM "Scr\ADF_CAS.sqf";
+		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Solid copy. LANCER is on station ZULU. Over."] call ADF_fnc_MessageParser; sleep 14;
+		["2S","","FAIRCHILD this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
+	} else {
+		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Good copy. Out."] call ADF_fnc_MessageParser;
+	};
+};
+
+ADF_msg_AA2 = {
+	["2S","","FAIRCHILD this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","FAIRCHILD: TWO SIERRA, this is FAIRCHILD. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FAIRCHILD this is TWO SIERRA. AA battery at PATTY destroyed. How copy?"] call ADF_fnc_MessageParser; sleep 7;
+	if (ADF_CAS_activate) then {
+		execVM "Scr\ADF_CAS.sqf";
+		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Solid copy. LANCER is on station ZULU. Over."] call ADF_fnc_MessageParser; sleep 14;
+		["2S","","FAIRCHILD this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
+	} else {
+		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Good copy. Out."] call ADF_fnc_MessageParser;
+	};
+};
 
 
 	

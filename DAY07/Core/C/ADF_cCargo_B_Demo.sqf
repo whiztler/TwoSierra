@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: Crate Cargo Script (BLUEFOR) - Demolition
 Author: Whiztler
-Script version: 1.3
+Script version: 1.4
 
 Game type: n/a
 File: ADF_cCargo_B_Demo.sqf
@@ -23,15 +23,14 @@ if (!isServer) exitWith {};
 waitUntil {time > 0};
 
 // Init
-_crate = _this select 0;
+params ["_crate"];
+private ["_dem", "_itm"];
 _crate allowDamage false;
 _dem = 25;
 _itm = 5;
 
 // Settings 
-clearWeaponCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearMagazineCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
-clearItemCargoGlobal _crate; // Empty vehicle CargoGlobal contents on init
+_crate call ADF_fnc_stripVehicle;
 
 // Demo/Explosives
 _crate addMagazineCargoGlobal ["DemoCharge_Remote_Mag", _dem];
@@ -44,12 +43,12 @@ _crate addMagazineCargoGlobal ["SLAMDirectionalMine_Wire_Mag", _dem];
 _crate addMagazineCargoGlobal ["ClaymoreDirectionalMine_Remote_Mag", _dem];
 _crate addItemCargoGlobal ["MineDetector", 2];
 if (ADF_mod_ACE3) then {
-	_crate addItemCargoGlobal ["ACE_Clacker",_itm];
-	_crate addItemCargoGlobal ["ACE_Cellphone",_itm];
-	_crate addItemCargoGlobal ["ACE_M26_Clacker",_itm];
-	_crate addItemCargoGlobal ["ACE_DeadManSwitch",_itm];
-	_crate addItemCargoGlobal ["ACE_DefusalKit",_itm];
-	_crate addItemCargoGlobal ["ACE_wirecutter",_itm];	
+	_crate addItemCargoGlobal ["ACE_Clacker", _itm];
+	_crate addItemCargoGlobal ["ACE_Cellphone", _itm];
+	_crate addItemCargoGlobal ["ACE_M26_Clacker", _itm];
+	_crate addItemCargoGlobal ["ACE_DeadManSwitch", _itm];
+	_crate addItemCargoGlobal ["ACE_DefusalKit", _itm];
+	_crate addItemCargoGlobal ["ACE_wirecutter", _itm];	
 };
 
 

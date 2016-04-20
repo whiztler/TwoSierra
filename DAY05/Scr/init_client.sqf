@@ -4,6 +4,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
+ADF_fnc_MOTS = {player allowDamage false; MotsActive = true};
+ADF_fnc_MOTS_captive = {params ["_c"]; player setCaptive _c};
+
 waitUntil {ADF_gearLoaded}; // Wait till the unit has their gear before continuing
 
 sleep 3; // Loadout finished > pri weapon loaded
@@ -63,8 +66,33 @@ waitUntil {sleep 2; ADF_missionInit}; sleep 5;
 	["BALOTA AB","<t align = 'center' shadow = '1' size = '1.0'>%1</t><br/>"]
 ] spawn ADF_fnc_typeWriter;
 
-["2S","","FAIRCHILD this is TWO SIERRA. Ready to move out."] call ADF_fnc_MessageParser; sleep 12;
-["ACO","ACO","FAIRCHILD: Copy TWO SIERRA. The two medical packages are on the docks just south of FARGO.<br /><br />MARY urgently needs those supplies. Deliver both packages safely asap.<br /><br />Note that DONALD is active in the green zone. Do not engage them.<br /><br />Avoid the BORIS perimeter at any cost.<br /><br />Good luck TWO Sierra. out."] call ADF_fnc_MessageParser; 
+["2S","","FAIRCHILD this is TWO SIERRA. We are Ready to move out. Over."] call ADF_fnc_MessageParser; sleep 12;
+["ACO","ACO","TWO SIERRA this is FAIRCHILD. Roger. The two medical trucks are on the docks just south of FARGO. Break.<br /><br />MARY urgently needs those supplies. Deliver both trucks safely asap. Break.<br /><br />Note that DONALD is active in the green zone. Do not engage them. Break.<br /><br />Avoid the BORIS perimeter at any cost. How copy?"] call ADF_fnc_MessageParser; sleep 22;
+["2S","","FAIRCHILD this is TWO SIERRA. Solid copy on all. out."] call ADF_fnc_MessageParser;
 
-
+ADF_fnc_Everest = {
+	params ["_o"];
+	private ["_msg", "_e"];
+	_e = 2;
 	
+	sleep 2;
+
+	if !(alive vObj2 && alive vObj1) exitWith {
+		["2S","","FAIRCHILD this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;	
+		["2S","","FAIRCHILD this is TWO SIERRA. We lost both EVEREST1 and EVEREST2. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+		["ACO","ACO","TWO SIERRA this is FAIRCHILD. Abort mission and RTB asap. Over."] call ADF_fnc_MessageParser;
+		["2S","","FAIRCHILD this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; sleep 6;
+		sleep 20;
+		["END2",false,5] call BIS_fnc_endMission;
+	};
+	
+	["2S","","FAIRCHILD this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA this is FAIRCHILD. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	_msg = format ["FAIRCHILD this is TWO SIERRA. We just lost EVEREST%1. How copy?", _o];
+	["2S","",_msg] call ADF_fnc_MessageParser; sleep 12;
+	if (_o == 2) then {_e = 1};
+	_msg = format ["TWO SIERRA this is FAIRCHILD. Those supplies would have saved lives. Make sure EVEREST%1 makes it safely to MARY. Over.", _e];
+	["ACO","ACO",_msg] call ADF_fnc_MessageParser; sleep 14;
+	["2S","","FAIRCHILD this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
+};

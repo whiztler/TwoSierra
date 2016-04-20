@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.42 / SEPTEMBER 2015
+ADF version: 1.43 / JANUARY 2016
 
 Script: CAS request with 9-liner
 Author: Whiztler
@@ -84,7 +84,7 @@ ADF_fnc_CAS_Activated = {
 	_logTime = [dayTime] call BIS_fnc_timeToString;
 	_logTimeText = "Log: " + _logTime;
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: TWO SIERRA</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>"+ ADF_CAS_callSign +" this is TWO SIERRA. Request "+ ADF_CAS_station +". How copy?</font><br/><br/>"]];
-	/*
+
 	sleep 6;
 
 	hintSilent parseText format ["<img size= '5' shadow='false' image='Img\logo_SixSqdr.paa'/><br/><br/><t color='#6C7169' align='left'>%1: TWO SIERRA this is %2. Ready to copy.</t><br/><br/>",ADF_CAS_pilotName, ADF_CAS_callSign];
@@ -125,7 +125,7 @@ ADF_fnc_CAS_Activated = {
 	player createDiaryRecord ["Two Sierra Log", [_logTimeText,"<br/><br/><font color='#9da698' size='14'>From: " +ADF_CAS_callSign+ "</font><br/><font color='#9da698' size='14'>Time: " + _logTime + "</font><br/><br/><font color='#6c7169'>------------------------------------------------------------------------------------------</font><br/><br/><font color='#6C7169'>" +ADF_CAS_callSign+ ": Go on " +ADF_CAS_station+ ". ETA "+ _ADF_CAS_delayMin +" Mikes.</font><br/><br/>"]];
 
 	sleep ADF_CAS_delay; // Time from map entrance it will take CAS to reach the AO
-*/
+
 	ADF_CAS_active = true; publicVariableServer "ADF_CAS_active"; // Inform the server to create the CAS vehicle
 	
 	waitUntil {sleep 3; ADF_CAS_bingoFuel}; // Wait till the CAS ao timer runs out
@@ -195,7 +195,7 @@ if (hasInterface) then {
 // From here on server only. Create the CAS vehicle, create markers etc.
 if (!isServer) exitWith {};
 
-waitUntil {ADF_CAS_marker}; // wait till the CAS request action was executed
+waitUntil {sleep 2; ADF_CAS_marker}; // wait till the CAS request action was executed
 
 diag_log	"-----------------------------------------------------";
 diag_log "TWO SIERRA: CAS (server) activated";
@@ -218,7 +218,7 @@ tCAS setTriggerStatements ["{vehicle _x in thisList && ((getPosATL _x) select 2)
 waitUntil {ADF_CAS_active}; // wait till the 9-liners are finished and CAS-delay timer is 0. 
 
 // Create CAR aircraft
-_c = createGroup WEST;
+_c = createGroup west;
 _c setGroupIdGlobal [format ["%1",ADF_CAS_callSign]];
 _v = [ADF_CAS_spawn, 90, ADF_CAS_vehClass, _c] call BIS_fnc_spawnVehicle;
 vCAS = _v select 0; publicVariable "vCAS";
@@ -256,21 +256,17 @@ _wp setWaypointCombatMode "RED";
 
 waitUntil {triggerActivated tCAS}; // Let CAS aircraft reach the AO
 
-vCAS flyInHeight 100;
-
 if (vCASkia) exitWith {call ADF_fnc_destroyVars;};
 sleep ADF_CAS_onSite; // Limited time in AO
 if (vCASkia) exitWith {call ADF_fnc_destroyVars;};
 
 // RTB Bingo Fuel
 deleteMarker "mRaptorSAD";
-{_x disableAI "FSM"} forEach units _c; // v1.03
+{_x disableAI "AUTOTARGET"; _x disableAI "CHECKVISIBLE"; _x setBehaviour "CARELESS"} forEach units _c; // 1.04
 ADF_CAS_bingoFuel = true; publicVariable "ADF_CAS_bingoFuel";
 vCAS setFuel 0.3;
-{_x enableAI "FSM"} forEach units _c; // v1.03
-vCAS flyInHeight 800;
 _c setCombatMode "BLUE"; // v1.03
-_c setBehaviour "SAFE"; // v1.03
+_c setBehaviour "CARELESS"; // v1.04
 
 _wp = _c addWaypoint [ADF_CAS_vector, 0];
 _wp setWaypointType "MOVE";

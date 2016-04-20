@@ -74,16 +74,16 @@ ADF_fnc_redressRebel = {
 	_headGear		= call ADF_fnc_redressRebel_headGear;
 	_goggles			= call ADF_fnc_redressRebel_Goggles;
 	_face			= call ADF_fnc_redressRebel_face;
-	_enable_AT		= [true,false,true,true,true,false,false] call Bis_fnc_SelectRandom;
-	_fiftyFifty		= [0,1,1,0] call BIS_fnc_selectRandom;
+	_enable_AT		= if ((random 1) > 0.6) then {true} else {false};
+	_fiftyFifty		= if ((random 1) < 0.5) then {1} else {0};
 
 	// strip the unit
-	removeAllWeapons _unit; removeAllItems _unit; removeAllAssignedItems _unit; removeUniform _unit; removeVest _unit; removeBackpack _unit; removeHeadgear _unit; removeGoggles _unit;
+	[_unit, true] call ADF_fnc_stripUnit;
 
 	// Add Uniform container
 	_unit forceAddUniform _uniform;
 	
-	if (_uniform == "U_C_WorkerCoveralls") then {	if (_fiftyFifty == 0) then {	_unit setObjectTextureGlobal [0, "\A3\characters_f\common\data\coveralls_bandit_co.paa"]} else {_unit setObjectTextureGlobal [0, "\A3\characters_f\common\data\coveralls_urbancamo_co.paa"];}};
+	if (_uniform == "U_C_WorkerCoveralls") then {if (_fiftyFifty == 0) then {_unit setObjectTextureGlobal [0, "\A3\characters_f\common\data\coveralls_bandit_co.paa"]} else {_unit setObjectTextureGlobal [0, "\A3\characters_f\common\data\coveralls_urbancamo_co.paa"];}};
 
 	// Add vest & backpack
 	_unit addBackpack _backpack;

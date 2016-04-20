@@ -23,8 +23,8 @@ ADF_fnc_redressNRF = {
 	private ["_headGear"];
 	
 	// Strip
-	removeAllWeapons _unit; removeAllItems _unit; removeAllAssignedItems _unit; removeVest _unit; removeBackpack _unit; removeHeadgear _unit; removeGoggles _unit;
-
+	[_unit, false] call ADF_fnc_stripUnit;
+	
 	// Add uniform
 	_unit forceAddUniform "U_B_CombatUniform_mcam";
 	

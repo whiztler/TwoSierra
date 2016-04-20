@@ -4,6 +4,9 @@ call compile preprocessFileLineNumbers "Core\F\ADF_fnc_typeWriter.sqf";
 player createDiarySubject ["Two Sierra Log","Two Sierra Log"];
 player createDiaryRecord ["Two Sierra Log",["Two Sierra Communications Log","<br/><br/><font color='#6c7169'>The Two Sierra Log is a logbook of all operational radio comms between Two Sierra and ACO<br/>The messages are logged once displayed on screen. All messages are time-stamped and saved in order of appearance.</font><br/><br/>"]];
 
+ADF_fnc_MOTS = {player allowDamage false; MotsActive = true};
+ADF_fnc_MOTS_captive = {params ["_c"]; player setCaptive _c};
+
 waitUntil {ADF_gearLoaded}; // Wait till the unit has their gear before continuing
 
 sleep 3; // Loadout finished > pri weapon loaded
@@ -71,43 +74,92 @@ if (!didJIP) then {
 	["ACO","ACO","Capt. James O'Conner: It is 04:45. TWO SIERRA, get moving. Now!"] call ADF_fnc_MessageParser;
 };
 
+[] spawn {
+	waitUntil {sleep 30; time > 10900}; // 30 mins left
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. You have 30 mikes left before MOTHER pulls you out. Break. After that it is RTB and mission aborted. Over."] call ADF_fnc_MessageParser; sleep 16;
+	["2S","","FIRESTONE this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; 
+};
+
+ADF_msg_start = {
+	waitUntil {sleep 1; time > 360};
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FIRESTONE this is TWO SIERRA. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Frago: do not attempt to disarm IED's. Mark them for EOD. Over."] call ADF_fnc_MessageParser; sleep 14;
+	["2S","","FIRESTONE this is TWO SIERRA. Roger. Will advice EOD of IED locations. Over."] call ADF_fnc_MessageParser;
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Good luck. Out."] call ADF_fnc_MessageParser;
+};
+
+ADF_msg_dolphin = {
+	["2S","","FIRESTONE, this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FIRESTONE, TWO SIERRA is at location DOLPHIN. Doesn't look good. Over."] call ADF_fnc_MessageParser; sleep 12;
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Solid copy. Neutralize DOLPHIN and proceed with tasking. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","FIRESTONE, this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser; sleep 8;
+};
+
+ADF_msg_greenZone = {
+	params ["_n"];
+	ADF_greenCnt = ADF_greenCnt + 1;
+
+	if (ADF_greenCnt < 4) then {publicVariable "ADF_greenCnt";};
+	
+	["2S","","FIRESTONE, this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 5;
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","FIRESTONE this is TWO SIERRA, requesting permission to cross green zone. How copy?"] call ADF_fnc_MessageParser; sleep 15;
+
+	if (_n == 1) exitWith {["ACO","ACO","TWO SIERRA, this is FIRESTONE. Negative TWO SIERRA. Permission denied. Out."] call ADF_fnc_MessageParser;};
+	if (_n == 2) exitWith {["ACO","ACO","TWO SIERRA, this is FIRESTONE. Negative TWO SIERRA. You do not have permission to cross the green zone. Order your men to stay South of the green zone. Out."] call ADF_fnc_MessageParser;}; 
+	if (_n == 3) exitWith {["ACO","ACO","Seriously TWO SIERRA. Once again, permission denied. Don't request again! Out."] call ADF_fnc_MessageParser;};
+	if (_n > 3) exitWith {["2S","","FIRESTONE this is TWO SIERRA. Did you copy?"] call ADF_fnc_MessageParser;};
+};
+
 // End Mission
 [] spawn {
 	waitUntil {sleep 10; ADF_endMission};	
-	["ACO","ACO","FIRESTONE: TWO SIERRA RTB for debrief. How Copy?"] call ADF_fnc_MessageParser; sleep 18;
-	["2S","","TWO SIERRA: Copy FIRESTONE. TWO SIERRA coming home. Out."] call ADF_fnc_MessageParser;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Message. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["2S","","FIRESTONE this is TWO SIERRA. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. RTB for debrief. How Copy?"] call ADF_fnc_MessageParser; sleep 18;
+	["2S","","FIRESTONE this is TWO SIERRA. Wilco. TWO SIERRA is OSCAR MIKE. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Roger. Out."] call ADF_fnc_MessageParser; sleep 7;
 };
 
 ADF_msg_cache1 = {
-	["2S","","TWO SIERRA: FIRESTONE, message over."] call ADF_fnc_MessageParser;
-	sleep 6;
-	["ACO","ACO","FIRESTONE: Ready to copy."] call ADF_fnc_MessageParser;
-	sleep 10;
-	["2S","","TWO SIERRA: We discovered an ammo cache at the Mosque in Feruz Abad city. How copy?"] call ADF_fnc_MessageParser;
-	sleep 12;
-	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. MOTHER wants you neutralize the cache. Out"] call ADF_fnc_MessageParser;
+	["2S","","FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Send traffic. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FIRESTONE this is TWO SIERRA. We discovered an ammo cache at the Mosque in Feruz Abad city. Break. Interrogative tasking. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Good copy. Wait. Over."] call ADF_fnc_MessageParser; sleep 32;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 9;
+	["2S","","FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Tasking. Neutralize the ammo cache. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+	["2S","","FIRESTONE this is TWO SIERRA. Solid copy. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_apc1 = {
-	["2S","","TWO SIERRA: FIRESTONE, we found two brand new APC's at the old base in Feruz Abad city. How copy?"] call ADF_fnc_MessageParser;
-	sleep 8;
-	["ACO","ACO","FIRESTONE: Wait one."] call ADF_fnc_MessageParser;
-	sleep 41;
-	["ACO","ACO","FIRESTONE: TWO SIERRA, do the APC's have any markings? Over."] call ADF_fnc_MessageParser;
-	sleep 9;
-	["2S","","TWO SIERRA: Negative FIRESTONE. But they are painted in the same colour scheme of JONAH vehicles in SATAN. Over"] call ADF_fnc_MessageParser;
-	sleep 14;
-	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. MOTHER wants those vehicles destroyed. How copy?"] call ADF_fnc_MessageParser;
-	sleep 12;
-	["2S","","TWO SIERRA: Copy FIRESTONE. Blowing them to bits. Out."] call ADF_fnc_MessageParser;
+	["2S","","FIRESTONE this is TWO SIERRA. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FIRESTONE this is TWO SIERRA. We found two brand new APC's at the old base in Feruz Abad city. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Solid copy. Do the APC's have any markings? Over."] call ADF_fnc_MessageParser; sleep 14;
+	["2S","","Negative FIRESTONE. APC's are painted in the same colour scheme of JONAH vehicles in SATAN. Over."] call ADF_fnc_MessageParser; sleep 14;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Roger. Wait. Over."] call ADF_fnc_MessageParser; sleep 40;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 9;
+	["2S","","FIRESTONE this is TWO SIERRA. Send. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA this is FIRESTONE. Tasking. MOTHER wants those vehicles destroyed. How copy?"] call ADF_fnc_MessageParser; sleep 14;
+	["2S","","FIRESTONE this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_base1 = {
-	["2S","","TWO SIERRA: FIRESTONE, we found some sort of supply base. How copy?"] call ADF_fnc_MessageParser;
-	sleep 13;
-	["ACO","ACO","FIRESTONE: Copy TWO SIERRA. Search the premises for intel. Out."] call ADF_fnc_MessageParser;
-	sleep 120;
-	["2S","","TWO SIERRA: FIRESTONE, discovered a laptop. Bringing it with. out."] call ADF_fnc_MessageParser;
+	["2S","","FIRESTONE this is TWO SIERRA. stand-by for traffic. Over."] call ADF_fnc_MessageParser; sleep 7;
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;
+	["2S","","FIRESTONE, we found some sort of supply base at grid PAPPA VICTOR 0-2-5-1.0-5-0-2. How copy?"] call ADF_fnc_MessageParser; sleep 15;
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Good copy. Break. Search the premises for intel. Over."] call ADF_fnc_MessageParser; sleep 12;
+	["2S","","FIRESTONE this is TWO SIERRA. Wilco. Out."] call ADF_fnc_MessageParser; sleep 50;
+	["2S","","FIRESTONE this is TWO SIERRA. Message. Over."] call ADF_fnc_MessageParser; sleep 6;
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Send. Over."] call ADF_fnc_MessageParser; sleep 8;	
+	["2S","","FIRESTONE this is TWO SIERRA. We found a laptop at the supply base at grid PAPPA VICTOR 0-2-5-1.0-5-0-2. How copy?"] call ADF_fnc_MessageParser; sleep 11;
+	["ACO","ACO","TWO SIERRA, this is FIRESTONE. Secure laptop and bring to TOC. Over."] call ADF_fnc_MessageParser; sleep 11;
+	["2S","","FIRESTONE this is TWO SIERRA. Roger. Out."] call ADF_fnc_MessageParser;
 };
 
 ADF_msg_endMission = {			
@@ -119,9 +171,3 @@ ADF_msg_endMission = {
 	["<img size= '10' shadow='false' image='Img\intro_TwoSierra.paa'/><br/><br/><t size='.7' color='#FFFFFF'>Day 03 | Dolphin</t>",0,0,9,8] spawn BIS_fnc_dynamicText;		
 	['END1',true,22] call BIS_fnc_endMission;
 };
-
-[] spawn {
-	waitUntil {time > 360};
-	["ACO","ACO","FIRESTONE: TWO SIERRA, Frago: do not attempt to disarm IED's. Mark them and EOD will take of them later. Out"] call ADF_fnc_MessageParser;
-};
-	
