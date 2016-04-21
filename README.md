@@ -37,7 +37,11 @@
 
 ## Current version
 
+<<<<<<< HEAD
 version: 1.43 | build: Final 03
+=======
+version: 1.43 | build: Final 02
+>>>>>>> origin/master
 
 <a name="New-Features"></a>
 ## New Features 1.39+

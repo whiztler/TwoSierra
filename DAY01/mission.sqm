@@ -4654,7 +4654,7 @@ class Mission
 			age="UNKNOWN";
 			name="tBravo";
 			expCond="{vehicle _x in thisList && isPlayer _x && ((getPosATL _x) select 2) < 5} count allUnits > 0;";
-			expActiv="0 = execVM ""Scr\SOD_BRAVO.sqf"";";
+			expActiv="0 = [] spawn ADF_AO_bravo;";
 			class Effects
 			{
 			};

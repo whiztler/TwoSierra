@@ -178,7 +178,7 @@ for "_i" from 0 to 2 do {
 	{
 		if (side _x == independent) then {
 			private ["_g", "_z"];
-			_z = _x
+			_z = _x;
 			_g = createGroup east;
 			(units _x) joinSilent _g;
 			deleteGroup _z;
@@ -215,8 +215,8 @@ ADF_AO_alpha = {
 	_a	= ["mGuerVeh_1", "mGuerVeh_2", "mGuerVeh_3", "mGuerVeh_4", "mGuerVeh_5"];
 	for "_i" from 1 to 2 do {
 		private ["_p", "_d", "_c", "_v", "_idx"];	
-		_p	= _a call BIS_fnc_selectRandom;
-		_a	= _a - [_p];
+		_p	= selectRandom _a;
+		_a 	= _a - [_p];
 		_d	= markerDir _p;
 		_p	= getMarkerPos _p;
 
@@ -232,7 +232,7 @@ ADF_AO_alpha = {
 
 	// Random foot patrols
 	private "_a";
-	_a	= ["mGuerPaxPatrol_1", "mGuerPaxPatrol_2", "mGuerPaxPatrol_3", "mGuerPaxPatrol_4", "mGuerPaxPatrol_5", "mGuerPaxPatrol_6", "mGuerPaxPatrol_7", "mGuerPaxPatrol_8", "mGuerPaxPatrol_9", "mGuerPaxPatrol_10"] call BIS_fnc_selectRandom;
+	_a	= ["mGuerPaxPatrol_1", "mGuerPaxPatrol_2", "mGuerPaxPatrol_3", "mGuerPaxPatrol_4", "mGuerPaxPatrol_5", "mGuerPaxPatrol_6", "mGuerPaxPatrol_7", "mGuerPaxPatrol_8", "mGuerPaxPatrol_9", "mGuerPaxPatrol_10"];
 	for "_i" from 0 to 3 do {
 		private ["_p", "_g"];
 		_p	= _a call BIS_fnc_selectRandom;

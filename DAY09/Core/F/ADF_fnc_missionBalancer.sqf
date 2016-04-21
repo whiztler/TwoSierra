@@ -52,7 +52,11 @@ enemy spawn on demand.
 if (isServer) then {diag_log "ADF RPT: Init - executing ADF_fnc_missionBalancer.sqf"}; // Reporting. Do NOT edit/remove
 
 ADF_fnc_missionBalanceInit = {
+<<<<<<< HEAD
 	private ["_s", "_n", "_c", "_m1", "_m2"];
+=======
+	private ["_s","_n","_c","_m1","_m2"];
+>>>>>>> origin/master
 	
 	_s = getNumber (missionConfigFile >> "maxPlayers");	
 	_c = {alive _x} count allPlayers;
@@ -61,6 +65,7 @@ ADF_fnc_missionBalanceInit = {
 		private "_msg";
 		_msg = parseText "<t color='#FFFFFF' size='1.5'>ERROR</t><br/><br/><t color='#A1A4AD'>The Mission Balancer activated could not initialize.<br/><br/>You need to set maxPlayers in the description.ext</t>";
 		_msg remoteExec ["hint", -2]; 
+<<<<<<< HEAD
 		["The Mission Balancer activated could not initialize. You need to set maxPlayers in the description.ext", true] call ADF_fnc_log;
 	};
 	
@@ -72,11 +77,28 @@ ADF_fnc_missionBalanceInit = {
 
 	
 	[_s, _c]
+=======
+		["The Mission Balancer activated could not initialize. You need to set maxPlayers in the description.ext",true] call ADF_fnc_log;
+	};
+	
+	_m1 = format ["Mission Balancer: maxPlayers (slots) :",_s];
+	_m1 = format ["Mission Balancer: Current players    :",_c];
+	
+	["-------------------------------------------------------------------------------------",false] call ADF_fnc_log;
+	[_m1,false] call ADF_fnc_log; [_m2,false] call ADF_fnc_log;
+
+	
+	[_s,_c]
+>>>>>>> origin/master
 };
 
 
 ADF_fnc_missionBalanceInit = {
+<<<<<<< HEAD
 	private ["_max", "_plr", "_high", "_med", "_low", "_cur", "_m3", "_m4", "_m5"];
+=======
+	private ["_max","_plr","_high","_med","_low","_cur","_m3","_m4","_m5"];
+>>>>>>> origin/master
 	
 	ADF_MB_
 	_a		= call ADF_fnc_missionBalanceInit;
@@ -87,6 +109,7 @@ ADF_fnc_missionBalanceInit = {
 	_low		= round (_max / 2.5);
 	_cur		= if (_plr > _med) then {_high} else {if ()}
 	
+<<<<<<< HEAD
 	_m3 = format ["Mission Balancer: HIGH : > %1 players", _high];
 	_m4 = format ["Mission Balancer: MED  :", _med];
 	_m5 = format ["Mission Balancer: LOW  :", _low];
@@ -94,6 +117,15 @@ ADF_fnc_missionBalanceInit = {
 	["-------------------------------------------------------------------------------------", false] call ADF_fnc_log;
 	[_m3, false] call ADF_fnc_log; [_m4, false] call ADF_fnc_log; [_m5, false] call ADF_fnc_log; [_m6, false] call ADF_fnc_log;
 	["-------------------------------------------------------------------------------------", false] call ADF_fnc_log;
+=======
+	_m3 = format ["Mission Balancer: HIGH : > %1 players",_high];
+	_m4 = format ["Mission Balancer: MED  :",_med];
+	_m5 = format ["Mission Balancer: LOW  :",_low];
+	_m6 = format ["Mission Balancer current setting:",_cur];
+	["-------------------------------------------------------------------------------------",false] call ADF_fnc_log;
+	[_m3,false] call ADF_fnc_log; [_m4,false] call ADF_fnc_log; [_m5,false] call ADF_fnc_log; [_m6,false] call ADF_fnc_log;
+	["-------------------------------------------------------------------------------------",false] call ADF_fnc_log;
+>>>>>>> origin/master
 };
 
 

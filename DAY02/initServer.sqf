@@ -20,6 +20,7 @@ diag_log text ""; diag_log text ""; diag_log text "";
 diag_log text format["####################   %1   ####################", missionName]; // stamp mission name in RPT log
 diag_log text "";
 
+//ADF_debug = false;
 [] spawn {waitUntil {time > 0}; enableEnvironment FALSE;};
 call compile preprocessFileLineNumbers "Core\F\ADF_fnc_objectMarker.sqf";
 

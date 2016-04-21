@@ -71,7 +71,8 @@ ADF_fnc_TargetRandom = {
 			_wp = _g addWaypoint [getMarkerPos "mGueAssaultLine1_2", 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 			_wp = _g addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
 			
-			sleep ([15,30,45,60,90,120] call BIS_fnc_selectRandom);
+			_s = [15,30,45,60,90,120] call BIS_fnc_selectRandom;
+			sleep _s;
 			ADF_vehSpawnCnt = ADF_vehSpawnCnt + _s;
 		};
 		ADF_assaultLine1 = true;
@@ -87,7 +88,7 @@ ADF_fnc_TargetRandom = {
 			_wp = _g addWaypoint [getMarkerPos "mGueAssaultLine3_2", 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 			_wp = _g addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
 			
-			sleep ([15,30,45,60,90,120] call BIS_fnc_selectRandom);
+			_s = [15,30,45,60,90,120] call BIS_fnc_selectRandom;
 			ADF_vehSpawnCnt = ADF_vehSpawnCnt + _s;
 		};
 		ADF_assaultLine3 = true;
@@ -104,7 +105,7 @@ ADF_fnc_TargetRandom = {
 			_wp = _g addWaypoint [getMarkerPos "mGueAssaultLine2_2", 0]; _wp setWaypointType "MOVE"; _wp setWaypointBehaviour "AWARE"; _wp setWaypointSpeed "FULL"; _wp setWaypointCombatMode "RED"; _wp setWaypointCompletionRadius 25; 
 			_wp = _g addWaypoint [getMarkerPos "mAegisText_1", 0]; _wp setWaypointType "SAD"; _wp setWaypointBehaviour "COMBAT"; _wp setWaypointSpeed "NORMAL"; _wp setWaypointCombatMode "RED";
 			
-			sleep ([15,30,45,60,90,120] call BIS_fnc_selectRandom);
+			_s = [15,30,45,60,90,120] call BIS_fnc_selectRandom;
 			ADF_vehSpawnCnt = ADF_vehSpawnCnt + _s;
 		};
 		ADF_assaultLine2 = true;
